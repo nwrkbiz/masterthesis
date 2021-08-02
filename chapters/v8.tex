@@ -1,0 +1,30 @@
+\chapter{Google V8 Javascript-Engine}
+\label{cha:v8engine}
+
+Bevor das Umsetzungskonzept erläutert werden kann, muss die generelle Funktionsweise der Google V8 Javascriptengine
+erörtert werden. Dazu wird in diesem Abschnitt Bezug auf \cite{v8embed} und \cite{v8mem} genommen.
+
+\section{Funktionsweise und Aufbau}
+
+\subsection{Just-In-Time Compiler und Caches}
+
+\subsection{Threadsicherheit mithilfe von Isolates}
+
+1 Thread per Isolate, Locker Objekte
+
+\subsection{Abgrenzen der Javascript-Ausführungsumgebungen mithilfe von Contexts}
+
+Unabhängige ausführungsumgebung
+
+\subsection{Speicherverwaltung}
+
+Handles verwaltet über RAII geben Garbage collector auskunft über die validität von speicherzellen.
+
+\subsection{Anpassen von Javascript-Ausführungsumgebungen über das Global Objekt}
+
+\subsection{Das DebugInspector Protokoll}
+
+\section{Vergleich mit anderen Javascript-Engines}
+Vergleich vorallem mid Mozilla spidermonkey. Ev. auch performancetests.
+\subsection{Mozilla SpiderMonkey}
+\subsection{Apple JavaScriptCore}

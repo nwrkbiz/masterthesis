@@ -1,0 +1,298 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.0 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{websocketpp}{online}{}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labeltitlesource}{title}
+      \field{title}{A C++ library that can be used to implement WebSocket functionality.}
+      \field{urlday}{8}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://docs.websocketpp.org/
+      \endverb
+      \verb{url}
+      \verb https://docs.websocketpp.org/
+      \endverb
+    \endentry
+    \entry{OpenSSL}{online}{}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labeltitlesource}{title}
+      \field{title}{A robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols.}
+      \field{urlday}{8}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.openssl.org/
+      \endverb
+      \verb{url}
+      \verb https://www.openssl.org/
+      \endverb
+    \endentry
+    \entry{SQlite}{online}{}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labeltitlesource}{title}
+      \field{title}{A small, fast, self-contained, high-reliability, full-featured, SQL database engine.}
+      \field{urlday}{8}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.sqlite.org/index.html
+      \endverb
+      \verb{url}
+      \verb https://www.sqlite.org/index.html
+      \endverb
+    \endentry
+    \entry{WinCCOA}{manual}{}
+      \name{author}{1}{}{%
+        {{hash=bec9c058bcaa1d204f512f685626bd1d}{%
+           family={ETM},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{bec9c058bcaa1d204f512f685626bd1d}
+      \strng{fullhash}{bec9c058bcaa1d204f512f685626bd1d}
+      \strng{bibnamehash}{bec9c058bcaa1d204f512f685626bd1d}
+      \strng{authorbibnamehash}{bec9c058bcaa1d204f512f685626bd1d}
+      \strng{authornamehash}{bec9c058bcaa1d204f512f685626bd1d}
+      \strng{authorfullhash}{bec9c058bcaa1d204f512f685626bd1d}
+      \field{sortinit}{E}
+      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{WinCC Open Architecture 3.16 Documentation}
+      \field{year}{2019}
+    \endentry
+    \entry{boost}{online}{}
+      \field{sortinit}{F}
+      \field{sortinithash}{669c706c6f1fbf3b5a83d26f1d9e9e72}
+      \field{labeltitlesource}{title}
+      \field{title}{Free peer-reviewed portable C++ source libraries.}
+      \field{urlday}{8}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.boost.org/
+      \endverb
+      \verb{url}
+      \verb https://www.boost.org/
+      \endverb
+    \endentry
+    \entry{git}{online}{}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{labeltitlesource}{title}
+      \field{title}{Git Homepage}
+      \field{urlday}{8}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://git-scm.com/
+      \endverb
+      \verb{url}
+      \verb https://git-scm.com/
+      \endverb
+    \endentry
+    \entry{v8engine}{online}{}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{labeltitlesource}{title}
+      \field{title}{Google’s open source high-performance JavaScript and WebAssembly engine, written in C++.}
+      \field{urlday}{8}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://v8.dev/
+      \endverb
+      \verb{url}
+      \verb https://v8.dev/
+      \endverb
+    \endentry
+    \entry{v8mem}{online}{}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{labeltitlesource}{title}
+      \field{title}{How (not) to access V8 memory}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb https://nodeaddons.com/how-not-to-access-node-js-from-c-worker-threads/
+      \endverb
+      \verb{url}
+      \verb https://nodeaddons.com/how-not-to-access-node-js-from-c-worker-threads/
+      \endverb
+      \warn{\item Entry 'v8mem' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{Prozessleittechnik}{book}{}
+      \name{author}{1}{}{%
+        {{hash=b3eae762daaa8040ce6a8799a65be170}{%
+           family={Polke},
+           familyi={P\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Polke, Martin}%
+      }
+      \strng{namehash}{b3eae762daaa8040ce6a8799a65be170}
+      \strng{fullhash}{b3eae762daaa8040ce6a8799a65be170}
+      \strng{bibnamehash}{b3eae762daaa8040ce6a8799a65be170}
+      \strng{authorbibnamehash}{b3eae762daaa8040ce6a8799a65be170}
+      \strng{authornamehash}{b3eae762daaa8040ce6a8799a65be170}
+      \strng{authorfullhash}{b3eae762daaa8040ce6a8799a65be170}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{title}{Prozessleittechnik}
+      \field{year}{1994}
+    \endentry
+    \entry{mbedtls}{online}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labeltitlesource}{title}
+      \field{title}{SSL library with an intuitive API and readable source code.}
+      \field{urlday}{8}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://tls.mbed.org/
+      \endverb
+      \verb{url}
+      \verb https://tls.mbed.org/
+      \endverb
+    \endentry
+    \entry{MultiagentSystems}{book}{}
+      \name{author}{1}{}{%
+        {{hash=3f284760a6c0db2c12f653be8cce6a55}{%
+           family={Stefan\bibnamedelima Bussmann},
+           familyi={S\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={Michael\bibnamedelima Wooldringe},
+           giveni={M\bibinitperiod\bibinitdelim W\bibinitperiod},
+           suffix={Nicholas\bibnamedelimb R.\bibnamedelimi Jennings},
+           suffixi={N\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{3f284760a6c0db2c12f653be8cce6a55}
+      \strng{fullhash}{3f284760a6c0db2c12f653be8cce6a55}
+      \strng{bibnamehash}{3f284760a6c0db2c12f653be8cce6a55}
+      \strng{authorbibnamehash}{3f284760a6c0db2c12f653be8cce6a55}
+      \strng{authornamehash}{3f284760a6c0db2c12f653be8cce6a55}
+      \strng{authorfullhash}{3f284760a6c0db2c12f653be8cce6a55}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{title}{Multiagent Systems For Manufactoring Control}
+      \field{year}{2004}
+    \endentry
+    \entry{ACE}{online}{}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labeltitlesource}{title}
+      \field{title}{The ADAPTIVE Communication Environment (ACE(TM))}
+      \field{urlday}{8}
+      \field{urlmonth}{2}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://www.dre.vanderbilt.edu/~schmidt/ACE.html
+      \endverb
+      \verb{url}
+      \verb http://www.dre.vanderbilt.edu/~schmidt/ACE.html
+      \endverb
+    \endentry
+    \entry{v8embed}{online}{}
+      \field{sortinit}{V}
+      \field{sortinithash}{75dd7385c90b2252c3ae853a80ca853b}
+      \field{labeltitlesource}{title}
+      \field{title}{V8 Embedding Documentation}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb https://v8.dev/docs/embed
+      \endverb
+      \verb{url}
+      \verb https://v8.dev/docs/embed
+      \endverb
+      \warn{\item Entry 'v8embed' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{wooldridge_jennings_1995}{article}{}
+      \name{author}{2}{}{%
+        {{hash=1dbead6bb535576afc14adfe5a5c42bb}{%
+           family={Wooldridge},
+           familyi={W\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=1fb1b859fa7fe89eeae563907c07b4e4}{%
+           family={Jennings},
+           familyi={J\bibinitperiod},
+           given={Nicholas\bibnamedelima R.},
+           giveni={N\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{0f977bb6eef94504949d95c01854cc2f}
+      \strng{fullhash}{0f977bb6eef94504949d95c01854cc2f}
+      \strng{bibnamehash}{0f977bb6eef94504949d95c01854cc2f}
+      \strng{authorbibnamehash}{0f977bb6eef94504949d95c01854cc2f}
+      \strng{authornamehash}{0f977bb6eef94504949d95c01854cc2f}
+      \strng{authorfullhash}{0f977bb6eef94504949d95c01854cc2f}
+      \field{sortinit}{W}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Knowledge Engineering Review}
+      \field{number}{2}
+      \field{title}{Intelligent agents: theory and practice}
+      \field{volume}{10}
+      \field{year}{1995}
+      \field{pages}{115\bibrangedash 152}
+      \range{pages}{38}
+      \verb{doi}
+      \verb 10.1017/S0269888900008122
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

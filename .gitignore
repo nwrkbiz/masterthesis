@@ -1,0 +1,8 @@
+literature/
+*.toc
+*.aux
+*.out
+*.log
+*.bcf
+*.run.xml
+main.pdf

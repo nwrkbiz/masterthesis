@@ -1,0 +1,5 @@
+[0] Config.pm:304> INFO - This is Biber 2.12
+[0] Config.pm:307> INFO - Logfile is './references.blg'
+[29] biber:315> INFO - === So Aug  1, 2021, 17:33:54
+[139] Utils.pm:209> ERROR - Cannot find control file './references.bcf'! - Did latex run successfully on your .tex file before you ran biber?
+[139] Biber.pm:114> INFO - ERRORS: 1

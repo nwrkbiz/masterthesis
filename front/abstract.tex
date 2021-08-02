@@ -1,0 +1,25 @@
+\chapter{Abstract}
+
+
+\begin{english}
+Due to the difference of every plant in the automation industry and the varying customer-specific project requirements, 
+plant integration of multi-agent SCADA (Supervisory Control And Data Acquisition) systems often comes along with 
+many unforeseen and complex problems. To overcome these problems, a simple way for on-site engineering and
+customization is needed. \\
+
+This can be achieved, by providing the system integrator a dynamically extendable and well-documented scripting language 
+with advanced debugging capabilities and an interaction method to access the SCADA system remotely. Javascript fits this 
+purpose, as there can be literature found online and offline. Also, there are many publicly available components and libraries
+to extend the language and most interpreters feature debugging protocols which help to ease the development. \\
+
+The following thesis describes how the Google V8 Javascript Engine is embedded as a part of the \textit{SiPlant} product 
+into the commercial WinCC OA (Windows Control Center Open Architecture) Multi-Agent-SCADA System for Windows and Linux. 
+This is done by implementing a dedicated agent which is capable of executing Javascript code by utilizing 
+the formerly named engine developed by Google. \\
+
+This custom agent extends the scripting language by a set of custom commands which allow accessing the data of the whole 
+system by using WinCC OA's event-based concepts. \\
+
+Finally, the created agent is examined in practice on different platforms and projects.
+\end{english}
+
