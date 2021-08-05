@@ -5,4 +5,7 @@ literature/
 *.log
 *.bcf
 *.run.xml
+*.lof
+*.ldb
 main.pdf
+.vscode/

@@ -1,19 +1,20 @@
 [0] Config.pm:304> INFO - This is Biber 2.12
-[1] Config.pm:307> INFO - Logfile is 'main.blg'
-[40] biber:315> INFO - === Mo Aug  2, 2021, 22:45:02
-[72] Biber.pm:371> INFO - Reading 'main.bcf'
-[167] Biber.pm:889> INFO - Found 14 citekeys in bib section 0
-[195] Biber.pm:4093> INFO - Processing section 0
-[212] Biber.pm:4254> INFO - Looking for bibtex format file 'references.bib' for section 0
-[217] bibtex.pm:1512> INFO - LaTeX decoding ...
-[335] bibtex.pm:1329> INFO - Found BibTeX data source 'references.bib'
-[342] Utils.pm:193> WARN - Duplicate entry key: 'gtest' in file 'references.bib', skipping ...
-[378] Utils.pm:193> WARN - Entry 'v8embed' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
-[380] Utils.pm:193> WARN - Entry 'v8mem' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
-[423] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[423] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[423] Biber.pm:3921> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
-[423] Biber.pm:3927> INFO - No sort tailoring available for locale 'de-DE'
-[454] bbl.pm:636> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[460] bbl.pm:739> INFO - Output to main.bbl
-[461] Biber.pm:110> INFO - WARNINGS: 3
+[0] Config.pm:307> INFO - Logfile is 'main.blg'
+[28] biber:315> INFO - === Mi Aug  4, 2021, 21:09:42
+[51] Biber.pm:371> INFO - Reading 'main.bcf'
+[120] Biber.pm:889> INFO - Found 24 citekeys in bib section 0
+[135] Biber.pm:4093> INFO - Processing section 0
+[148] Biber.pm:4254> INFO - Looking for bibtex format file 'references.bib' for section 0
+[152] bibtex.pm:1512> INFO - LaTeX decoding ...
+[251] bibtex.pm:1329> INFO - Found BibTeX data source 'references.bib'
+[258] Utils.pm:193> WARN - Duplicate entry key: 'gtest' in file 'references.bib', skipping ...
+[322] Utils.pm:193> WARN - month field 'August' in entry 'dragonBook' is not an integer - this will probably not sort properly.
+[335] Utils.pm:193> WARN - Entry 'v8embed' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
+[337] Utils.pm:193> WARN - Entry 'v8mem' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
+[393] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[393] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[393] Biber.pm:3921> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
+[393] Biber.pm:3927> INFO - No sort tailoring available for locale 'de-DE'
+[423] bbl.pm:636> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[435] bbl.pm:739> INFO - Output to main.bbl
+[435] Biber.pm:110> INFO - WARNINGS: 4

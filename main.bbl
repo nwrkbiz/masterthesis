@@ -70,25 +70,127 @@
       \verb https://www.sqlite.org/index.html
       \endverb
     \endentry
+    \entry{dragonBook}{book}{}
+      \name{author}{4}{}{%
+        {{hash=87e9142329f09390b038692270dc2168}{%
+           family={Aho},
+           familyi={A\bibinitperiod},
+           given={Alfred\bibnamedelima V.},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=2935cefbbdea2e46ed9635bd5cf1db28}{%
+           family={Lam},
+           familyi={L\bibinitperiod},
+           given={Monica\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=b0e677112f976b0ff780553fcb888351}{%
+           family={Sethi},
+           familyi={S\bibinitperiod},
+           given={Ravi},
+           giveni={R\bibinitperiod}}}%
+        {{hash=cafe1d770c56825ebccdb81e9f7c9b3b}{%
+           family={Ullman},
+           familyi={U\bibinitperiod},
+           given={Jeffrey\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Addison Wesley}%
+      }
+      \strng{namehash}{e81f18fe5b19a688d5145730fb236624}
+      \strng{fullhash}{b955b20997f1b0d8317cbada66b20151}
+      \strng{bibnamehash}{e81f18fe5b19a688d5145730fb236624}
+      \strng{authorbibnamehash}{e81f18fe5b19a688d5145730fb236624}
+      \strng{authornamehash}{e81f18fe5b19a688d5145730fb236624}
+      \strng{authorfullhash}{b955b20997f1b0d8317cbada66b20151}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Hardcover}
+      \field{isbn}{0321486811}
+      \field{month}{8}
+      \field{title}{Compilers: Principles, Techniques, and Tools (2nd Edition)}
+      \field{year}{2006}
+      \keyw{compilers}
+    \endentry
+    \entry{realTimeDB}{book}{}
+      \name{editor}{1}{}{%
+        {{hash=f647a06ed26f4bf6aaae7fd4ba3a66cc}{%
+           family={Azer\bibnamedelima Bestavros},
+           familyi={A\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={Sang\bibnamedelimb Hyuk\bibnamedelima Son},
+           giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim S\bibinitperiod},
+           suffix={Kwei-Jay\bibnamedelima Lin},
+           suffixi={K\bibinithyphendelim J\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer US}%
+      }
+      \strng{namehash}{f647a06ed26f4bf6aaae7fd4ba3a66cc}
+      \strng{fullhash}{f647a06ed26f4bf6aaae7fd4ba3a66cc}
+      \strng{bibnamehash}{f647a06ed26f4bf6aaae7fd4ba3a66cc}
+      \strng{editorbibnamehash}{f647a06ed26f4bf6aaae7fd4ba3a66cc}
+      \strng{editornamehash}{f647a06ed26f4bf6aaae7fd4ba3a66cc}
+      \strng{editorfullhash}{f647a06ed26f4bf6aaae7fd4ba3a66cc}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labelnamesource}{editor}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Encyclopedia of Database Systems}
+      \field{isbn}{978-0-7923-9897-4}
+      \field{title}{Real-Time Database Systems}
+      \field{year}{1997}
+      \verb{doi}
+      \verb 10.1007/978-1-4615-6161-3
+      \endverb
+    \endentry
     \entry{WinCCOA}{manual}{}
       \name{author}{1}{}{%
-        {{hash=bec9c058bcaa1d204f512f685626bd1d}{%
-           family={ETM},
-           familyi={E\bibinitperiod}}}%
+        {{hash=818b27f47a529b57293de9e5161334dc}{%
+           family={Control},
+           familyi={C\bibinitperiod},
+           given={ETM\bibnamedelima Professional},
+           giveni={E\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
       }
-      \strng{namehash}{bec9c058bcaa1d204f512f685626bd1d}
-      \strng{fullhash}{bec9c058bcaa1d204f512f685626bd1d}
-      \strng{bibnamehash}{bec9c058bcaa1d204f512f685626bd1d}
-      \strng{authorbibnamehash}{bec9c058bcaa1d204f512f685626bd1d}
-      \strng{authornamehash}{bec9c058bcaa1d204f512f685626bd1d}
-      \strng{authorfullhash}{bec9c058bcaa1d204f512f685626bd1d}
-      \field{sortinit}{E}
-      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \strng{namehash}{818b27f47a529b57293de9e5161334dc}
+      \strng{fullhash}{818b27f47a529b57293de9e5161334dc}
+      \strng{bibnamehash}{818b27f47a529b57293de9e5161334dc}
+      \strng{authorbibnamehash}{818b27f47a529b57293de9e5161334dc}
+      \strng{authornamehash}{818b27f47a529b57293de9e5161334dc}
+      \strng{authorfullhash}{818b27f47a529b57293de9e5161334dc}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{langid}{english}
       \field{title}{WinCC Open Architecture 3.16 Documentation}
       \field{year}{2019}
+    \endentry
+    \entry{whatIsScada}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=e11637ed54b7faace309300d689ca28e}{%
+           family={Daneels},
+           familyi={D\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=df8e92531dde44961ee28511f0955dce}{%
+           family={Salter},
+           familyi={S\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{d9212e125fb677efe02a970deb6462f2}
+      \strng{fullhash}{d9212e125fb677efe02a970deb6462f2}
+      \strng{bibnamehash}{d9212e125fb677efe02a970deb6462f2}
+      \strng{authorbibnamehash}{d9212e125fb677efe02a970deb6462f2}
+      \strng{authornamehash}{d9212e125fb677efe02a970deb6462f2}
+      \strng{authorfullhash}{d9212e125fb677efe02a970deb6462f2}
+      \field{sortinit}{D}
+      \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{What is SCADA?}
+      \field{year}{1999}
     \endentry
     \entry{boost}{online}{}
       \field{sortinit}{F}
@@ -141,6 +243,37 @@
       \verb https://v8.dev/
       \endverb
     \endentry
+    \entry{v8ByteCode}{online}{}
+      \name{author}{1}{}{%
+        {{hash=9bebb7bb5e86002f2ae78241c6c6a490}{%
+           family={Hinkelmann},
+           familyi={H\bibinitperiod},
+           given={Franziska},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \strng{fullhash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \strng{bibnamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \strng{authorbibnamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \strng{authornamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \strng{authorfullhash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Understanding V8's Bytecode}
+      \field{urlday}{8}
+      \field{urlmonth}{4}
+      \field{urlyear}{2021}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775
+      \endverb
+      \verb{url}
+      \verb https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775
+      \endverb
+    \endentry
     \entry{v8mem}{online}{}
       \field{sortinit}{H}
       \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
@@ -154,6 +287,125 @@
       \verb https://nodeaddons.com/how-not-to-access-node-js-from-c-worker-threads/
       \endverb
       \warn{\item Entry 'v8mem' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{Jacobsen2009}{inbook}{}
+      \name{author}{1}{}{%
+        {{hash=ea92f9ebc3ace54ebda154ff2ca3d7fc}{%
+           family={Jacobsen},
+           familyi={J\bibinitperiod},
+           given={Hans-Arno},
+           giveni={H\bibinithyphendelim A\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=d0536558a000f6cc88d6f7fd6b28eb05}{%
+           family={LIU},
+           familyi={L\bibinitperiod},
+           given={LING},
+           giveni={L\bibinitperiod}}}%
+        {{hash=69fda614f260f289c54ed42205696a3b}{%
+           family={{Ö}ZSU},
+           familyi={Ö\bibinitperiod},
+           given={M.\bibnamedelimi TAMER},
+           giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Boston, MA}%
+      }
+      \list{publisher}{1}{%
+        {Springer US}%
+      }
+      \strng{namehash}{ea92f9ebc3ace54ebda154ff2ca3d7fc}
+      \strng{fullhash}{ea92f9ebc3ace54ebda154ff2ca3d7fc}
+      \strng{bibnamehash}{ea92f9ebc3ace54ebda154ff2ca3d7fc}
+      \strng{authorbibnamehash}{ea92f9ebc3ace54ebda154ff2ca3d7fc}
+      \strng{authornamehash}{ea92f9ebc3ace54ebda154ff2ca3d7fc}
+      \strng{authorfullhash}{ea92f9ebc3ace54ebda154ff2ca3d7fc}
+      \strng{editorbibnamehash}{36df0daa484f7b702755f9b33f067368}
+      \strng{editornamehash}{36df0daa484f7b702755f9b33f067368}
+      \strng{editorfullhash}{36df0daa484f7b702755f9b33f067368}
+      \field{sortinit}{J}
+      \field{sortinithash}{fce5f8d0bd05e8d93f3dbe21c78897ca}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Encyclopedia of Database Systems}
+      \field{isbn}{978-0-387-39940-9}
+      \field{title}{Publish/Subscribe}
+      \field{year}{2009}
+      \field{pages}{2208\bibrangedash 2211}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1007/978-0-387-39940-9_1181
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-0-387-39940-9_1181
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-0-387-39940-9_1181
+      \endverb
+    \endentry
+    \entry{staticLinking}{book}{}
+      \name{author}{1}{}{%
+        {{hash=893cea6cc6653ab3741d32bce247a8d6}{%
+           family={Johnson},
+           familyi={J\bibinitperiod},
+           given={Michael\bibnamedelima K.},
+           giveni={M\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Bonn Reading, Mass. u.a}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley-Longman}%
+      }
+      \strng{namehash}{893cea6cc6653ab3741d32bce247a8d6}
+      \strng{fullhash}{893cea6cc6653ab3741d32bce247a8d6}
+      \strng{bibnamehash}{893cea6cc6653ab3741d32bce247a8d6}
+      \strng{authorbibnamehash}{893cea6cc6653ab3741d32bce247a8d6}
+      \strng{authornamehash}{893cea6cc6653ab3741d32bce247a8d6}
+      \strng{authorfullhash}{893cea6cc6653ab3741d32bce247a8d6}
+      \field{sortinit}{J}
+      \field{sortinithash}{fce5f8d0bd05e8d93f3dbe21c78897ca}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9783827314499}
+      \field{title}{Anwendungen entwickeln unter Linux}
+      \field{year}{1998}
+      \verb{urlraw}
+      \verb http://www.addison-wesley.de/3827314496.html
+      \endverb
+      \verb{url}
+      \verb http://www.addison-wesley.de/3827314496.html
+      \endverb
+    \endentry
+    \entry{Singleton}{report}{}
+      \name{author}{1}{}{%
+        {{hash=2642834880a62036bb405ae7e18ff71d}{%
+           family={Maclean},
+           familyi={M\bibinitperiod},
+           given={Stuart},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{institution}{2}{%
+        {University of Southampton, Department of Electronics}%
+        {Computer Science}%
+      }
+      \list{location}{1}{%
+        {United Kingdom, Highfield, Southampton SO17}%
+      }
+      \strng{namehash}{2642834880a62036bb405ae7e18ff71d}
+      \strng{fullhash}{2642834880a62036bb405ae7e18ff71d}
+      \strng{bibnamehash}{2642834880a62036bb405ae7e18ff71d}
+      \strng{authorbibnamehash}{2642834880a62036bb405ae7e18ff71d}
+      \strng{authornamehash}{2642834880a62036bb405ae7e18ff71d}
+      \strng{authorfullhash}{2642834880a62036bb405ae7e18ff71d}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{On the Singleton Software Design Pattern}
+      \field{type}{techreport}
+      \field{year}{1997}
     \endentry
     \entry{Prozessleittechnik}{book}{}
       \name{author}{1}{}{%
@@ -179,6 +431,99 @@
       \field{edition}{2}
       \field{title}{Prozessleittechnik}
       \field{year}{1994}
+    \endentry
+    \entry{dynLinking}{book}{}
+      \name{author}{5}{}{%
+        {{hash=0f07bc0948be9516d7fa05582b50cf76}{%
+           family={Pritchard},
+           familyi={P\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b294afda5754e40b3009a8aa80838e9b}{%
+           family={Pessanha},
+           familyi={P\bibinitperiod},
+           given={Bruno},
+           giveni={B\bibinitperiod}}}%
+        {{hash=5900b53a4ab19d2965e6b50df29aec0d}{%
+           family={Langfeldt},
+           familyi={L\bibinitperiod},
+           given={Nicolai},
+           giveni={N\bibinitperiod}}}%
+        {{hash=8b0d4bc1cbdf20834fc3a8254c37f161}{%
+           family={Stanger},
+           familyi={S\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
+        {{hash=62f954323339abeba6c6a240e9d2855b}{%
+           family={Dean},
+           familyi={D\bibinitperiod},
+           given={Jeff},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {O'Reilly Media, Inc.}%
+      }
+      \strng{namehash}{3417d352abbfa41af62890550706e91e}
+      \strng{fullhash}{fd64c2622df3f8addb7bc29f46b24655}
+      \strng{bibnamehash}{3417d352abbfa41af62890550706e91e}
+      \strng{authorbibnamehash}{3417d352abbfa41af62890550706e91e}
+      \strng{authornamehash}{3417d352abbfa41af62890550706e91e}
+      \strng{authorfullhash}{fd64c2622df3f8addb7bc29f46b24655}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0596005288}
+      \field{title}{LPI Linux Certification in a Nutshell (In a Nutshell (O'Reilly))}
+      \field{year}{2006}
+    \endentry
+    \entry{jsCore}{online}{}
+      \name{author}{1}{}{%
+        {{hash=8a713dfd88abfe0c99d0db3e1a91568e}{%
+           family={Sion},
+           familyi={S\bibinitperiod},
+           given={Assaf},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{8a713dfd88abfe0c99d0db3e1a91568e}
+      \strng{fullhash}{8a713dfd88abfe0c99d0db3e1a91568e}
+      \strng{bibnamehash}{8a713dfd88abfe0c99d0db3e1a91568e}
+      \strng{authorbibnamehash}{8a713dfd88abfe0c99d0db3e1a91568e}
+      \strng{authornamehash}{8a713dfd88abfe0c99d0db3e1a91568e}
+      \strng{authorfullhash}{8a713dfd88abfe0c99d0db3e1a91568e}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Mysterious Realm of JavaScriptCore}
+      \field{urlday}{8}
+      \field{urlmonth}{4}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.cyberark.com/resources/threat-research-blog/the-mysterious-realm-of-javascriptcore
+      \endverb
+      \verb{url}
+      \verb https://www.cyberark.com/resources/threat-research-blog/the-mysterious-realm-of-javascriptcore
+      \endverb
+    \endentry
+    \entry{jsSpiderMonkey}{manual}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
+      \field{labeltitlesource}{title}
+      \field{title}{SpiderMonkey Developer Documentation}
+      \field{urlday}{8}
+      \field{urlmonth}{4}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.cyberark.com/resources/threat-research-blog/the-mysterious-realm-of-javascriptcore
+      \endverb
+      \verb{url}
+      \verb https://www.cyberark.com/resources/threat-research-blog/the-mysterious-realm-of-javascriptcore
+      \endverb
     \endentry
     \entry{mbedtls}{online}{}
       \field{sortinit}{S}

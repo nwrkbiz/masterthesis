@@ -18,7 +18,7 @@ Data Acquisition. Diese Systeme implementieren Ebene zwei und Teile von Ebene dr
 	\label{fig:aut_pyr}
 \end{figure}
 
-Die in Abbildung \ref{fig:aut_pyr} gezeigten Ebenen können wie folgt zusammengefasst werden: \cite{Prozessleittechnik}
+Die in Abbildung \ref{fig:aut_pyr} gezeigten Ebenen können wie folgt zusammengefasst werden \cite{Prozessleittechnik}:
 \begin{itemize}
   \item Ebene vier: Die \textit{Unternehmensleitebene} umfasst Produktionsplanung und Bestellabwicklung.
   \item Ebene drei: Stellt die \textit{Produktionsleitebene} dar, in der Produktionsdaten erfasst werden. Außerdem findet hier Qualitäts- und Materialmanagement statt.
@@ -27,7 +27,7 @@ Die in Abbildung \ref{fig:aut_pyr} gezeigten Ebenen können wie folgt zusammenge
   \item Ebene null: Unter \textit{Anlage} versteht man die zu steuernde Maschine und die dazugehörige Sensorik. \\
 \end{itemize}
 
-Unter SCADA versteht man das Überwachen und Steuern technischer Prozesse mithilfe von Computersystemen. 
+Unter SCADA versteht man das Überwachen und Steuern technischer Prozesse mithilfe von Computersystemen \cite{whatIsScada}.
 Diese Systeme helfen bei der Überwachung von Anlagen und sind somit Wegbereiter, um Verfügbarkeit und Produktivität zu erhöhen. 
 Am Siemensstandort in der Krausstraße in Linz befindet sich die Abteilung \textit{DF FA SO SIS}. Der
 Abteilungsname beschreibt den Tätigkeitsbereich und steht als Abkürzung für Digital
@@ -38,8 +38,8 @@ Ein Aufgabenbereich ist hierbei der Entwurf des webbasierenden Supervisory Contr
 \textit{Simatic Windows Control Center Open Architecture} (WinCC OA) der Siemens Tochtergesellschaft ETM Professional Control 
 gesehen werden. WinCC OA eignet sich hierbei als Basissystem, da die Multi-Agent-Architektur ein einfaches Erweitern über eine 
 C++-Programmierschnittstelle ermöglicht und da bereits viele Möglichkeiten zum akquirieren von Daten über proprietäre oder offene 
-Feldbus Protokolle zur Verfügung stehen. Als Beispiele können hier Profinet, MODBUS, S7Plus, OPC UA und BACNET angeführt werden. 
-Um plattformunabhängig moderne Visualisierungen für die Überwachung von Anlagen zur Verfügung stellen zu können, 
+Feldbus Protokolle zur Verfügung stehen. Als Beispiele können hier Profinet, MODBUS, S7Plus, OPC UA und BACNET angeführt werden \cite{WinCCOA}.
+Um plattformunabhängig moderne Visualisierungen für die Überwachung von Anlagen umsetzten zu können, 
 wurde für \textit{SiPlant} HTML5 als Technologie gewählt. Dies wurde mithilfe von eigens entwickelten WinCC OA Agenten umgesetzt.
 
 \section{Probleme bei der Systemintegration von SCADA-Systemen}
@@ -52,9 +52,9 @@ Bordmittel von WinCC OA oft nur eingeschränkt Möglichkeiten.
 \section{Zielsetzung}
 
 Aufgrund der Unterschiede zwischen den einzelnen Anlagen der Automatisierungsindustrie und den verschiedenen kundenspezifischen 
-Projektanforderungen ist die Integration des SiPlant Produktes oft mit vielen unvorhersehbaren und komplexen Problemen 
+Projektanforderungen ist die Integration des \textit{SiPlant} Produktes oft mit vielen unvorhersehbaren und komplexen Problemen 
 verbunden. Ziel dieser Arbeit ist es daher, die Google V8 Javascriptengine und das dazugehörige Debuginspector-Protokoll 
-für das Produkt SiPlant an das Basissystem WinCC Open Architecture anzubinden, um damit den Systemintegratoren und Systemintegratorinnen
+für das Produkt \textit{SiPlant} an das Basissystem WinCC Open Architecture anzubinden, um damit den Systemintegratoren und Systemintegratorinnen
 ein Werkzeug für die Fehlersuche und zum Umsetzen von Kundenanforderungen mithilfe einer einfachen Skriptsprache zur Verfügung zu 
 stellen.
 

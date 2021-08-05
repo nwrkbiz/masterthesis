@@ -1,97 +1,221 @@
-\chapter{Multi-Agent-SCADA Systeme}
+\chapter{Multi-Agent-SCADA-Systeme}
 \label{cha:scadasysteme}
+
+Im folgenden Kapitel wird allgemein das Thema Multi-Agent-SCADA-Systeme beleuchtet und verschiedene Begriffe, wie sie in dieser Arbeit verstanden werden, definiert.
+Es werden die Anforderungen an solche Systeme zusammengefasst und Analogien zur Softwarelösung WinCC Open Architecture gezogen. Außerdem wird gezeigt, 
+wie mithilfe der Erweiterung \textit{SiPlant} webbasierte Visualisierungen ermöglicht werden.
+
+\section{SCADA - Supervisory Control And Data Acquisition}
+
+Unter SCADA kann man Softwarelösungen verstehen, die sich mit Komponenten in der \textit{Feldebene} verbinden 
+und somit einen Zugriff auf einzelnen Datenquellen und Senken auch Eingabe- und Ausgabekanäle genannt, möglich machen. 
+Das Schreiben und Lesen dieser Kanäle wird über eine eigene Echtzeitdatenbank ermöglicht. 
+Eine Echtzeitdatenbank verarbeitet Transaktionen, garantiert einfache Korrektheitskriterien und arbeitet in Echtzeit unter Einhaltung 
+von Zeitvorgaben \cite{realTimeDB}. Weitere Eigenschaften eines SCADA-Systems sind hier aufgelistet und zusammengefasst 
+\cite{whatIsScada}:
+
+\begin{itemize}
+	\item Kommunikation: Teilnehmer tauschen sich untereinander ereignisorientiert via TCP/IP aus (Publish/Subscribe \cite{Jacobsen2009}). Die Daten von Hardwaremodule (Eingabe- und Ausgabekanäle) werden über Polling bezogen und in der Echtzeitdatenbank abgelegt.
+	\item Skalierbarkeit: Hierbei versteht man die Möglichkeit, das System um weitere Instanzen mit jeweils eigenen Echtzeitdatenbanken zu erweitern.
+	\item Redundanz: Um die Ausfallsicherheit zu erhöhen, muss ein Redundanzbetrieb möglich sein.
+	\item Benutzerverwaltung: Verschiedene Benutzergruppen brauchen Zugriff auf den Datenhaushalt. Daher wird eine Benutzerverwaltung benötigt um die Sichtbarkeit bestimmter Daten einschränken zu können.
+	\item Alarmbehandlung: Für bestimmte Werte in der Datenbank können Hysteresen und Schwellwerte definiert werden. Sind diese über- oder unterschritten, werden Alarme ausgelöst und über verschiedene Kommunikationswege an Benutzer weiterpropagiert. Tritt ein solcher Zustand ein, kann dies eine Benutzerinteraktion erfordern und mit einer Quittierungspflicht einhergehen.  
+	\item Archivieren: Damit ist die Mittel- und Langzeitspeicherung von Daten gemeint.
+	\item Entwicklung: SCADA-Systeme zeichnen sich dadurch aus, dass sie Programmierschnittstellen zur Verfügung stellen, die Zugriff auf den Datenhaushalt (lesend und schreibend) ermöglichen. Außerdem bieten sie grafische Werkzeuge zum Modellieren der Echtzeitdatenbank.
+	\item Automatisierung: Die ereignisorientierte Kommunikation in Verbindung mit der Programmierschnittstelle erlaubt das Automatische auslösen von Ereignissen.
+	\item Objektorientierung: Damit ist das visuelle Anordnen des Datenhaushalts oder bereits das Gruppieren in der Echtzeitdatenbank gemeint. Eingabe- und Ausgabekanäle werden hierbei in logische Objekte, zum Beispiel Roboter, Turbine oder Ventil, gekapselt.
+	\item Trends: Archivierte und Echtzeitdaten lassen sich über die Zeit grafisch visualisieren.\\
+\end{itemize}
+
+\section{Agent}
 
 Obwohl es verschiedenste Literatur über Multi-Agent-Systeme gibt, wird der Begriff \textit{Agent} nicht einheitlich definiert.
 In dieser Arbeit wird unter diesen Terminus ein Softwareprozess mit folgenden Eigenschaften verstanden \cite{wooldridge_jennings_1995}:
 
 \begin{itemize}
     \item Autonomie: Agenten agieren ohne direktes Eingreifen von Menschen oder anderen und haben eine gewisse Kontrolle über ihre Handlungen und ihren internen Zustand.
-    \item Soziale Fähigkeit: Agenten interagieren mit anderen Agenten (und möglicherweise Menschen) über eine Art von Agenten-Kommunikationssprache.
-    \item Reaktivität: Agenten nehmen ihre Umgebung wahr (das kann die physische Welt, ein Benutzer über eine grafische Benutzeroberfläche, eine Sammlung anderer Agenten, das Internet oder alles zusammen sein) und reagieren zeitnah auf Veränderungen in dieser Umgebung.
-    \item Proaktivität: Agenten handeln nicht nur in Reaktion auf ihre Umwelt, sondern sind in der Lage, zielgerichtetes Verhalten an den Tag zu legen, indem sie die Initiative ergreifen.
+    \item Soziale Fähigkeit: Sie interagieren mit anderen Agenten (und möglicherweise Menschen) über eine Art von Kommunikationsprotokoll.
+    \item Reaktivität: Agenten nehmen ihre Umgebung wahr (das kann die physische Welt, ein Benutzer über eine grafische Benutzeroberfläche, eine Sammlung anderer Agenten, das Internet oder alles zusammen sein) und reagieren zeitnah auf Veränderungen.
+    \item Proaktivität: Sie handeln nicht nur in Reaktion auf ihre Umwelt, sondern sind in der Lage, zielgerichtetes Verhalten an den Tag zu legen, indem sie die Initiative ergreifen. \\
 \end{itemize}
 
-Ein Multi-Agent-System kann daher als Sammlung von miteinander interagierenden Agents interpretiert werden \cite{MultiagentSystems}.
+Ein Multi-Agent-System kann daher als Sammlung von miteinander interagierenden Agenten interpretiert werden \cite{MultiagentSystems}.
+Demnach kann man als Multi-Agent-SCADA-System ein Multi-Agent-System, das die Eigenschaften eines SCADA-Systems besitzt, verstehen.
 
-\section{Verwendung zur Digitalisierung von Fabriken}
+\section{Simatic Windows Control Center Open Architecture}
 
-
-
-\section{Simatic Windows Control Center Open Architecturee}
-
-Das Basissystem WinCC Open Architecture stellt eine Umgebung zum Erstellen solcher Systeme zur verfügung und
-eignet sich daher zum lösen komplexer Probleme. Es kann dazu verwendet werden um sich mit Teilnehmer in der Feldebene 
-zu Verbinden, die Daten die diese Produzieren zu akquirieren und für Supervision verwenden. Es ist ein Vernetzen von bis zu 2048 Systemen möglich, dadurch kann man eine rekursive Systemtopologie erstellen, 
-die ein Skalieren von Projekten ermöglicht. Außerdem kann man einzelne Agents über Rechnergrenzen hinweg verteilen.
-
-\subsection{Projektaufbau und Hierarchie}
-
-\subsection{Aufbau Datenbank}
-
-Die 
-
-\subsubsection{Datenpunkt Typen}
+Das Basissystem WinCC Open Architecture stellt mithilfe mehrerer Agenten eine Umgebung mit den vorher beschriebenen Funktionen zur Verfügung. 
+Einen Überblick über das Zusammenspiel soll die Abbildung \ref{fig:winccoa_overview} geben:
 
 \begin{figure}[h]
-	\centering \includegraphics[width=0.40\textwidth]{dp_type}
-	\caption{}
-	\label{fig:dp_type}
+	\centering \includegraphics[width=0.90\textwidth]{winccoa_overview}
+	\caption{Ein WinCC OA System stellt sich aus verschiedenen funktionsspezifischen Agenten zusammen.}
+	\label{fig:winccoa_overview}
 \end{figure}
 
-Die in Abbildung \ref{fig:dp_type}
-
-\subsubsection{Datenpunkte}
-
-\begin{figure}[h]
-	\centering \includegraphics[width=0.35\textwidth]{dp_instances}
-	\caption{}
-	\label{fig:dp_instances}
-\end{figure}
-
-Die in Abbildung \ref{fig:dp_instances}
-
-\subsubsection{Value Archive}
-
-\subsection{Basis Agents und Konzept}
+\subsection{Basis Agenten und Konzept}
 
 Je nach SCADA Produkt und Literatur werden die Teilnehmer eines solchen Systems unterschiedlich bezeichnet.
 Während in dieser Arbeit der Begriff \textit{Agent} nach \cite{wooldridge_jennings_1995} Verwendung findet,
-werden diese in WinCC OA als \textit{Manager} bezeichnet. Beide Begriffe folgen der vorher erläuterten Definition
-für \textit{Agent}. Im kommenden Abschnitt werden die Basisprozesse eines WinCC OA Projekts beschrieben. 
-Es wird dafür Bezug auf \cite{WinCCOA} genommen.
+werden diese in WinCC OA als \textit{Manager} betitelt. Beide Ausdrücke folgen der vorher erläuterten Definition
+für \textit{Agent}. Im kommenden Abschnitt werden die Basisprozesse eines WinCC OA Projekts beschrieben und somit 
+die Grafik \ref{fig:winccoa_overview} genauer erklärt. Es wird dafür Bezug auf \cite{WinCCOA} genommen.
+Die einzelnen Teilnehmer kommunizieren untereinander über ein proprietäres TCP/IP-Protokoll.
 
 \subsubsection{Prozessmonitor}
 
-Der Prozessmonitor startet und stoppt einzelne Prozesse eines WinCC OA Projektes und überwacht deren Status über zyklische
-Anfragen. Im Fehlerfall versucht er den Prozess neu zu starten um somit ein stabiles gesamtsystem aufrecht zu erhalten.
+Der Prozessmonitor ist ein außenstehender Dienst und daher in der Systemübersicht \ref{fig:winccoa_overview} nicht repräsentiert. 
+Er startet die einzelnen Prozesse eines WinCC OA Projektes und überwacht deren Status über zyklische Anfragen. 
+Im Fehlerfall versucht er den fehlerhaften Prozess neu zu starten, um somit ein stabiles Gesamtsystem aufrecht zu erhalten.
+
+\subsubsection{UI Manager}
+
+WinCC OA besitzt mehrere Agenten dieses Types. Sie ermöglichen die Konfiguration des Systems über grafische Eingabemasken. 
+Einer der wichtigsten UI Manager wird \textit{Para} bezeichnet und dient der Datenbankparametrierung.
+
+\begin{figure}[h]
+    \centering
+    \subfloat[Datenpunkttyp-Editor]{{\includegraphics[width=0.45\textwidth]{dp_type} }}%
+    \qquad
+    \subfloat[Datenpunkt Instanzen und deren Datenpunktelemente]{{\includegraphics[width=0.4\textwidth]{dp_instances} }}%
+    \caption{Diese Abbildung zeigt die grafischen Bedienelemente zum Modellieren von Datenpunkttypen und Anlegen von Datenpunktinstanzen.}%
+    \label{fig:dp_type_dp_inst}%
+\end{figure}
+
+Die Daten werden in WinCC OA in sogenannte Datenpunkte gruppiert. Die Struktur eines Datenpunkts wird über Datenpunkttypen 
+beschrieben, diese können wie in Abbildung \ref{fig:dp_type_dp_inst} gezeigt grafisch modelliert werden.
+In der Grafik \ref{fig:dp_type_dp_inst} rechts sind mehrere Instanzen des links gezeigten Types ersichtlich.
+Die einzelnen Unterknoten eines Datenpunktes werden als Datenpunktelemente bezeichnet. Diese sind statische
+Datentypen und repräsentieren Werte innerhalb der Datenbank.
+Mithilfe von \textit{Para} ist es zusätzlich möglich, jedem Datenpunktelement bestimmte Attribute hinzuzufügen. 
+Die wichtigsten sind:
+
+\begin{itemize}
+    \item \_alert\_hdl: Erlaubt die Konfiguration von Hysteresen und Grenzwerten. Über- oder unterschreitet der Wert des Datenpunktelements diese Grenzen, löst der Event Manager einen Alarm aus.
+    \item \_address: Weist dieses Element einem Eingabe- oder Ausgabekanal in der \textit{Feldebene} zu. Der entsprechende Driver Prozess legt die Daten dann auf diesem ab.  
+    \item \_archive: Erlaubt das Archivieren von Wertänderungen mithilfe eines Value Archive Prozesses. Hier wird hinterlegt, welcher Prozess für die Mittel- und Langzeitspeicherung zuständig ist.\\
+\end{itemize}
+
+Diese Konfigurationen werden an den Data Manager Prozess zum Ablegen in der Datenbank übertragen. Dieser gibt sie danach an alle Teilnehmer weiter, die sie benötigen.
 
 \subsubsection{Event Manager}
-Vermittelt anfragen etc.
+
+Wie in Abbildung \ref{fig:winccoa_overview} ersichtlich ist der Event Manager die zentrale Kommunikationsinstanz eines WinCC OA Systems. 
+Diese Einheit hält immer ein aktuelles Abbild der Prozessvariablen (Datenpunktelement) im Speicher. Jede andere Funktionseinheit, wie zum Beispiel eigene API-Agenten, 
+erhalten auf Anfrage Daten aus dem Prozessabbild dieses Managers. Dadurch ist keine direkte Kommunikation mit den Teilnehmern in der \textit{Feldebene} nötig.
+Es ist auch möglich sich ereignisorientiert auf Wertänderungen im Prozessabbild zu registrieren. Der Event Manager sendet hierbei
+die neuen Werte an alle registrierten Teilnehmer weiter. Da dieser Prozess die erste Instanz ist, die über Änderungen im Datenhaushalt 
+verständigt wird, kümmert er sich auch um das Erzeugen von Alarmmeldungen. Ähnlich wie bei den Wertänderungen ist es Kommunikationspartnern möglich,
+sich für den Erhalt dieser Meldungen zu registrieren.
 
 \subsubsection{Data Manager}
-Persistieren von Daten etc.
+
+Der Data Manager unterstützt den Event Manager und kümmert sich um das persistieren des Prozessabbildes und der Alarmhistorie auf die 
+Festplatte (Letztwertdatenbank). Außerdem speichert er die Informationen über Datenpunkttypen, Datenpunkte und die Konfigurationen der Datenpunktelemente. Diese gibt er an alle 
+Teilnehmer weiter, die diese benötigen. Anfragen über historische Daten übergibt der Event Manager an den Data Manager. Dieser fragt  
+dann die entsprechenden Value Archive Prozesse ab und gibt die resultierenden Informationen an den Event Manager zurück. 
 
 \subsubsection{Value Archive}
-Historisches aufzeichnen von daten etc.
 
-\subsubsection{Driver Manager}
-Kommunizieren mit sps etc.
+Während der Data Manager die Funktion besitzt, die aktuellen Daten zu speichern, kümmern sich die Value Archives um die historische Aufzeichnung dieser.
+Ist also für einzelne Datenpunktelemente eine Archivkonfiguration hinterlegt, so ist es die Aufgabe des eingestellten Value Archives die Wertänderungen
+inklusive Zeitinformation in einer Datei abzulegen (Mittelzeitspeicherung). Erreichen die Archivdateien eine bestimmte Größe oder nach Verstreichen 
+eines definierten Zeitraums, erfolgt ein Dateiwechsel und die alte Datei wird komprimiert. Komprimierte Archive kann man manuell auf entfernte Speichermedien
+exportieren (Langzeitspeicherung) und zu einem späteren Zeitpunkt für Analysezwecke importieren. Je nach Menge der zu archivierenden Daten können einem 
+Projekt mehrere Value Archive Prozesse hinzugefügt werden.
 
-\subsubsection{Dist Manager}
 
-\subsubsection{Redu Manager}
+\subsubsection{Driver}
 
-\subsubsection{API-Manager}
+Driver formen das unterste Level eines WinCC OA Systems. Sie sind für die Verbindung mit der \textit{Feldebene} zuständig. Die verwendeten Peripheriegeräte
+oder die dazugehörigen Kommunikationsbusse bestimmen, welche Treiber einem Projekt hinzugefügt werden müssen. Insgesamt werden 19 verschiedene Protokolle 
+unterstützt, darunter MODBUS, S7Plus und OPC UA.
 
-API
+\subsubsection{Redundancy Manager}
+
+Um eine hohe Ausfallsicherheit garantieren zu können, kann man ein WinCC OA Projekt redundant aufsetzten. Die zwei Serversysteme kommunizieren miteinander
+mithilfe zweier Redundancy Manager.
+
+\begin{figure}[h]
+	\centering \includegraphics[width=0.75\textwidth]{redu}
+	\caption{Ein redundant konfiguriertes System.}
+	\label{fig:redu}
+\end{figure}
+
+Wie in Abbildung \ref{fig:redu} ersichtlich, besitzen beide Projekte dieselbe Konfiguration und sind mit derselben Peripherie
+in der \textit{Feldebene} verbunden. Das passive System erhält alle Wertänderungen über die Redundancy Manager und verwirft
+die von den eigenen Teilnehmern. Bei einem Ausfall des aktiven Partners kann so automatisch der Passive einspringen. 
+
+\subsubsection{Distribution Manager}
+
+Um größere Datenmengen verarbeiten zu können, ist es möglich, mehrere verteilte Projekte miteinander zu verknüpfen. 
+
+\begin{figure}[h]
+	\centering \includegraphics[width=0.75\textwidth]{dist}
+	\caption{Zwei verteilte Systeme.}
+	\label{fig:dist}
+\end{figure}
+
+In der Grafik \ref{fig:dist} kann man erkennen, dass die Verbindung der Systeme über zwei Distribution Manager realisiert wird.
+Somit ist es Agenten in System 1 möglich auf den Datenhaushalt von System 2 zuzugreifen und umgekehrt. Die Verbindung lässt sich 
+aber auch unidirektional konfigurieren. Über diesen Mechanismus können bis zu 2048 Systeme miteinander verbunden werden.
+
+\subsubsection{API-Agent}
+
+Diese Agenten können von Entwicklern über eine C++-Programmierschnittstelle erstellt werden. Man kann mit ihnen 
+den Funktionsumfang des Systems erweitern. Oft werden Sie dazu verwendet, um ausgewählte Daten an die \textit{Unternehmensleitebene}
+weiterzugeben oder um beim einrichten eines Projektes automatisiert Datenbankkonfigurationen zu erstellen. 
+
+
+\subsection{Projektaufbau und Hierarchie}
+
+Ein Hauptprojekt besteht aus mehreren Subprojekten. Diese sind alle innerhalb eigener Verzeichnisse organisiert.
+
+\begin{program}[h]
+	\caption{Beispiel für die Auflistung der Subprojekte innerhalb einer Konfigurationsdatei.}
+	\label{prog:config_hier}
+	\begin{GenericCode}
+	[general]
+	pvss_path = "/opt/WinCC_OA/3.16" # WinCC OA Installationsverzeichnis
+	proj_path = "/home/giritzer/Beispiel/NGUI3.16" # niedrigste priorität
+	proj_path = "/home/giritzer/Beispiel/SMF_SmartScheduler"
+	proj_path = "/home/giritzer/Beispiel/SMF_PlantVisu"            
+	proj_path = "/home/giritzer/Beispiel/ExampleProject" # höchste priorität
+	\end{GenericCode}
+\end{program}
+
+Die Ordnerstrukturen sind innerhalb der Projektkonfigurationsdatei wie in dem Beispiel \ref{prog:config_hier} ersichtlich 
+hierarchisch angeordnet, wobei die höchste Ebene immer das Projektverzeichnis selbst darstellt.
+Existieren gleichnamige Dateien in mehreren Hierarchieebenen, wird nur jene in der höchsten berücksichtigt. Somit ist 
+durch kopieren in das Hauptverzeichnis ein Anpassen möglich, ohne die Originaldateien zu verändern. 
+Über diesen Mechanismus können Kundenanforderungen während einer Systemintegration umgesetzt werden.
+
 
 \subsection{C++-API}
 
-WinCC OA stellt eine C++ Programmierschnittstelle zur Verfügung, mit der man eigene API Manager erstellen kann. 
-Die Hauptfunktionen sind innerhalb zweier Singleton Klassen gekapselt.
+WinCC OA stellt eine C++-Programmierschnittstelle zur Verfügung, mit der man eigene API-Agenten erstellen kann. 
+Die Hauptfunktionen sind innerhalb zweier Singletonklassen gekapselt. Dieser Klassentyp hat die Eigenschaft, dass
+er innerhalb eines Programmes nur einmal instanziiert werden kann \cite{Singleton}.
 
 \subsubsection{Manager Klasse}
 
 
 
 \subsubsection{Resources Klasse}
+
+Diese Klasse dient als Parser für die Programmparameter und die Projektkonfigurationsdatei. Auf die geparsten Parameter kann
+über Getterfunktionen zugegriffen werden.
+
+
+\section{SiPlant als Erweiterung}
+
+Um webbasierende Visualisierungen zu ermöglichen wurden mithilfe der WinCC OA C++-Programmierschnittstelle drei 
+Agenten entwickelt.
+
+\begin{figure}[h]
+	\centering \includegraphics[width=0.75\textwidth]{siplant}
+	\caption{SIS_HTTP, SIS_Event und SIS_NGUI als erweiterung für WinCC OA.}
+	\label{fig:siplant}
+\end{figure}
+
+SIS_HTTP 
