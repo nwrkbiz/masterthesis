@@ -14,3 +14,28 @@
 \subsection{Benötigte Abhängigkeiten}
 \subsection{Build Strategie}
 
+\subsection{Compiler}
+
+\subsection{Linken externer Bibliotheken}
+
+Im folgenden Abschnitt wird erklärt, wie ein Programm mit externen Bibliotheken umgehen kann. Die verschiedenen Möglichkeiten
+werden dann abgewogen und in einem Fazit wird entschieden, welche Methode für den Prototyp verwendet wird.
+
+\subsubsection{Statisches Linken}
+
+Wird eine Bibliothek statisch gelinkt, dann werden die Funktionen dieser Bibliothek direkt in die ausführbare Datei kopiert.
+Voraussetzung dafür ist, dass die gelinkte Bibliothek selbst statisch ist. Dies bedeutet, dass mindestens eine Objektdatei mithilfe des
+Kommandozeilenprogrammes \textit{ar (archiver utility)} in ein Archiv umgewandelt wurde. \textit{Ar} fügt zu einem solchen Archiv eine Tabelle hinzu, in der vermerkt ist welche Symbole, wo im Archiv zu finden sind \cite{staticLinking}.
+
+
+\subsubsection{Dynamisches Linken}
+
+Beim dynamischen Linken werden die Funktionen einer dynamische Bibliothek in der ausführbaren Datei nur referenziert. Die dynamische
+Bibliothek wird erst dann geladen, wenn das Programm gestartet wird. Ein wesentlicher Vorteil von dynamischen Bibliotheken gegenüber statischen
+ist, dass der ausführbare Code für alle Prozesse, die diese Bibliothek benutzen nur einmal in den Speicher geladen wird \cite{dynLinking}.
+
+\subsubsection{Fazit}
+
+Da der Prototyp nur als einzelner Prozess laufen soll, ist durch die Verwendung von dynamischen Bibliotheken kein wirklicher Vorteil gegeben.
+Es macht daher mehr Sinn alle externen Bibliotheken statisch in die ausführbare Datei zu linken, da man somit von externen Bibliotheken
+unabhängig bleibt.

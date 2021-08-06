@@ -166,6 +166,67 @@
       \field{title}{WinCC Open Architecture 3.16 Documentation}
       \field{year}{2019}
     \endentry
+    \entry{marshalling}{book}{}
+      \name{author}{3}{}{%
+        {{hash=ba7558d26c2b47c68bbd9c3ae78afe6f}{%
+           family={Coulouris},
+           familyi={C\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod}}}%
+        {{hash=b8575e961dd1a27c0844cbf89179dd13}{%
+           family={Dollimore},
+           familyi={D\bibinitperiod},
+           given={Jean},
+           giveni={J\bibinitperiod}}}%
+        {{hash=f331f31acb4f7411c14a757aeb826e85}{%
+           family={Kindberg},
+           familyi={K\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Addison-Wesley Longman, Amsterdam}%
+      }
+      \strng{namehash}{f2dc1636d69dcbdc137451db7e22ca0c}
+      \strng{fullhash}{f2dc1636d69dcbdc137451db7e22ca0c}
+      \strng{bibnamehash}{f2dc1636d69dcbdc137451db7e22ca0c}
+      \strng{authorbibnamehash}{f2dc1636d69dcbdc137451db7e22ca0c}
+      \strng{authornamehash}{f2dc1636d69dcbdc137451db7e22ca0c}
+      \strng{authorfullhash}{f2dc1636d69dcbdc137451db7e22ca0c}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4th rev. ed.}
+      \field{isbn}{0321263545}
+      \field{title}{Distributed Systems: Concepts and Design (International Computer Science)}
+      \field{year}{2005}
+      \keyw{addison-wesley books coulouris distributed}
+    \endentry
+    \entry{ffi}{article}{}
+      \name{author}{1}{}{%
+        {{hash=77edfa72dcd678baaa9fc20554cd169e}{%
+           family={Crestani},
+           familyi={C\bibinitperiod},
+           given={Marcus},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Universtiät Tübingen}%
+      }
+      \strng{namehash}{77edfa72dcd678baaa9fc20554cd169e}
+      \strng{fullhash}{77edfa72dcd678baaa9fc20554cd169e}
+      \strng{bibnamehash}{77edfa72dcd678baaa9fc20554cd169e}
+      \strng{authorbibnamehash}{77edfa72dcd678baaa9fc20554cd169e}
+      \strng{authornamehash}{77edfa72dcd678baaa9fc20554cd169e}
+      \strng{authorfullhash}{77edfa72dcd678baaa9fc20554cd169e}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Foreign-Function Interfaces for Garbage-Collected Programming Languages}
+      \field{year}{2008}
+    \endentry
     \entry{whatIsScada}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=e11637ed54b7faace309300d689ca28e}{%
@@ -191,6 +252,23 @@
       \field{labeltitlesource}{title}
       \field{title}{What is SCADA?}
       \field{year}{1999}
+    \endentry
+    \entry{ecma}{online}{}
+      \field{sortinit}{E}
+      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \field{labeltitlesource}{title}
+      \field{title}{ECMA Standarts}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ecma-international.org/publications-and-standards/standards/
+      \endverb
+      \verb{url}
+      \verb https://www.ecma-international.org/publications-and-standards/standards/
+      \endverb
     \endentry
     \entry{boost}{online}{}
       \field{sortinit}{F}
@@ -341,6 +419,23 @@
       \endverb
       \verb{url}
       \verb https://doi.org/10.1007/978-0-387-39940-9_1181
+      \endverb
+    \endentry
+    \entry{webAPI}{online}{}
+      \field{sortinit}{J}
+      \field{sortinithash}{fce5f8d0bd05e8d93f3dbe21c78897ca}
+      \field{labeltitlesource}{title}
+      \field{title}{Javascript Web APIs}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.w3.org/standards/webdesign/script.html
+      \endverb
+      \verb{url}
+      \verb https://www.w3.org/standards/webdesign/script.html
       \endverb
     \endentry
     \entry{staticLinking}{book}{}
@@ -519,10 +614,10 @@
       \field{year}{2021}
       \field{urldateera}{ce}
       \verb{urlraw}
-      \verb https://www.cyberark.com/resources/threat-research-blog/the-mysterious-realm-of-javascriptcore
+      \verb https://firefox-source-docs.mozilla.org/js/index.html
       \endverb
       \verb{url}
-      \verb https://www.cyberark.com/resources/threat-research-blog/the-mysterious-realm-of-javascriptcore
+      \verb https://firefox-source-docs.mozilla.org/js/index.html
       \endverb
     \endentry
     \entry{mbedtls}{online}{}

@@ -44,7 +44,8 @@ Demnach kann man als Multi-Agent-SCADA-System ein Multi-Agent-System, das die Ei
 
 \section{Simatic Windows Control Center Open Architecture}
 
-Das Basissystem WinCC Open Architecture stellt mithilfe mehrerer Agenten eine Umgebung mit den vorher beschriebenen Funktionen zur Verfügung. 
+Während im letzten Abschnitt eine Definition für Multi-Agent-SCADA-System festgelegt wurde, wird in diesem nun die Umsetzung
+eines solchen anhand eines konkreten Softwareprodukts beschrieben. Das Basissystem WinCC Open Architecture stellt mithilfe mehrerer Agenten eine Umgebung mit den vorher beschriebenen Funktionen zur Verfügung. 
 Einen Überblick über das Zusammenspiel soll die Abbildung \ref{fig:winccoa_overview} geben:
 
 \begin{figure}[h]
@@ -169,6 +170,15 @@ weiterzugeben oder um beim einrichten eines Projektes automatisiert Datenbankkon
 
 \subsection{Projektaufbau und Hierarchie}
 
+\subsubsection{Konfigurationsdatei}
+
+Eine der wichtigsten Dateien für ein WinCC OA Projekt ist die Konfigurationsdatei. Diese gliedert sich in mehrere
+Abschnitte, wo jeder Agent einen eigenen besitzt. Sie werden mit \textit{[Agentenname]} eingeleitet, wobei Agentenname
+für den Namen der ausführbaren Datei, ohne Dateiendung steht. Dem folgen Schlüsselwertpaare, mit denen das Laufzeitverhalten
+der Agenten angepasst werden kann. Die Konfigurationsdatei wird einmalig beim Starten jedes Agenten geladen.
+
+\subsubsection{Subprojekte}
+
 Ein Hauptprojekt besteht aus mehreren Subprojekten. Diese sind alle innerhalb eigener Verzeichnisse organisiert.
 
 \begin{program}[h]
@@ -184,8 +194,8 @@ Ein Hauptprojekt besteht aus mehreren Subprojekten. Diese sind alle innerhalb ei
 	\end{GenericCode}
 \end{program}
 
-Die Ordnerstrukturen sind innerhalb der Projektkonfigurationsdatei wie in dem Beispiel \ref{prog:config_hier} ersichtlich 
-hierarchisch angeordnet, wobei die höchste Ebene immer das Projektverzeichnis selbst darstellt.
+Die Ordnerstrukturen sind innerhalb der Projektkonfigurationsdatei innerhalb des speziellen Abschnittes \textit{[general]} 
+wie in dem Beispiel \ref{prog:config_hier} ersichtlich hierarchisch angeordnet, wobei die höchste Ebene immer das Projektverzeichnis selbst darstellt.
 Existieren gleichnamige Dateien in mehreren Hierarchieebenen, wird nur jene in der höchsten berücksichtigt. Somit ist 
 durch kopieren in das Hauptverzeichnis ein Anpassen möglich, ohne die Originaldateien zu verändern. 
 Über diesen Mechanismus können Kundenanforderungen während einer Systemintegration umgesetzt werden.
@@ -203,9 +213,9 @@ er innerhalb eines Programmes nur einmal instanziiert werden kann \cite{Singleto
 
 \subsubsection{Resources Klasse}
 
-Diese Klasse dient als Parser für die Programmparameter und die Projektkonfigurationsdatei. Auf die geparsten Parameter kann
-über Getterfunktionen zugegriffen werden.
-
+Diese Klasse dient als Parser für die Programmparameter und die Projektkonfigurationsdatei. Die eingelesenen Parameter kann man
+über Zugriffsfunktionen (Getter) abfragen. Durch Ableiten von dieser Klasse ist ein Definieren von eigenen Konfigurationseinträgen
+für den zu entwickelnden Agenten möglich.
 
 \section{SiPlant als Erweiterung}
 
@@ -213,9 +223,8 @@ Um webbasierende Visualisierungen zu ermöglichen wurden mithilfe der WinCC OA C
 Agenten entwickelt.
 
 \begin{figure}[h]
-	\centering \includegraphics[width=0.75\textwidth]{siplant}
-	\caption{SIS_HTTP, SIS_Event und SIS_NGUI als erweiterung für WinCC OA.}
+	\centering \includegraphics[width=0.60\textwidth]{siplant}
+	\caption{SIS\_HTTP, SIS\_Event und SIS\_NGUI als Erweiterung für WinCC OA.}
 	\label{fig:siplant}
 \end{figure}
 
-SIS_HTTP 
