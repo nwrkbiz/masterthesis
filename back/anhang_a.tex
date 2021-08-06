@@ -1,3 +1,160 @@
-\chapter{Technische Informationen}
-\label{app:TechnischeInfos}
+\chapter{Google V8-Javascriptengine Buildskripte}
+\label{app:v8build}
 
+\section{Linux}
+
+\begin{GenericCode}
+#!/bin/bash
+# Author: Daniel Giritzer
+# This script builds google V8 from source.
+# To be used on Ubuntu 18.04
+# to install and setup dependencies execute:
+# sudo apt install git libglib2.0-dev python g++-4.8 gcc-4.8
+# sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 10
+# sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 10
+WORKDIR=$(pwd)
+OUTDIR=$WORKDIR/v8
+BUILDDIR=$WORKDIR/v8/out/v8
+ARTEFACTDIR=$WORKDIR/lib/sles_x64-release
+INCLUDEDIR=$WORKDIR/include
+VERSIONTAG="6.2.414.5"
+
+# clean
+rm -rf $WORKDIR/.cipd
+rm -rf $WORKDIR/.gclient
+rm -rf $WORKDIR/.gclient_entries
+rm -rf $WORKDIR/depot_tools
+rm -rf $WORKDIR/v8
+
+# get depot tools
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+
+# add depot tools to path
+OLDPATH=$PATH
+export PATH=$PATH:$WORKDIR/depot_tools/
+
+# get v8 source
+fetch v8
+cd $OUTDIR && git checkout $VERSIONTAG && gclient sync -j 4
+
+# extract archive and create needed folders
+mkdir -p $BUILDDIR
+mkdir -p $ARTEFACTDIR
+
+# set path to find build executables remove gn wrapper (not needed)
+export PATH=$OLDPATH:$OUTDIR/third_party/depot_tools/:$OUTDIR/buildtools/linux64/
+rm -rf $OUTDIR/third_party/depot_tools/gn
+
+# build configuration
+echo 'is_component_build = false' >> $BUILDDIR/args.gn
+echo 'is_debug = false' >> $BUILDDIR/args.gn
+echo 'target_cpu = "x64"' >> $BUILDDIR/args.gn
+echo 'use_goma = false' >> $BUILDDIR/args.gn
+echo 'goma_dir = "None"' >> $BUILDDIR/args.gn
+echo 'v8_enable_backtrace = true' >> $BUILDDIR/args.gn
+echo 'v8_enable_disassembler = true' >> $BUILDDIR/args.gn
+echo 'v8_enable_object_print = true' >> $BUILDDIR/args.gn
+echo 'v8_enable_verify_heap = true' >> $BUILDDIR/args.gn
+echo 'v8_static_library = true' >> $BUILDDIR/args.gn
+echo 'v8_use_external_startup_data = false' >> $BUILDDIR/args.gn
+echo 'v8_use_snapshot = true' >> $BUILDDIR/args.gn
+echo 'is_clang = false' >> $BUILDDIR/args.gn
+echo 'use_sysroot = false' >> $BUILDDIR/args.gn
+
+# generate build files
+cd $OUTDIR && gn gen $BUILDDIR
+
+# workaround to prevent build from failing with g++ 4.8.5, force use of C++11
+find $BUILDDIR -type f -exec sed -i 's/-Werror//g' {} \;
+find $BUILDDIR -type f -exec sed -i 's/-std=gnu++14/-std=gnu++11 -fPIC -D_GLIBCXX_USE_CXX11_ABI=0/g' {} \;
+
+# start build with verbose output
+ninja -v -j 4 -C $BUILDDIR d8
+
+# copy resulting librariers
+find $BUILDDIR -name *.a -exec cp {} $ARTEFACTDIR \;
+
+# copy include directory
+mkdir -p $INCLUDEDIR
+cp -rf $OUTDIR/include/* $INCLUDEDIR
+cp -rf $BUILDDIR/gen/include/inspector/ $INCLUDEDIR
+\end{GenericCode}
+
+
+\section{Windows}
+
+\begin{GenericCode}
+# Author: Daniel Giritzer
+# This script builds google V8 from source.
+# Execute from cmd via:
+# powershell.exe -noprofile -executionpolicy bypass -file .\build_windows.ps1
+$WORKDIR="$pwd"
+$OUTDIR="$WORKDIR\v8"
+$BUILDDIR="$WORKDIR\v8\out\v8"
+$ARTEFACTDIR="$WORKDIR\lib\win-x64-release"
+$INCLUDEDIR="$WORKDIR\include"
+$VERSIONTAG="6.2.414.5"
+
+# helper function for unpacking zip archives
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+function Unzip
+{
+    param([string]$zipfile, [string]$outpath)
+    [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
+}
+
+# download depot_tools
+$CLIENT = new-object System.Net.WebClient
+$CLIENT.DownloadFile("https://storage.googleapis.com/chrome-infra/depot_tools.zip","depot_tools.zip")
+Unzip "depot_tools.zip" "depot_tools"
+
+# add depot tools to path
+$env:DEPOT_TOOLS_WIN_TOOLCHAIN=0
+$env:GYP_MSVS_VERSION=2015
+$OLDPATH=$env:Path
+$env:Path="$pwd\depot_tools;$OLDPATH"
+
+# get files needed for windows build
+gclient
+
+# get v8 sourcecode
+fetch v8
+cd "$OUTDIR"
+git checkout $VERSIONTAG
+gclient sync
+
+New-Item -ItemType directory -Path $BUILDDIR
+
+# build configuration
+Add-Content $BUILDDIR\args.gn 'is_component_build = false'
+Add-Content $BUILDDIR\args.gn 'is_debug = false'
+Add-Content $BUILDDIR\args.gn 'target_cpu = "x64"'
+Add-Content $BUILDDIR\args.gn 'use_goma = false'
+Add-Content $BUILDDIR\args.gn 'goma_dir = "None"'
+Add-Content $BUILDDIR\args.gn 'v8_enable_backtrace = true'
+Add-Content $BUILDDIR\args.gn 'v8_enable_disassembler = true'
+Add-Content $BUILDDIR\args.gn 'v8_enable_object_print = true'
+Add-Content $BUILDDIR\args.gn 'v8_enable_verify_heap = true'
+Add-Content $BUILDDIR\args.gn 'v8_static_library = true'
+Add-Content $BUILDDIR\args.gn 'v8_use_external_startup_data = false'
+Add-Content $BUILDDIR\args.gn 'v8_use_snapshot = true'
+Add-Content $BUILDDIR\args.gn 'is_clang = false'
+
+# workaround to link using /MD
+(Get-Content $OUTDIR\build\config\win\BUILD.gn).replace('/MT', '/MD') | Set-Content $OUTDIR\build\config\win\BUILD.gn
+
+# generate build files
+cd $OUTDIR
+gn gen $BUILDDIR
+
+# start build with verbose output
+ninja -v -C $BUILDDIR d8
+
+# copy artefacts
+Get-ChildItem -Path "$BUILDDIR\*" -Include *.lib -Recurse | Copy-Item -Destination $ARTEFACTDIR
+
+# copy include directory
+Remove-Item -Recurse -Force $INCLUDEDIR
+Copy-Item $OUTDIR\include -Recurse -Destination $INCLUDEDIR
+Copy-Item $OUTDIR\gen\include -Recurse -Destination $INCLUDEDIR
+\end{GenericCode}
