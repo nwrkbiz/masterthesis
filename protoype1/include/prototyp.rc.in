@@ -19,7 +19,7 @@ BEGIN
             VALUE "FileDescription", "SCADA V8"
             VALUE "FileVersion", "@prototyp_VERSION_MAJOR@, @prototyp_VERSION_MINOR@, @prototyp_VERSION_PATCH@, @prototyp_VERSION_TWEAK@"
             VALUE "InternalName", "SCADA V8"
-            VALUE "LegalCopyright", "SCADA V8"
+            VALUE "LegalCopyright", "(c) Daniel Giritzer"
             VALUE "OriginalFilename", "prototyp.exe"
             VALUE "ProductName", "SCADA V8"
             VALUE "ProductVersion", "@prototyp_VERSION_MAJOR@, @prototyp_VERSION_MINOR@, @prototyp_VERSION_PATCH@, @prototyp_VERSION_TWEAK@"

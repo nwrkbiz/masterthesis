@@ -1,8 +1,7 @@
 /**
  * @author Daniel Giritzer
  * @file prototyp.cpp
- * @brief Einfaches Beispiel, soll die Funktionsweise
- * der WinCC OA API veranschaulichen.
+ * @brief Einfaches Beispiel, soll die Funktionsweise der WinCC OA API veranschaulichen.
  * @copyright Daniel Giritzer 2021. All Rights Reserved.
  */
 #include "defines.h"
@@ -12,10 +11,8 @@
 
 #include <Manager.hxx>
 #include <Resources.hxx>
-
 #include <StartDpInitSysMsg.hxx>
 #include <HotLinkWaitForAnswer.hxx>
-
 #include <FloatVar.hxx>
 #include <BitVar.hxx>
 
@@ -120,12 +117,9 @@ public:
     }
 };
 
-int main(int argc, char *argv[])
-{
-    // Parst Konfigurationsdatei
-    // und Kommandozeilenparameter
+int main(int argc, char *argv[]) {
+    // Parst Konfigurationsdatei und Kommandozeilenparameter
     Resources::init(argc, argv);
-
     Agent* agt = new Agent();
 
     // Erstelle eine Liste von Datenpunktelementen
@@ -150,13 +144,11 @@ int main(int argc, char *argv[])
     dpesAndValues.appendItem(dpe2, new BitVar(false));
     Agent::dpSet(dpesAndValues, new DpObserver(), true);
 
-    // Hauptschleife, kümmert sich um
-    // die asynchrone Kommunikation
+    // Hauptschleife, kümmert sich um die asynchrone Kommunikation
     while (true) {
         long sec = 1, usec = 0;
         Agent::dispatch(sec, usec);
     }
-    
     delete agt; agt = nullptr;
     return EXIT_SUCCESS;
 }
