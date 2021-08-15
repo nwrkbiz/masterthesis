@@ -1,6 +1,13 @@
 # Autor: Daniel Giritzer
 # Linux:
+# mkdir build
+# cd ./build
 # cmake .. -DWINCCOA_INSTALL=/opt/WinCC_OA/3.16
+# cmake --build .
+# Windows:
+# mkdir build
+# cd ./build
+# cmake .. -T v140 -A x64 -DWINCCOA_INSTALL=C:/Siemens/Automation/WinCC_OA/3.16
 # cmake --build .
 cmake_minimum_required(VERSION 3.5)
 
