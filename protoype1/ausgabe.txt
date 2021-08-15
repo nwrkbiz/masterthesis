@@ -1,0 +1,16 @@
+prototyp42:--- hotLinkCallBack(DpMsgAnswer) ---
+prototyp42:"System1:ExampleDP_DDE.f1:_online.._value"
+prototyp42:10
+prototyp42:"System1:ExampleDP_DDE.b1:_online.._value"
+prototyp42:1
+prototyp42:--- hotLinkCallBack(DpMsgAnswer) ---
+prototyp42:"System1:ExampleDP_DDE.f1:_online.._value"
+prototyp42:10
+prototyp42:"System1:ExampleDP_DDE.b1:_online.._value"
+prototyp42:1
+prototyp42:--- hotLinkCallBack(DpMsgAnswer) ---
+prototyp42:--- hotLinkCallBack(DpHLGroup) ---
+prototyp42:"System1:ExampleDP_DDE.f1:_online.._value"
+prototyp42:47.11
+prototyp42:"System1:ExampleDP_DDE.b1:_online.._value"
+prototyp42:0
