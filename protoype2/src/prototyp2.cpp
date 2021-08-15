@@ -57,19 +57,16 @@ void ReportException(v8::Isolate* isolate, v8::TryCatch* try_catch)
 }
 
 // Einfach Testfunktion, soll via Javascript ausführbar sein
-void SayHi(const v8::FunctionCallbackInfo<v8::Value>& args) {
+void PrintParams(const v8::FunctionCallbackInfo<v8::Value>& args) {
   v8::Isolate* isolate = args.GetIsolate();
   v8::Isolate::Scope iscope(isolate);
   v8::HandleScope hscope(isolate);
 
-  if (args.Length() == 1 && args[0]->IsString()) {
-      v8::String::Utf8Value param1(args[0]->ToString());
-      std::string str = std::string(*param1);
-      std::cout << "SayHi: " << str << std::endl;
-      args.GetReturnValue().Set(v8::Boolean::New(isolate, false));
-  }
-  else if(args.Length() == 0) { 
-    std::cout << "SayHi, without parameters" << std::endl;
+  if (args.Length() > 0) {
+    for (int i = 0; i < args.Length(); i++) {
+      v8::String::Utf8Value str(args[i]);
+      std::cout << *str << std::endl;
+    }
     args.GetReturnValue().Set(v8::Boolean::New(isolate, true));
   }
   else { // Werfe exception
@@ -109,8 +106,8 @@ int main(int argc, char *argv[]) {
     v8::Local<v8::ObjectTemplate> global = v8::ObjectTemplate::New(isolate);
 
     // Füge eine funktion mit C/C++ code zu diesem Objekttemplate hinzu
-    global->Set(v8::String::NewFromUtf8(isolate, "SayHi", v8::NewStringType::kNormal).ToLocalChecked(), 
-                                        v8::FunctionTemplate::New(isolate, SayHi));
+    global->Set(v8::String::NewFromUtf8(isolate, "PrintParams", v8::NewStringType::kNormal).ToLocalChecked(), 
+                                        v8::FunctionTemplate::New(isolate, PrintParams));
     // Erstelle einen Azsführungskontext, verwende das zuvor erstellte global Objekttemplate für das
     // global Objekt.
     v8::Local<v8::Context> context = v8::Context::New(isolate, NULL, global);

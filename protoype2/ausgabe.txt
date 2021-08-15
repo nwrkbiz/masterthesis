@@ -1,0 +1,14 @@
+Hello, World!
+false
+Hello, World!
+true
+Hello, World!
+true
+0
+Hello, World!
+true
+1
+undefined:11
+PrintParams();
+TypeError: Invalid parameters
+    at <anonymous>:11:1
