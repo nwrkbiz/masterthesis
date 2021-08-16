@@ -144,6 +144,41 @@
       \verb 10.1007/978-1-4615-6161-3
       \endverb
     \endentry
+    \entry{cmake}{online}{}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labeltitlesource}{title}
+      \field{title}{CMake Homepage}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://cmake.org/
+      \endverb
+      \verb{url}
+      \verb https://cmake.org/
+      \endverb
+      \warn{\item Entry 'cmake' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{observer}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=ba9c92ba6ec38a233d69967bd7f8215d}{%
+           family={{Constantin Szallies}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{ba9c92ba6ec38a233d69967bd7f8215d}
+      \strng{fullhash}{ba9c92ba6ec38a233d69967bd7f8215d}
+      \strng{bibnamehash}{ba9c92ba6ec38a233d69967bd7f8215d}
+      \strng{authorbibnamehash}{ba9c92ba6ec38a233d69967bd7f8215d}
+      \strng{authornamehash}{ba9c92ba6ec38a233d69967bd7f8215d}
+      \strng{authorfullhash}{ba9c92ba6ec38a233d69967bd7f8215d}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{month}{8}
+      \field{title}{{On using the Oberver Design Pattern}}
+      \field{year}{1997}
+    \endentry
     \entry{WinCCOA}{manual}{}
       \name{author}{1}{}{%
         {{hash=818b27f47a529b57293de9e5161334dc}{%
