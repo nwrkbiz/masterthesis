@@ -4,67 +4,340 @@
 Während im letzten Kapitel auf die Konzepte und Funktionsweise von SCADA-Systemen eingegangen wurde, widmet sich dieses nun der Skriptsprache Javascript. 
 Es wird gezeigt, wie diese Sprache technisch funktioniert. Als Javascriptengine bezeichnet man Programmkomponenten, die ECMA standardkonformen Quellcode ausführen können \cite{ecma}. 
 Danach werden die drei bekanntesten Engines verglichen, um zu erläutern, warum die Google-V8-Engine für die Umsetzung gewählt wurde. 
-Im letzten Abschnitt wird die Programmierschnittstelle dieser beschrieben. 
+Im letzten Abschnitt werden die Konzepte und Programmierschnittstelle dieser beschrieben. 
 
 \section{Grundlagen}
+\label{cha:Grundlagen}
 
-Um zu verstehen, wie Javascript-Engines funktionieren, müssen die Grundlagen der Compilertheorie umrissen werden. Dazu wird
-hier nun Bezug auf \cite{dragonBook} genommen. Als Compiler bezeichnet man ein Programm, das von Menschen lesbaren Quellcode
-in binären Programmcode umwandelt, der von einem Computer ausgeführt werden kann. Im Folgenden wird die Theoretische
-Funktionsweise eines solchen Programms beschrieben. 
+Um zu verstehen, wie eine Javascriptengine funktioniert, müssen die Grundlagen der Compilertheorie umrissen werden. Dazu wird
+hier nun Bezug auf \cite{dragonBook} und \cite{Terry1997CompilersAC} genommen.
 
-, \cite{jsCore}, \cite{v8ByteCode}, \cite{jsSpiderMonkey}
+\subsection{Sprachprozessoren}
+
+\begin{figure}[h]
+    \centering
+    \subfloat[Compiler]{{\includegraphics[width=0.45\textwidth]{compiler} }}%
+    \qquad
+    \subfloat[Interpreter]{{\includegraphics[width=0.45\textwidth]{interpreter} }}%
+    \caption{Diese Abbildung zeigt die Sprachprozessoren Compiler und Interpreter im Vergleich.}%
+    \label{fig:compiler_interpreter}%
+\end{figure}
+
+Als Compiler bezeichnet man einen Sprachprozessor, der Quellcode von einer Sprache in eine andere übersetzt. In der Regel ist die Zielsprache
+eine Sammlung von Instruktionen gebündelt in einer ausführbaren Datei. Diese kann wie in Abbildung \ref{fig:compiler_interpreter} links gezeigt 
+gestartet werden, um Eingaben zu verarbeiten und Ausgaben zu generieren. Ein Interpreter ist ein anderer Typ von Sprachprozessor, der im Gegensatz 
+zum Compiler keine Übersetzungen erzeugt, sondern den Quellcode direkt ausführt. Ein Beispiel dafür ist in der Grafik \ref{fig:compiler_interpreter} rechts illustriert. 
+Für bestimmte Programmiersprachen wie Javascript sind auch Mischformen möglich. Beide Typen eint
+die Eigenschaft, dass sie im ersten Schritt das Quellprogramm Analysieren müssen, um eine für sie verständliche Zwischensprache zu erzeugen. 
+Diese Aufgabe übernimmt das \textit{Frontend}.
+
+\subsection{Frontend}
+
+Als Frontend wird in der Compilertheorie jene Komponente bezeichnet, die eine Programmiersprache in eine maschinenunabhängige 
+Zwischendarstellung übersetzt.
+
+\begin{figure}[h]
+	\centering \includegraphics[width=0.70\textwidth]{frontend}
+	\caption{Schritte des Frontends \cite{compilerFrontEnd}.}
+	\label{fig:compiler_frontend}
+\end{figure}
+
+Wie in der Grafik \ref{fig:compiler_frontend} ersichtlich, werden dazu drei Schritte durchgeführt. Ziel ist es, einen abstrakten
+Syntaxbaum zu erhalten, der für die spätere Codeerzeugung oder eine direkte Ausführung verwendet werden kann.
+
+\subsubsection{Lexikalische Analyse}
+
+Damit bezeichnet man das Einlesen eines Programmcodes, um die Zeichenketten in sinnvolle Sequenzen, sogenannte Lexeme, zu Gruppieren
+und entsprechende Token zu erzeugen. Als Lexem wird eine einzelne sprachliche Bedeutungseinheit verstanden. 
+Um Schlüsselworte, Operatoren und Symbole erkennen zu können, müssen dazu deterministische Automaten implementiert werden, die
+Sprachmuster feststellen können. Auf Basis dieser Muster werden Token mit optionalen Attributen generiert, die an die syntaktische Analyse weitergegeben
+werden. Lexikalische Analysatoren werden auch \textit{Lexer} oder \textit{Scanner} genannt. Die Symbole einer Sprache werden in 
+diesem Prozess in einer eigenen Tabelle abgelegt, die später in der semantischen Analyse Verwendung findet. Besitzt ein Token
+einen Attributwert, so verweist dieser auf ein Element in der sogenannten Symboltabelle.
+
+\subsubsection{Syntaktische Analyse}
+
+Die Syntaktik beschreibt Regeln, auch Grammatik genannt, nach denen Texte strukturiert werden. Aus diesem Grund wird
+in dieser Phase aus den Token des \textit{Scanners}, wie in Abbildung \ref{fig:compiler_frontend} gezeigt, 
+eine Baumstruktur erstellt, die den gammatikalischen Aufbau der Eingabe wiederspiegelt. 
+Dies wird durch Parsen der Ausdrücke und Statements erreicht. Weicht das Quellprogramm von der Grammatik ab, so wird dies 
+als Syntaxfehler erkannt. Diese Komponente wird auch \textit{Parser} genannt.
+
+\subsubsection{Semantische Analyse}
+
+Unter Semantik wird die Zuordnung von Bedeutung zu Texten verstanden. Daher wird in dieser Phase mithilfe des Syntaxbaumes und der
+Symboltabelle die semantische Konsistenz des Programmes überprüft. Es werden Gültigkeitsbereiche verwaltet und die
+Einhaltung von Kontextbedingungen verifiziert. Ist dies nicht der Fall, so wird ein semantischer Fehler erzeugt.
+Falls die Sprachdefinition bestimmte Typkonvertierungen erlaubt, werden diese umgesetzt. Zum Beispiel kann ein binärer arithmetischer Operator 
+entweder auf Ganzzahlen oder auf Gleitkommazahlen angewendet werden. Werden die Zahlentypen vermischt, kann der Compiler eine Umwandlung vornehmen.
+In Abbildung \ref{fig:compiler_frontend} ist dies unter der Annahme, dass \textit{initial} und \textit{rate} Gleitkommazahlen repräsentierem
+durch die eingefügte \textit{inttofloat} Operation erkennbar. 
+
+\subsection{Umsetzung in Javascriptengines}
+
+Die Javascriptengines Google V8, Mozilla Spidermonkey und Apple JavaScriptCore verwenden alle dasselbe Konzept \cite{jsSpiderMonkey}, \cite{jsCore}, \cite{v8ByteCode}.
+Es wird zunächst über ein Frontend aus dem Javascript-Quellcode ein abstrakter Syntaxbaum erstellt. Dieser wird in eine Zwischensprache
+mit den Namen \textit{Bytecode} übersetzt, die von einer virtuellen Maschine ausgeführt werden kann. Zur Laufzeit wird ermittelt, welche
+Codesequenzen oft durchlaufen werden. Dieser sogenannte \textit{Hot-Code} wird unmittelbar (Just-In-Time) in echte Prozessorinstruktionen übersetzt, die dann direkt 
+von dem Prozessor der Zielplattform ausgeführt werden können. Der generierte Maschinencode wird danach für eine spätere Ausführung in einem Cache abgelegt. 
+Da Javascript eine dynamische Skriptsprache ohne Typsicherheit ist, kann es jedoch passieren, dass an eine optimierte Funktion ein 
+Datentyp übergeben wird, der von dieser nicht verwendet werden kann. Tritt dieser Fall ein, muss auf den \textit{Bytecode} zurückgegriffen werden.
+
+\begin{program}[h]
+	\caption{Deoptimierung in Javascript.}
+	\label{prog:js_deopt}
+	\begin{GenericCode}
+// Testfunktion
+function getX(obj) {
+	return obj.x;
+}
+
+// führe funktion öfter aus,
+// erzeugt Maschienencode
+getX({ x: 4, y: 1 });
+getX({ x: 7, y: 2 });
+getX({ x: 1, y: 3 });
+getX({ x: 1, y: 4 });
+
+// hier muss deoptimiert werden
+getX({ x: 1, z: 4 });\end{GenericCode}
+\end{program}
+
+In das Beispiel \ref{prog:js_deopt} zeigt, dass in Zeile 11 deoptimiert werden muss, da der Übergebene Typ nicht dieselbe Struktur besitzt, wie in den
+vorhergehenden Aufrufen.
+
+\section{Wahl der Javascriptengine}
+
+Konzeptionell funktionieren die Javascriptengines Google V8, Mozilla Spidermonkey und Apple JavaScriptCore wie bereits erläutert gleich,
+daher sind sie auch ähnlich performant in der Ausführung von Javascript-Code.
+Um zu begründen, warum sich diese Arbeit mit Ersterer beschäftigt, werden in diesem Abschnitt die Marktanteile aller anhand der
+Verwendung in verschiedenen Webbrowsern verglichen.
+
+\begin{table}[h] \caption{Marktanteile verschiedener Webbrowser weltweit \cite{statcounter}, \cite{netmarketshare}.} 
+	\label{tab:js_marketshare} \centering 
+	\setlength{\tabcolsep}{5mm} % separator between columns 
+	\def\arraystretch{1.25} % vertical stretch factor 
+	\begin{tabular}{|l|l|l|} \hline 
+		\emph{Browser} & \emph{netmarketshare.com} & \emph{statcounter.com} \\ 
+		\hline 
+		\hline Chrome & 65,17\% & 65,73\% \\ 
+		\hline Safari & 13,75\% & 18,04\% \\
+		\hline Firefox & 2,25\% & 3,54\% \\ 
+		\hline Edge &  4,03\% & 3,5\% \\ 
+		\hline Samsung Internet & 3,07\% & 3,22\% \\ 
+		\hline Opera & 1,79\% & 2,17\% \\ 
+		\hline 
+	\end{tabular} 
+\end{table}
+
+In der Tabelle \ref{tab:js_marketshare} sind die Prozentuellen Marktanteile der fünf meistgenutzten Webbrowser aufgelistet. Chrome,
+Edge, Samsung Internet und Opera verwenden alle die Google V8 Javascriptengine zum ausführen von Javascriptdateien. Somit wird sie 
+mit 74,06\% laut netmarketshare.com und 75,17\% laut statcounter.com in mehr als der hälfte aller Webbrowser im Internet eingesetzt.
+Außerdem wird sie auch als Standartengine für das NodeJS Projekt verwendet \cite{nodejs}. Damit ist sie die weltweit am 
+meisten verwendete Programmkomponente die sich um das ausführen von Javascript-Code kümmert.
+
+\subsection{Fazit}
+
+Aufgrund der hohen Verbreitung in quelloffenen und kommerziellen Projekten kann davon ausgegangen werden, dass, obwohl die Google V8-Engine 
+eine freie Lizenz besitzt, eine gute Wartung der Codebasis und ein Langer Support garantiert ist. Aus diesem Grund wurde diese Softwarekomponente 
+den anderen vorgezogen.
+
+\section{Google V8 Javascriptengine im Detail}
+
 Bevor das Umsetzungskonzept erläutert werden kann, muss die generelle Funktionsweise der Google V8 Javascriptengine
-erörtert werden. Dazu wird in diesem Abschnitt Bezug auf \cite{v8embed} und \cite{v8mem} genommen.
+erörtert werden. Dazu wird in diesem Abschnitt Bezug auf \cite{v8ByteCode1}, \cite{v8ByteCode2}, und \cite{v8Pipeline} genommen. 
+Gezeigt werden die einzelnen Ausführungsschritte anhand eines einfachen Codebeispiels,
+dass mithilfe der V8-Entwicklerkonsole \textit{d8} ausgeführt wird. Diese kann mit dem Build-Skript in Anhang \ref{app:v8build}
+gebaut werden. Dazu müssen jedoch die Parameter 'is\_debug', 'is\_clang' und 'use\_sysroot' auf 'true' geändert werden. 
+Das fertige Kompilat wird unter \textit{v8/out/v8} abgelegt.
+
+\subsection{Abstrakter Syntaxbaum}
+
+Im ersten Ausführungsschritt muss zunächst wie in dem Abschnitt \ref{cha:Grundlagen} erklärt mithilfe eines \textit{Frontends} der Quellcode geparst und
+ein abstrakter Syntaxbaum erstellt werden. Jene Komponente die dies durchführt wird in der Google V8-Engine als \textit{Parser} bezeichnet.
+Anhand der folgenden Funktion \textit{addiere} wird nun gezeigt, wie dieser Baum dargestellt wird:
+
+\begin{program}[h]
+\caption{Beispielcode, addiere.js}
+\label{prog:js_example}
+\begin{GenericCode}
+function addiere(a, b) {
+	return a + b;
+}
+addiere(1, 2);
+\end{GenericCode}
+\end{program}
+
+Führt man das in \ref{prog:js_example} gezeigte Skript \textit{addiere.js} in der V8-Entwickerkonsole mit dem Parameter \textit{--print-ast} aus, so wird eine
+textuelle Repräsentation des abstrakten Syntaxbaums ausgegeben.
+
+\begin{program}[h]
+\caption{Textuelle Ausgabe der d8-Konsole}
+\label{prog:d8_ast}
+\begin{GenericCode}
+$ ./d8 --print-ast addiere.js
+[generating interpreter code for user-defined function: addiere]
+--- AST ---
+FUNC at 16
+. KIND 0
+. SUSPEND COUNT 0
+. NAME "addiere"
+. INFERRED NAME ""
+. PARAMS
+. . VAR (0x55c826b31c40) (mode = VAR) "a"
+. . VAR (0x55c826b31c70) (mode = VAR) "b"
+. RETURN at 26
+. . ADD at 35
+. . . VAR PROXY parameter[0] (0x55c826b31c40) (mode = VAR) "a"
+. . . VAR PROXY parameter[1] (0x55c826b31c70) (mode = VAR) "b"
+\end{GenericCode}
+\end{program}
+
+In Abbildung \ref{fig:js_ast} ist die in Ausgabe \ref{prog:d8_ast} für ein besseres Verständnis grafisch visualisiert.
+
+\begin{figure}[h]
+	\centering \includegraphics[width=0.70\textwidth]{ast}
+	\caption{Abstrakter Syntaxbaum des Beispielcodes.}
+	\label{fig:js_ast}
+\end{figure}
+
+In der Visualisierung \ref{fig:js_ast} kann man im linken Zweig die Funktionsparameter erkennen. Der Rechte beschreibt den Rückgabewert der
+Funktion. Hier kann man erkennen, dass die Kinderknoten der arithmetischen Addition auf die Eingabeparameter referenzieren. 
+
+\subsection{Interpreter}
+
+Aus diesem Baum wird im nächsten Schritt ein Bytecode generiert, der dann von dem Interpreter ausgeführt werden kann. Der Interpreter wird 
+in der Google V8-Engine als \textit{Ingnition} bezeichnet und ist als Registermaschiene umgesetzt. Die meisten Bytecodes verwenden ein spezielles
+Register mit dem Namen \textit{accumulator} um den zuletzt berechneten Wert zu speichern.
+
+\begin{program}[h]
+\caption{Bytecode der Funktion \textit{addiere}.}
+\label{prog:d8_bytec}
+\begin{GenericCode}
+$ ./d8 --print-bytecode addiere.js
+[generating bytecode for function: addiere]
+Parameter count 3
+Frame size 0
+   16 E> 0x3a5e372c5ba @    0 : 91                StackCheck 
+   26 S> 0x3a5e372c5bb @    1 : 1d 02             Ldar a1
+   35 E> 0x3a5e372c5bd @    3 : 2b 03 00          Add a0, [0]
+   39 S> 0x3a5e372c5c0 @    6 : 95                Return 
+Constant pool (size = 0)
+Handler Table (size = 16)
+\end{GenericCode}
+\end{program}
+
+In der Ausgabe \ref{prog:d8_bytec} kann man erkennen, dass zwei weitere Register, a1 und a0 verwendet werden. Diese entsprechen den
+Übergabeparametern auf dem Maschienstapel. Die einzelnen Bytecodes in \ref{prog:d8_bytec} können wie folgt Interpretiert werden:
+
+
+\begin{itemize}
+	\item StackCheck, Überpüft den Stapelzeiger auf validität.
+	\item Ldar a1, Lädt den Wert von Register a1 in das \textit{accumulator} Register.
+	\item Add a0, [0], Lädt a0 und Addiert es auf den Wert im \textit{accumulator} Register.
+	\item Return Gibt die Kontrolle zurück an den Aufrufer. Der Rückgabewert ist jener des \textit{accumulator} Registers.
+\end{itemize}
+
+
+\subsection{Just-In-Time Compiler}
+
+Diese Komponente wird in der Google V8-Engine als \textit{Turbofan} bezeichnet, da sie eine performantere Ausführung
+von Codeabschnitten ermöglicht. Wird vom Interpreter erkannt, dass eine Funktion oft aufgerufen wird,
+übergibt er den Bytecode an den Just-In-Time Compiler, damit dieser nativen Maschinencode erzeugt. Anschließend
+wird dieses Kompilat für eine spätere Ausführung im Speicher abgelegt.
+Dies kann mitmithilfe der d8-Konsole über die \textit{\%OptimizeFunctionOnNextCall()} Laufzeitanweisung simuliert werden. 
+Damit solche Anweisungen von der Entwicklerkonsole interpretiert werden, muss sie mit dem Parameter \textit{--allow-natives-syntax} 
+gestartete werden.
+
+\begin{program}[h]
+\caption{Optimierung und Deoptimierung.}
+\label{prog:d8_optdeopt}
+\begin{GenericCode}
+function addiere(a, b) {
+	return a + b;
+}
+
+addiere(1, 2);
+// Optimiere funktion und speichere 
+// sie im Cache
+%OptimizeFunctionOnNextCall(addiere);
+addiere(1, 2); // optimierter Aufruf
+// 47.11 Falscher Typ -> deoptimiere
+addiere(47.11, 2);	
+\end{GenericCode}
+\end{program}
+
+Der Javascript-Quellcode \ref{prog:d8_optdeopt} zeigt, wie mithilfe der Entwicklerkonsole ein Optimieren und Deoptimieren simuliert werden
+kann. Um diesen Prozess zu veranschaulichen, kann \textit{d8} mit \textit{--trace-deopt} gestartet werden.
+
+\begin{program}[h]
+\caption{Ausgabe der Deoptimierung (gekürzt).}
+\label{prog:d8_deopt}
+\begin{GenericCode}
+./d8 --allow-natives-syntax --trace-deopt ./addiere.js 
+[deoptimizing (DEOPT eager): begin 0x2a2dc932c581 <JSFunction addiere (sfi = 0x2a2dc932c231)> (opt #0) @0, FP to SP delta: 16, caller sp: 0x7fff7f41da88]
+			;;; deoptimize at <./addiere.js:2:11>, not a Smi
+...
+[deoptimizing (eager): end 0x2a2dc932c581 <JSFunction addiere (sfi = 0x2a2dc932c231)> @0 => node=0, pc=0x2abecd6f1f00, caller sp=0x7fff7f41da88, state=TOS_REGISTER, took 1.353 ms]
+[removing optimized code for: 0x2a2dc932c581 <JSFunction addiere (sfi = 0x2a2dc932c231)>]
+\end{GenericCode}
+\end{program}
+
+In der Ausgabe \ref{prog:d8_deopt} kann man erkennen, dass die optimierte Funktion ein Objekt des Typs \textit{Smi}, also Small-Integer erwartet
+hätte. Da dieser aber im Beispiel \ref{prog:d8_optdeopt} in der Zeile 11 nicht übergeben wurde, löste dies eine Deoptimierung aus.
+
+\section{C++-Programmierschnittstelle}
+
+Nachdem im nun bekannt ist, wie der Javascript-Code ausgeführt wird, widmet sich dieses Kapitel der C++-Programmierschnittstelle.
+Es werden die wichtigsten Konzepte erklärt und mithilfe eines Beispielprogrammes veranschaulicht. Dazu wird Bezug auf die Quellen 
+\cite{learnV8}, \cite{v8embed} und \cite{v8mem} genommen.
+
+\subsection{Isolates}
+
+Als \textit{Isolate} bezeichnet man eine unabhängige Kopie der V8 Laufzeitumgebung, die einen eigenen Speicherbereich verwaltet.
+Ein Prozess kann mehrere dieser Objekte Instanzieren, aber jedes darf nur von jeweils einem Thread vewendet werden. 
+Zu diesem Zweck muss mithilfe von Objekten des Datentyps Locker aus der V8-Programmierschnittstelle ein mehrfacher Zugriff verhindert 
+werden. Diese funktionieren wie eine Mutal Exclusion und blockieren einen zweiten Thread, bis der erste den geschützten Bereich, 
+verlassen hat.
 
 \subsection{Contexts}
 
-Ein Context ist eine Ausfuhrungsumgebung, die es ermöglicht, separaten, unabhängigen Javascript-Code in einer einzigen 
-V8-Instanz (Isolate) auszufuhren. Da eine Isolate mehrere Context-Ausführungsumgebungen besitzen kann, muss jene, die zur 
-Ausführung verwendet werden soll explizit angegeben werden. In dem Webbrowser \textit{Chromium} wird das Konzept der 
-Contexts für je ein HTML Fenster oder \textit{iframe} verwendet.
+Ein \textit{Context} ist eine Ausführungsumgebung, die es ermöglicht, separaten, unabhängigen Javascript-Code in einer 
+V8 Laufzeitumgebung (\textit{Isolate}) auszuführen. Da ein \textit{Isolate} Objekt mehrere Context-Ausführungsumgebungen besitzen kann, 
+muss jene, die zur Ausführung verwendet werden soll explizit angegeben werden. Dies wird mithilfe des RAII-Konzeptes 
+(Ressourcenbelegung ist Initialisierung) durch erstellen eigener Objekte des Types \textit{Context::Scope} erreicht.
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.7\textwidth]{contexts}
-	\caption{In dieser Illustration wird die Unabhängigkeit der verschiedenen Contexts zueinander veranschaulicht.}
+	\caption{In dieser Illustration wird die Unabhängigkeit der verschiedenen Contexts zueinander veranschaulicht \cite{v8Context}.}
 	\label{fig:contexts}
 \end{figure}
 
-In Abbildung \ref{fig:contexts} ist außerdem ersichtlich, dass mehrere Contexts auch verschachtelt aufgerufen 
-werden können ohne sich gegenseitig zu beeinflussen.
-
-\begin{figure}[h]
-	\centering \includegraphics[width=1\textwidth]{handles}
-	\caption{}
-	\label{fig:handles}
-\end{figure}
-
-Jens
-
-\section{Funktionsweise und Aufbau}
-
-\subsection{Just-In-Time Compiler und Caches}
-
-\subsection{Threadsicherheit mithilfe von Isolates}
-
-1 Thread per Isolate, Locker Objekte
-
-\subsection{Abgrenzen der Javascript-Ausführungsumgebungen mithilfe von Contexts}
-
-Unabhängige ausführungsumgebung
+In Abbildung \ref{fig:contexts} ist ersichtlich, wie mehrere Ausführungsumgebung verschachtelt aufgerufen werden können ohne sich 
+gegenseitig zu beeinflussen.
 
 \subsection{Speicherverwaltung}
 
-Handles verwaltet über RAII geben Garbage collector auskunft über die validität von speicherzellen.
+Ein Handle hält eine Referenz auf die Position eines Javascript-Objekts in dem von einem Isolate verwalteten Speicherbereich.
+Der V8-Garbage-Collector gibt automatisch den Speicher von Handles frei, auf die nicht mehr zugegriffen werden kann. 
+Ob der Zugriff noch möglich ist oder nicht wird mithilfe des RAII-Konzeptes (Ressourcenbelegung ist Initialisierung) ermittelt.
+
+\begin{figure}[h]
+	\centering \includegraphics[width=1\textwidth]{handles}
+	\caption{Speicherverwaltung mithilfe von Handles.\cite{v8Handles}}
+	\label{fig:handles}
+\end{figure}
+
+Dazu muss, bevor das erzeugen von Javascript-Objekten überhaupt möglich ist, wie in Abbildung \ref{fig:handles} gezeigt, ein HandleScope Objekt auf dem C++-Callstack allokiert werden. Dieses Objekt stellt einen eigenen Stack für Local Handles zur Verfügung.
+Wird es zerstört, zum Beispiel beim Verlassen des Scopes, werden alle Handles dieses HandleScope-Stacks gelöscht. 
+Gibt es kein Handle mehr, dass ein bestimmtes Objekt referenziert, kann dieses durch den Garbage-Collector freigegeben werden.
 
 \subsection{Anpassen von Javascript-Ausführungsumgebungen über das Global Objekt}
 
+Beim erstellen eines neuen V8-Contexts kann ein Objekt des Datentyps \textit{ObjectTemplate} angegeben werden, dass die Umgebung des Contexts beschreibt. Diesem Objekt kann man beliebig viele 
+eigene Funktionen (\textit{FunctionTemplate} Objekte) oder Variablen zuweisen. Über \textit{FunctionTemplate} Objekte ist es möglich, C++ Funktionen aufzurufen. 
+Dadurch lässt sich die Javascriptsprache beliebig erweitern.
+
+
 \subsection{Das DebugInspector Protokoll}
-
-\section{Vergleich mit anderen Javascript-Engines}
-Vergleich vorallem mid Mozilla spidermonkey. Ev. auch performancetests.
-\subsection{Mozilla SpiderMonkey}
-
-
-\subsection{Apple JavaScriptCore}
 

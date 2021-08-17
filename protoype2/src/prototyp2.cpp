@@ -75,7 +75,6 @@ void PrintParams(const v8::FunctionCallbackInfo<v8::Value>& args) {
 }
 
 int main(int argc, char *argv[]) {
-
   // Lade übergebene datei
   std::ifstream inFile(argv[argc-1]);
   if (!inFile.good()) {
@@ -86,7 +85,7 @@ int main(int argc, char *argv[]) {
   source << inFile.rdbuf();
   std::string srcStr = source.str();
 
-  // Initialisiere V8 Engine
+  // Initialisiere V8-Engine
   v8::V8::InitializePlatform(v8::platform::CreateDefaultPlatform());
   v8::V8::Initialize();
 

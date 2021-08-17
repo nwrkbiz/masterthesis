@@ -1,9 +1,9 @@
 \chapter{Kurzfassung}
 
-Aufgrund der Unterschiede zwischen den einzelnen Anlagen der Automatisierungsindustrie und der unterschiedlichen 
+Aufgrund der Unterschiede zwischen den einzelnen Anlagen der Automatisierungsindustrie und der 
 kundenspezifischen Projektanforderungen ist die Anlagenintegration von Multi-Agent-SCADA 
 (Supervisory Control And Data Acquisition) Systemen oft mit vielen unvorhersehbaren und komplexen Problemen verbunden. 
-Um diese Probleme zu lösen, ist ein einfacher Weg zur Entwicklung und Anpassung vor Ort erforderlich. \\
+Um diese zu lösen, ist ein einfacher Weg zur Entwicklung und Anpassung vor Ort erforderlich. \\
 
 Eine Möglichkeit, dies zu erreichen, besteht darin, dem Systemintegrator eine dynamisch erweiterbare Skriptsprache mit 
 Debugging-Funktionen und einer Interaktionsmethode für den Fernzugriff auf das SCADA-System bereitzustellen.
@@ -11,11 +11,11 @@ Javascript eignet sich für diesen Zweck, da online und offline Literatur dazu g
 öffentlich verfügbare Komponenten und Bibliotheken, um die Sprache zu erweitern, und die meisten Interpreter 
 verfügen über Debugging-Protokolle, die die Entwicklung vereinfachen. \\
 
-Die folgende Arbeit beschreibt, wie die Google V8 Javascript Engine in das kommerzielle WinCC OA 
+Die folgende Arbeit beschreibt, wie die Google V8 Javascriptengine in das kommerzielle WinCC OA 
 (Windows Control Center Open Architecture) Multi-Agent-SCADA System für Windows und Linux als Teil des
 Produktes \textit{SiPlant} eingebettet wird. 
-Dies geschieht durch die Implementierung eines dedizierten Agenten, der in der Lage ist, Javascript-Code unter Verwendung dieser
-von Google entwickelten Engine auszuführen. \\
+Dies geschieht durch die Implementierung eines dedizierten Agenten, der in der Lage ist, Javascript-Code unter Verwendung der
+von Google bereitgestellten Engine auszuführen. \\
 
 Der neu entwickelte Agent erweitert die Skriptsprache um einen Satz von benutzerdefinierten Befehlen, die den Zugriff 
 auf die Daten des gesamten Systems durch die Verwendung der ereignisbasierten Konzepte von WinCC OA ermöglichen. \\

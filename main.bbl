@@ -102,6 +102,7 @@
       \strng{authorbibnamehash}{e81f18fe5b19a688d5145730fb236624}
       \strng{authornamehash}{e81f18fe5b19a688d5145730fb236624}
       \strng{authorfullhash}{b955b20997f1b0d8317cbada66b20151}
+      \field{extraname}{1}
       \field{sortinit}{A}
       \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
       \field{labelnamesource}{author}
@@ -109,6 +110,51 @@
       \field{howpublished}{Hardcover}
       \field{isbn}{0321486811}
       \field{month}{8}
+      \field{title}{Compilers: Principles, Techniques, and Tools (2nd Edition)}
+      \field{year}{2006}
+      \keyw{compilers}
+    \endentry
+    \entry{compilerFrontEnd}{image}{}
+      \name{author}{4}{}{%
+        {{hash=87e9142329f09390b038692270dc2168}{%
+           family={Aho},
+           familyi={A\bibinitperiod},
+           given={Alfred\bibnamedelima V.},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=2935cefbbdea2e46ed9635bd5cf1db28}{%
+           family={Lam},
+           familyi={L\bibinitperiod},
+           given={Monica\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=b0e677112f976b0ff780553fcb888351}{%
+           family={Sethi},
+           familyi={S\bibinitperiod},
+           given={Ravi},
+           giveni={R\bibinitperiod}}}%
+        {{hash=cafe1d770c56825ebccdb81e9f7c9b3b}{%
+           family={Ullman},
+           familyi={U\bibinitperiod},
+           given={Jeffrey\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Addison Wesley}%
+      }
+      \strng{namehash}{e81f18fe5b19a688d5145730fb236624}
+      \strng{fullhash}{b955b20997f1b0d8317cbada66b20151}
+      \strng{bibnamehash}{e81f18fe5b19a688d5145730fb236624}
+      \strng{authorbibnamehash}{e81f18fe5b19a688d5145730fb236624}
+      \strng{authornamehash}{e81f18fe5b19a688d5145730fb236624}
+      \strng{authorfullhash}{b955b20997f1b0d8317cbada66b20151}
+      \field{extraname}{2}
+      \field{sortinit}{A}
+      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Hardcover}
+      \field{isbn}{0321486811}
+      \field{month}{8}
+      \field{note}{Compiler-Frontend}
       \field{title}{Compilers: Principles, Techniques, and Tools (2nd Edition)}
       \field{year}{2006}
       \keyw{compilers}
@@ -143,6 +189,48 @@
       \verb{doi}
       \verb 10.1007/978-1-4615-6161-3
       \endverb
+    \endentry
+    \entry{learnV8}{online}{}
+      \name{author}{1}{}{%
+        {{hash=439537c253d8d0e84f37226b5a56aec3}{%
+           family={Bevenius},
+           familyi={B\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{439537c253d8d0e84f37226b5a56aec3}
+      \strng{fullhash}{439537c253d8d0e84f37226b5a56aec3}
+      \strng{bibnamehash}{439537c253d8d0e84f37226b5a56aec3}
+      \strng{authorbibnamehash}{439537c253d8d0e84f37226b5a56aec3}
+      \strng{authornamehash}{439537c253d8d0e84f37226b5a56aec3}
+      \strng{authorfullhash}{439537c253d8d0e84f37226b5a56aec3}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Learning V8}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://github.com/danbev/learning-v8
+      \endverb
+      \verb{url}
+      \verb https://github.com/danbev/learning-v8
+      \endverb
+      \warn{\item Entry 'learnV8' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{netmarketshare}{online}{}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labeltitlesource}{title}
+      \field{title}{Browser Market Share, Desktop and Mobile}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://netmarketshare.com/browser-market-share.aspx
+      \endverb
+      \verb{url}
+      \verb https://netmarketshare.com/browser-market-share.aspx
+      \endverb
+      \warn{\item Entry 'netmarketshare' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring}
     \endentry
     \entry{cmake}{online}{}
       \field{sortinit}{C}
@@ -288,6 +376,20 @@
       \field{title}{What is SCADA?}
       \field{year}{1999}
     \endentry
+    \entry{statcounter}{online}{}
+      \field{sortinit}{D}
+      \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
+      \field{labeltitlesource}{title}
+      \field{title}{Desktop and Mobile Browser Market Share Worldwide}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://gs.statcounter.com/browser-market-share/desktop-mobile/worldwide/#monthly-202107-202107-bar
+      \endverb
+      \verb{url}
+      \verb https://gs.statcounter.com/browser-market-share/desktop-mobile/worldwide/#monthly-202107-202107-bar
+      \endverb
+      \warn{\item Entry 'statcounter' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring}
+    \endentry
     \entry{ecma}{online}{}
       \field{sortinit}{E}
       \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
@@ -381,10 +483,10 @@
       \field{year}{2017}
       \field{urldateera}{ce}
       \verb{urlraw}
-      \verb https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775
+      \verb https://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/
       \endverb
       \verb{url}
-      \verb https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775
+      \verb https://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/
       \endverb
     \endentry
     \entry{v8mem}{online}{}
@@ -507,6 +609,20 @@
       \verb http://www.addison-wesley.de/3827314496.html
       \endverb
     \endentry
+    \entry{v8ByteCode2}{online}{}
+      \field{sortinit}{L}
+      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{labeltitlesource}{title}
+      \field{title}{Launching Ignition and TurboFan}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://docs.google.com/document/d/11T2CRex9hXxoJwbYqVQ32yIPMh0uouUZLdyrtmMoL44/mobilebasic#h.z0c1oogsbnnq
+      \endverb
+      \verb{url}
+      \verb https://docs.google.com/document/d/11T2CRex9hXxoJwbYqVQ32yIPMh0uouUZLdyrtmMoL44/mobilebasic#h.z0c1oogsbnnq
+      \endverb
+      \warn{\item Entry 'v8ByteCode2' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring}
+    \endentry
     \entry{Singleton}{report}{}
       \name{author}{1}{}{%
         {{hash=2642834880a62036bb405ae7e18ff71d}{%
@@ -537,6 +653,103 @@
       \field{type}{techreport}
       \field{year}{1997}
     \endentry
+    \entry{v8ByteCode1}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a22a14fae0a18455d9991e33c39d8f3d}{%
+           family={McIlroy},
+           familyi={M\bibinitperiod},
+           given={Ross},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{a22a14fae0a18455d9991e33c39d8f3d}
+      \strng{fullhash}{a22a14fae0a18455d9991e33c39d8f3d}
+      \strng{bibnamehash}{a22a14fae0a18455d9991e33c39d8f3d}
+      \strng{authorbibnamehash}{a22a14fae0a18455d9991e33c39d8f3d}
+      \strng{authornamehash}{a22a14fae0a18455d9991e33c39d8f3d}
+      \strng{authorfullhash}{a22a14fae0a18455d9991e33c39d8f3d}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Ignition: V8 Interpreter}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://docs.google.com/document/d/11T2CRex9hXxoJwbYqVQ32yIPMh0uouUZLdyrtmMoL44/mobilebasic#h.z0c1oogsbnnq
+      \endverb
+      \verb{url}
+      \verb https://docs.google.com/document/d/11T2CRex9hXxoJwbYqVQ32yIPMh0uouUZLdyrtmMoL44/mobilebasic#h.z0c1oogsbnnq
+      \endverb
+      \warn{\item Entry 'v8ByteCode1' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{v8Pipeline}{online}{}
+      \name{author}{1}{}{%
+        {{hash=0015d4137584fc922642f2acf6fa4cbf}{%
+           family={Meurer},
+           familyi={M\bibinitperiod},
+           given={Benedikt},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{0015d4137584fc922642f2acf6fa4cbf}
+      \strng{fullhash}{0015d4137584fc922642f2acf6fa4cbf}
+      \strng{bibnamehash}{0015d4137584fc922642f2acf6fa4cbf}
+      \strng{authorbibnamehash}{0015d4137584fc922642f2acf6fa4cbf}
+      \strng{authornamehash}{0015d4137584fc922642f2acf6fa4cbf}
+      \strng{authorfullhash}{0015d4137584fc922642f2acf6fa4cbf}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{An Introduction to Speculative Optimization in V8}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://ponyfoo.com/articles/an-introduction-to-speculative-optimization-in-v8
+      \endverb
+      \verb{url}
+      \verb https://ponyfoo.com/articles/an-introduction-to-speculative-optimization-in-v8
+      \endverb
+      \warn{\item Entry 'v8Pipeline' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{nodejs}{online}{}
+      \field{sortinit}{N}
+      \field{sortinithash}{f7242c3ed3dc50029fca1be76c497c7c}
+      \field{labeltitlesource}{title}
+      \field{title}{NodeJS Website}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://nodejs.org/en/
+      \endverb
+      \verb{url}
+      \verb https://nodejs.org/en/
+      \endverb
+      \warn{\item Entry 'nodejs' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{automPyr}{image}{}
+      \name{author}{1}{}{%
+        {{hash=b3eae762daaa8040ce6a8799a65be170}{%
+           family={Polke},
+           familyi={P\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Polke, Martin}%
+      }
+      \strng{namehash}{b3eae762daaa8040ce6a8799a65be170}
+      \strng{fullhash}{b3eae762daaa8040ce6a8799a65be170}
+      \strng{bibnamehash}{b3eae762daaa8040ce6a8799a65be170}
+      \strng{authorbibnamehash}{b3eae762daaa8040ce6a8799a65be170}
+      \strng{authornamehash}{b3eae762daaa8040ce6a8799a65be170}
+      \strng{authorfullhash}{b3eae762daaa8040ce6a8799a65be170}
+      \field{extraname}{1}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{note}{Automatisierungspyramide}
+      \field{title}{Prozessleittechnik}
+      \field{year}{1994}
+    \endentry
     \entry{Prozessleittechnik}{book}{}
       \name{author}{1}{}{%
         {{hash=b3eae762daaa8040ce6a8799a65be170}{%
@@ -554,6 +767,7 @@
       \strng{authorbibnamehash}{b3eae762daaa8040ce6a8799a65be170}
       \strng{authornamehash}{b3eae762daaa8040ce6a8799a65be170}
       \strng{authorfullhash}{b3eae762daaa8040ce6a8799a65be170}
+      \field{extraname}{2}
       \field{sortinit}{P}
       \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
       \field{labelnamesource}{author}
@@ -699,6 +913,27 @@
       \field{title}{Multiagent Systems For Manufactoring Control}
       \field{year}{2004}
     \endentry
+    \entry{Terry1997CompilersAC}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=8115cec87cb5e89e45396c266af33cae}{%
+           family={Terry},
+           familyi={T\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{8115cec87cb5e89e45396c266af33cae}
+      \strng{fullhash}{8115cec87cb5e89e45396c266af33cae}
+      \strng{bibnamehash}{8115cec87cb5e89e45396c266af33cae}
+      \strng{authorbibnamehash}{8115cec87cb5e89e45396c266af33cae}
+      \strng{authornamehash}{8115cec87cb5e89e45396c266af33cae}
+      \strng{authorfullhash}{8115cec87cb5e89e45396c266af33cae}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Compilers and compiler generators : an introduction with C++}
+      \field{year}{1997}
+    \endentry
     \entry{ACE}{online}{}
       \field{sortinit}{T}
       \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
@@ -729,6 +964,36 @@
       \verb https://v8.dev/docs/embed
       \endverb
       \warn{\item Entry 'v8embed' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{v8Context}{image}{}
+      \field{sortinit}{V}
+      \field{sortinithash}{75dd7385c90b2252c3ae853a80ca853b}
+      \field{labeltitlesource}{title}
+      \field{note}{Funktionsweise Contexts}
+      \field{title}{V8 Embedding Documentation}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb https://v8.dev/docs/embed
+      \endverb
+      \verb{url}
+      \verb https://v8.dev/docs/embed
+      \endverb
+      \warn{\item Entry 'v8Context' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{v8Handles}{image}{}
+      \field{sortinit}{V}
+      \field{sortinithash}{75dd7385c90b2252c3ae853a80ca853b}
+      \field{labeltitlesource}{title}
+      \field{note}{Handles und Garbagecollection}
+      \field{title}{V8 Embedding Documentation}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb https://v8.dev/docs/embed
+      \endverb
+      \verb{url}
+      \verb https://v8.dev/docs/embed
+      \endverb
+      \warn{\item Entry 'v8Handles' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring}
     \endentry
     \entry{wooldridge_jennings_1995}{article}{}
       \name{author}{2}{}{%
