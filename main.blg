@@ -1,32 +1,33 @@
 [0] Config.pm:304> INFO - This is Biber 2.12
 [0] Config.pm:307> INFO - Logfile is 'main.blg'
-[33] biber:315> INFO - === Mi Aug 18, 2021, 18:00:48
-[62] Biber.pm:371> INFO - Reading 'main.bcf'
-[135] Biber.pm:889> INFO - Found 43 citekeys in bib section 0
-[157] Biber.pm:4093> INFO - Processing section 0
-[174] Biber.pm:4254> INFO - Looking for bibtex format file 'references.bib' for section 0
-[180] bibtex.pm:1512> INFO - LaTeX decoding ...
-[290] bibtex.pm:1329> INFO - Found BibTeX data source 'references.bib'
-[300] Utils.pm:193> WARN - Duplicate entry key: 'gtest' in file 'references.bib', skipping ...
-[364] Utils.pm:193> WARN - Entry 'cmake' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring
-[377] Utils.pm:193> WARN - month field 'August' in entry 'dragonBook' is not an integer - this will probably not sort properly.
-[393] Utils.pm:193> WARN - month field 'August' in entry 'compilerFrontEnd' is not an integer - this will probably not sort properly.
-[408] Utils.pm:193> WARN - Entry 'statcounter' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring
-[410] Utils.pm:193> WARN - Entry 'netmarketshare' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring
-[412] Utils.pm:193> WARN - Entry 'nodejs' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring
-[419] Utils.pm:193> WARN - Entry 'v8ByteCode1' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring
-[421] Utils.pm:193> WARN - Entry 'v8ByteCode2' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring
-[431] Utils.pm:193> WARN - Entry 'v8Pipeline' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring
-[442] Utils.pm:193> WARN - Entry 'learnV8' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring
-[444] Utils.pm:193> WARN - Entry 'v8embed' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
-[446] Utils.pm:193> WARN - Entry 'v8mem' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
-[448] Utils.pm:193> WARN - Entry 'v8Context' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
-[450] Utils.pm:193> WARN - Entry 'v8Handles' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
-[453] Utils.pm:193> WARN - Entry 'v8Debug' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
-[546] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[547] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[547] Biber.pm:3921> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
-[547] Biber.pm:3927> INFO - No sort tailoring available for locale 'de-DE'
-[591] bbl.pm:636> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[610] bbl.pm:739> INFO - Output to main.bbl
-[611] Biber.pm:110> INFO - WARNINGS: 16
+[34] biber:315> INFO - === Do Aug 19, 2021, 00:09:06
+[65] Biber.pm:371> INFO - Reading 'main.bcf'
+[139] Biber.pm:889> INFO - Found 45 citekeys in bib section 0
+[163] Biber.pm:4093> INFO - Processing section 0
+[181] Biber.pm:4254> INFO - Looking for bibtex format file 'references.bib' for section 0
+[186] bibtex.pm:1512> INFO - LaTeX decoding ...
+[300] bibtex.pm:1329> INFO - Found BibTeX data source 'references.bib'
+[313] Utils.pm:193> WARN - Duplicate entry key: 'gtest' in file 'references.bib', skipping ...
+[379] Utils.pm:193> WARN - Entry 'cmake' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring
+[391] Utils.pm:193> WARN - month field 'August' in entry 'dragonBook' is not an integer - this will probably not sort properly.
+[405] Utils.pm:193> WARN - month field 'August' in entry 'compilerFrontEnd' is not an integer - this will probably not sort properly.
+[425] Utils.pm:193> WARN - Entry 'statcounter' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring
+[428] Utils.pm:193> WARN - Entry 'netmarketshare' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring
+[433] Utils.pm:193> WARN - Entry 'nodejs' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring
+[441] Utils.pm:193> WARN - Entry 'v8ByteCode1' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring
+[444] Utils.pm:193> WARN - Entry 'v8ByteCode2' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring
+[453] Utils.pm:193> WARN - Entry 'v8Pipeline' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring
+[464] Utils.pm:193> WARN - Entry 'learnV8' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring
+[466] Utils.pm:193> WARN - Entry 'v8embed' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
+[469] Utils.pm:193> WARN - Entry 'v8mem' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
+[470] Utils.pm:193> WARN - Entry 'v8Context' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
+[472] Utils.pm:193> WARN - Entry 'v8Handles' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
+[475] Utils.pm:193> WARN - Entry 'v8Debug' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring
+[503] Utils.pm:193> WARN - Entry 'centOS' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring
+[593] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[593] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[593] Biber.pm:3921> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
+[593] Biber.pm:3927> INFO - No sort tailoring available for locale 'de-DE'
+[644] bbl.pm:636> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[667] bbl.pm:739> INFO - Output to main.bbl
+[668] Biber.pm:110> INFO - WARNINGS: 17

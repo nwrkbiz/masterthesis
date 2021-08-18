@@ -378,12 +378,13 @@ der V8-Programmierschnittstelle, damit sie Befehle über einen Websocket-Server 
 einer der zwei zuvor genannten Browser zu analysieren. Die \textit{V8InspectorClient} Implementierung muss die Verbindung zu einem \textit{Context} herstellen.
 Danach können über den Websocket-Server erhaltene JSON-Befehle an die V8-Engine weitergegeben werden. Die \textit{V8Inspector::Channel} 
 Umsetzung erhält die Antworten auf die Befehle und muss sie an den Befehlsgeber zurücksenden. Somit ist es möglich die Laufzeit eines laufenden Javascript-Codes zu 
-analysieren und manipulieren.
+analysieren und manipulieren. Außerdem kann man einzelne Funktionsaufrufe und Codesequenzen über die von den Browser-Entwicklerwerkzeugen zur Verfügung gestellte REPL (Read-eval-print loop) 
+Konsole testen \cite{repl}.
 
 \subsection{Beispiel}
 
 In diesem Abschnitt wird anhand eines Beispiels gezeigt, wie man die vorher erläuterten Konzepte verwenden kann, um innerhalb eines
-C++-Programmes Javascript-Quellcode ausführen zu können. Außerdem wird erklärt, wie die Skriptsprache über das Global-Objekt erweitern 
+C++-Programmes Javascript-Quellcode ausführen zu können. Des weiterem wird erklärt, wie die Skriptsprache über das Global-Objekt erweitern 
 werden kann.
 
 \lstinputlisting[

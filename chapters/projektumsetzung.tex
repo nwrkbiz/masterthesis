@@ -1,8 +1,79 @@
 \chapter{Prototyp-Entwicklung}
 \label{cha:Projektumsetzung}
 
-\section{Implementierung des Prototypen}
+In diesem Kapitel wird die Implementierung des SCADA-Agenten anhand des im letzten Kapitel aufgezeigten Konzeptes erläutert.
+
+\section{Konzeptioneller Beweis}
+
+Bevor mit der Implementierung eines eigenen Agenten umgesetzt wird, ist es zunächst sinnvoll, die Machbarkeit anhand eines einfachen konzeptionellen 
+Beweises festzustellen. Dazu werden die aus den Beispielen ... und .. gewonnenen erkenntnisse in einem eigenen Prototypen Kombiniert. Das Ziel ist es 
+die \textit{doConnect} Funktion der WinCC OA C++-Programmierschnittstelle der Google V8 Javascriptengine zur Verfügung zu stellen. Dazu muss zunächst
+eine eigene Observer Klasse implementiert werden, die beim Erhalt von Wetänderungen eine Javascript Funktion aufrufen kann.
+
+\lstinputlisting[
+	label={src:proto2_main},
+	caption={Observer-Klasse, erhält asynchrone Antworten und gibt diese an eine Javascript-Funktion weiter.},
+	numbers=left,
+	language=C++,
+	firstnumber=0,
+	firstline=66,
+	lastline=126]{protoype3/src/prototyp3.cpp}
+
+\lstinputlisting[
+    label={src:proto2_main},
+    caption={Hauptfunktion, zeigt die Funktionsweise der V8-Programmierschnittstelle.},
+    numbers=left,
+    language=C++,
+    firstnumber=0,
+    firstline=159,
+    lastline=184]{protoype3/src/prototyp3.cpp}
+
+\lstinputlisting[
+    label={src:proto2_main},
+    caption={Hauptfunktion, zeigt die Funktionsweise der V8-Programmierschnittstelle.},
+    numbers=none,
+    language=C++,
+    firstnumber=0,
+    firstline=240,
+    lastline=240]{protoype3/src/prototyp3.cpp}
+
+\lstinputlisting[
+    label={src:proto2_main},
+    caption={Hauptfunktion, zeigt die Funktionsweise der V8-Programmierschnittstelle.},
+    ]{protoype3/test.js}
+
+\lstinputlisting[
+    label={src:proto2_main},
+    caption={Hauptfunktion, zeigt die Funktionsweise der V8-Programmierschnittstelle.},
+    numbers=none,
+    ]{protoype3/ausgabe.txt}
+
+Auch diese Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD und ist unter \textit{Thesis/prototype3} zu finden. Es kann mit folgenden Befehlen 
+übersetzt werden. Dazu wird das \textit{SMF\_3P} Verzeichnis benötigt und eine WinCC OA Installation benötigt. \\
+
+SUSE Linux Enterprise 12.5:
+
+\begin{GenericCode}
+$ mkdir build
+$ cd ./build
+$ cmake .. -DSMF_3P=~/SMF_3P -DWINCCOA_INSTALL=C:/Siemens/Automation/WinCC_OA/3.16
+$ cmake --build .
+\end{GenericCode}
+
+Windows 10:
+
+\begin{GenericCode}
+$ mkdir build
+$ cd ./build
+$ cmake .. -T v140 -A x64 -DSMF_3P=C:/SMF_3P -DWINCCOA_INSTALL=C:/Siemens/Automation/WinCC_OA/3.16
+$ cmake --build .
+\end{GenericCode}
+
+\section{Implementierung des Agent}
 \subsection{Implementierung der Singleton Klasse}
+
+
+
 \subsection{Implementierung der V8Context Klasse}
 \subsection{Implementierung der DebugInspector Klasse}
 \subsection{Implementierung des ICustomJSCommands Interface}

@@ -1,6 +1,11 @@
 \chapter{Konzept}
 \label{cha:Konzept}
 
+In diesem Kapitel wird ein Umsetzungskonzept für die im letzten Kapitel beschriebenen Anforderungen erarbeitet.
+
+
+Umsetzung dll / lib / oder exe?
+
 \section{Struktur der Programmbibliothek}
 \subsection{Verwalten von Isolates und Contexts}
 \subsection{Freilegen des DebugInspector Protokolls}
@@ -16,6 +21,12 @@
 
 \subsection{Compiler}
 
+wahl der compiler auf linux und windows
+
+\subsection{Handbuch Integratoren}
+
+Typedoc / Doxygen.
+
 \subsection{Linken externer Bibliotheken}
 
 Im folgenden Abschnitt wird erklärt, wie ein Programm mit externen Bibliotheken umgehen kann. Die verschiedenen Möglichkeiten
@@ -26,7 +37,6 @@ werden dann abgewogen und in einem Fazit wird entschieden, welche Methode für d
 Wird eine Bibliothek statisch gelinkt, dann werden die Funktionen dieser Bibliothek direkt in die ausführbare Datei kopiert.
 Voraussetzung dafür ist, dass die gelinkte Bibliothek selbst statisch ist. Dies bedeutet, dass mindestens eine Objektdatei mithilfe des
 Kommandozeilenprogrammes \textit{ar (archiver utility)} in ein Archiv umgewandelt wurde. \textit{Ar} fügt zu einem solchen Archiv eine Tabelle hinzu, in der vermerkt ist welche Symbole, wo im Archiv zu finden sind \cite{staticLinking}.
-
 
 \subsubsection{Dynamisches Linken}
 

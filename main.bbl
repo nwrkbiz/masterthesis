@@ -218,6 +218,78 @@
       \endverb
       \warn{\item Entry 'learnV8' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring}
     \endentry
+    \entry{repl}{inproceedings}{}
+      \name{author}{6}{}{%
+        {{hash=3da3bfeca1b07913bfa05618dc00666f}{%
+           family={Binsbergen},
+           familyi={B\bibinitperiod},
+           given={L.\bibnamedelimi Thomas},
+           giveni={L\bibinitperiod\bibinitdelim T\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=f889b26dee6b73dd88bbb795ccb0bb2a}{%
+           family={Verano\bibnamedelima Merino},
+           familyi={V\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Mauricio},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e65f77abe4b5907f33ff6d76a0b0ad76}{%
+           family={Jeanjean},
+           familyi={J\bibinitperiod},
+           given={Pierre},
+           giveni={P\bibinitperiod}}}%
+        {{hash=9d68c1d24e12f4369d7c5b5e75d2f031}{%
+           family={Storm},
+           familyi={S\bibinitperiod},
+           given={Tijs},
+           giveni={T\bibinitperiod},
+           prefix={van\bibnamedelima der},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+        {{hash=4665cf51c9ea8bb6458dc6951e21d537}{%
+           family={Combemale},
+           familyi={C\bibinitperiod},
+           given={Benoit},
+           giveni={B\bibinitperiod}}}%
+        {{hash=d7ea3c0db993f81cef566143a9adf529}{%
+           family={Barais},
+           familyi={B\bibinitperiod},
+           given={Olivier},
+           giveni={O\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Virtual, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{1dcf4ea3ddeb7258e42876a429230cb2}
+      \strng{fullhash}{95cbda6a3b6d25772e5725487909df05}
+      \strng{bibnamehash}{1dcf4ea3ddeb7258e42876a429230cb2}
+      \strng{authorbibnamehash}{1dcf4ea3ddeb7258e42876a429230cb2}
+      \strng{authornamehash}{1dcf4ea3ddeb7258e42876a429230cb2}
+      \strng{authorfullhash}{95cbda6a3b6d25772e5725487909df05}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Read-eval-print-loops (REPLs) allow programmers to test out snippets of code, explore APIs, or even incrementally construct code, and get immediate feedback on their actions. However, even though many languages provide a REPL, the relation between the language as is and what is accepted at the REPL prompt is not always well-defined. Furthermore, implementing a REPL for new languages, such as DSLs, may incur significant language engineering cost. In this paper we survey the domain of REPLs and investigate the (formal) principles underlying REPLs. We identify and define the class of sequential languages, which admit a sound REPL implementation based on a definitional interpreter, and present design guidelines for extending existing language implementations to support REPL-style interfaces (including computational notebooks). The obtained REPLs can then be generically turned into an exploring interpreter, to allow exploration of the user's interaction. The approach is illustrated using three case studies, based on MiniJava, QL (a DSL for questionnaires), and eFLINT (a DSL for normative rules). We expect sequential languages, and the consequent design principles, to be stepping stones towards a better understanding of the essence of REPLs.}
+      \field{booktitle}{Proceedings of the 2020 ACM SIGPLAN International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software}
+      \field{isbn}{9781450381789}
+      \field{series}{Onward! 2020}
+      \field{title}{A Principled Approach to REPL Interpreters}
+      \field{year}{2020}
+      \field{pages}{84\bibrangedash 100}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1145/3426428.3426917
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3426428.3426917
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3426428.3426917
+      \endverb
+      \keyw{software language engineering,interpreters,meta-languages,language workbenches,note- books,REPLs}
+    \endentry
     \entry{netmarketshare}{online}{}
       \field{sortinit}{B}
       \field{sortinithash}{276475738cc058478c1677046f857703}
@@ -231,6 +303,20 @@
       \verb https://netmarketshare.com/browser-market-share.aspx
       \endverb
       \warn{\item Entry 'netmarketshare' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{centOS}{online}{}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labeltitlesource}{title}
+      \field{title}{CentOS Website}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://www.centos.org/
+      \endverb
+      \verb{url}
+      \verb https://www.centos.org/
+      \endverb
+      \warn{\item Entry 'centOS' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring}
     \endentry
     \entry{cmake}{online}{}
       \field{sortinit}{C}

@@ -1,16 +1,33 @@
 \chapter{Anforderungen}
 \label{cha:Anforderungen}
 
-Der zu entwickelnde Agent soll es Anwendern ermöglichen, mithilfe von Javascript auf ein SCADA-System zugreifen zu können. Dazu sollen die in den letzten Kapiteln beschriebenen Konzepte der Google-V8-Engine und von WinCC OA verwendet werden. Im Folgenden werden die Anforderungen
-an den Prototypen definiert.
+Der zu entwickelnde Agent soll es Systemintegratorinnen und Systemintegratoren ermöglichen, mithilfe von Javascript auf ein WinCC OA SCADA-System 
+zugreifen zu können. Dazu sollen die in den letzten Kapiteln beschriebenen Konzepte der Google-V8-Engine und von WinCC OA verwendet werden. 
+Im Folgenden werden die Anforderungen an den Prototypen definiert.
 
 \section{Zu unterstützende Plattformen}
 
+Einen limitierenden Faktor stellt hier die WinCC OA Programmierschnittstelle dar, da sie nur als Kompilat in binärform zur Verfügung steht. Die
+unterstützten Plattformen sind 
+
+Da für CentOS ein Open Source projekt ohne  \cite{centOS}
+
 Da die WinCC OA Programmierschnittstelle nur in Binärform zur Verfügung steht, ist keine komplette Plattformunabhängigkeit möglich.
+
+Daher wird auf mit folgenden eigenschaften eingeschränkt:
 
 \subsection{SUSE Linux Enterprise Server}
 
-\subsection{Windows}
+\begin{itemize}
+	\item GCC 4.8.5
+	\item WinCC OA Version 3.16
+\end{itemize}
+
+\subsection{Windows 10}
+
+\begin{itemize}
+	\item a
+\end{itemize}
 
 \section{Anwendungsfälle}
 
@@ -42,6 +59,11 @@ In dem gezeigten Beispiel \ref{fig:UseCase_Import}
 
 In diesen Abschnitt werden alle Punkte definiert, die die Qualität des Programmes aus Sicht der Systemintegratoren und Systemintegratorinnen betreffen.
 
+\subsection{Wartbarkeit}
+Der Agent muss erweiterbar sein, ohne bestehende Komponenten anpassen zu müssen. Um die Einarbeitungszeit für andere Entwickler zu verkürzen sind 
+Kommentarblöcke im Quellcode nötig. Außerdem muss dem Entwickler eine technische Dokumentation zur Verfügung stehen.
+
+
 \subsection{Wiederverwendbare und dokumentierte C++-API}
 
 
@@ -49,4 +71,4 @@ In diesen Abschnitt werden alle Punkte definiert, die die Qualität des Programm
 
 
 
-\section{Wiederverwendbarkeit in spezifischeren C++-API-Agents}
+\section{Einsatz in spezifischeren C++-API-Agents}

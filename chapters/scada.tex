@@ -130,22 +130,6 @@ Festplatte (Letztwertdatenbank). Außerdem speichert er die Informationen über 
 Teilnehmer weiter, die diese benötigen. Anfragen über historische Daten übergibt der Event Manager an den Data Manager. Dieser fragt  
 dann die entsprechenden Value Archive Prozesse ab und gibt die resultierenden Informationen an den Event Manager zurück. 
 
-\subsubsection{Value Archive}
-
-Während der Data Manager die Funktion besitzt, die aktuellen Daten zu speichern, kümmern sich die Value Archives um die historische Aufzeichnung.
-Ist also für einzelne Datenpunktelemente eine Archivkonfiguration hinterlegt, so ist es die Aufgabe des eingestellten Value Archives die Wertänderungen
-inklusive Zeitinformation in einer Datei abzulegen (Mittelzeitspeicherung). Erreichen die Archivdateien eine bestimmte Größe oder nach Verstreichen 
-eines definierten Zeitraums, erfolgt ein Dateiwechsel und die alte Datei wird komprimiert. Komprimierte Archive kann man manuell auf entfernte Speichermedien
-exportieren (Langzeitspeicherung) und zu einem späteren Zeitpunkt für Analysezwecke importieren. Je nach Menge der zu archivierenden Daten können einem 
-Projekt mehrere Value Archive Prozesse hinzugefügt werden.
-
-
-\subsubsection{Driver}
-
-Driver formen das unterste Level eines WinCC OA Systems. Sie sind für die Verbindung mit der \textit{Feldebene} zuständig. Die verwendeten Peripheriegeräte
-oder die dazugehörigen Kommunikationsbusse bestimmen, welche Treiber einem Projekt hinzugefügt werden müssen. Insgesamt werden 19 verschiedene Protokolle 
-unterstützt, darunter MODBUS, S7Plus und OPC UA.
-
 \subsubsection{Redundancy Manager}
 
 Um eine hohe Ausfallsicherheit garantieren zu können, kann man ein WinCC OA Projekt redundant aufsetzten. Die zwei Serversysteme kommunizieren miteinander
@@ -161,6 +145,15 @@ Wie in Abbildung \ref{fig:redu} ersichtlich, besitzen beide Projekte dieselbe Ko
 in der \textit{Feldebene} verbunden. Das passive System erhält alle Wertänderungen über die Redundancy Manager und verwirft
 die von den eigenen Teilnehmern. Bei einem Ausfall des aktiven Partners kann so automatisch der Passive einspringen. 
 
+\subsubsection{Value Archive}
+
+Während der Data Manager die Funktion besitzt, die aktuellen Daten zu speichern, kümmern sich die Value Archives um die historische Aufzeichnung.
+Ist also für einzelne Datenpunktelemente eine Archivkonfiguration hinterlegt, so ist es die Aufgabe des eingestellten Value Archives die Wertänderungen
+inklusive Zeitinformation in einer Datei abzulegen (Mittelzeitspeicherung). Erreichen die Archivdateien eine bestimmte Größe oder nach Verstreichen 
+eines definierten Zeitraums, erfolgt ein Dateiwechsel und die alte Datei wird komprimiert. Komprimierte Archive kann man manuell auf entfernte Speichermedien
+exportieren (Langzeitspeicherung) und zu einem späteren Zeitpunkt für Analysezwecke importieren. Je nach Menge der zu archivierenden Daten können einem 
+Projekt mehrere Value Archive Prozesse hinzugefügt werden.
+
 \subsubsection{Distribution Manager}
 
 Um größere Datenmengen verarbeiten zu können, ist es möglich, mehrere verteilte Projekte miteinander zu verknüpfen. 
@@ -174,6 +167,12 @@ Um größere Datenmengen verarbeiten zu können, ist es möglich, mehrere vertei
 In der Grafik \ref{fig:dist} kann man erkennen, dass die Verbindung der Systeme über zwei Distribution Manager realisiert wird.
 Somit ist es Agenten in System 1 möglich auf den Datenhaushalt von System 2 zuzugreifen und umgekehrt. Die Verbindung lässt sich 
 aber auch unidirektional konfigurieren. Über diesen Mechanismus können bis zu 2048 Systeme miteinander verbunden werden.
+
+\subsubsection{Driver}
+
+Driver formen das unterste Level eines WinCC OA Systems. Sie sind für die Verbindung mit der \textit{Feldebene} zuständig. Die verwendeten Peripheriegeräte
+oder die dazugehörigen Kommunikationsbusse bestimmen, welche Treiber einem Projekt hinzugefügt werden müssen. Insgesamt werden 19 verschiedene Protokolle 
+unterstützt, darunter MODBUS, S7Plus und OPC UA.
 
 \subsubsection{API-Agent}
 
@@ -278,7 +277,7 @@ Eine Auswahl ist in der folgenden Tabelle aufgelistet:
 Die in Tabelle \ref{tab:man_fun} gezeigten Funktionen erhalten, bis auf \textit{dispatch}, die angefragten Daten asynchron. Die Antworten 
 werden mithilfe des Observer-Entwurfsmuster übermittelt \cite{observer}. Jeder Funktionsaufruf benötigt ein Observer-Objekt, das die 
 Daten erhält. Dazu muss das von der WinCC OA Programmierschnittstelle zur Verfügung gestellte \textit{HotLinkWaitForAnswer} Interface implementiert werden. Dies
-wird im nachfolgenden Codebeispiel veranschaulicht:
+wird im nachfolgenden Codebeispiel veranschaulicht: \\
 
 \lstinputlisting[
 	label={src:proto1_observer},
