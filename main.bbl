@@ -376,6 +376,20 @@
       \field{title}{What is SCADA?}
       \field{year}{1999}
     \endentry
+    \entry{v8Debug}{online}{}
+      \field{sortinit}{D}
+      \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
+      \field{labeltitlesource}{title}
+      \field{title}{DebugInspector Protocoll}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb https://chromedevtools.github.io/debugger-protocol-viewer/tot/
+      \endverb
+      \verb{url}
+      \verb https://chromedevtools.github.io/debugger-protocol-viewer/tot/
+      \endverb
+      \warn{\item Entry 'v8Debug' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring}
+    \endentry
     \entry{statcounter}{online}{}
       \field{sortinit}{D}
       \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}

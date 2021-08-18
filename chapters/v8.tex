@@ -196,13 +196,13 @@ FUNC at 16
 In Abbildung \ref{fig:js_ast} ist die in Ausgabe \ref{prog:d8_ast} für ein besseres Verständnis grafisch visualisiert.
 
 \begin{figure}[h]
-	\centering \includegraphics[width=0.70\textwidth]{ast}
+	\centering \includegraphics[width=0.80\textwidth]{ast}
 	\caption{Abstrakter Syntaxbaum des Beispielcodes.}
 	\label{fig:js_ast}
 \end{figure}
 
 In der Visualisierung \ref{fig:js_ast} kann man im linken Zweig die Funktionsparameter erkennen. Der Rechte beschreibt den Rückgabewert der
-Funktion. Hier kann man erkennen, dass die Kinderknoten der arithmetischen Addition auf die Eingabeparameter referenzieren. 
+Funktion. Hier fällt auf, dass die Kinderknoten der arithmetischen Addition auf die Eingabeparameter referenzieren. 
 
 \subsection{Interpreter}
 
@@ -271,19 +271,39 @@ Der Javascript-Quellcode \ref{prog:d8_optdeopt} zeigt, wie mithilfe der Entwickl
 kann. Um diesen Prozess zu veranschaulichen, kann \textit{d8} mit \textit{--trace-deopt} gestartet werden.
 
 \begin{program}[h]
-\caption{Ausgabe der Deoptimierung (gekürzt).}
+\caption{Ausgabe der Deoptimierung.}
 \label{prog:d8_deopt}
 \begin{GenericCode}
-./d8 --allow-natives-syntax --trace-deopt ./addiere.js 
-[deoptimizing (DEOPT eager): begin 0x2a2dc932c581 <JSFunction addiere (sfi = 0x2a2dc932c231)> (opt #0) @0, FP to SP delta: 16, caller sp: 0x7fff7f41da88]
-			;;; deoptimize at <./addiere.js:2:11>, not a Smi
-...
-[deoptimizing (eager): end 0x2a2dc932c581 <JSFunction addiere (sfi = 0x2a2dc932c231)> @0 => node=0, pc=0x2abecd6f1f00, caller sp=0x7fff7f41da88, state=TOS_REGISTER, took 1.353 ms]
-[removing optimized code for: 0x2a2dc932c581 <JSFunction addiere (sfi = 0x2a2dc932c231)>]
+$ ./d8 --allow-natives-syntax --trace-deopt ./addiere.js
+	[deoptimizing (DEOPT eager): begin 0x3362fddac581 <JSFunction addiere (sfi = 0x3362fddac231)> (opt #0) @0, FP to SP delta: 16, caller sp: 0x7fff299d2698]
+	;;; deoptimize at <./addiere.js:2:11>, not a Smi
+reading input frame addiere => bytecode_offset=0, args=3, height=1; inputs:
+0: 0x3362fddac581 ; [fp - 16] 0x3362fddac581 <JSFunction addiere (sfi = 0x3362fddac231)>
+1: 0x35d8c4483231 ; [fp + 32] 0x35d8c4483231 <JSGlobal Object>
+2: 0x3362fddac101 ; rax 0x3362fddac101 <Number 47.11>
+3: 0x200000000 ; [fp + 16] 2
+4: 0x3362fdd83cd1 ; [fp - 8] 0x3362fdd83cd1 <FixedArray[282]>
+5: 0x27beca702569 ; (literal 1) 0x27beca702569 <Odd Oddball: optimized_out>
+translating interpreted frame addiere => bytecode_offset=0, height=8
+0x7fff299d2690: [top + 72] <- 0x35d8c4483231 ;  0x35d8c4483231 <JSGlobal Object>  (input #1)
+0x7fff299d2688: [top + 64] <- 0x3362fddac101 ;  0x3362fddac101 <Number 47.11>  (input #2)
+0x7fff299d2680: [top + 56] <- 0x200000000 ;  2  (input #3)
+-------------------------
+0x7fff299d2678: [top + 48] <- 0x1f5a07f1600 ;  caller's pc
+0x7fff299d2670: [top + 40] <- 0x7fff299d26d8 ;  caller's fp
+0x7fff299d2668: [top + 32] <- 0x3362fdd83cd1 ;  context    0x3362fdd83cd1 <FixedArray[282]>  (input #4)
+0x7fff299d2660: [top + 24] <- 0x3362fddac581 ;  function    0x3362fddac581 <JSFunction addiere (sfi = 0x3362fddac231)>  (input #0)
+0x7fff299d2658: [top + 16] <- 0x3362fddac659 ;  bytecode array 0x3362fddac659 <BytecodeArray[7]>  (input #0)
+0x7fff299d2650: [top + 8] <- 0x3900000000 ;  bytecode offset @ 0
+(input #0)
+-------------------------
+0x7fff299d2648: [top + 0] <- 0x27beca702569 ;  accumulator 0x27beca702569 <Odd Oddball: optimized_out>  (input #5)
+[deoptimizing (eager): end 0x3362fddac581 <JSFunction addiere (sfi = 0x3362fddac231)> @0 => node=0, pc=0x1f5a07f1f00, caller sp=0x7fff299d2698, state=TOS_REGISTER, took 0.241 ms]
+[removing optimized code for: 0x3362fddac581 <JSFunction addiere (sfi = 0x3362fddac231)>]
 \end{GenericCode}
 \end{program}
 
-In der Ausgabe \ref{prog:d8_deopt} kann man erkennen, dass die optimierte Funktion ein Objekt des Typs \textit{Smi}, also Small-Integer erwartet
+In der Ausgabe \ref{prog:d8_deopt} kann man in der Zeile drei erkennen, dass die optimierte Funktion ein Objekt des Typs \textit{Smi}, also Small-Integer erwartet
 hätte. Da dieser aber im Beispiel \ref{prog:d8_optdeopt} in der Zeile 11 nicht übergeben wurde, löste dies eine Deoptimierung aus.
 
 \section{C++-Programmierschnittstelle}
@@ -296,8 +316,8 @@ Es werden die wichtigsten Konzepte erklärt und mithilfe eines Beispielprogramme
 
 Als \textit{Isolate} bezeichnet man eine unabhängige Kopie der V8 Laufzeitumgebung, die einen eigenen Speicherbereich verwaltet.
 Ein Prozess kann mehrere dieser Objekte Instanzieren, aber jedes darf nur von jeweils einem Thread vewendet werden. 
-Zu diesem Zweck muss mithilfe von Objekten des Datentyps Locker aus der V8-Programmierschnittstelle ein mehrfacher Zugriff verhindert 
-werden. Diese funktionieren wie eine Mutal Exclusion und blockieren einen zweiten Thread, bis der erste den geschützten Bereich, 
+Zu diesem Zweck muss mithilfe von Objekten des Datentyps \textit{Locker} aus der V8-Programmierschnittstelle ein mehrfacher Zugriff verhindert 
+werden. Diese funktionieren wie eine Mutal-Exclusion und blockieren einen zweiten Thread, bis der erste den geschützten Bereich, 
 verlassen hat.
 
 \subsection{Contexts}
@@ -314,13 +334,15 @@ muss jene, die zur Ausführung verwendet werden soll explizit angegeben werden. 
 \end{figure}
 
 In Abbildung \ref{fig:contexts} ist ersichtlich, wie mehrere Ausführungsumgebung verschachtelt aufgerufen werden können ohne sich 
-gegenseitig zu beeinflussen.
+gegenseitig zu beeinflussen. Nach Aufrufen des Destruktors von dem scopeB Objekt, wird die Ausführung in contextA fortgesetzt. 
 
 \subsection{Speicherverwaltung}
 
-Ein Handle hält eine Referenz auf die Position eines Javascript-Objekts in dem von einem Isolate verwalteten Speicherbereich.
-Der V8-Garbage-Collector gibt automatisch den Speicher von Handles frei, auf die nicht mehr zugegriffen werden kann. 
-Ob der Zugriff noch möglich ist oder nicht wird mithilfe des RAII-Konzeptes (Ressourcenbelegung ist Initialisierung) ermittelt.
+Der Speicher innerhalb eines Isolate wird von einem Garbage-Collector verwaltet. Damit dieser weiß, welche Speicherbereiche
+noch in Verwendung sind und welche nicht, werden Objekte über sogenannte Handles überwacht. Diese halten eine Referenz auf 
+die Position eines Javascript-Objekts in dem von einem Isolate verwalteten Speicherbereich. Gibt es kein Handle mehr, dass 
+ein bestimmtes Objekt referenziert, kann dieses durch den Garbage-Collector freigegeben werden. Hier
+wird zwischen zwei Typen unterschieden:
 
 \begin{figure}[h]
 	\centering \includegraphics[width=1\textwidth]{handles}
@@ -328,16 +350,81 @@ Ob der Zugriff noch möglich ist oder nicht wird mithilfe des RAII-Konzeptes (Re
 	\label{fig:handles}
 \end{figure}
 
-Dazu muss, bevor das erzeugen von Javascript-Objekten überhaupt möglich ist, wie in Abbildung \ref{fig:handles} gezeigt, ein HandleScope Objekt auf dem C++-Callstack allokiert werden. Dieses Objekt stellt einen eigenen Stack für Local Handles zur Verfügung.
-Wird es zerstört, zum Beispiel beim Verlassen des Scopes, werden alle Handles dieses HandleScope-Stacks gelöscht. 
-Gibt es kein Handle mehr, dass ein bestimmtes Objekt referenziert, kann dieses durch den Garbage-Collector freigegeben werden.
+\subsubsection{Local}
+
+Ob ein Objekt noch valide ist oder nicht, wird hier mithilfe des RAII-Konzeptes (Ressourcenbelegung ist Initialisierung) ermittelt.
+Dazu muss, bevor das erzeugen von Javascript-Objekten möglich ist, wie in Abbildung \ref{fig:handles} gezeigt, ein HandleScope Objekt auf dem C++-Stack allokiert werden. 
+Dieses Objekt stellt einen eigenen Stack für Local-Handles zur Verfügung.
+Wird es zerstört, zum Beispiel beim Verlassen des Scopes, werden alle Handles dieses HandleScope-Stacks gelöscht.
+
+\subsubsection{Persitent}
+
+Die Lebenszeit eines Persitent-Handles ist nicht an den aktuellen Scope gebunden. Daher muss man dem V8-Garbage-Collector selber signalisieren,
+wenn es nicht mehr gebraucht wird. Dazu kann die \textit{SetWeak()} Funktion des Handle Objekts aufgerufen werden. Dieser Mechanismus ist hilfreich,
+wenn ein Javascript-Objekt in mehreren C++-Funktionen verwendet werden soll.
 
 \subsection{Anpassen von Javascript-Ausführungsumgebungen über das Global Objekt}
 
-Beim erstellen eines neuen V8-Contexts kann ein Objekt des Datentyps \textit{ObjectTemplate} angegeben werden, dass die Umgebung des Contexts beschreibt. Diesem Objekt kann man beliebig viele 
-eigene Funktionen (\textit{FunctionTemplate} Objekte) oder Variablen zuweisen. Über \textit{FunctionTemplate} Objekte ist es möglich, C++ Funktionen aufzurufen. 
+Beim erstellen eines neuen V8-Contexts kann ein Objekt des Datentyps \textit{ObjectTemplate} angegeben werden, dass die Ausführungsumgebung des Contexts beschreibt. Diesem Objekt kann man beliebig viele 
+eigene Funktionen (\textit{FunctionTemplate} Objekte) oder Variablen zuweisen. Über \textit{FunctionTemplate} Objekte ist es wiederum möglich, C++ Funktionen aufzurufen. 
 Dadurch lässt sich die Javascriptsprache beliebig erweitern.
-
 
 \subsection{Das DebugInspector Protokoll}
 
+Die Google-V8-Engine besitzt erweiterte Funktionen zur Fehlersuche über ein JSON basierendes Protokoll \cite{v8Debug}. Die in den Webbrowsern Google Chrome und Microsoft
+Edge enthaltenen Entwicklerwerkzeuge unterstützen dieses und erlauben entfernten Zugriff auf V8-Instanzen via Websockets. 
+Implementiert man die entsprechenden Interface-Klassen \textit{V8InspectorClient} und \textit{V8Inspector::Channel}
+der V8-Programmierschnittstelle, damit sie Befehle über einen Websocket-Server erhalten können, ist es möglich, den von der Engine ausgeführten Javascript-Code mithilfe 
+einer der zwei zuvor genannten Browser zu analysieren. Die \textit{V8InspectorClient} Implementierung muss die Verbindung zu einem \textit{Context} herstellen.
+Danach können über den Websocket-Server erhaltene JSON-Befehle an die V8-Engine weitergegeben werden. Die \textit{V8Inspector::Channel} 
+Umsetzung erhält die Antworten auf die Befehle und muss sie an den Befehlsgeber zurücksenden. Somit ist es möglich die Laufzeit eines laufenden Javascript-Codes zu 
+analysieren und manipulieren.
+
+\subsection{Beispiel}
+
+Dieses Beispiel zeigt ein C++ Programm, dass Javascript-Dateien ausführen kann. Die Skriptsprache wurde um die Funktion PrintParams erweitert.
+
+\lstinputlisting[
+	label={src:proto2_printparams},
+	caption={C++-Code, der über Javascript aufrufbar sein soll.},
+	numbers=left,
+	language=C++,
+	firstnumber=0,
+	firstline=60,
+	lastline=77]{protoype2/src/prototyp2.cpp}
+
+Der C++-Quellcode in \ref{src:proto2_printparams} nimmt alle von Javascript übergebenen Argumente entgegen und gibt sie mithilfe von \textit{std::cout} aus.
+Am Anfang des Beispiels kann man erkennen, dass ein HandleScope angelegt wird um alle Local Handles verwalten zu können. Hier wird keine Context::Scope
+Instanz benötigt, da das ausführende Skript bereits in einem Aktiven Scope laufen muss. Wird kein Parameter übergeben, so wird eine Javascript-Exception
+geworfen. Diese kann im Skriptquellcode mithilfe von \textit{try}-\textit{catch}-Blöcken gefangen werden. 
+
+\lstinputlisting[
+	label={src:proto2_main},
+	caption={Haupt},
+	numbers=left,
+	language=C++,
+	firstnumber=0,
+	firstline=79,
+	lastline=149]{protoype2/src/prototyp2.cpp}
+
+Das komplette Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD unter \textit{Thesis/prototype2} und kann mit folgenden Befehlen 
+übersetzt werden. Zum übersetzten wird der \textit{SMF\_3P} Ordner benötigt, da dieser die Bibliothenken der Google-V8-Engine in Binärform beinhaltet. Alternativ können
+diese auch mit dem Skripten in Anhang \ref{app:v8build} erzeugt werden. Dieser Ordner befindet sich auch auf der Projekt CD-ROM/DVD.
+
+SUSE Linux Enterprise 12.5:
+
+\begin{GenericCode}
+$ mkdir build
+$ cd ./build
+$ cmake .. -DSMF_3P=~/SMF_3P
+$ cmake --build .
+\end{GenericCode}
+
+Windows 10:
+
+\begin{GenericCode}
+$ mkdir build
+$ cd ./build
+$ cmake .. -T v140 -A x64 -DSMF_3P=C:/SMF_3P
+$ cmake --build .
+\end{GenericCode}

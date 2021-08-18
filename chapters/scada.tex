@@ -8,7 +8,7 @@ der WinCC OA Programmierschnittstelle anhand eines Beispieles erklärt.
 \section{SCADA - Supervisory Control And Data Acquisition}
 
 Unter SCADA kann man Softwarelösungen verstehen, die sich mit Komponenten in der \textit{Feldebene} verbinden 
-und somit einen Zugriff auf einzelnen Datenquellen und Senken auch Eingabe- und Ausgabekanäle genannt, möglich machen. 
+und somit einen Zugriff auf einzelnen Datenquellen und Senken, auch Eingabe- und Ausgabekanäle genannt, möglich machen. 
 Das Schreiben und Lesen dieser Kanäle wird über eine eigene Echtzeitdatenbank ermöglicht. 
 Eine Echtzeitdatenbank verarbeitet Transaktionen, garantiert einfache Korrektheitskriterien und arbeitet in Echtzeit unter Einhaltung 
 von Zeitvorgaben \cite{realTimeDB}. Weitere Eigenschaften eines SCADA-Systems sind hier aufgelistet und zusammengefasst 
@@ -22,7 +22,7 @@ von Zeitvorgaben \cite{realTimeDB}. Weitere Eigenschaften eines SCADA-Systems si
 	\item Alarmbehandlung: Für bestimmte Werte in der Datenbank können Hysteresen und Schwellwerte definiert werden. Sind diese über- oder unterschritten, werden Alarme ausgelöst und über verschiedene Kommunikationswege an Benutzer weiterpropagiert. Tritt ein solcher Zustand ein, kann dies eine Benutzerinteraktion erfordern und mit einer Quittierungspflicht einhergehen.  
 	\item Archivieren: Damit ist die Mittel- und Langzeitspeicherung von Daten gemeint.
 	\item Entwicklung: SCADA-Systeme zeichnen sich dadurch aus, dass sie Programmierschnittstellen zur Verfügung stellen, die Zugriff auf den Datenhaushalt (lesend und schreibend) ermöglichen. Außerdem bieten sie grafische Werkzeuge zum Modellieren der Echtzeitdatenbank.
-	\item Automatisierung: Die ereignisorientierte Kommunikation in Verbindung mit der Programmierschnittstelle erlaubt das Automatische auslösen von Ereignissen.
+	\item Automatisierung: Die ereignisorientierte Kommunikation in Verbindung mit der Programmierschnittstelle erlaubt das automatische Auslösen von Ereignissen.
 	\item Objektorientierung: Damit ist das visuelle Anordnen des Datenhaushalts oder bereits das Gruppieren in der Echtzeitdatenbank gemeint. Eingabe- und Ausgabekanäle werden hierbei in logische Objekte, zum Beispiel Roboter, Turbine oder Ventil, gekapselt.
 	\item Trends: Archivierte und Echtzeitdaten lassen sich über die Zeit grafisch visualisieren.\\
 \end{itemize}
@@ -33,7 +33,7 @@ Obwohl es verschiedenste Literatur über Multi-Agent-Systeme gibt, wird der Begr
 In dieser Arbeit wird unter diesen Terminus ein Softwareprozess mit folgenden Eigenschaften verstanden \cite{wooldridge_jennings_1995}:
 
 \begin{itemize}
-    \item Autonomie: Agenten agieren ohne direktes Eingreifen von Menschen oder anderen und haben eine gewisse Kontrolle über ihre Handlungen und ihren internen Zustand.
+    \item Autonomie: Agenten agieren ohne direktes Eingreifen von Menschen oder anderen Komponenten und haben eine gewisse Kontrolle über ihre Handlungen und ihren internen Zustand.
     \item Soziale Fähigkeit: Sie interagieren mit anderen Agenten (und möglicherweise Menschen) über eine Art von Kommunikationsprotokoll.
     \item Reaktivität: Agenten nehmen ihre Umgebung wahr (das kann die physische Welt, ein Benutzer über eine grafische Benutzeroberfläche, eine Sammlung anderer Agenten, das Internet oder alles zusammen sein) und reagieren zeitnah auf Veränderungen.
     \item Proaktivität: Sie handeln nicht nur in Reaktion auf ihre Umwelt, sondern sind in der Lage, zielgerichtetes Verhalten an den Tag zu legen, indem sie die Initiative ergreifen. \\
@@ -84,17 +84,17 @@ Einer der wichtigsten UI Manager wird \textit{Para} bezeichnet und dient der Dat
 \end{figure}
 
 Die Daten werden in WinCC OA in sogenannte Datenpunkte gruppiert. Die Struktur eines Datenpunkts wird über Datenpunkttypen 
-beschrieben, diese können wie in Abbildung \ref{fig:dp_type_dp_inst} gezeigt grafisch modelliert werden. Die Datenpunktelemente,
+beschrieben. Diese können wie in Abbildung \ref{fig:dp_type_dp_inst} gezeigt grafisch modelliert werden. Die Datenpunktelemente,
 die ein Datenpunkttyp gruppiert, besitzen statische Datentypen oder dynamische Listen dieser. 
 Im Beispiel \ref{fig:dp_type_dp_inst} sind alle von WinCC OA unterstützen Datentypen aufgezählt.
 In der Grafik \ref{fig:dp_type_dp_inst} rechts sind mehrere Instanzen des links gezeigten Types ersichtlich.
 Die einzelnen Unterknoten eines Datenpunktes werden als Datenpunktelemente bezeichnet. Diese sind statische
-Datentypen und repräsentieren Werte innerhalb der Datenbank. Schreiben und lesen erfolgt über folgende spezielle
+Datentypen und repräsentieren Werte innerhalb der Datenbank. Schreiben und Lesen erfolgt über folgende spezielle
 Attribute:
 
 \begin{itemize}
     \item \_original: Soll ein Wert geschrieben werden, wird dieses Attribut verändert.
-    \item \_online: Erlaubt lesenden zugriff auf den derzeitigen Prozesswert.  
+    \item \_online: Erlaubt lesenden Zugriff auf den derzeitigen Prozesswert.  
     \item \_offline: Hiermit lassen sich historische Daten abfragen.\\
 \end{itemize}
 
@@ -179,7 +179,7 @@ aber auch unidirektional konfigurieren. Über diesen Mechanismus können bis zu 
 
 Diese Agenten können von Entwicklern über eine C++-Programmierschnittstelle erstellt werden. Man kann mit ihnen 
 den Funktionsumfang des Systems erweitern. Oft werden Sie dazu verwendet, um ausgewählte Daten an die \textit{Unternehmensleitebene}
-weiterzugeben oder um beim einrichten eines Projektes automatisiert Datenbankkonfigurationen zu erstellen. 
+weiterzugeben oder um beim Einrichten eines Projektes automatisiert Datenbankkonfigurationen zu erstellen. 
 
 
 \subsection{Projektaufbau und Hierarchie}
@@ -213,7 +213,7 @@ Ein Hauptprojekt besteht aus mehreren Subprojekten. Diese sind alle innerhalb ei
 
 Die Ordnerstrukturen sind in der Projektkonfigurationsdatei innerhalb des speziellen Abschnittes \textit{[general]} 
 wie in dem Beispiel \ref{prog:config_hier} ersichtlich hierarchisch angeordnet, wobei die höchste Ebene immer das Projektverzeichnis selbst darstellt.
-Existieren gleichnamige Dateien in mehreren Hierarchieebenen, wird nur jene in der höchsten berücksichtigt. Somit ist 
+Existieren gleichnamige Dateien in mehreren Hierarchieebenen, wird nur jene in der Höchsten berücksichtigt. Somit ist 
 durch kopieren in das Hauptverzeichnis ein Anpassen möglich, ohne dabei die Originaldateien zu verändern. 
 Über diesen Mechanismus können Kundenanforderungen und Anpassungen während einer Systemintegration umgesetzt werden.
 
@@ -235,7 +235,7 @@ dem Agenten eine eindeutige Nummer zugewiesen.
 \subsubsection{Manager-Klasse}
 
 Die \textit{Manager-Klasse} beinhaltet alle Funktionen, um auf den Datenhaushalt des Systems zugreifen zu können. 
-Um diese Klasse verwenden zu können, muss eine eigene Konkretisierung durch ableiten implementiert werden. 
+Um diese Klasse verwenden zu können, muss eine eigene Konkretisierung durch Ableiten implementiert werden. 
 Folgendes Beispiel soll zeigen, wie dies zu bewerkstelligen ist:
 
 \lstinputlisting[
@@ -247,11 +247,11 @@ Folgendes Beispiel soll zeigen, wie dies zu bewerkstelligen ist:
 	firstline=70,
 	lastline=95]{protoype1/src/prototyp.cpp}
 
-Der Programmcode \ref{src:proto1_agent} zeigt, dass jeder Teilnehmer des SCADA-Systems eine eindeutige Kennung besitz. Diese nennt sich \textit{ManagerIdentifier}
+Der Programmcode \ref{src:proto1_agent} zeigt, dass jeder Teilnehmer des SCADA-Systems eine eindeutige Kennung besitzt. Diese nennt sich \textit{ManagerIdentifier}
 und wird der Basisklasse über den Konstruktor mitgegeben. Wichtig ist hier die Nummer des Agenten, die innerhalb eines
 Systems eindeutig sein muss. In dem Beispiel \ref{src:proto1_agent} kann man erkennen, dass die \textit{Resources-Klasse} Zugriff auf diese
-Nummer über die Funktion \textit{Resources::getManNum()} ermöglicht. Im Konstruktor der Implementierung wird sich nun zunächst mit dem Data Manager verbunden, um die Datenbankkonfigurationen zu erhalten.
-Diese werden benötigt um später die textuelle Repräsentation der Datenpunktelemente in interne Datentypen umwandeln zu können. Im letzten Schritt
+Nummer über die Funktion \textit{Resources::getManNum()} ermöglicht. Im Konstruktor der Implementierung wird sich zunächst mit dem Data Manager verbunden, um die Datenbankkonfigurationen zu erhalten.
+Die Konfigurationen werden benötigt um später die textuelle Repräsentation der Datenpunktelemente in interne Datentypen umwandeln zu können. Im letzten Schritt
 wird die Verbindung zum Event Manager hergestellt. Diese abgeleitete Klasse erbt alle Funktionen um mit dem System interagieren zu können.
 Eine Auswahl ist in der folgenden Tabelle aufgelistet:
 
@@ -263,12 +263,12 @@ Eine Auswahl ist in der folgenden Tabelle aufgelistet:
 		\emph{Funktion} & \emph{Beschreibung} \\ 
 		\hline 
 		\hline dpGet & \makecell[l]{Erlaubt das Abfragen der Werte eines\\ Datenpunktelements oder mehrerer Datenpunktelemente.}  \\ 
-		\hline dpSet & \makecell[l]{Ermöglicht das ändern der Werte von Datenpunktelementen.} \\
+		\hline dpSet & \makecell[l]{Ermöglicht das Ändern der Werte von Datenpunktelementen.} \\
 		\hline dpConnect & \makecell[l]{Kann für die Registrierung auf Wertänderungen verwedet\\ werden.} \\ 
 		\hline dpGetPeriod & \makecell[l]{Funktion für eine historische Datenabfrage zwischen\\ zwei Zeitpunkten.}  \\ 
-		\hline alertGet & \makecell[l]{Returniert informationen über aktive Alarme auf\\ angegebenen Datenpunktelementen.} \\ 
-		\hline alertSet & \makecell[l]{Kann zum auslösen oder quittieren von Alarmen verwendet\\ werden.} \\ 
-		\hline alertConnect & \makecell[l]{Erlaubt Registrierung zum erhalt aller Alarme.} \\ 
+		\hline alertGet & \makecell[l]{Returniert Informationen über aktive Alarme auf\\ angegebenen Datenpunktelementen.} \\ 
+		\hline alertSet & \makecell[l]{Kann zum Auslösen oder Quittieren von Alarmen verwendet\\ werden.} \\ 
+		\hline alertConnect & \makecell[l]{Erlaubt Registrierung zum Erhalt aller Alarme.} \\ 
 		\hline alertGetPeriod &\makecell[l]{Ermöglicht die Abfrage von historischen Alarmdaten.}  \\ 
 		\hline dispatch & \makecell[l]{Führt asynchrone Kommunikation mit dem Gesamtsystem\\ aus. Diese Funktion muss in einer Hauptschleife zyklisch\\ aufgerufen werden.} \\
 		\hline 
@@ -278,7 +278,7 @@ Eine Auswahl ist in der folgenden Tabelle aufgelistet:
 Die in Tabelle \ref{tab:man_fun} gezeigten Funktionen erhalten, bis auf \textit{dispatch}, die angefragten Daten asynchron. Die Antworten 
 werden mithilfe des Observer-Entwurfsmuster übermittelt \cite{observer}. Jeder Funktionsaufruf benötigt ein Observer-Objekt, das die 
 Daten erhält. Dazu muss das von der WinCC OA Programmierschnittstelle zur Verfügung gestellte \textit{HotLinkWaitForAnswer} Interface implementiert werden. Dies
-wird im folgenden Codebeispiel veranschaulicht:
+wird im nachfolgenden Codebeispiel veranschaulicht:
 
 \lstinputlisting[
 	label={src:proto1_observer},
@@ -295,13 +295,13 @@ Wurde sich auf Wertänderungen registriert, wird bei jedem neuen Wert \textit{ho
 einmalige Antworten werden die Informationen via \textit{hotLinkCallback(DpMsgAnswer)} übergeben.
 Die abgefragten Daten werden als Objekte der Klasse \textit{Variable} übermittelt. Dies ist eine Basisklasse, von der für jeden verfügbaren statischen 
 Datentyp der Datenbank eine Konkretisierung vorhanden ist. Um den tatsächlichen Wert zu erhalten, ist daher 
-ein \textit{Cast} auf den entsprechenden konkreten Typ nötig. Wie im Beispiel \ref{src:proto1_agent} ersichtlich besitzt die \textit{Variable} Klasse 
+ein \textit{Cast} auf den entsprechenden konkreten Typ nötig. Wie im Beispiel \ref{src:proto1_agent} ersichtlich, besitzt die \textit{Variable} Klasse 
 für diesen Zweck die \textit{isA()} Funktion, mit dieser der richtige Datentyp ermittelt werden kann. Analog zum gezeigten Programmcode
 muss für die Alarmfunktionen das Interface \textit{AlertHotlinkWaitForAnswer} implementiert werden.
 
 \subsubsection{Beispiel}
 
-Die zuvor implementierten Klassen werden hier nun in einem Beispielprogramm verwendet, um die Funktionsweise zu veranschaulichen:
+Die zuvor gezeigten Klassen werden hier nun in einem Beispielprogramm verwendet, um die Funktionsweise zu veranschaulichen:
 
 \lstinputlisting[
 	label={src:proto1_main},
@@ -315,9 +315,9 @@ Die zuvor implementierten Klassen werden hier nun in einem Beispielprogramm verw
 In dem Quellcode \ref{src:proto1_main} ist ersichtlich, dass zunächst die Kommandozeilenparameter an die \textit{Resources-Klasse} über die
 \textit{Resources::init()} Funktion übergeben wurde. Über \textit{Agent::getId()} ist es nun möglich die textuelle Repräsentation der
 Datenpunktelemente in den \textit{DpIdentifier} Datentyp umzuwandeln, der für die spätere Verwendung benötigt wird. Hier fällt auf, dass
-für abfragende Befehle das Attribut \textit{\_online..\_value} angehängt wurde und für schreibende \textit{\_original..\_value}. 
+für abfragende Befehle das Attribut \textit{\_online..\_value} angehängt wurde und für Schreibende \textit{\_original..\_value}. 
 Der letzte boolesche Parameter in den Aufrufen \textit{Agent::dpGet()}, \textit{Agent::dpSet()} und \textit{Agent::dpConnect()} weißt
-die Funktionen an, die Observer-Objekte zu löschen, sobald diese nicht mehr gebraucht werden. Das Beispiel produziert folgende 
+die Funktionen an, die Observer-Objekte zu löschen sobald diese nicht mehr gebraucht werden. Das Beispiel produziert folgende 
 Ausgabe:
 
 \lstinputlisting[
@@ -327,7 +327,7 @@ Ausgabe:
 
 Wie in \ref{src:proto1_output} erkennbar wird viermal eine \textit{hotLinkCallback} Funktion aufgerufen. Die ersten beiden 
 Ausgaben sind die Antworten auf \textit{Agent::dpGet()} und \textit{Agent::dpConnect()}.
-Beim dritten Aufruf fällt auf, dass keine Werte übermittelt wurden. Dies ist die Antwort auf den \textit{Agent::dpSet()} Befehl.
+Beim dritten Aufruf kann man erkennen, dass keine Werte übermittelt wurden. Dies ist die Antwort auf den \textit{Agent::dpSet()} Befehl.
 Der Letzte ist die Benachrichtigung über eine Wertänderung des Datenpunktelements.\\
 
 Das komplette Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD unter \textit{Thesis/prototype1} und kann mit folgenden Befehlen 

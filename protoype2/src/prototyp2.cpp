@@ -61,15 +61,17 @@ void PrintParams(const v8::FunctionCallbackInfo<v8::Value>& args) {
   v8::Isolate* isolate = args.GetIsolate();
   v8::Isolate::Scope iscope(isolate);
   v8::HandleScope hscope(isolate);
-
+  // Überprüfe von Javascript übergebene parameter
   if (args.Length() > 0) {
     for (int i = 0; i < args.Length(); i++) {
+      // Konvertiere parameter in strings 
+      // und gib diese aus
       v8::String::Utf8Value str(args[i]);
       std::cout << *str << std::endl;
     }
     args.GetReturnValue().Set(v8::Boolean::New(isolate, true));
   }
-  else { // Werfe exception
+  else { // Werfe Javascript-Exception
     isolate->ThrowException(v8::Exception::TypeError(v8::String::NewFromUtf8(isolate, "Invalid parameters")));
   }
 }
@@ -77,7 +79,7 @@ void PrintParams(const v8::FunctionCallbackInfo<v8::Value>& args) {
 int main(int argc, char *argv[]) {
   // Lade übergebene datei
   std::ifstream inFile(argv[argc-1]);
-  if (!inFile.good()) {
+  if (!inFile.good() || argc < 2) {
     std::cerr << "Unable to open file " << argv[argc-1];
     return EXIT_FAILURE;
   }
