@@ -1,3 +1,4 @@
+$ prototyp2 ./test2.js
 undefined:2
 i =;
 SyntaxError: Unexpected token ;

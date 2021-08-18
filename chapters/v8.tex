@@ -4,7 +4,7 @@
 Während im letzten Kapitel auf die Konzepte und Funktionsweise von SCADA-Systemen eingegangen wurde, widmet sich dieses nun der Skriptsprache Javascript. 
 Es wird gezeigt, wie diese Sprache technisch funktioniert. Als Javascriptengine bezeichnet man Programmkomponenten, die ECMA standardkonformen Quellcode ausführen können \cite{ecma}. 
 Danach werden die drei bekanntesten Engines verglichen, um zu erläutern, warum die Google-V8-Engine für die Umsetzung gewählt wurde. 
-Im letzten Abschnitt werden die Konzepte und Programmierschnittstelle dieser beschrieben. 
+Im letzten Abschnitt werden die Konzepte, Funktionsweise und Programmierschnittstelle dieser beschrieben.
 
 \section{Grundlagen}
 \label{cha:Grundlagen}
@@ -304,7 +304,7 @@ translating interpreted frame addiere => bytecode_offset=0, height=8
 \end{program}
 
 In der Ausgabe \ref{prog:d8_deopt} kann man in der Zeile drei erkennen, dass die optimierte Funktion ein Objekt des Typs \textit{Smi}, also Small-Integer erwartet
-hätte. Da dieser aber im Beispiel \ref{prog:d8_optdeopt} in der Zeile 11 nicht übergeben wurde, löste dies eine Deoptimierung aus.
+hätte. Da dieser aber im Beispiel \ref{prog:d8_optdeopt} in der Zeile elf nicht übergeben wurde, löste dies eine Deoptimierung aus.
 
 \section{C++-Programmierschnittstelle}
 
@@ -315,17 +315,17 @@ Es werden die wichtigsten Konzepte erklärt und mithilfe eines Beispielprogramme
 \subsection{Isolates}
 
 Als \textit{Isolate} bezeichnet man eine unabhängige Kopie der V8 Laufzeitumgebung, die einen eigenen Speicherbereich verwaltet.
-Ein Prozess kann mehrere dieser Objekte Instanzieren, aber jedes darf nur von jeweils einem Thread vewendet werden. 
+Ein Prozess kann mehrere dieser Objekte Instanziieren, aber jedes darf nur von jeweils einem Thread verwendet werden. 
 Zu diesem Zweck muss mithilfe von Objekten des Datentyps \textit{Locker} aus der V8-Programmierschnittstelle ein mehrfacher Zugriff verhindert 
-werden. Diese funktionieren wie eine Mutal-Exclusion und blockieren einen zweiten Thread, bis der erste den geschützten Bereich, 
+werden. Diese funktionieren wie eine Mutal-Exclusion und blockieren einen zweiten Thread, bis der erste den geschützten Bereich
 verlassen hat.
 
 \subsection{Contexts}
 
 Ein \textit{Context} ist eine Ausführungsumgebung, die es ermöglicht, separaten, unabhängigen Javascript-Code in einer 
 V8 Laufzeitumgebung (\textit{Isolate}) auszuführen. Da ein \textit{Isolate} Objekt mehrere Context-Ausführungsumgebungen besitzen kann, 
-muss jene, die zur Ausführung verwendet werden soll explizit angegeben werden. Dies wird mithilfe des RAII-Konzeptes 
-(Ressourcenbelegung ist Initialisierung) durch erstellen eigener Objekte des Types \textit{Context::Scope} erreicht.
+muss jene, die zur Ausführung verwendet werden soll, explizit angegeben werden. Dies wird mithilfe des RAII-Konzeptes 
+(Ressourcenbelegung ist Initialisierung) durch Erstellen eigener Objekte des Types \textit{Context::Scope} erreicht.
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.7\textwidth]{contexts}
@@ -363,10 +363,10 @@ Die Lebenszeit eines Persitent-Handles ist nicht an den aktuellen Scope gebunden
 wenn es nicht mehr gebraucht wird. Dazu kann die \textit{SetWeak()} Funktion des Handle Objekts aufgerufen werden. Dieser Mechanismus ist hilfreich,
 wenn ein Javascript-Objekt in mehreren C++-Funktionen verwendet werden soll.
 
-\subsection{Anpassen von Javascript-Ausführungsumgebungen über das Global Objekt}
+\subsection{Anpassen von Javascript-Ausführungsumgebungen über das Global-Objekt}
 
-Beim erstellen eines neuen V8-Contexts kann ein Objekt des Datentyps \textit{ObjectTemplate} angegeben werden, dass die Ausführungsumgebung des Contexts beschreibt. Diesem Objekt kann man beliebig viele 
-eigene Funktionen (\textit{FunctionTemplate} Objekte) oder Variablen zuweisen. Über \textit{FunctionTemplate} Objekte ist es wiederum möglich, C++ Funktionen aufzurufen. 
+Beim erstellen eines neuen V8-Contexts kann ein Objekt des Datentyps \textit{ObjectTemplate} angegeben werden, dass die Ausführungsumgebung des Contexts beschreibt.
+Diesem Objekt kann man beliebig viele eigene Funktionen (\textit{FunctionTemplate} Objekte) oder Variablen zuweisen. Über \textit{FunctionTemplate} Objekte ist es wiederum möglich, C++ Funktionen aufzurufen. 
 Dadurch lässt sich die Javascriptsprache beliebig erweitern.
 
 \subsection{Das DebugInspector Protokoll}
@@ -382,7 +382,9 @@ analysieren und manipulieren.
 
 \subsection{Beispiel}
 
-Dieses Beispiel zeigt ein C++ Programm, dass Javascript-Dateien ausführen kann. Die Skriptsprache wurde um die Funktion PrintParams erweitert.
+In diesem Abschnitt wird anhand eines Beispiels gezeigt, wie man die vorher erläuterten Konzepte verwenden kann, um innerhalb eines
+C++-Programmes Javascript-Quellcode ausführen zu können. Außerdem wird erklärt, wie die Skriptsprache über das Global-Objekt erweitern 
+werden kann.
 
 \lstinputlisting[
 	label={src:proto2_printparams},
@@ -390,26 +392,71 @@ Dieses Beispiel zeigt ein C++ Programm, dass Javascript-Dateien ausführen kann.
 	numbers=left,
 	language=C++,
 	firstnumber=0,
-	firstline=60,
-	lastline=77]{protoype2/src/prototyp2.cpp}
+	firstline=53,
+	lastline=70]{protoype2/src/prototyp2.cpp}
 
-Der C++-Quellcode in \ref{src:proto2_printparams} nimmt alle von Javascript übergebenen Argumente entgegen und gibt sie mithilfe von \textit{std::cout} aus.
+Die Funktion \ref{src:proto2_printparams} soll Skripten zur Verfügung gestellt werden. 
+Der C++-Quellcode nimmt alle von Javascript übergebenen Argumente entgegen und gibt sie mithilfe von \textit{std::cout} aus. In Zeile 12 wird an den aufrufenden
+Javascript-Code der boolesche Wert 'true' retourgegeben. 
 Am Anfang des Beispiels kann man erkennen, dass ein HandleScope angelegt wird um alle Local Handles verwalten zu können. Hier wird keine Context::Scope
 Instanz benötigt, da das ausführende Skript bereits in einem Aktiven Scope laufen muss. Wird kein Parameter übergeben, so wird eine Javascript-Exception
-geworfen. Diese kann im Skriptquellcode mithilfe von \textit{try}-\textit{catch}-Blöcken gefangen werden. 
+geworfen. Diese kann im Skriptquellcode mithilfe von \textit{try}-\textit{catch}-Blöcken gefangen werden. Diese Funktion kann nun innerhalb eines Programmes
+an die V8-Engine übergeben werden:
 
 \lstinputlisting[
 	label={src:proto2_main},
-	caption={Haupt},
+	caption={Hauptfunktion, zeigt die Funktionsweise der V8-Programmierschnittstelle.},
 	numbers=left,
 	language=C++,
 	firstnumber=0,
-	firstline=79,
-	lastline=149]{protoype2/src/prototyp2.cpp}
+	firstline=72,
+	lastline=140]{protoype2/src/prototyp2.cpp}
+
+Das Programm \ref{src:proto2_main} lädt eine übergebene Javascriptdatei, kompiliert diese und führt sie aus. In Zeile 30 ist ersichtlich, wie einem
+\textit{ObjectTemplate}-Objekt die Funktion \textit{PrintParams} \ref{src:proto2_printparams} hinzugefügt wird. Dieses Objekt wird danach in Zeile 33 
+zum Erstellen des Ausführungskontexts verwendet. Damit ist es von Javascript aus möglich, die C++-Funktion aufzurufen. Zum Überprüfen auf Kompilier- und 
+Laufzeitfehler werden eigene \textit{TryCatch}-Objekte verwendet. Tritt ein Problem auf, so wird die Fehlerinformation innerhalb dieser Objekte gesammelt.
+Die \textit{ReportException}-Funktion gibt diese Fehler aus. Sie ist hier aus Platzgründen nicht aufgeführt, kann aber über Anhang \ref{app:ReportException} eingesehen werden.
+
+\subsubsection{Tests}
+
+Zur Veranschaulichung der Funktionalität dieses Beispiels wurden zwei kurze Programme in Javascript umgesetzt:
+
+\lstinputlisting[
+		label={src:proto2_test1},
+		caption={Skript test.js zum Testen der Funktion \textit{PrintParams}}
+		]{protoype2/test.js}
+
+Dieses Programm gibt mehrmals verschiedene Werte und Variablen über die entwickelte \textit{PrintParams}-Funktion \ref{src:proto2_printparams} aus.
+Zum Schluss wird diese Funktion ohne Parameter aufgerufen. Dadurch wird eine Javascript-Exception erzeugt, die von dem \textit{tryCatchRun}-Objekt in der Hauptfunktion
+des C++-Quellcodes \ref{src:proto2_main} gefangen wird.
+
+\lstinputlisting[
+		label={src:proto2_output1},
+		caption={Ausgabe des ersten Tests.},
+		numbers=none]{protoype2/ausgabe.txt}
+
+Die Ausführung \ref{src:proto2_output1} zeigt ein korrektes Verhalten des Programmcodes. Es wurden alle Werte und der Exception-Text ausgegeben. 
+Folgendes Skript soll das Verhalten bei einem Kompilierfehler zeigen:
+
+\lstinputlisting[
+			label={src:proto2_test2},
+			caption={Skript test2.js provoziert Kompilierfehler.}
+			]{protoype2/test2.js}
+
+In \ref{src:proto2_test2} kann man einen syntaktischen Fehler erkennen. Das Starten dieses Programmes produziert folgende Ausgabe:
+
+\lstinputlisting[
+			label={src:proto2_output2},
+			caption={Ausgabe des zweiten Tests.},
+			numbers=none]{protoype2/ausgabe2.txt}
+
+Man kann erkennen, dass die Google-V8-Enginen dieses Problem zur bereits zur Kompilierzeit identifizieren konnte und Hinweise zum Beheben ausgibt.
+Abgefangen wurde der Fehler über das \textit{tryCatchCompile}-Objekt in der Hauptfunktion. \\
 
 Das komplette Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD unter \textit{Thesis/prototype2} und kann mit folgenden Befehlen 
-übersetzt werden. Zum übersetzten wird der \textit{SMF\_3P} Ordner benötigt, da dieser die Bibliothenken der Google-V8-Engine in Binärform beinhaltet. Alternativ können
-diese auch mit dem Skripten in Anhang \ref{app:v8build} erzeugt werden. Dieser Ordner befindet sich auch auf der Projekt CD-ROM/DVD.
+übersetzt werden. Zum übersetzten wird der \textit{SMF\_3P} Ordner benötigt, da dieser die Bibliotheken der Google-V8-Engine in Binärform beinhaltet. Alternativ können
+diese auch mit den Skripten in Anhang \ref{app:v8build} erzeugt werden. Dieser Ordner befindet sich auch auf der CD-ROM/DVD. \\
 
 SUSE Linux Enterprise 12.5:
 

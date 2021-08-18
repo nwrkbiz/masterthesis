@@ -1,3 +1,4 @@
+$ prototyp2 ./test.js
 Hello, World!
 false
 Hello, World!
