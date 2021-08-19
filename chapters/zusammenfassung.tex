@@ -1,45 +1,109 @@
 \chapter{Zusammenfassung und Ausblick}
 \label{cha:Zusammenfassung}
 
-Im Rahmen dieser Arbeit wurde ein SCADA-Agent zum ausführen von Javascriptcode sowohl konzipiert als auch implementiert. 
-Ausgehend von den Anforderungen der Systemintegratorinnen und Systemintegratoren der Abteilung \textit{DI FA SO SIS} innerhalb des Siemens Konzerns 
+Im Rahmen dieser Arbeit wurde ein SCADA-Agent zum Ausführen von Javascriptcode sowohl konzipiert als auch implementiert. 
+Ausgehend von den Anforderungen der Systemintegratorinnen und Systemintegratoren der Abteilung \textit{DI FA SO SIS} innerhalb des Siemens-Konzerns 
 wurde durch Betrachten verschiedener Umsetzungsmöglichkeiten ein Konzept für eine individuelle Softwarelösung erarbeitet. 
 Während der Entwicklung ist ein Werkzeug auf Basis der WinCC OA- und Google V8-Programmierschnittstellen entstanden, 
-dass ein einfachere Inbetriebnahme und Individualisierung des Produktes \textit{SiPlant} ermöglicht.
+dass eine einfachere Inbetriebnahme und Individualisierung des Produktes \textit{SiPlant} ermöglicht.
 \newline
 \par
-Während der folgende Abschnitt dieses Kapitels die Ergebnisse dieser Masterarbeit zusammenfasst, folgt im letzten Abschnitt ein Ausblick auf
+Während der folgende Abschnitt dieses Kapitels die Ergebnisse dieser Masterarbeit zusammenfasst, folgt im letzten Unterkapitel ein Ausblick auf
 mögliche Verbesserungen.
 
 \section{Zusammenfassung}
 
 
-In \autoref{cha:scadasysteme} 
-
-\autoref{cha:v8engine} 
-
-\autoref{cha:Anforderungen} 
-\autoref{cha:Konzept} 
-
-\autoref{cha:Projektumsetzung}
-\autoref{cha:praxis} 
+In \autoref{cha:scadasysteme} wurde zunächst der Begriff Multi-Agent-SCADA-System auf Basis bestehender Definitionen beschrieben.
+Dadurch konnte erkannt werden, dass das von ETM Professional Control entwickelte \textit{Windows Control Center Open Architecture} 
+die Eigenschaften eines solchen Systems besitzt. Um zu verstehen, wie man dieses Produkt um eigene Agenten erweitern kann, wurde anhand eines 
+Beispiels die Funktionsweise der Programmierschnittstelle erklärt. Das \autoref{cha:v8engine} widmete sich der Google V8 Javascriptengine. 
+Hier wurden die Grundlagen der Compilertheorie umrissen um darauf aufbauend die Mechanismen dieser Programmkomponente veranschaulichen zu können. Im letzten Abschnitt wurde gezeigt,
+wie man diese Engine in eigenen Entwicklungen verwenden kann, um Javascriptcode ausführen zu können.
+Im darauffolgenden \autoref{cha:Anforderungen} wurden die Anforderungen an den Agenten aufgrund der zu lösenden Probleme bei der
+Anlagenintegration von Multi-Agent-SCADA-Systemen definiert. Hier wurde vor allem die Sichtweise der Systemintegratorinnen und 
+Systemintegratoren in Betracht gezogen. Ein detailliertes Umsetzungskonzept konnte in \autoref{cha:Konzept} durch implementieren eines konzeptuellen Beweises erarbeitet werden.
+In \autoref{cha:Projektumsetzung} wurde auf Basis dieses Beweises ein eigener Agent mit erweitertem Funktionsumfang umgesetzt,
+um die in \autoref{cha:Anforderungen} definierten Anforderungen zu erfüllen. Dadurch wurde ein Werkzeug entwickelt, dass die 
+dynamisch erweiterbare Skriptsprache Javascript ausführen kann und erweiterte Debugging-Funktionen unterstützt. 
+Zuletzt wurde die Nützlichkeit dieses Agenten anhand von abgeschlossenen Projekten in \autoref{cha:praxis} aufgezeigt.
 
 \section{Ausblick}
 
-Obwohl die entwickelte Programmkomponente schon eine gute Hilfestellung bei der Projektintegration und Projektindividualisierung leisten konnte,
+Obwohl die entwickelte Programmkomponente eine gute Hilfestellung bei der Projektintegration und Projektindividualisierung leisten konnte,
 ist aufgrund der fehlenden Unterstützung der von W3C standardisierten Web-APIs die gewünschte Flexibilität nur eingeschränkt gegeben. Außerdem steht das 
 \textit{SiPlant} Produkt aufgrund von Lizenzverkäufen und Hinzunahme von externen Ressourcen im Projektgeschäft
 einer stetig wachsenden Anzahl von Systemintegratorinnen und Systemintegratoren mit unterschiedlichen technischen Ausbildungen zur Verfügung.
 Daher wäre es vom Vorteil, anstelle eines dezidierten V8-Agents eine Softwarebibliothek zu entwerfen, die von einer Vielzahl von 
 Programmiersprachen verwendet werden kann, um auf das proprietäre WinCC OA SCADA-System zugreifen zu können. 
 Technisch wäre dies mithilfe einer Fremdfunktionsschnittstelle möglich \cite{ffi}. Die meisten 
-Programmiersprachen besitzen eine Möglichkeit dynamische Softwarebibliotheken (Dynamic Linked Libraries oder Shared Objects) 
+Programmiersprachen besitzen eine Möglichkeit, dynamische Softwarebibliotheken (Dynamic-Link Libraries oder Shared Objects) 
 mit einer C-Programmierschnittstelle zur Laufzeit nachzuladen. Das Marshalling der Datentypen muss hierbei in der Zielsprache erfolgen.
 \newline
 \par
-Für Javascript existiert auf Basis der Google V8-Engine die plattformübergreifende Javascript Laufzeitumgebung NodeJS die über einen eigenen
-Paketmanager ein flexibles nachladen von Drittanbieterbibliotheken ermöglicht \cite{nodejs}. Außerdem unterstützt diese die W3C Web-APIs.
-Über eigene Bibliotheken ist es auch möglich Fremdfunktionsschnittstelle anzubinden. 
-Aufgrund dieser Erkenntnisse wird Zukünftig innerhalb der Abteilung \textit{DI FA SO SIS} der Fokus auf diese Technologie gelegt.
+Für Javascript existiert auf Basis der Google V8-Engine die plattformübergreifende Laufzeitumgebung NodeJS. Mithilfe eines eigenen
+Paketmanagers ist ein flexibles Nachladen von Drittanbieterbibliotheken möglicht, somit ist eine gute Erweiterbarkeit gegeben \cite{nodejs}. 
+Außerdem unterstützt NodeJS die W3C Web-APIs. Über eigene Bibliotheken ist ein Anbinden von Fremdfunktionsschnittstelle realisierbar. Somit kann man
+eigenen nativen Code der Javascript-Laufzeitumgebung zur Verfügung stellen. Dies soll im folgenden Beispiel gezeigt werden:
+
+\subsection{Fremdfunktionsschnittstelle}
+
+\lstinputlisting[
+    label={src:proto4_h},
+    caption={Header-Datei des Bibliothekcodes.},
+    numbers=none,
+    language=C++,
+    firstnumber=0,
+    firstline=7,
+    lastline=24]{prototype4/include/prototyp4.h}
+
+In den Funktionsdefinitionen \ref{src:proto4_h} kann man erkennen, dass nur statische Datentypen verwendet werden und 
+der C++-Compiler angewiesen wird keine Namensdekorationen zu erzeugen.
+
+\lstinputlisting[
+    label={src:proto4_cpp},
+    caption={Implementierung des Bibliothekcodes.},
+    numbers=none,
+    language=C++,
+    firstnumber=0,
+    firstline=7,
+    lastline=26]{prototype4/src/prototyp4.cpp}
+
+Die Implementierung \ref{src:proto4_cpp} zeigt, wie der komplexe Datentyp \textit{Greeter} über die exportierten Funktionen übergeben werden kann.
+
+\lstinputlisting[
+    label={src:proto4_test1},
+    caption={Skript node.js, lädt Bibliothek und führt Funktionen aus.}
+    ]{prototype4/node.js}
+
+Das Beispiel \ref{src:proto4_test1} öffnet je nach Plattform die entsprechende Programmbibliothek, lädt die darin exportierten Funktionen
+und ruft sie auf. Dieser Code ist mithilfe der NodeJS Javascript-Laufzeitumgebung ausführbar:
+
+\lstinputlisting[
+    label={src:proto4_ausgabe},
+    caption={Ausgabe des Tests.}
+    ]{prototype4/ausgabe.txt}
+
+In der Ausgabe \ref{src:proto4_ausgabe} kann man erkennen, dass der native Code erfolgreich ausgeführt wird.
+\\
+\par
+Der auf der CD-ROM/DVD unter \textit{Thesis/prototype4} beigelegte Beispielcode kann mit folgenden Anweisungen übersetzt werden:
+\\
+\par
+Linux und Windows:
+
+\begin{GenericCode}
+$ mkdir build
+$ cd ./build
+$ cmake ..
+$ cmake --build .
+\end{GenericCode}
+
+\subsection{Fazit}
+
+Aufgrund dieser Erkenntnisse wird zukünftig innerhalb der Abteilung \textit{DI FA SO SIS} der Fokus auf diese Technologie gelegt. Die
+Idee ist es, die C++-Klassen der WinCC OA Programmierschnittstelle nach der vorher gezeigten Methodik für andere Programmiersprachen zur 
+Verfügung zu stellen. Daraus würde sich der weitere Vorteil ergeben, dass diese so erstellte Programmbibliothek nicht mehr an die 
+Compilervorgaben des WinCC OA Produktes gebunden ist.
 Ein funktionaler konzeptioneller Prototyp mit Beispiel Marshallingcode für Javascript (NodeJS), Python und C\# (.NET Core) ist der CD-ROM/DVD unter 
-\textit{corelib} Beigelegt.
+\textit{corelib} beigelegt.

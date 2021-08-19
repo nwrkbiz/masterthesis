@@ -69,14 +69,22 @@ $ cmake .. -T v140 -A x64 -DSMF_3P=C:/SMF_3P -DWINCCOA_INSTALL=C:/Siemens/Automa
 $ cmake --build .
 \end{GenericCode}
 
-\section{Implementierung des Agent}
+\section{Implementierung der Programmbibliothek}
 \subsection{Implementierung der Singleton Klasse}
 
 
 
 \subsection{Implementierung der V8Context Klasse}
 \subsection{Implementierung der DebugInspector Klasse}
+
+Die DebugInspector implementiert zusätzlich ein Interface für den in dem \textit{SiPlant} Produkt verwendten Websocket-Server.
+Somit können
+
+\subsection{Implementierung des V8Inspector::Channel Interfaces}
+
 \subsection{Implementierung des ICustomJSCommands Interface}
+
+Dadurch ist es Umsetzungen diese Interfaces können 
 
 \section{Kompilieren und Linken}
 
@@ -93,6 +101,10 @@ $ cmake --build .
 
 % Windows
 % Visual Studio 2015 build tools 140
+
+\section{Implementierung des Agenten}
+
+Der Agent muss nun nur mehr die Programmbibliothek instanziieren und nach dem
 
 \subsection{Kompilieren der Abhängigkeiten}
 \subsubsection{Google V8-Engine}

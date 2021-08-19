@@ -5,18 +5,16 @@
  * @copyright Daniel Giritzer 2021. All Rights Reserved.
  */
 #include "prototyp4.h"
-
 #include <iostream>
 #include <string>
-
 class Greeter {
 public:
   void Welcome(const std::string& name){
     std::cout  << "Hello, "<< name << std::endl;
   };
 };
-DLLEXPNOMANGLE void PROTO_New(void*& instance){
-  instance = new Greeter();
+DLLEXPNOMANGLE void PROTO_New(void*& inst){
+  inst = new Greeter();
 }
 DLLEXPNOMANGLE void PROTO_Greet(void* inst, char* msg){
   Greeter* obj = static_cast<Greeter*>(inst);
