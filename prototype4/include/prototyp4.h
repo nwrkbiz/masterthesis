@@ -17,7 +17,7 @@
 #endif
 // Erzeugt eine neue Instanz
 DLLEXPNOMANGLE void PROTO_New(void*& instance);
-// Führe Funktion aus
+// Führe Funktion von Instanz aus
 DLLEXPNOMANGLE void PROTO_Greet(void* inst, char* msg);
 // Lösche Instanz
 DLLEXPNOMANGLE void PROTO_Delete(void*& instance);

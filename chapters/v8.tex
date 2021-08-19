@@ -268,7 +268,7 @@ addiere(47.11, 2);
 \end{program}
 
 Der Javascript-Quellcode \ref{prog:d8_optdeopt} zeigt, wie mithilfe der Entwicklerkonsole ein Optimieren und Deoptimieren simuliert werden
-kann. Um diesen Prozess zu veranschaulichen, kann \textit{d8} mit \textit{--trace-deopt} gestartet werden.
+kann. Um diesen Prozess zu veranschaulichen, kann \textit{d8} mit \textit{--trace-deopt} gestartet werden. \\
 
 \begin{program}[h]
 \caption{Ausgabe der Deoptimierung.}
@@ -304,7 +304,8 @@ translating interpreted frame addiere => bytecode_offset=0, height=8
 \end{program}
 
 In der Ausgabe \ref{prog:d8_deopt} kann man in der Zeile drei erkennen, dass die optimierte Funktion ein Objekt des Typs \textit{Smi}, also Small-Integer erwartet
-hätte. Da dieser aber im Beispiel \ref{prog:d8_optdeopt} in der Zeile elf nicht übergeben wurde, löste dies eine Deoptimierung aus.
+hätte. Da dieser aber im Beispiel \ref{prog:d8_optdeopt} in der Zeile elf nicht übergeben wurde, löste dies eine Deoptimierung aus. Dabei werden der aktuelle Stackframe
+und die Hardwareregister ausgelesen, damit ein Frame für den Interpreter erstellt werden kann.
 
 \section{C++-Programmierschnittstelle}
 

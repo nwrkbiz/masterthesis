@@ -1,78 +1,106 @@
 \chapter{Anforderungen}
 \label{cha:Anforderungen}
 
-Der zu entwickelnde Agent soll es Systemintegratorinnen und Systemintegratoren ermöglichen, mithilfe von Javascript auf ein WinCC OA SCADA-System 
+Der zu entwickelnde Agent soll es Systemintegratorinnen und Systemintegratoren ermöglichen, über Javascript auf ein WinCC OA SCADA-System 
 zugreifen zu können. Dazu sollen die in den letzten Kapiteln beschriebenen Konzepte der Google-V8-Engine und von WinCC OA verwendet werden. 
-Im Folgenden werden die Anforderungen an den Prototypen definiert.
+Im Folgenden werden die Anforderungen an das Programm definiert.
 
 \section{Zu unterstützende Plattformen}
 
-Einen limitierenden Faktor stellt hier die WinCC OA Programmierschnittstelle dar, da sie nur als Kompilat in binärform zur Verfügung steht. Die
-unterstützten Plattformen sind 
-
-Da für CentOS ein Open Source projekt ohne  \cite{centOS}
-
-Da die WinCC OA Programmierschnittstelle nur in Binärform zur Verfügung steht, ist keine komplette Plattformunabhängigkeit möglich.
-
-Wichtig ist hier auch zu erwähnen, dass von seiten den WinCC OA SCADA Produktes für die jeweilige Plattform bestimmte C++-Compiler
-vorgeschrieben sind, weil ansonsten aufgrund von etwaigen \textit{ABI (Application Binary Interface)} inkomatibilitäten keine 
-korrekte funktionsweise garantiert wird.
-
-Daher wird auf mit folgenden eigenschaften eingeschränkt:
-
-\subsection{SUSE Linux Enterprise Server}
+Einen limitierenden Faktor stellt hier die WinCC OA 3.16 Programmierschnittstelle dar, weil sie nur als Kompilat in binärform zur Verfügung steht. Die
+unterstützten Plattformen sind:
 
 \begin{itemize}
-	\item GCC 4.8.5
-	\item WinCC OA Version 3.16
+ \item SUSE Linux Enterprise 12.5 (64 Bit)
+ \item Astra Linux 1.6 (64 Bit)
+ \item CentOS 7.9 (64 Bit)
+ \item RedHat 7.9 (64 Bit)
+ \item Windows 10 (64 Bit)
+ \item Windows Server 2019 (64 Bit)
+ \item Windows Server 2016 (64 Bit)
+ \item Windows Server 2012 (64 Bit) \\
 \end{itemize}
 
-\subsection{Windows 10}
-
-\begin{itemize}
-	\item a
-\end{itemize}
+Da CentOS ein gemeinnütziges Open-Source-Projekt ohne offiziellen Support ist \cite{centOS} wird dessen Unterstützung nicht in Betracht gezogen.
+\textit{SiPlant} ist auf Astra Linux und RedHat aufgrund von Inkompatibilitäten einiger Systembibliotheken nicht lauffähig.
+Daher wird die Auswahl auf SUSE Linux Enterprise 12.5 und die von WinCC OA unterstützten Windows-Versionen eingeschränkt.
 
 \section{Anwendungsfälle}
 
+Das Programm soll die Umsetzung von Kundenwünschen und die Anlagenintegration unterstützen.
+Dazu werden im Folgenden die genauen Anforderungen an den Agenten beschrieben.
+
 \subsection{Entwicklung kundenspezifischer Anforderungen}
+
+Oft stellen Kundinnen und Kunden während der Projektphase Anforderungen, die nicht im Standartfunktionsumfang von \textit{SiPlant} enthalten sind.
+Um auf diese Wünsche agil eingehen zu können, ohne die Produktentwicklung zu stören, ist eine Möglichkeit der Umsetzung vor Ort nötig.
+Hier soll der V8-Agent eine Hilfe bieten, um Algorithmen, skriptgestützt implementieren zu können. 
 
 \begin{figure}[h]
 	\centering \includegraphics[width=1\textwidth]{UseCase_Implementation}
-	\caption{a}
+	\caption{Anwendungsfalldiagramm stellt die Entwicklung kundenspezifischer Anforderungen grafisch dar.}
 	\label{fig:UseCase_Implementation}
 \end{figure}
 
-Das Programm ist wie im Diagramm \ref{fig:UseCase_Implementation} gezeigt forallem für Systemintegratoren und Systemintegratorinnen
-gedacht. Laut 
+Dazu müssen wie in Abbildung \ref{fig:UseCase_Implementation} gezeigt Kundinnen und Kunden zunächst eine Anforderung spezifizieren. Im nächsten Schritt ist es die 
+Aufgabe der Systemintegrierenden diese Spezifikation zu analysieren. Danach können die entsprechenden Algorithmen unter Zuhilfenahme 
+der REPL-Konsole implementiert werden. Diese müssen dann dem Projekt hinzugefügt werden. An dieser Stelle bietet sich der in \ref{cha:subproj} beschriebene 
+WinCC OA Subprojekt-Mechanismus an, um eine gute Organisation und Wiederverwendbarkeit des erstellten Codes zu erreichen.
 
 \subsection{Skriptgesützte Massenparametrierung}
 
-Einen erheblichen Aufwand bei der Systemintegration nimmt das Anbinden der Teilnehmer in der \textit{Feldebene} in anspruch, weil hier
-wie in \ref{cha:SCADA} beschrieben für jeden Eingabe- und Ausgabekanal eine eigene Parametrierung vorgenommen werden muss.
+Einen erheblichen Aufwand bei der Systemintegration nimmt das Anbinden der Teilnehmer in der \textit{Feldebene} in Anspruch, weil hier
+wie in \ref{cha:param} beschrieben für jeden Eingabe- und Ausgabekanal eine eigene Konfiguration vorgenommen werden muss. Der Agent soll
+hier durch eine skriptgestützte Parametrierung Erleichterung schaffen. Dazu wird ein Export von sogenannten Variablen- oder Taglisten der 
+SPS-Programme benötigt.
 
 \begin{figure}[h]
 	\centering \includegraphics[width=1\textwidth]{UseCase_Import}
-	\caption{a}
+	\caption{In diesem Diagramm wird die Massenparametrierung dargestellt.}
 	\label{fig:UseCase_Import}
 \end{figure}
 
-In dem gezeigten Beispiel \ref{fig:UseCase_Import}
+Diese müssen wie in Abbildung \ref{fig:UseCase_Import} visualisiert von den SPS-Entwicklern oder SPS-Entwicklerinnen zur Verfügung gestellt werden. 
+Häufig liegen diese Listen im CSV oder XML Format vor, aber leider besitzen diese keine standardisierte Struktur. Daher ist es die Aufgabe des Systemintegrierenden die Syntax dieser Dateien zu analysieren.
+Danach muss im Internet eine passend Javascript Parserbibliothek gefunden werden. Der nächste Schritt im Anwendungsfalldiagramm sieht dann die Implementierung eines Import-Skripts vor. Unterstützend kann dazu die REPL-Konsole der Browser-Entwicklerwerkzeuge herangezogen werden. Zuletzt wird der Import durch das Ausführen des Skriptes gestartet
+und die entsprechenden Datenpunkte und Datenpunktkonfigurationen erzeugt.
 
 \section{Qualitätsanforderungen}
 
-In diesen Abschnitt werden alle Punkte definiert, die die Qualität des Programmes aus Sicht der Systemintegratoren und Systemintegratorinnen betreffen.
+Hier werden alle Punkte definiert, die die Qualität des Programmes aus Sicht der Systemintegratoren und Systemintegratorinnen betreffen.
+Die Qualitätsanforderungen lassen sich in Benutzbarkeit, Wartbarkeit und Zuverlässigkeit unterteilen.
+
+\subsection{Benutzbarkeit}
+
+\subsubsection{Digitales Handbuch für Systemintegrierende als Nachschlagewerk}
+
+Um eine gute Benutzbarkeit garantieren zu können, muss den Systemintegrierenden eine digitale Dokumentation mit mindestens diesem
+Inhalt vorliegen:
+
+\begin{itemize}
+	\item Anleitung zum Verbinden der Google Chrome und Microsoft Edge Browser-\\Entwicklerkonsolen für Debugging Zwecke und zum Testen von Codesequenzen in der REPL-Konsole.
+	\item Einfach verständliche Codebeispiele für jede durch den Agenten zur Verfügung gestellte Javascript-Funktion.
+	\item Beschreibung aller Funktionen und Funktionsparameter. 
+\end{itemize}
 
 \subsection{Wartbarkeit}
-Der Agent muss erweiterbar sein, ohne bestehende Komponenten anpassen zu müssen. Um die Einarbeitungszeit für andere Entwickler zu verkürzen sind 
-Kommentarblöcke im Quellcode nötig. Außerdem muss dem Entwickler eine technische Dokumentation zur Verfügung stehen.
 
+Der Agent muss erweiterbar sein, ohne bestehende Komponenten anpassen zu müssen. Um die Einarbeitungszeit für andere Entwicklerinnen und Entwickler zu verkürzen sind 
+Kommentarblöcke im Quellcode nötig. Außerdem muss eine technische Dokumentation zur Verfügung stehen. Dies ist wichtig, damit neue, von Systemintegrierende angefragte 
+Funktionen ohne großen Zeitaufwand ergänzt werden können.
 
-\subsection{Wiederverwendbare und dokumentierte C++-API}
+\subsection{Zuverlässigkeit}
 
-
-\subsection{Digitales Handbuch für Integratoren als Nachschlagewerk}
-
-
+Die Benutzenden sollen sich darauf verlassen können, dass das Programm zuverlässig läuft und eventuell auftretende Bedienungsfehler seitens der
+Verwendenden zu keinem Absturz führen. Dazu müssen alle Eingaben, bevor eine Ausführung getätigt wird, auf deren Richtigkeit geprüft werden. Die Anwendung informiert den Benutzer bei einem technischen oder einem Anwenderfehler. 
+Die Fehlermeldungen müssen leicht verständlich sein und den Systemintegratorinnen und Systemintegratoren hinweise für die Richtigstellung geben. Als Beispiel kann hier ein Aufrufen von Funktionen mit 
+falschen Parametern aufgeführt werden. Tritt eine solche Situation ein, muss durch eine Meldung Auskunft über die erwarteten Funktionsparameter gegeben werden.
+Ein weiterer wichtiger Punkt in der Benutzbarkeit ist die API-Stabilität. Unter diesem Begriff wird eine Garantie, dass sich bestehende Funktionssignaturen zwischen
+verschiedenen \textit{SiPlant}-Versionen nicht verändern, verstanden.
 
 \section{Einsatz in spezifischeren C++-API-Agenten}
+
+Die Programmkomponente muss so konzipiert sein, dass sie auch in anderen SCADA-Agenten eingebunden und verwendet werden kann. 
+Somit soll die Möglichkeit geschaffen werden, bestimmte Algorithmen in Skripte auslagern zu können, damit eine höhere 
+vor Ort Anpassbarkeit in Projekten zustande gebracht wird. Als Beispiel können hier Priorisierungsalgorithmen für eingehende 
+Aufträge aus der \textit{Produktionsleitebene} genannt werden, da diese stark Kundenabhängig sind.

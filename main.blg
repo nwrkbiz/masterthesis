@@ -1,19 +1,19 @@
 [0] Config.pm:304> INFO - This is Biber 2.12
 [0] Config.pm:307> INFO - Logfile is 'main.blg'
-[35] biber:315> INFO - === Do Aug 19, 2021, 11:43:17
-[60] Biber.pm:371> INFO - Reading 'main.bcf'
-[131] Biber.pm:889> INFO - Found 45 citekeys in bib section 0
-[152] Biber.pm:4093> INFO - Processing section 0
+[32] biber:315> INFO - === Do Aug 19, 2021, 16:45:15
+[57] Biber.pm:371> INFO - Reading 'main.bcf'
+[130] Biber.pm:889> INFO - Found 45 citekeys in bib section 0
+[154] Biber.pm:4093> INFO - Processing section 0
 [168] Biber.pm:4254> INFO - Looking for bibtex format file 'references.bib' for section 0
 [173] bibtex.pm:1512> INFO - LaTeX decoding ...
 [291] bibtex.pm:1329> INFO - Found BibTeX data source 'references.bib'
-[301] Utils.pm:193> WARN - Duplicate entry key: 'gtest' in file 'references.bib', skipping ...
-[374] Utils.pm:193> WARN - month field 'August' in entry 'dragonBook' is not an integer - this will probably not sort properly.
-[392] Utils.pm:193> WARN - month field 'August' in entry 'compilerFrontEnd' is not an integer - this will probably not sort properly.
-[508] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[508] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[508] Biber.pm:3921> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
-[509] Biber.pm:3927> INFO - No sort tailoring available for locale 'de-DE'
-[556] bbl.pm:636> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[574] bbl.pm:739> INFO - Output to main.bbl
-[575] Biber.pm:110> INFO - WARNINGS: 3
+[300] Utils.pm:193> WARN - Duplicate entry key: 'gtest' in file 'references.bib', skipping ...
+[372] Utils.pm:193> WARN - month field 'August' in entry 'dragonBook' is not an integer - this will probably not sort properly.
+[390] Utils.pm:193> WARN - month field 'August' in entry 'compilerFrontEnd' is not an integer - this will probably not sort properly.
+[504] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[504] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[504] Biber.pm:3921> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
+[504] Biber.pm:3927> INFO - No sort tailoring available for locale 'de-DE'
+[547] bbl.pm:636> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[568] bbl.pm:739> INFO - Output to main.bbl
+[568] Biber.pm:110> INFO - WARNINGS: 3
