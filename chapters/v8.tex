@@ -227,7 +227,7 @@ Handler Table (size = 16)
 \end{GenericCode}
 \end{program}
 
-In der Ausgabe \ref{prog:d8_bytec} kann man erkennen, dass zwei weitere Register, a1 und a0 verwendet werden. Diese entsprechen den
+In der Ausgabe \ref{prog:d8_bytec} ist erkennbar, dass zwei weitere Register, a1 und a0 verwendet werden. Diese entsprechen den
 Übergabeparametern auf dem Maschinenstapel. Die einzelnen Bytecodes in \ref{prog:d8_bytec} können wie folgt interpretiert werden:
 
 
@@ -400,7 +400,7 @@ ist.
 Die Funktion \ref{src:proto2_printparams} soll Skripten zur Verfügung gestellt werden. 
 Der C++-Quellcode nimmt alle von Javascript übergebenen Argumente entgegen und gibt sie über \textit{std::cout} aus. In Zeile 12 wird an den aufrufenden
 Javascript-Code der boolesche Wert 'true' retourgegeben. 
-Am Anfang des Beispiels kann man erkennen, dass ein HandleScope angelegt wird um alle Local Handles verwalten zu können. Hier wird keine Context::Scope
+Am Anfang des Beispiels ist erkennbar, dass ein HandleScope angelegt wird um alle Local Handles verwalten zu können. Hier wird keine Context::Scope
 Instanz benötigt, da das ausführende Skript bereits in einem aktiven Scope laufen muss. Wird kein Parameter übergeben, so wird eine Javascript-Exception
 geworfen. Diese kann im Skriptquellcode durch \textit{try}-\textit{catch}-Blöcken gefangen werden. Diese Funktion kann nun innerhalb eines Programmes
 an die V8-Engine übergeben werden:
@@ -446,7 +446,7 @@ Folgendes Skript soll das Verhalten bei einem Kompilierfehler zeigen:
 			caption={Skript test2.js provoziert Kompilierfehler.}
 			]{prototype2/test2.js}
 
-In \ref{src:proto2_test2} kann man einen syntaktischen Fehler erkennen. Das Starten dieses Programmes produziert folgende Ausgabe:
+In \ref{src:proto2_test2} ist ein syntaktischen Fehler erkennbar. Das Starten dieses Programmes produziert folgende Ausgabe:
 
 \lstinputlisting[
 			label={src:proto2_output2},

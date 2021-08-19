@@ -2,12 +2,12 @@
 \label{cha:scadasysteme}
 
 Im folgenden Kapitel wird allgemein das Thema Multi-Agent-SCADA-Systeme beleuchtet und verschiedene Begriffe, wie sie in dieser Arbeit verstanden werden, definiert.
-Es werden die Anforderungen an solche Systeme zusammengefasst und Analogien zur Softwarelösung WinCC Open Architecture gezogen. Außerdem wird die Funktionsweiße
-der WinCC OA Programmierschnittstelle anhand eines Beispieles erklärt.
+Es werden die Anforderungen an solche Systeme zusammengefasst und Analogien zur Softwarelösung WinCC Open Architecture gezogen. Außerdem wird die Funktionsweise
+der WinCC OA Programmierschnittstelle anhand eines Beispiels erklärt.
 
 \section{SCADA - Supervisory Control And Data Acquisition}
 
-Unter SCADA kann man Softwarelösungen verstehen, die sich mit Komponenten in der \textit{Feldebene} verbinden 
+Unter SCADA kann man Softwarelösungen verstehen, die sich mit Datensenken in der \textit{Feldebene} verbinden 
 und somit einen Zugriff auf einzelnen Datenquellen und Senken, auch Eingabe- und Ausgabekanäle genannt, möglich machen. 
 Das Schreiben und Lesen dieser Kanäle wird über eine eigene Echtzeitdatenbank ermöglicht. 
 Eine Echtzeitdatenbank verarbeitet Transaktionen, garantiert einfache Korrektheitskriterien und arbeitet in Echtzeit unter Einhaltung 
@@ -21,7 +21,7 @@ von Zeitvorgaben \cite{realTimeDB}. Weitere Eigenschaften eines SCADA-Systems si
 	\item Benutzerverwaltung: Verschiedene Benutzergruppen brauchen Zugriff auf den Datenhaushalt. Daher wird eine Benutzerverwaltung benötigt um die Sichtbarkeit bestimmter Daten einschränken zu können.
 	\item Alarmbehandlung: Für bestimmte Werte in der Datenbank können Hysteresen und Schwellwerte definiert werden. Sind diese über- oder unterschritten, werden Alarme ausgelöst und über verschiedene Kommunikationswege an Benutzer weiterpropagiert. Tritt ein solcher Zustand ein, kann dies eine Benutzerinteraktion erfordern und mit einer Quittierungspflicht einhergehen.  
 	\item Archivieren: Damit ist die Mittel- und Langzeitspeicherung von Daten gemeint.
-	\item Entwicklung: SCADA-Systeme zeichnen sich dadurch aus, dass sie Programmierschnittstellen zur Verfügung stellen, die Zugriff auf den Datenhaushalt (lesend und schreibend) ermöglichen. Außerdem bieten sie grafische Werkzeuge zum Modellieren der Echtzeitdatenbank.
+	\item Entwicklung: SCADA-Systeme zeichnen sich dadurch aus, dass sie Programmierschnittstellen zur Verfügung stellen, die Zugriff auf den Datenhaushalt (lesen und schreiben) ermöglichen. Außerdem bieten sie grafische Werkzeuge zum Modellieren der Echtzeitdatenbank.
 	\item Automatisierung: Die ereignisorientierte Kommunikation in Verbindung mit der Programmierschnittstelle erlaubt das automatische Auslösen von Ereignissen.
 	\item Objektorientierung: Damit ist das visuelle Anordnen des Datenhaushalts oder bereits das Gruppieren in der Echtzeitdatenbank gemeint. Eingabe- und Ausgabekanäle werden hierbei in logische Objekte, zum Beispiel Roboter, Turbine oder Ventil, gekapselt.
 	\item Trends: Archivierte und Echtzeitdaten lassen sich über die Zeit grafisch visualisieren.\\
@@ -50,13 +50,13 @@ Einen Überblick über das Zusammenspiel soll die Abbildung \ref{fig:winccoa_ove
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.90\textwidth]{winccoa_overview}
-	\caption{Ein WinCC OA System stellt sich aus verschiedenen funktionsspezifischen Agenten zusammen.}
+	\caption{Ein WinCC OA System besteht aus verschiedenen funktionsspezifischen Agenten zusammen.}
 	\label{fig:winccoa_overview}
 \end{figure}
 
 \subsection{Basis Agenten und Konzept}
 
-Je nach SCADA Produkt und Literatur werden die Teilnehmer eines solchen Systems unterschiedlich bezeichnet.
+Je nach SCADA Anbieter werden die Teilnehmer eines solchen Systems unterschiedlich bezeichnet.
 Während in dieser Arbeit der Begriff \textit{Agent} nach \cite{wooldridge_jennings_1995} Verwendung findet,
 werden diese in WinCC OA als \textit{Manager} betitelt. Beide Ausdrücke folgen der vorher erläuterten Definition
 für \textit{Agent}. Im kommenden Abschnitt werden die Basisprozesse eines WinCC OA Projekts beschrieben und somit 
@@ -99,7 +99,7 @@ Attribute:
     \item \_offline: Hiermit lassen sich historische Daten abfragen.\\
 \end{itemize}
 
-Mithilfe von \textit{Para} ist es außerdem möglich, jedem Datenpunktelement zusätzliche Attribute hinzuzufügen.
+Mit Hilfe von \textit{Para} ist es außerdem möglich, jedem Datenpunktelement zusätzliche Attribute hinzuzufügen.
 Dadurch ist eine erweitete Konfiguration möglich. Die wichtigsten sind:
 
 \begin{itemize}
@@ -133,7 +133,7 @@ dann die entsprechenden Value Archive Prozesse ab und gibt die resultierenden In
 
 \subsubsection{Redundancy Manager}
 
-Um eine hohe Ausfallsicherheit garantieren zu können, kann man ein WinCC OA Projekt redundant aufsetzten. Die zwei Serversysteme kommunizieren miteinander
+Um eine hohe Ausfallsicherheit garantieren zu können, ist ein WinCC OA Projekt redundant aufsetzbar. Die zwei Serversysteme kommunizieren miteinander
 mithilfe zweier Redundancy Manager.
 
 \begin{figure}[h]
@@ -165,7 +165,7 @@ Um größere Datenmengen verarbeiten zu können, ist es möglich, mehrere vertei
 	\label{fig:dist}
 \end{figure}
 
-In der Grafik \ref{fig:dist} kann man erkennen, dass die Verbindung der Systeme über zwei Distribution Manager realisiert wird.
+In der Grafik \ref{fig:dist} ist erkennbar, dass die Verbindung der Systeme über zwei Distribution Manager realisiert wird.
 Somit ist es Agenten in System 1 möglich auf den Datenhaushalt von System 2 zuzugreifen und umgekehrt. Die Verbindung lässt sich 
 aber auch unidirektional konfigurieren. Über diesen Mechanismus können bis zu 2048 Systeme miteinander verbunden werden.
 
@@ -267,7 +267,7 @@ Eine Auswahl ist in der folgenden Tabelle aufgelistet:
 		\hline dpSet & \makecell[l]{Ermöglicht das Ändern der Werte von Datenpunktelementen.} \\
 		\hline dpConnect & \makecell[l]{Kann für die Registrierung auf Wertänderungen verwedet\\ werden.} \\ 
 		\hline dpGetPeriod & \makecell[l]{Funktion für eine historische Datenabfrage zwischen\\ zwei Zeitpunkten.}  \\ 
-		\hline alertGet & \makecell[l]{Returniert Informationen über aktive Alarme auf\\ angegebenen Datenpunktelementen.} \\ 
+		\hline alertGet & \makecell[l]{Liefert Informationen über aktive Alarme auf\\ angegebenen Datenpunktelementen.} \\ 
 		\hline alertSet & \makecell[l]{Kann zum Auslösen oder Quittieren von Alarmen verwendet\\ werden.} \\ 
 		\hline alertConnect & \makecell[l]{Erlaubt Registrierung zum Erhalt aller Alarme.} \\ 
 		\hline alertGetPeriod &\makecell[l]{Ermöglicht die Abfrage von historischen Alarmdaten.}  \\ 
@@ -328,7 +328,7 @@ Ausgabe:
 
 Wie in \ref{src:proto1_output} erkennbar wird viermal eine \textit{hotLinkCallback} Funktion aufgerufen. Die ersten beiden 
 Ausgaben sind die Antworten auf \textit{Agent::dpGet()} und \textit{Agent::dpConnect()}.
-Beim dritten Aufruf kann man erkennen, dass keine Werte übermittelt wurden. Dies ist die Antwort auf den \textit{Agent::dpSet()} Befehl.
+Beim dritten Aufruf ist erkennbar, dass keine Werte übermittelt wurden. Dies ist die Antwort auf den \textit{Agent::dpSet()} Befehl.
 Der Letzte ist die Benachrichtigung über eine Wertänderung des Datenpunktelements.\\
 
 Das komplette Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD unter \textit{Thesis/prototype1} und kann mit folgenden Befehlen 

@@ -41,7 +41,7 @@ Programmiersprachen besitzen eine Möglichkeit, dynamische Softwarebibliotheken 
 mit einer C-Programmierschnittstelle zur Laufzeit nachzuladen. Das Marshalling der Datentypen muss hierbei in der Zielsprache erfolgen.
 \newline
 \par
-Für Javascript existiert auf Basis der Google V8-Engine die plattformübergreifende Laufzeitumgebung NodeJS. Mithilfe eines eigenen
+Für Javascript existiert auf Basis der Google V8-Engine die plattformübergreifende Laufzeitumgebung NodeJS. Mit Hilfe eines eigenen
 Paketmanagers ist ein flexibles Nachladen von Drittanbieterbibliotheken möglicht, somit ist eine gute Erweiterbarkeit gegeben \cite{nodejs}. 
 Außerdem unterstützt NodeJS die W3C Web-APIs. Über spezielle NodeJS-Bibliotheken ist ein Anbinden von Fremdfunktionsschnittstellen realisierbar. Somit kann man
 eigenen nativen Code der Javascript-Laufzeitumgebung zur Verfügung stellen. Dies soll im folgenden Beispiel gezeigt werden:
@@ -56,7 +56,7 @@ eigenen nativen Code der Javascript-Laufzeitumgebung zur Verfügung stellen. Die
     firstline=7,
     lastline=24]{prototype4/include/prototyp4.h}
 
-In den Funktionsdefinitionen \ref{src:proto4_h} kann man erkennen, dass nur statische Datentypen verwendet werden und 
+In den Funktionsdefinitionen \ref{src:proto4_h} ist erkennbar, dass nur statische Datentypen verwendet werden und 
 der C++-Compiler angewiesen wird keine Namensdekorationen zu erzeugen.
 
 \lstinputlisting[
@@ -82,7 +82,7 @@ und ruft sie auf. Dieser Code ist mithilfe der NodeJS Javascript-Laufzeitumgebun
     caption={Ausgabe des Tests.}
     ]{prototype4/ausgabe.txt}
 
-In der Ausgabe \ref{src:proto4_ausgabe} kann man erkennen, dass der native Code erfolgreich ausgeführt wird.
+In der Ausgabe \ref{src:proto4_ausgabe} ist erkennbar, dass der native Code erfolgreich ausgeführt wird.
 \\
 \par
 Der auf der CD-ROM/DVD unter \textit{Thesis/prototype4} beigelegte Beispielcode kann mit folgenden Anweisungen übersetzt werden:

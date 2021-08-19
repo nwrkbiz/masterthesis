@@ -3,55 +3,51 @@
 
 In diesem Kapitel wird ein Umsetzungskonzept für die im letzten Kapitel beschriebenen Anforderungen erarbeitet.
 
-Wichtig ist hier auch zu erwähnen, dass von seiten den WinCC OA SCADA Produktes für die jeweilige Plattform bestimmte C++-Compiler
+\section{Handbuch Integratoren}
+
+\subsection{Doxygen}
+
+\subsection{TypeDoc}
+
+\subsection{Fazit}
+
+
+\section{Build Strategie}
+
+Wichtig ist hier zu erwähnen, dass von Seiten des WinCC OA SCADA Produktes für die jeweilige Plattform bestimmte C++-Compiler
 vorgeschrieben sind, weil ansonsten aufgrund von etwaigen \textit{ABI (Application Binary Interface)} inkomatibilitäten keine 
-korrekte funktionsweise garantiert wird.
+korrekte funktionsweise garantiert wird. Für Linux ist in der WinCC OA Dokumentation ein C++-Compiler der 
+\textit{GNU Compiler Collection (GCC)} in der Version 4.8.5 vorgeschrieben. Zum erzeugen vom Windows Binärdateien wird der Compiler
+des \textit{Visual Studio Toolset} in der Version v140 angegeben. Alle Programmkomponenten und Drittbibliotheken müssen mit diesen
+Compilern gebaut werden.
 
-Umsetzung dll / lib / oder exe?
-
-\section{Struktur der Programmbibliothek}
-\subsection{Verwalten von Isolates und Contexts}
-\subsection{Freilegen des DebugInspector Protokolls}
-\subsection{Dynamische Parametrierung}
-
-\section{Struktur des V8-API-Agenten}
-\subsection{Parametrierung}
-
-\section{Umsetzung}
-\subsection{Zu verwendende Compiler}
-\subsection{Benötigte Abhängigkeiten}
-\subsection{Build Strategie}
-
-\subsection{Compiler}
-
-wahl der compiler auf linux und windows
-
-\subsection{Handbuch Integratoren}
-
-Typedoc / Doxygen.
-
-\subsection{Linken externer Bibliotheken}
+\section{Linken der Google V8-Engine}
 
 Im folgenden Abschnitt wird erklärt, wie ein Programm mit externen Bibliotheken umgehen kann. Die verschiedenen Möglichkeiten
 werden dann abgewogen und in einem Fazit wird entschieden, welche Methode für den Prototyp verwendet wird.
 
-\subsubsection{Statisches Linken}
+\subsection{Statisches Linken}
 
 Wird eine Bibliothek statisch gelinkt, dann werden die Funktionen dieser Bibliothek direkt in die ausführbare Datei kopiert.
 Voraussetzung dafür ist, dass die gelinkte Bibliothek selbst statisch ist. Dies bedeutet, dass mindestens eine Objektdatei mithilfe des
-Kommandozeilenprogrammes \textit{ar (archiver utility)} in ein Archiv umgewandelt wurde. \textit{Ar} fügt zu einem solchen Archiv eine Tabelle hinzu, in der vermerkt ist welche Symbole, wo im Archiv zu finden sind \cite{staticLinking}.
+Kommandozeilenprogrammes \textit{ar (archiver utility)} in ein Archiv umgewandelt wurde. \textit{Ar} fügt zu einem solchen Archiv eine 
+Tabelle hinzu, in der vermerkt ist welche Symbole, wo im Archiv zu finden sind \cite{staticLinking}.
 
-\subsubsection{Dynamisches Linken}
+\subsection{Dynamisches Linken}
 
 Beim dynamischen Linken werden die Funktionen einer dynamische Bibliothek in der ausführbaren Datei nur referenziert. Die dynamische
 Bibliothek wird erst dann geladen, wenn das Programm gestartet wird. Ein wesentlicher Vorteil von dynamischen Bibliotheken gegenüber statischen
 ist, dass der ausführbare Code für alle Prozesse, die diese Bibliothek benutzen nur einmal in den Speicher geladen wird \cite{dynLinking}.
 
-\subsubsection{Fazit}
+\subsection{Fazit}
 
-Da der Prototyp nur als einzelner Prozess laufen soll, ist durch die Verwendung von dynamischen Bibliotheken kein wirklicher Vorteil gegeben.
-Es macht daher mehr Sinn alle externen Bibliotheken statisch in die ausführbare Datei zu linken, da man somit von externen Bibliotheken
+Da der Agent nur als einzelner Prozess laufen soll, ist durch die Verwendung von dynamischen Bibliotheken kein wirklicher Vorteil gegeben.
+Es macht daher mehr Sinn die Bibliotheken der Google V8-Engine statisch in die ausführbare Datei zu linken, da man somit von externen Bibliotheken
 unabhängig bleibt.
+
+\section{Übersetzten des Google V8 C++ Quellcodes}
+
+
 
 \section{Konzeptioneller Beweis}
 
