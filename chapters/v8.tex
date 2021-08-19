@@ -394,7 +394,7 @@ werden kann.
 	language=C++,
 	firstnumber=0,
 	firstline=53,
-	lastline=70]{protoype2/src/prototyp2.cpp}
+	lastline=70]{prototype2/src/prototyp2.cpp}
 
 Die Funktion \ref{src:proto2_printparams} soll Skripten zur Verfügung gestellt werden. 
 Der C++-Quellcode nimmt alle von Javascript übergebenen Argumente entgegen und gibt sie mithilfe von \textit{std::cout} aus. In Zeile 12 wird an den aufrufenden
@@ -411,7 +411,7 @@ an die V8-Engine übergeben werden:
 	language=C++,
 	firstnumber=0,
 	firstline=72,
-	lastline=140]{protoype2/src/prototyp2.cpp}
+	lastline=140]{prototype2/src/prototyp2.cpp}
 
 Das Programm \ref{src:proto2_main} lädt eine übergebene Javascriptdatei, kompiliert diese und führt sie aus. In Zeile 30 ist ersichtlich, wie einem
 \textit{ObjectTemplate}-Objekt die Funktion \textit{PrintParams} \ref{src:proto2_printparams} hinzugefügt wird. Dieses Objekt wird danach in Zeile 33 
@@ -426,7 +426,7 @@ Zur Veranschaulichung der Funktionalität dieses Beispiels wurden zwei kurze Pro
 \lstinputlisting[
 		label={src:proto2_test1},
 		caption={Skript test.js zum Testen der Funktion \textit{PrintParams}}
-		]{protoype2/test.js}
+		]{prototype2/test.js}
 
 Dieses Programm gibt mehrmals verschiedene Werte und Variablen über die entwickelte \textit{PrintParams}-Funktion \ref{src:proto2_printparams} aus.
 Zum Schluss wird diese Funktion ohne Parameter aufgerufen. Dadurch wird eine Javascript-Exception erzeugt, die von dem \textit{tryCatchRun}-Objekt in der Hauptfunktion
@@ -435,7 +435,7 @@ des C++-Quellcodes \ref{src:proto2_main} gefangen wird.
 \lstinputlisting[
 		label={src:proto2_output1},
 		caption={Ausgabe des ersten Tests.},
-		numbers=none]{protoype2/ausgabe.txt}
+		numbers=none]{prototype2/ausgabe.txt}
 
 Die Ausführung \ref{src:proto2_output1} zeigt ein korrektes Verhalten des Programmcodes. Es wurden alle Werte und der Exception-Text ausgegeben. 
 Folgendes Skript soll das Verhalten bei einem Kompilierfehler zeigen:
@@ -443,14 +443,14 @@ Folgendes Skript soll das Verhalten bei einem Kompilierfehler zeigen:
 \lstinputlisting[
 			label={src:proto2_test2},
 			caption={Skript test2.js provoziert Kompilierfehler.}
-			]{protoype2/test2.js}
+			]{prototype2/test2.js}
 
 In \ref{src:proto2_test2} kann man einen syntaktischen Fehler erkennen. Das Starten dieses Programmes produziert folgende Ausgabe:
 
 \lstinputlisting[
 			label={src:proto2_output2},
 			caption={Ausgabe des zweiten Tests.},
-			numbers=none]{protoype2/ausgabe2.txt}
+			numbers=none]{prototype2/ausgabe2.txt}
 
 Man kann erkennen, dass die Google-V8-Enginen dieses Problem zur bereits zur Kompilierzeit identifizieren konnte und Hinweise zum Beheben ausgibt.
 Abgefangen wurde der Fehler über das \textit{tryCatchCompile}-Objekt in der Hauptfunktion. \\

@@ -244,7 +244,7 @@ Folgendes Beispiel soll zeigen, wie dies zu bewerkstelligen ist:
 	language=C++,
 	firstnumber=0,
 	firstline=70,
-	lastline=95]{protoype1/src/prototyp.cpp}
+	lastline=95]{prototype1/src/prototyp.cpp}
 
 Der Programmcode \ref{src:proto1_agent} zeigt, dass jeder Teilnehmer des SCADA-Systems eine eindeutige Kennung besitzt. Diese nennt sich \textit{ManagerIdentifier}
 und wird der Basisklasse über den Konstruktor mitgegeben. Wichtig ist hier die Nummer des Agenten, die innerhalb eines
@@ -286,7 +286,7 @@ wird im nachfolgenden Codebeispiel veranschaulicht: \\
 	language=C++,
 	firstnumber=0,
 	firstline=20,
-	lastline=68]{protoype1/src/prototyp.cpp}
+	lastline=68]{prototype1/src/prototyp.cpp}
 
 In dem Beispiel \ref{src:proto1_agent} ist gezeigt wie die Observer-Klasse zu implementieren ist. Wenn durch einen \textit{dispatch}
 Aufruf Daten erhalten wurden, wird abhängig von der Abfrage die entsprechende \textit{hotLinkCallback} Funktion verwendet. 
@@ -309,7 +309,7 @@ Die zuvor gezeigten Klassen werden hier nun in einem Beispielprogramm verwendet,
 	language=C++,
 	firstnumber=0,
 	firstline=97,
-	lastline=129]{protoype1/src/prototyp.cpp}
+	lastline=129]{prototype1/src/prototyp.cpp}
 
 In dem Quellcode \ref{src:proto1_main} ist ersichtlich, dass zunächst die Kommandozeilenparameter an die \textit{Resources-Klasse} über die
 \textit{Resources::init()} Funktion übergeben wurde. Über \textit{Agent::getId()} ist es nun möglich die textuelle Repräsentation der
@@ -322,7 +322,7 @@ Ausgabe:
 \lstinputlisting[
 		label={src:proto1_output},
 		caption={Ausgabe des Beispiels.},
-		numbers=none]{protoype1/ausgabe.txt}
+		numbers=none]{prototype1/ausgabe.txt}
 
 Wie in \ref{src:proto1_output} erkennbar wird viermal eine \textit{hotLinkCallback} Funktion aufgerufen. Die ersten beiden 
 Ausgaben sind die Antworten auf \textit{Agent::dpGet()} und \textit{Agent::dpConnect()}.

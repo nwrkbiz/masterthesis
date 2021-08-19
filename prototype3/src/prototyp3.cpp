@@ -1,6 +1,6 @@
 /**
  * @author Daniel Giritzer
- * @file prototyp.cpp
+ * @file prototyp3.cpp
  * @brief Einfaches Beispiel, soll die Funktionsweise der WinCC OA API veranschaulichen.
  * @copyright Daniel Giritzer 2021. All Rights Reserved.
  */
