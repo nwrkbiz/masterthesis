@@ -24,8 +24,8 @@
       \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
       \field{labeltitlesource}{title}
       \field{title}{A C++ library that can be used to implement WebSocket functionality.}
-      \field{urlday}{8}
-      \field{urlmonth}{2}
+      \field{urlday}{2}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2021}
       \field{urldateera}{ce}
@@ -41,8 +41,8 @@
       \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
       \field{labeltitlesource}{title}
       \field{title}{A robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols.}
-      \field{urlday}{8}
-      \field{urlmonth}{2}
+      \field{urlday}{2}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2021}
       \field{urldateera}{ce}
@@ -58,8 +58,8 @@
       \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
       \field{labeltitlesource}{title}
       \field{title}{A small, fast, self-contained, high-reliability, full-featured, SQL database engine.}
-      \field{urlday}{8}
-      \field{urlmonth}{2}
+      \field{urlday}{2}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2021}
       \field{urldateera}{ce}
@@ -209,14 +209,17 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Learning V8}
+      \field{urlday}{16}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
       \field{year}{2021}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://github.com/danbev/learning-v8
       \endverb
       \verb{url}
       \verb https://github.com/danbev/learning-v8
       \endverb
-      \warn{\item Entry 'learnV8' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring}
     \endentry
     \entry{repl}{inproceedings}{}
       \name{author}{6}{}{%
@@ -295,42 +298,51 @@
       \field{sortinithash}{276475738cc058478c1677046f857703}
       \field{labeltitlesource}{title}
       \field{title}{Browser Market Share, Desktop and Mobile}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
       \field{year}{2021}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://netmarketshare.com/browser-market-share.aspx
       \endverb
       \verb{url}
       \verb https://netmarketshare.com/browser-market-share.aspx
       \endverb
-      \warn{\item Entry 'netmarketshare' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring}
     \endentry
     \entry{centOS}{online}{}
       \field{sortinit}{C}
       \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
       \field{labeltitlesource}{title}
       \field{title}{CentOS Website}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
       \field{year}{2021}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://www.centos.org/
       \endverb
       \verb{url}
       \verb https://www.centos.org/
       \endverb
-      \warn{\item Entry 'centOS' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring}
     \endentry
     \entry{cmake}{online}{}
       \field{sortinit}{C}
       \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
       \field{labeltitlesource}{title}
       \field{title}{CMake Homepage}
+      \field{urlday}{16}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
       \field{year}{2021}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://cmake.org/
       \endverb
       \verb{url}
       \verb https://cmake.org/
       \endverb
-      \warn{\item Entry 'cmake' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring}
     \endentry
     \entry{observer}{misc}{}
       \name{author}{1}{}{%
@@ -467,36 +479,42 @@
       \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
       \field{labeltitlesource}{title}
       \field{title}{DebugInspector Protocoll}
+      \field{urlday}{15}
+      \field{urlmonth}{12}
+      \field{urlyear}{2019}
       \field{year}{2019}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://chromedevtools.github.io/debugger-protocol-viewer/tot/
       \endverb
       \verb{url}
       \verb https://chromedevtools.github.io/debugger-protocol-viewer/tot/
       \endverb
-      \warn{\item Entry 'v8Debug' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring}
     \endentry
     \entry{statcounter}{online}{}
       \field{sortinit}{D}
       \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
       \field{labeltitlesource}{title}
       \field{title}{Desktop and Mobile Browser Market Share Worldwide}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
       \field{year}{2021}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://gs.statcounter.com/browser-market-share/desktop-mobile/worldwide/#monthly-202107-202107-bar
       \endverb
       \verb{url}
       \verb https://gs.statcounter.com/browser-market-share/desktop-mobile/worldwide/#monthly-202107-202107-bar
       \endverb
-      \warn{\item Entry 'statcounter' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring}
     \endentry
     \entry{ecma}{online}{}
       \field{sortinit}{E}
       \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
       \field{labeltitlesource}{title}
       \field{title}{ECMA Standarts}
-      \field{urlday}{8}
-      \field{urlmonth}{5}
+      \field{urlday}{5}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2021}
       \field{urldateera}{ce}
@@ -512,8 +530,8 @@
       \field{sortinithash}{669c706c6f1fbf3b5a83d26f1d9e9e72}
       \field{labeltitlesource}{title}
       \field{title}{Free peer-reviewed portable C++ source libraries.}
-      \field{urlday}{8}
-      \field{urlmonth}{2}
+      \field{urlday}{2}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2021}
       \field{urldateera}{ce}
@@ -529,8 +547,8 @@
       \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
       \field{labeltitlesource}{title}
       \field{title}{Git Homepage}
-      \field{urlday}{8}
-      \field{urlmonth}{2}
+      \field{urlday}{2}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2021}
       \field{urldateera}{ce}
@@ -546,8 +564,8 @@
       \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
       \field{labeltitlesource}{title}
       \field{title}{Google’s open source high-performance JavaScript and WebAssembly engine, written in C++.}
-      \field{urlday}{8}
-      \field{urlmonth}{2}
+      \field{urlday}{2}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2021}
       \field{urldateera}{ce}
@@ -577,8 +595,8 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Understanding V8's Bytecode}
-      \field{urlday}{8}
-      \field{urlmonth}{4}
+      \field{urlday}{4}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2017}
       \field{urldateera}{ce}
@@ -594,14 +612,17 @@
       \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
       \field{labeltitlesource}{title}
       \field{title}{How (not) to access V8 memory}
+      \field{urlday}{15}
+      \field{urlmonth}{12}
+      \field{urlyear}{2019}
       \field{year}{2019}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://nodeaddons.com/how-not-to-access-node-js-from-c-worker-threads/
       \endverb
       \verb{url}
       \verb https://nodeaddons.com/how-not-to-access-node-js-from-c-worker-threads/
       \endverb
-      \warn{\item Entry 'v8mem' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring}
     \endentry
     \entry{Jacobsen2009}{inbook}{}
       \name{author}{1}{}{%
@@ -663,8 +684,8 @@
       \field{sortinithash}{fce5f8d0bd05e8d93f3dbe21c78897ca}
       \field{labeltitlesource}{title}
       \field{title}{Javascript Web APIs}
-      \field{urlday}{8}
-      \field{urlmonth}{5}
+      \field{urlday}{5}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2021}
       \field{urldateera}{ce}
@@ -714,14 +735,17 @@
       \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
       \field{labeltitlesource}{title}
       \field{title}{Launching Ignition and TurboFan}
+      \field{urlday}{16}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
       \field{year}{2021}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://docs.google.com/document/d/11T2CRex9hXxoJwbYqVQ32yIPMh0uouUZLdyrtmMoL44/mobilebasic#h.z0c1oogsbnnq
       \endverb
       \verb{url}
       \verb https://docs.google.com/document/d/11T2CRex9hXxoJwbYqVQ32yIPMh0uouUZLdyrtmMoL44/mobilebasic#h.z0c1oogsbnnq
       \endverb
-      \warn{\item Entry 'v8ByteCode2' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring}
     \endentry
     \entry{Singleton}{report}{}
       \name{author}{1}{}{%
@@ -772,14 +796,17 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Ignition: V8 Interpreter}
+      \field{urlday}{16}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
       \field{year}{2021}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://docs.google.com/document/d/11T2CRex9hXxoJwbYqVQ32yIPMh0uouUZLdyrtmMoL44/mobilebasic#h.z0c1oogsbnnq
       \endverb
       \verb{url}
       \verb https://docs.google.com/document/d/11T2CRex9hXxoJwbYqVQ32yIPMh0uouUZLdyrtmMoL44/mobilebasic#h.z0c1oogsbnnq
       \endverb
-      \warn{\item Entry 'v8ByteCode1' (references.bib): Invalid format '2021-16-08' of date field 'urldate' - ignoring}
     \endentry
     \entry{v8Pipeline}{online}{}
       \name{author}{1}{}{%
@@ -800,28 +827,34 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{An Introduction to Speculative Optimization in V8}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
       \field{year}{2021}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://ponyfoo.com/articles/an-introduction-to-speculative-optimization-in-v8
       \endverb
       \verb{url}
       \verb https://ponyfoo.com/articles/an-introduction-to-speculative-optimization-in-v8
       \endverb
-      \warn{\item Entry 'v8Pipeline' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring}
     \endentry
     \entry{nodejs}{online}{}
       \field{sortinit}{N}
       \field{sortinithash}{f7242c3ed3dc50029fca1be76c497c7c}
       \field{labeltitlesource}{title}
       \field{title}{NodeJS Website}
+      \field{urlday}{17}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
       \field{year}{2021}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://nodejs.org/en/
       \endverb
       \verb{url}
       \verb https://nodejs.org/en/
       \endverb
-      \warn{\item Entry 'nodejs' (references.bib): Invalid format '2021-17-08' of date field 'urldate' - ignoring}
     \endentry
     \entry{automPyr}{image}{}
       \name{author}{1}{}{%
@@ -940,8 +973,8 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{The Mysterious Realm of JavaScriptCore}
-      \field{urlday}{8}
-      \field{urlmonth}{4}
+      \field{urlday}{4}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2021}
       \field{urldateera}{ce}
@@ -957,8 +990,8 @@
       \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
       \field{labeltitlesource}{title}
       \field{title}{SpiderMonkey Developer Documentation}
-      \field{urlday}{8}
-      \field{urlmonth}{4}
+      \field{urlday}{4}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2021}
       \field{urldateera}{ce}
@@ -974,8 +1007,8 @@
       \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
       \field{labeltitlesource}{title}
       \field{title}{SSL library with an intuitive API and readable source code.}
-      \field{urlday}{8}
-      \field{urlmonth}{2}
+      \field{urlday}{2}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2021}
       \field{urldateera}{ce}
@@ -1039,8 +1072,8 @@
       \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
       \field{labeltitlesource}{title}
       \field{title}{The ADAPTIVE Communication Environment (ACE(TM))}
-      \field{urlday}{8}
-      \field{urlmonth}{2}
+      \field{urlday}{2}
+      \field{urlmonth}{8}
       \field{urlyear}{2021}
       \field{year}{2021}
       \field{urldateera}{ce}
@@ -1056,14 +1089,17 @@
       \field{sortinithash}{75dd7385c90b2252c3ae853a80ca853b}
       \field{labeltitlesource}{title}
       \field{title}{V8 Embedding Documentation}
+      \field{urlday}{15}
+      \field{urlmonth}{12}
+      \field{urlyear}{2019}
       \field{year}{2019}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://v8.dev/docs/embed
       \endverb
       \verb{url}
       \verb https://v8.dev/docs/embed
       \endverb
-      \warn{\item Entry 'v8embed' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring}
     \endentry
     \entry{v8Context}{image}{}
       \field{sortinit}{V}
@@ -1071,14 +1107,17 @@
       \field{labeltitlesource}{title}
       \field{note}{Funktionsweise Contexts}
       \field{title}{V8 Embedding Documentation}
+      \field{urlday}{15}
+      \field{urlmonth}{12}
+      \field{urlyear}{2019}
       \field{year}{2019}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://v8.dev/docs/embed
       \endverb
       \verb{url}
       \verb https://v8.dev/docs/embed
       \endverb
-      \warn{\item Entry 'v8Context' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring}
     \endentry
     \entry{v8Handles}{image}{}
       \field{sortinit}{V}
@@ -1086,14 +1125,17 @@
       \field{labeltitlesource}{title}
       \field{note}{Handles und Garbagecollection}
       \field{title}{V8 Embedding Documentation}
+      \field{urlday}{15}
+      \field{urlmonth}{12}
+      \field{urlyear}{2019}
       \field{year}{2019}
+      \field{urldateera}{ce}
       \verb{urlraw}
       \verb https://v8.dev/docs/embed
       \endverb
       \verb{url}
       \verb https://v8.dev/docs/embed
       \endverb
-      \warn{\item Entry 'v8Handles' (references.bib): Invalid format '2019-15-12' of date field 'urldate' - ignoring}
     \endentry
     \entry{wooldridge_jennings_1995}{article}{}
       \name{author}{2}{}{%

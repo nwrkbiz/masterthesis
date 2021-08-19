@@ -2,25 +2,48 @@
 \label{cha:praxis}
 
 Auf Basis des im vorhergehenden \autoref{cha:Projektumsetzung} entworfenen Prototypen wurde für das Produkt \textit{SiPlant} 
-ein Agent mit erweiterten Funktionsumfang entwickelt. Außerdem wurden die bestehenden Komponenten SIS\_HTTP und SIS\_NGUI 
-mithilfe der Google V8 Javascriptengine um den in \autoref{cha:Konzept} beschriebenen Template Mechanismus erweitert. Der Quellcode 
-kann in der beiliegenden CD-ROM/DVD eingesehen werden. Diese Entwicklungen finden bereits in einigen Projekten Einsatz
-die in diesem Kapitel vorgestellt werden.
+ein Agent mit erweitertem Funktionsumfang entwickelt. Der Quellcode kann in der beiliegenden CD-ROM/DVD eingesehen werden. 
+Diese Entwicklungen finden bereits in einigen Projekten Einsatz die in diesem Kapitel vorgestellt werden.
 
-\section{BMW Group Dingolfing}
+\section{BMW Gruppe, Dingolfing Deutschland}
 
-\section{Daimler AG Factory 56 Sindelfingen}
+Für die BMW Gruppe wurde \textit{SiPlant} in zwei Batteriemodulfertigungsanlagen integriert. Als Kundenanforderung wurde von dem 
+Systemintegrator mithilfe des V8 Agenten eine Schrittkettenanalyse mit Wiedergabefunktion zum Überwachen und Optimieren
+der Transitionen umgesetzt. Des Weiteren konnte das Anbinden folgender Teilnehmer in der \textit{Feldebene} erleichtert werden:
 
-\section{Valmet}
+\begin{itemize}
+    \item Anlage MP05: 21 S7Plus Steuerungen mit 98000 Eingabe- und Ausgabekanälen.
+    \item Anlage MP02: 29 S7-300 Steuerungen mit 80000 Eingabe- und Ausgabekanälen.
+\end{itemize}
 
-\section{Geely}
+Laut Kundenrückmeldung wurde durch die Schrittkettenanalyse die Produktion um 15 Prozentpunkte gesteigert.
+
+\section{Daimler AG, Factory 56 Sindelfingen Deutschland}
+
+In diesem Projekt wird die \textit{SiPlant}-Erweiterung \textit{SIMOVE} für die Steuerung von 507 fahrerlosen Transportfahrzeugen in Produktion
+und Logistik der Mercedes Benz S-Klassen Limousine verwendet. Die Fahraufträge werden von der \textit{Produktionsleitebene} an das SCADA-System 
+über das daimlerinterne Integra Protokoll übermittelt. Mithilfe der angebundenen Javascriptengine wurde hier ein Auswertungswerkzeug für historische 
+Integra Protokolldaten entwickelt.  
+
+\section{Valmet, Salo Finnland}
+
+Valmet ist ein Zulieferbetrieb von Hochvoltspeicher für die Daimler AG. Es werden dort drei Produktionslinien mit 119 S7Plus Steuerungen 
+in \textit{SiPlant} visualisiert. Der V8-Agent fand hier als Hilfswerkzeug für den Import von 180000 Eingabe- und Ausgabekanälen
+Einsatz.
+
+\section{Geely, Ningbo China}
+
+Für Geely wurde in einem Pilotprojekt \textit{SiPlant} als SCADA-System für eine Prototypenfertigung aufgesetzt. 
+Insgesamt sind in diesem System 63000 S7Plus und OPC-UA Eingabe- und Ausgabekanäle angebunden.
+Bei dem Import konnte der entwickelte Javascript-Agent Unterstützung leisten. 
 
 \section{Fazit}
 
-
+Die in dieser Arbeit entwickelte Programmkomponente konnte sich wie oben angeführt bereits in der Praxis als nützlich erweisen. 
+Dennoch ist das Umsetzungskonzept nicht optimal, desswegen wird im nächsten Abschnitt auf die Nachteile eingegangen.
 
 \subsection{Nachteile}
 
-Da die Google V8 Javascriptengine nur den von Ecma Standardisierten ECMAscript Sprachumfang unterstützt \cite{ecma} fehlen viele 
-normalerweise von den Browsern unterstützen und von W3C definierten Web-APIs \cite{webAPI}. Dadurch kann man nur eingeschränkt auf 
-einfache Drittanbieterbibliotheken zurückgreifen, das diese oft von den Web-APIs abhängen. 
+Da die Google V8 Javascriptengine nur den von Ecma Standardisierten ECMAScript Sprachumfang implementiert, \cite{ecma} fehlen viele 
+der von den Browsern unterstützen und von W3C definierten Web-APIs \cite{webAPI}. Dadurch kann man nur eingeschränkt auf 
+Drittanbieterbibliotheken zurückgreifen, weil diese oft von den Web-APIs abhängig sind. 

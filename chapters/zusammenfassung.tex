@@ -34,9 +34,9 @@ Obwohl die entwickelte Programmkomponente eine gute Hilfestellung bei der Projek
 ist aufgrund der fehlenden Unterstützung der von W3C standardisierten Web-APIs die gewünschte Flexibilität nur eingeschränkt gegeben. Außerdem steht das 
 \textit{SiPlant} Produkt aufgrund von Lizenzverkäufen und Hinzunahme von externen Ressourcen im Projektgeschäft
 einer stetig wachsenden Anzahl von Systemintegratorinnen und Systemintegratoren mit unterschiedlichen technischen Ausbildungen zur Verfügung.
-Daher wäre es vom Vorteil, anstelle eines dezidierten V8-Agents eine Softwarebibliothek zu entwerfen, die von einer Vielzahl von 
+Daher wäre es vom Vorteil, anstelle eines dezidierten V8-Agenten eine Softwarebibliothek zu entwerfen, die von einer Vielzahl von 
 Programmiersprachen verwendet werden kann, um auf das proprietäre WinCC OA SCADA-System zugreifen zu können. 
-Technisch wäre dies mithilfe einer Fremdfunktionsschnittstelle möglich \cite{ffi}. Die meisten 
+Technisch wäre dies über eine Fremdfunktionsschnittstelle umsetzbar \cite{ffi}. Die meisten 
 Programmiersprachen besitzen eine Möglichkeit, dynamische Softwarebibliotheken (Dynamic-Link Libraries oder Shared Objects) 
 mit einer C-Programmierschnittstelle zur Laufzeit nachzuladen. Das Marshalling der Datentypen muss hierbei in der Zielsprache erfolgen.
 \newline
@@ -46,7 +46,7 @@ Paketmanagers ist ein flexibles Nachladen von Drittanbieterbibliotheken möglich
 Außerdem unterstützt NodeJS die W3C Web-APIs. Über eigene Bibliotheken ist ein Anbinden von Fremdfunktionsschnittstelle realisierbar. Somit kann man
 eigenen nativen Code der Javascript-Laufzeitumgebung zur Verfügung stellen. Dies soll im folgenden Beispiel gezeigt werden:
 
-\subsection{Fremdfunktionsschnittstelle}
+\subsection{Fremdfunktionsschnittstelle (FFI)}
 
 \lstinputlisting[
     label={src:proto4_h},
@@ -101,7 +101,7 @@ $ cmake --build .
 
 \subsection{Fazit}
 
-Aufgrund dieser Erkenntnisse wird zukünftig innerhalb der Abteilung \textit{DI FA SO SIS} der Fokus auf diese Technologie gelegt. Die
+Aufgrund dieser Erkenntnisse wird zukünftig innerhalb der Abteilung \textit{DI FA SO SIS} der Fokus auf diese FFI-Technologie gelegt. Die
 Idee ist es, die C++-Klassen der WinCC OA Programmierschnittstelle nach der vorher gezeigten Methodik für andere Programmiersprachen zur 
 Verfügung zu stellen. Daraus würde sich der weitere Vorteil ergeben, dass diese so erstellte Programmbibliothek nicht mehr an die 
 Compilervorgaben des WinCC OA Produktes gebunden ist.

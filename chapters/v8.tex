@@ -28,12 +28,12 @@ eine Sammlung von Instruktionen gebündelt in einer ausführbaren Datei. Diese k
 gestartet werden, um Eingaben zu verarbeiten und Ausgaben zu generieren. Ein Interpreter ist ein anderer Typ von Sprachprozessor, der im Gegensatz 
 zum Compiler keine Übersetzungen erzeugt, sondern den Quellcode direkt ausführt. Ein Beispiel dafür ist in der Grafik \ref{fig:compiler_interpreter} rechts illustriert. 
 Für bestimmte Programmiersprachen wie Javascript sind auch Mischformen möglich. Beide Typen eint
-die Eigenschaft, dass sie im ersten Schritt das Quellprogramm Analysieren müssen, um eine für sie verständliche Zwischensprache zu erzeugen. 
+die Eigenschaft, dass sie im ersten Schritt das Quellprogramm analysieren müssen, um eine für sie verständliche Zwischensprache zu erzeugen. 
 Diese Aufgabe übernimmt das \textit{Frontend}.
 
 \subsection{Frontend}
 
-Als Frontend wird in der Compilertheorie jene Komponente bezeichnet, die eine Programmiersprache in eine maschinenunabhängige 
+Als \textit{Frontend} wird in der Compilertheorie jene Komponente bezeichnet, die eine Programmiersprache in eine maschinenunabhängige 
 Zwischendarstellung übersetzt.
 
 \begin{figure}[h]
@@ -103,43 +103,43 @@ getX({ x: 1, y: 4 });
 getX({ x: 1, z: 4 });\end{GenericCode}
 \end{program}
 
-In das Beispiel \ref{prog:js_deopt} zeigt, dass in Zeile 11 deoptimiert werden muss, da der Übergebene Typ nicht dieselbe Struktur besitzt, wie in den
+Das Beispiel \ref{prog:js_deopt} zeigt, dass in Zeile 11 deoptimiert werden muss, da der übergebene Typ nicht dieselbe Struktur besitzt, wie in den
 vorhergehenden Aufrufen.
 
 \section{Wahl der Javascriptengine}
 
 Konzeptionell funktionieren die Javascriptengines Google V8, Mozilla Spidermonkey und Apple JavaScriptCore wie bereits erläutert gleich,
 daher sind sie auch ähnlich performant in der Ausführung von Javascript-Code.
-Um zu begründen, warum sich diese Arbeit mit Ersterer beschäftigt, werden in diesem Abschnitt die Marktanteile aller anhand der
-Verwendung in verschiedenen Webbrowsern verglichen.
+Um zu begründen, warum sich diese Arbeit mit Ersterer beschäftigt, werden in diesem Abschnitt die Marktanteile aller vorher genannten Engines
+anhand der Verwendung in verschiedenen Webbrowsern verglichen.
 
 \begin{table}[h] \caption{Marktanteile verschiedener Webbrowser weltweit \cite{statcounter}, \cite{netmarketshare}.} 
 	\label{tab:js_marketshare} \centering 
-	\setlength{\tabcolsep}{5mm} % separator between columns 
+	\setlength{\tabcolsep}{3mm} % separator between columns 
 	\def\arraystretch{1.25} % vertical stretch factor 
-	\begin{tabular}{|l|l|l|} \hline 
-		\emph{Browser} & \emph{netmarketshare.com} & \emph{statcounter.com} \\ 
+	\begin{tabular}{|l|l|c|c|} \hline 
+		\emph{Browser} & \emph{Javascript-Engine} & \emph{netmarketshare.com} & \emph{statcounter.com} \\ 
 		\hline 
-		\hline Chrome & 65,17\% & 65,73\% \\ 
-		\hline Safari & 13,75\% & 18,04\% \\
-		\hline Firefox & 2,25\% & 3,54\% \\ 
-		\hline Edge &  4,03\% & 3,5\% \\ 
-		\hline Samsung Internet & 3,07\% & 3,22\% \\ 
-		\hline Opera & 1,79\% & 2,17\% \\ 
+		\hline Google Chrome & V8 & 65,17\% & 65,73\% \\ 
+		\hline Apple Safari & JavaScriptCore & 13,75\% & 18,04\% \\
+		\hline Mozilla Firefox &  Spidermonkey  & 2,25\% & 3,54\% \\ 
+		\hline Microsoft Edge & V8 & 4,03\% & 3,5\% \\ 
+		\hline Samsung Internet & V8 & 3,07\% & 3,22\% \\ 
+		\hline Opera & V8 & 1,79\% & 2,17\% \\ 
 		\hline 
 	\end{tabular} 
 \end{table}
 
-In der Tabelle \ref{tab:js_marketshare} sind die Prozentuellen Marktanteile der fünf meistgenutzten Webbrowser aufgelistet. Chrome,
-Edge, Samsung Internet und Opera verwenden alle die Google V8 Javascriptengine zum ausführen von Javascriptdateien. Somit wird sie 
-mit 74,06\% laut netmarketshare.com und 75,17\% laut statcounter.com in mehr als der hälfte aller Webbrowser im Internet eingesetzt.
-Außerdem wird sie auch als Standartengine für das NodeJS Projekt verwendet \cite{nodejs}. Damit ist sie die weltweit am 
-meisten verwendete Programmkomponente die sich um das ausführen von Javascript-Code kümmert.
+In der Tabelle \ref{tab:js_marketshare} sind die prozentuellen Marktanteile der fünf meistgenutzten Webbrowser auf Mobilen und Desktopgeräten aufgelistet. 
+Chrome, Edge, Samsung Internet und Opera verwenden alle die Google V8 Javascriptengine zum Ausführen von Javascriptdateien. Somit wird sie 
+mit 74,06\% laut netmarketshare.com und 75,17\% laut statcounter.com in mehr als der Hälfte aller Webbrowser im Internet eingesetzt.
+Außerdem wird sie auch als Standardengine für das NodeJS Projekt verwendet \cite{nodejs}. Damit ist sie die weltweit am 
+meisten verwendete Programmkomponente die sich um das Ausführen von Javascript-Code kümmert.
 
 \subsection{Fazit}
 
 Aufgrund der hohen Verbreitung in quelloffenen und kommerziellen Projekten kann davon ausgegangen werden, dass, obwohl die Google V8-Engine 
-eine freie Lizenz besitzt, eine gute Wartung der Codebasis und ein Langer Support garantiert ist. Aus diesem Grund wurde diese Softwarekomponente 
+eine freie Lizenz besitzt, eine gute Wartung der Codebasis und ein langer Support garantiert ist. Aus diesem Grund wurde diese Softwarekomponente 
 den anderen vorgezogen.
 
 \section{Google V8 Javascriptengine im Detail}
@@ -153,9 +153,9 @@ Das fertige Kompilat wird unter \textit{v8/out/v8} abgelegt.
 
 \subsection{Abstrakter Syntaxbaum}
 
-Im ersten Ausführungsschritt muss zunächst wie in dem Abschnitt \ref{cha:Grundlagen} erklärt mithilfe eines \textit{Frontends} der Quellcode geparst und
+Im ersten Ausführungsschritt muss zunächst, wie in dem Abschnitt \ref{cha:Grundlagen} erklärt, mithilfe eines \textit{Frontends} der Quellcode geparst und
 ein abstrakter Syntaxbaum erstellt werden. Jene Komponente die dies durchführt wird in der Google V8-Engine als \textit{Parser} bezeichnet.
-Anhand der folgenden Funktion \textit{addiere} wird nun gezeigt, wie dieser Baum dargestellt wird:
+Anhand der folgenden Funktion 'addiere' wird nun gezeigt, wie dieser Baum dargestellt wird:
 
 \begin{program}[h]
 \caption{Beispielcode, addiere.js}
@@ -207,7 +207,7 @@ Funktion. Hier fällt auf, dass die Kinderknoten der arithmetischen Addition auf
 \subsection{Interpreter}
 
 Aus diesem Baum wird im nächsten Schritt ein Bytecode generiert, der dann von dem Interpreter ausgeführt werden kann. Der Interpreter wird 
-in der Google V8-Engine als \textit{Ingnition} bezeichnet und ist als Registermaschiene umgesetzt. Die meisten Bytecodes verwenden ein spezielles
+in der Google V8-Engine als \textit{Ingnition} bezeichnet und ist als Registermaschine umgesetzt. Die meisten Bytecodes verwenden ein spezielles
 Register mit dem Namen \textit{accumulator} um den zuletzt berechneten Wert zu speichern.
 
 \begin{program}[h]
@@ -228,14 +228,14 @@ Handler Table (size = 16)
 \end{program}
 
 In der Ausgabe \ref{prog:d8_bytec} kann man erkennen, dass zwei weitere Register, a1 und a0 verwendet werden. Diese entsprechen den
-Übergabeparametern auf dem Maschienstapel. Die einzelnen Bytecodes in \ref{prog:d8_bytec} können wie folgt Interpretiert werden:
+Übergabeparametern auf dem Maschinenstapel. Die einzelnen Bytecodes in \ref{prog:d8_bytec} können wie folgt interpretiert werden:
 
 
 \begin{itemize}
-	\item StackCheck, Überpüft den Stapelzeiger auf validität.
-	\item Ldar a1, Lädt den Wert von Register a1 in das \textit{accumulator} Register.
-	\item Add a0, [0], Lädt a0 und Addiert es auf den Wert im \textit{accumulator} Register.
-	\item Return Gibt die Kontrolle zurück an den Aufrufer. Der Rückgabewert ist jener des \textit{accumulator} Registers.
+	\item StackCheck: Überpüft den Stapelzeiger auf validität.
+	\item Ldar a1: Lädt den Wert von Register a1 in das \textit{accumulator} Register.
+	\item Add a0, [0]: Lädt a0 und Addiert es auf den Wert im \textit{accumulator} Register.
+	\item Return: Gibt die Kontrolle zurück an den Aufrufer. Der Rückgabewert ist jener des \textit{accumulator} Registers.
 \end{itemize}
 
 
@@ -245,7 +245,7 @@ Diese Komponente wird in der Google V8-Engine als \textit{Turbofan} bezeichnet, 
 von Codeabschnitten ermöglicht. Wird vom Interpreter erkannt, dass eine Funktion oft aufgerufen wird,
 übergibt er den Bytecode an den Just-In-Time Compiler, damit dieser nativen Maschinencode erzeugt. Anschließend
 wird dieses Kompilat für eine spätere Ausführung im Speicher abgelegt.
-Dies kann mitmithilfe der d8-Konsole über die \textit{\%OptimizeFunctionOnNextCall()} Laufzeitanweisung simuliert werden. 
+Dies kann mit der d8-Konsole über die \textit{\%OptimizeFunctionOnNextCall()} Laufzeitanweisung simuliert werden. 
 Damit solche Anweisungen von der Entwicklerkonsole interpretiert werden, muss sie mit dem Parameter \textit{--allow-natives-syntax} 
 gestartete werden.
 
@@ -308,7 +308,7 @@ hätte. Da dieser aber im Beispiel \ref{prog:d8_optdeopt} in der Zeile elf nicht
 
 \section{C++-Programmierschnittstelle}
 
-Nachdem im nun bekannt ist, wie der Javascript-Code ausgeführt wird, widmet sich dieses Kapitel der C++-Programmierschnittstelle.
+Nachdem nun bekannt ist, wie der Javascript-Code ausgeführt wird, widmet sich dieses Kapitel der C++-Programmierschnittstelle.
 Es werden die wichtigsten Konzepte erklärt und mithilfe eines Beispielprogrammes veranschaulicht. Dazu wird Bezug auf die Quellen 
 \cite{learnV8}, \cite{v8embed} und \cite{v8mem} genommen.
 
@@ -316,7 +316,7 @@ Es werden die wichtigsten Konzepte erklärt und mithilfe eines Beispielprogramme
 
 Als \textit{Isolate} bezeichnet man eine unabhängige Kopie der V8 Laufzeitumgebung, die einen eigenen Speicherbereich verwaltet.
 Ein Prozess kann mehrere dieser Objekte Instanziieren, aber jedes darf nur von jeweils einem Thread verwendet werden. 
-Zu diesem Zweck muss mithilfe von Objekten des Datentyps \textit{Locker} aus der V8-Programmierschnittstelle ein mehrfacher Zugriff verhindert 
+Zu diesem Zweck muss über Objekte des Datentyps \textit{Locker} aus der V8-Programmierschnittstelle ein mehrfacher Zugriff verhindert 
 werden. Diese funktionieren wie eine Mutal-Exclusion und blockieren einen zweiten Thread, bis der erste den geschützten Bereich
 verlassen hat.
 
@@ -339,7 +339,7 @@ gegenseitig zu beeinflussen. Nach Aufrufen des Destruktors von dem scopeB Objekt
 \subsection{Speicherverwaltung}
 
 Der Speicher innerhalb eines Isolate wird von einem Garbage-Collector verwaltet. Damit dieser weiß, welche Speicherbereiche
-noch in Verwendung sind und welche nicht, werden Objekte über sogenannte Handles überwacht. Diese halten eine Referenz auf 
+noch in Verwendung, werden die Javascript-Objekte über sogenannte Handles überwacht. Diese halten eine Referenz auf 
 die Position eines Javascript-Objekts in dem von einem Isolate verwalteten Speicherbereich. Gibt es kein Handle mehr, dass 
 ein bestimmtes Objekt referenziert, kann dieses durch den Garbage-Collector freigegeben werden. Hier
 wird zwischen zwei Typen unterschieden:
@@ -352,20 +352,20 @@ wird zwischen zwei Typen unterschieden:
 
 \subsubsection{Local}
 
-Ob ein Objekt noch valide ist oder nicht, wird hier mithilfe des RAII-Konzeptes (Ressourcenbelegung ist Initialisierung) ermittelt.
+Ob ein Objekt noch valide ist, wird hier mithilfe des RAII-Konzeptes (Ressourcenbelegung ist Initialisierung) ermittelt.
 Dazu muss, bevor das erzeugen von Javascript-Objekten möglich ist, wie in Abbildung \ref{fig:handles} gezeigt, ein HandleScope Objekt auf dem C++-Stack allokiert werden. 
 Dieses Objekt stellt einen eigenen Stack für Local-Handles zur Verfügung.
 Wird es zerstört, zum Beispiel beim Verlassen des Scopes, werden alle Handles dieses HandleScope-Stacks gelöscht.
 
 \subsubsection{Persitent}
 
-Die Lebenszeit eines Persitent-Handles ist nicht an den aktuellen Scope gebunden. Daher muss man dem V8-Garbage-Collector selber signalisieren,
+Die Lebenszeit eines Persitent-Handles ist nicht an den aktuellen Scope gebunden. Daher muss man dem V8-Garbage-Collector manuell signalisieren,
 wenn es nicht mehr gebraucht wird. Dazu kann die \textit{SetWeak()} Funktion des Handle Objekts aufgerufen werden. Dieser Mechanismus ist hilfreich,
 wenn ein Javascript-Objekt in mehreren C++-Funktionen verwendet werden soll.
 
 \subsection{Anpassen von Javascript-Ausführungsumgebungen über das Global-Objekt}
 
-Beim erstellen eines neuen V8-Contexts kann ein Objekt des Datentyps \textit{ObjectTemplate} angegeben werden, dass die Ausführungsumgebung des Contexts beschreibt.
+Beim Erstellen eines neuen V8-Contexts kann ein Objekt des Datentyps \textit{ObjectTemplate} angegeben werden, dass die Ausführungsumgebung des Contexts beschreibt.
 Diesem Objekt kann man beliebig viele eigene Funktionen (\textit{FunctionTemplate} Objekte) oder Variablen zuweisen. Über \textit{FunctionTemplate} Objekte ist es wiederum möglich, C++ Funktionen aufzurufen. 
 Dadurch lässt sich die Javascriptsprache beliebig erweitern.
 
@@ -378,14 +378,14 @@ der V8-Programmierschnittstelle, damit sie Befehle über einen Websocket-Server 
 einer der zwei zuvor genannten Browser zu analysieren. Die \textit{V8InspectorClient} Implementierung muss die Verbindung zu einem \textit{Context} herstellen.
 Danach können über den Websocket-Server erhaltene JSON-Befehle an die V8-Engine weitergegeben werden. Die \textit{V8Inspector::Channel} 
 Umsetzung erhält die Antworten auf die Befehle und muss sie an den Befehlsgeber zurücksenden. Somit ist es möglich die Laufzeit eines laufenden Javascript-Codes zu 
-analysieren und manipulieren. Außerdem kann man einzelne Funktionsaufrufe und Codesequenzen über die von den Browser-Entwicklerwerkzeugen zur Verfügung gestellte REPL (Read-eval-print loop) 
+analysieren und zu manipulieren. Außerdem kann man einzelne Funktionsaufrufe und Codesequenzen über die von den Browser-Entwicklerwerkzeugen zur Verfügung gestellte REPL (Read-eval-print loop) 
 Konsole testen \cite{repl}.
 
 \subsection{Beispiel}
 
-In diesem Abschnitt wird anhand eines Beispiels gezeigt, wie man die vorher erläuterten Konzepte verwenden kann, um innerhalb eines
-C++-Programmes Javascript-Quellcode ausführen zu können. Des weiterem wird erklärt, wie die Skriptsprache über das Global-Objekt erweitern 
-werden kann.
+Nachfolgend wird anhand eines konkreten Beispiels gezeigt, wie man die vorher erläuterten Konzepte angewendet werden, um innerhalb eines
+C++-Programmes Javascript-Quellcode ausführen zu können. Des weiterem wird erklärt, wie die Skriptsprache über das Global-Objekt erweiterbar 
+ist.
 
 \lstinputlisting[
 	label={src:proto2_printparams},
@@ -397,11 +397,11 @@ werden kann.
 	lastline=70]{prototype2/src/prototyp2.cpp}
 
 Die Funktion \ref{src:proto2_printparams} soll Skripten zur Verfügung gestellt werden. 
-Der C++-Quellcode nimmt alle von Javascript übergebenen Argumente entgegen und gibt sie mithilfe von \textit{std::cout} aus. In Zeile 12 wird an den aufrufenden
+Der C++-Quellcode nimmt alle von Javascript übergebenen Argumente entgegen und gibt sie über \textit{std::cout} aus. In Zeile 12 wird an den aufrufenden
 Javascript-Code der boolesche Wert 'true' retourgegeben. 
 Am Anfang des Beispiels kann man erkennen, dass ein HandleScope angelegt wird um alle Local Handles verwalten zu können. Hier wird keine Context::Scope
-Instanz benötigt, da das ausführende Skript bereits in einem Aktiven Scope laufen muss. Wird kein Parameter übergeben, so wird eine Javascript-Exception
-geworfen. Diese kann im Skriptquellcode mithilfe von \textit{try}-\textit{catch}-Blöcken gefangen werden. Diese Funktion kann nun innerhalb eines Programmes
+Instanz benötigt, da das ausführende Skript bereits in einem aktiven Scope laufen muss. Wird kein Parameter übergeben, so wird eine Javascript-Exception
+geworfen. Diese kann im Skriptquellcode durch \textit{try}-\textit{catch}-Blöcken gefangen werden. Diese Funktion kann nun innerhalb eines Programmes
 an die V8-Engine übergeben werden:
 
 \lstinputlisting[
@@ -452,7 +452,7 @@ In \ref{src:proto2_test2} kann man einen syntaktischen Fehler erkennen. Das Star
 			caption={Ausgabe des zweiten Tests.},
 			numbers=none]{prototype2/ausgabe2.txt}
 
-Man kann erkennen, dass die Google-V8-Enginen dieses Problem zur bereits zur Kompilierzeit identifizieren konnte und Hinweise zum Beheben ausgibt.
+Man kann erkennen, dass die Google-V8-Enginen dieses Problem bereits zur Kompilierzeit identifizieren konnte und Hinweise zum Beheben ausgibt.
 Abgefangen wurde der Fehler über das \textit{tryCatchCompile}-Objekt in der Hauptfunktion. \\
 
 Das komplette Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD unter \textit{Thesis/prototype2} und kann mit folgenden Befehlen 
