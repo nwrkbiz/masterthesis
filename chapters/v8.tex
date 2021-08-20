@@ -65,7 +65,7 @@ als Syntaxfehler erkannt. Diese Komponente wird auch \textit{Parser} genannt.
 
 \subsubsection{Semantische Analyse}
 
-Unter Semantik wird die Zuordnung von Bedeutung zu Texten verstanden. Daher wird in dieser Phase mithilfe des Syntaxbaumes und der
+Unter Semantik wird die Zuordnung von Bedeutung zu Texten verstanden. Daher wird in dieser Phase mit Hilfe des Syntaxbaumes und der
 Symboltabelle die semantische Konsistenz des Programmes überprüft. Es werden Gültigkeitsbereiche verwaltet und die
 Einhaltung von Kontextbedingungen verifiziert. Ist dies nicht der Fall, so wird ein semantischer Fehler erzeugt.
 Falls die Sprachdefinition bestimmte Typkonvertierungen erlaubt, werden diese umgesetzt. Zum Beispiel kann ein binärer arithmetischer Operator 
@@ -147,13 +147,13 @@ den anderen vorgezogen.
 Bevor das Umsetzungskonzept erläutert werden kann, muss die generelle Funktionsweise der Google V8 Javascriptengine
 erörtert werden. Dazu wird in diesem Abschnitt Bezug auf \cite{v8ByteCode1}, \cite{v8ByteCode2}, und \cite{v8Pipeline} genommen. 
 Gezeigt werden die einzelnen Ausführungsschritte anhand eines einfachen Codebeispiels,
-dass mithilfe der V8-Entwicklerkonsole \textit{d8} ausgeführt wird. Diese kann mit dem Build-Skript in Anhang \ref{app:v8build}
+dass mit Hilfe der V8-Entwicklerkonsole \textit{d8} ausgeführt wird. Diese kann mit dem Build-Skript in Anhang \ref{app:v8build}
 gebaut werden. Dazu müssen jedoch die Parameter 'is\_debug', 'is\_clang' und 'use\_sysroot' auf 'true' geändert werden. 
 Das fertige Kompilat wird unter \textit{v8/out/v8} abgelegt.
 
 \subsection{Abstrakter Syntaxbaum}
 
-Im ersten Ausführungsschritt muss zunächst, wie in dem Abschnitt \ref{cha:Grundlagen} erklärt, mithilfe eines \textit{Frontends} der Quellcode geparst und
+Im ersten Ausführungsschritt muss zunächst, wie in dem Abschnitt \ref{cha:Grundlagen} erklärt, mit Hilfe eines \textit{Frontends} der Quellcode geparst und
 ein abstrakter Syntaxbaum erstellt werden. Jene Komponente die dies durchführt wird in der Google V8-Engine als \textit{Parser} bezeichnet.
 Anhand der folgenden Funktion 'addiere' wird nun gezeigt, wie dieser Baum dargestellt wird:
 
@@ -267,7 +267,7 @@ addiere(47.11, 2);
 \end{GenericCode}
 \end{program}
 
-Der Javascript-Quellcode \ref{prog:d8_optdeopt} zeigt, wie mithilfe der Entwicklerkonsole ein Optimieren und Deoptimieren simuliert werden
+Der Javascript-Quellcode \ref{prog:d8_optdeopt} zeigt, wie mit der Entwicklerkonsole ein Optimieren und Deoptimieren simuliert werden
 kann. Um diesen Prozess zu veranschaulichen, kann \textit{d8} mit \textit{--trace-deopt} gestartet werden. \\
 
 \begin{program}[h]
@@ -310,7 +310,7 @@ und die Hardwareregister ausgelesen, damit ein Frame für den Interpreter erstel
 \section{C++-Programmierschnittstelle}
 
 Nachdem nun bekannt ist, wie der Javascript-Code ausgeführt wird, widmet sich dieses Kapitel der C++-Programmierschnittstelle.
-Es werden die wichtigsten Konzepte erklärt und mithilfe eines Beispielprogrammes veranschaulicht. Dazu wird Bezug auf die Quellen 
+Es werden die wichtigsten Konzepte erklärt und anhand eines Beispielprogrammes veranschaulicht. Dazu wird Bezug auf die Quellen 
 \cite{learnV8}, \cite{v8embed} und \cite{v8mem} genommen.
 
 \subsection{Isolates}
@@ -325,7 +325,7 @@ verlassen hat.
 
 Ein \textit{Context} ist eine Ausführungsumgebung, die es ermöglicht, separaten, unabhängigen Javascript-Code in einer 
 V8 Laufzeitumgebung (\textit{Isolate}) auszuführen. Da ein \textit{Isolate} Objekt mehrere Context-Ausführungsumgebungen besitzen kann, 
-muss jene, die zur Ausführung verwendet werden soll, explizit angegeben werden. Dies wird mithilfe des RAII-Konzeptes 
+muss jene, die zur Ausführung verwendet werden soll, explizit angegeben werden. Dies wird mit dem RAII-Konzept
 (Ressourcenbelegung ist Initialisierung) durch Erstellen eigener Objekte des Types \textit{Context::Scope} erreicht.
 
 \begin{figure}[h]
@@ -347,13 +347,13 @@ wird zwischen zwei Typen unterschieden:
 
 \begin{figure}[h]
 	\centering \includegraphics[width=1\textwidth]{handles}
-	\caption{Speicherverwaltung mithilfe von Handles.\cite{v8Handles}}
+	\caption{Speicherverwaltung mit Hilfe von Handles.\cite{v8Handles}}
 	\label{fig:handles}
 \end{figure}
 
 \subsubsection{Local}
 
-Ob ein Objekt noch valide ist, wird hier mithilfe des RAII-Konzeptes (Ressourcenbelegung ist Initialisierung) ermittelt.
+Ob ein Objekt noch valide ist, wird hier über das RAII-Konzept (Ressourcenbelegung ist Initialisierung) ermittelt.
 Dazu muss, bevor das erzeugen von Javascript-Objekten möglich ist, wie in Abbildung \ref{fig:handles} gezeigt, ein HandleScope Objekt auf dem C++-Stack allokiert werden. 
 Dieses Objekt stellt einen eigenen Stack für Local-Handles zur Verfügung.
 Wird es zerstört, zum Beispiel beim Verlassen des Scopes, werden alle Handles dieses HandleScope-Stacks gelöscht.
@@ -375,8 +375,8 @@ Dadurch lässt sich die Javascriptsprache beliebig erweitern.
 Die Google-V8-Engine besitzt erweiterte Funktionen zur Fehlersuche über ein JSON basierendes Protokoll \cite{v8Debug}. Die in den Webbrowsern Google Chrome und Microsoft
 Edge enthaltenen Entwicklerwerkzeuge unterstützen dieses und erlauben entfernten Zugriff auf V8-Instanzen via Websockets. 
 Implementiert man die entsprechenden Interface-Klassen \textit{V8InspectorClient} und \textit{V8Inspector::Channel}
-der V8-Programmierschnittstelle, damit sie Befehle über einen Websocket-Server erhalten können, ist es möglich, den von der Engine ausgeführten Javascript-Code mithilfe 
-einer der zwei zuvor genannten Browser zu analysieren. Die \textit{V8InspectorClient} Implementierung muss die Verbindung zu einem \textit{Context} herstellen.
+der V8-Programmierschnittstelle, damit sie Befehle über einen Websocket-Server erhalten können, ist es möglich, den von der Engine ausgeführten Javascript-Code mit 
+einen der zwei zuvor genannten Browser zu analysieren. Die \textit{V8InspectorClient} Implementierung muss die Verbindung zu einem \textit{Context} herstellen.
 Danach können über den Websocket-Server erhaltene JSON-Befehle an die V8-Engine weitergegeben werden. Die \textit{V8Inspector::Channel} 
 Umsetzung erhält die Antworten auf die Befehle und muss sie an den Befehlsgeber zurücksenden. Somit ist es möglich die Laufzeit eines laufenden Javascript-Codes zu 
 analysieren und zu manipulieren. Außerdem kann man einzelne Funktionsaufrufe und Codesequenzen über die von den Browser-Entwicklerwerkzeugen zur Verfügung gestellte REPL (Read-eval-print loop) 

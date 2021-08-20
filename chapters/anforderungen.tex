@@ -2,8 +2,8 @@
 \label{cha:Anforderungen}
 
 Der zu entwickelnde Agent soll es Systemintegratorinnen und Systemintegratoren ermöglichen, über Javascript auf ein WinCC OA SCADA-System 
-zugreifen zu können. Dazu sollen die in den letzten Kapiteln beschriebenen Konzepte der Google-V8-Engine und von WinCC OA verwendet werden. 
-Im Folgenden werden die Anforderungen an das Programm definiert.
+zugreifen zu können. Dazu müssen die in den letzten Kapiteln beschriebenen Konzepte der Google-V8-Engine und von WinCC OA verwendet werden. 
+Im Folgenden sind die Anforderungen an das Programm definiert.
 
 \section{Zu unterstützende Plattformen}
 
@@ -32,7 +32,7 @@ Dazu werden im Folgenden die genauen Anforderungen an den Agenten beschrieben.
 
 \subsection{Entwicklung kundenspezifischer Anforderungen}
 
-Oft stellen Kundinnen und Kunden während der Projektphase Anforderungen, die nicht im Standartfunktionsumfang von \textit{SiPlant} enthalten sind.
+Oft stellen Kundinnen und Kunden während der Projektphase Anforderungen, die nicht im Standardfunktionsumfang von \textit{SiPlant} enthalten sind.
 Um auf diese Wünsche agil eingehen zu können, ohne die Produktentwicklung zu stören, ist eine Möglichkeit der Umsetzung vor Ort nötig.
 Hier soll der V8-Agent eine Hilfe bieten, um Algorithmen, skriptgestützt implementieren zu können. 
 
@@ -43,7 +43,7 @@ Hier soll der V8-Agent eine Hilfe bieten, um Algorithmen, skriptgestützt implem
 \end{figure}
 
 Dazu müssen wie in Abbildung \ref{fig:UseCase_Implementation} gezeigt Kundinnen und Kunden zunächst eine Anforderung spezifizieren. Im nächsten Schritt ist es die 
-Aufgabe der Systemintegrierenden diese Spezifikation zu analysieren. Danach können die entsprechenden Algorithmen unter Zuhilfenahme 
+Aufgabe der Systemintegratorinnen und Systemintegratoren diese Spezifikation zu analysieren. Danach können die entsprechenden Algorithmen unter Zuhilfenahme 
 der REPL-Konsole implementiert werden. Diese müssen dann dem Projekt hinzugefügt werden. An dieser Stelle bietet sich der in \ref{cha:subproj} beschriebene 
 WinCC OA Subprojekt-Mechanismus an, um eine gute Organisation und Wiederverwendbarkeit des erstellten Codes zu erreichen.
 
@@ -60,8 +60,8 @@ SPS-Programme benötigt.
 	\label{fig:UseCase_Import}
 \end{figure}
 
-Diese müssen wie in Abbildung \ref{fig:UseCase_Import} visualisiert von den SPS-Entwicklern oder SPS-Entwicklerinnen zur Verfügung gestellt werden. 
-Häufig liegen diese Listen im CSV oder XML Format vor, aber leider besitzen diese keine standardisierte Struktur. Daher ist es die Aufgabe des Systemintegrierenden die Syntax dieser Dateien zu analysieren.
+Diese müssen wie in Abbildung \ref{fig:UseCase_Import} visualisiert von den SPS-Entwicklerinnen oder SPS-Entwicklern zur Verfügung gestellt werden. 
+Häufig liegen diese Listen im CSV oder XML Format ohne standardisierte Struktur vor. Daher ist es die Aufgabe der Systemintegratorinnen und Systemintegratoren die Syntax dieser Dateien zu analysieren.
 Danach muss im Internet eine passend Javascript Parserbibliothek gefunden werden. Der nächste Schritt im Anwendungsfalldiagramm sieht dann die Implementierung eines Import-Skripts vor. Unterstützend kann dazu die REPL-Konsole der Browser-Entwicklerwerkzeuge herangezogen werden. Zuletzt wird der Import durch das Ausführen des Skriptes gestartet
 und die entsprechenden Datenpunkte und Datenpunktkonfigurationen erzeugt.
 
@@ -74,11 +74,11 @@ Die Qualitätsanforderungen lassen sich in Benutzbarkeit, Wartbarkeit und Zuverl
 
 \subsubsection{Digitales Handbuch für Systemintegrierende als Nachschlagewerk}
 
-Um eine gute Benutzbarkeit garantieren zu können, muss den Systemintegrierenden eine digitale Dokumentation mit mindestens diesem
+Um eine gute Benutzbarkeit garantieren zu können, muss den Systemintegratorinnen und Systemintegratoren eine digitale Dokumentation mit folgendem
 Inhalt vorliegen:
 
 \begin{itemize}
-	\item Anleitung zum Verbinden der Google Chrome und Microsoft Edge Browser-\\Entwicklerkonsolen für Debugging Zwecke und zum Testen von Codesequenzen in der REPL-Konsole.
+	\item Anleitung zum Verbinden der Google Chrome und Microsoft Edge Browser-\\Entwicklerkonsolen für Analysezwecke und zum Testen von Codesequenzen in der REPL-Konsole.
 	\item Einfach verständliche Codebeispiele für jede durch den Agenten zur Verfügung gestellte Javascript-Funktion.
 	\item Beschreibung aller Funktionen und Funktionsparameter. 
 \end{itemize}

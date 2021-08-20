@@ -5,18 +5,50 @@ In diesem Kapitel wird ein Umsetzungskonzept für die im letzten Kapitel beschri
 
 \section{Handbuch Integratoren}
 
+Javascript is nicht typsicher, es gibt typescript bietet sich an declerationen für die angebundenen funktionen zu erstellen
+funktionen im code dokumentieren und handbuch generieren, zwei bekannte generatoren
+
 \subsection{Doxygen}
 
+Weit verbreitet, wird auch im siplant sourcecode verwendet leider nur eingeschränkte javascriptunterstützung
+
 \subsection{TypeDoc}
+
+Syntax ähnlich wie doxygen, kein umgewöhnen nötig, 
+
+\begin{program}[h]
+\begin{GenericCode}
+/**
+* Returns the value stored within an datapoint element.
+* @param dpe Datapoint element to get the value from.
+* @returns The value stored within an datapoint element.
+* Returned variable type depends on the datapoint element type.
+*
+* ### Basic usage example: 
+* 
+* ```ts
+* var text = DpGet("System1:Example.text:_online_value");
+* console.log(text); // :_online_value of System1:Example.text
+* ```
+*/
+declare function DpGet(dpe: string): any;
+\end{GenericCode}
+\end{program}
+
+\begin{figure}[h]
+	\centering \includegraphics[width=1\textwidth]{typedoc}
+	\caption{}
+	\label{fig:typedoc}
+\end{figure}
 
 \subsection{Fazit}
 
 
-\section{Build Strategie}
+\section{Compiler}
 
-Wichtig ist hier zu erwähnen, dass von Seiten des WinCC OA SCADA Produktes für die jeweilige Plattform bestimmte C++-Compiler
-vorgeschrieben sind, weil ansonsten aufgrund von etwaigen \textit{ABI (Application Binary Interface)} inkomatibilitäten keine 
-korrekte funktionsweise garantiert wird. Für Linux ist in der WinCC OA Dokumentation ein C++-Compiler der 
+Wichtig ist hier zu erwähnen, dass von Seiten des WinCC OA SCADA Produktes für die jeweilige Plattform bestimmte Compiler
+vorgeschrieben sind, weil ansonsten aufgrund von etwaigen \textit{ABI (Application Binary Interface)} inkomatibilitäten mit 
+der Programmierschnittstelle keine korrekte funktionsweise garantiert wird. Für Linux ist in der WinCC OA Dokumentation ein C++-Compiler der 
 \textit{GNU Compiler Collection (GCC)} in der Version 4.8.5 vorgeschrieben. Zum erzeugen vom Windows Binärdateien wird der Compiler
 des \textit{Visual Studio Toolset} in der Version v140 angegeben. Alle Programmkomponenten und Drittbibliotheken müssen mit diesen
 Compilern gebaut werden.
@@ -24,12 +56,12 @@ Compilern gebaut werden.
 \section{Linken der Google V8-Engine}
 
 Im folgenden Abschnitt wird erklärt, wie ein Programm mit externen Bibliotheken umgehen kann. Die verschiedenen Möglichkeiten
-werden dann abgewogen und in einem Fazit wird entschieden, welche Methode für den Prototyp verwendet wird.
+werden dann abgewogen und in einem Fazit wird entschieden, welche Methode zum linken der Google V8-Engine verwendet wird.
 
 \subsection{Statisches Linken}
 
 Wird eine Bibliothek statisch gelinkt, dann werden die Funktionen dieser Bibliothek direkt in die ausführbare Datei kopiert.
-Voraussetzung dafür ist, dass die gelinkte Bibliothek selbst statisch ist. Dies bedeutet, dass mindestens eine Objektdatei mithilfe des
+Voraussetzung dafür ist, dass die gelinkte Bibliothek selbst statisch ist. Dies bedeutet, dass mindestens eine Objektdatei mit Hilfe des
 Kommandozeilenprogrammes \textit{ar (archiver utility)} in ein Archiv umgewandelt wurde. \textit{Ar} fügt zu einem solchen Archiv eine 
 Tabelle hinzu, in der vermerkt ist welche Symbole, wo im Archiv zu finden sind \cite{staticLinking}.
 
@@ -47,12 +79,14 @@ unabhängig bleibt.
 
 \section{Übersetzten des Google V8 C++ Quellcodes}
 
+\section{Umsetzung}
 
+Dll / static lib oder exe
 
 \section{Konzeptioneller Beweis}
 
-Bevor mit der Implementierung eines eigenen Agenten umgesetzt wird, ist es zunächst sinnvoll, die Machbarkeit anhand eines einfachen konzeptionellen 
-Beweises festzustellen. Dazu werden die aus den Beispielen ... und .. gewonnenen erkenntnisse in einem eigenen Prototypen Kombiniert. Das Ziel ist es 
+Bevor mit der Implementierung eines eigenen Agenten gestartet wird, ist es zunächst sinnvoll, die Machbarkeit anhand einer einfachen konzeptionellen 
+Umsetzung festzustellen. Dazu werden die aus den Beispielen ... und .. gewonnenen erkenntnisse in einem eigenen Prototypen Kombiniert. Das Ziel ist es 
 die \textit{doConnect} Funktion der WinCC OA C++-Programmierschnittstelle der Google V8 Javascriptengine zur Verfügung zu stellen. Dazu muss zunächst
 eine eigene Observer Klasse implementiert werden, die beim Erhalt von Wetänderungen eine Javascript Funktion aufrufen kann.
 

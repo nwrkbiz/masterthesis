@@ -45,7 +45,7 @@ Demnach kann man als Multi-Agent-SCADA-System ein Multi-Agent-System, das die Ei
 \section{Simatic Windows Control Center Open Architecture}
 
 Während im letzten Abschnitt eine Definition für Multi-Agent-SCADA-System festgelegt wurde, wird in diesem nun die Umsetzung
-eines solchen anhand eines konkreten Softwareprodukts beschrieben. Das Basissystem WinCC Open Architecture stellt mithilfe mehrerer Agenten eine Umgebung mit den vorher beschriebenen Funktionen zur Verfügung. 
+eines solchen anhand eines konkreten Softwareprodukts beschrieben. Das Basissystem WinCC Open Architecture stellt mit Hilfe mehrerer Agenten eine Umgebung mit den vorher beschriebenen Funktionen zur Verfügung. 
 Einen Überblick über das Zusammenspiel soll die Abbildung \ref{fig:winccoa_overview} geben:
 
 \begin{figure}[h]
@@ -105,7 +105,7 @@ Dadurch ist eine erweitete Konfiguration möglich. Die wichtigsten sind:
 \begin{itemize}
     \item \_alert\_hdl: Erlaubt die Konfiguration von Hysteresen und Grenzwerten. Über- oder unterschreitet der Wert des Datenpunktelements diese Grenzen, löst der Event Manager einen Alarm aus.
     \item \_address: Weist dieses Element einem Eingabe- oder Ausgabekanal in der \textit{Feldebene} zu. Der entsprechende Driver Prozess legt die Daten dann auf diesem ab.  
-    \item \_archive: Erlaubt das Archivieren von Wertänderungen mithilfe eines Value Archive Prozesses. Hier wird hinterlegt, welcher Prozess für die Mittel- und Langzeitspeicherung zuständig ist.\\
+    \item \_archive: Erlaubt das Archivieren von Wertänderungen mit Hilfe eines Value Archive Prozesses. Hier wird hinterlegt, welcher Prozess für die Mittel- und Langzeitspeicherung zuständig ist.\\
 \end{itemize}
 
 Diese Konfigurationen werden an den Data Manager Prozess zum Ablegen in der Datenbank übertragen. Dieser gibt sie danach an alle Teilnehmer weiter, die sie benötigen. Über eine textuelle Repräsentation
@@ -134,7 +134,7 @@ dann die entsprechenden Value Archive Prozesse ab und gibt die resultierenden In
 \subsubsection{Redundancy Manager}
 
 Um eine hohe Ausfallsicherheit garantieren zu können, ist ein WinCC OA Projekt redundant aufsetzbar. Die zwei Serversysteme kommunizieren miteinander
-mithilfe zweier Redundancy Manager.
+mit Hilfe zweier Redundancy Manager.
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.75\textwidth]{redu}
@@ -277,7 +277,7 @@ Eine Auswahl ist in der folgenden Tabelle aufgelistet:
 \end{table}
 
 Die in Tabelle \ref{tab:man_fun} gezeigten Funktionen erhalten, bis auf \textit{dispatch}, die angefragten Daten asynchron. Die Antworten 
-werden mithilfe des Observer-Entwurfsmuster übermittelt \cite{observer}. Jeder Funktionsaufruf benötigt ein Observer-Objekt, das die 
+werden mit Hilfe des Observer-Entwurfsmuster übermittelt \cite{observer}. Jeder Funktionsaufruf benötigt ein Observer-Objekt, das die 
 Daten erhält. Dazu muss das von der WinCC OA Programmierschnittstelle zur Verfügung gestellte \textit{HotLinkWaitForAnswer} Interface implementiert werden. Dies
 wird im nachfolgenden Codebeispiel veranschaulicht: \\
 

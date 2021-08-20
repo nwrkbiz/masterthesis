@@ -6,14 +6,14 @@ dieser Arbeit eingegangen und der Inhalt der einzelnen Kapitel kurz erläutert.
 
 \section{Motivation für den Einsatz von SCADA-Systemen}
 
-Ein grundlegendes Problem bei der Digitalisierung von Fabriken ist der Konflikt zwischen Cloudanwendungen, die die Anlagen 
-steuern und überwachen wollen, und Anlagen, die wiederum deren Daten in den cloudbasierenden Rechenzentren ablegen wollen. 
+Ein grundlegendes Problem bei der Digitalisierung von Fabriken ist, dass Cloudanwendungen, die Anlagen 
+steuern und überwachen wollen, und Anlagen, wiederum deren Daten in der Cloud ablegen wollen. 
 Um diesen Konflikt zu lösen, werden sogenannte SCADA-Systeme eingesetzt. SCADA ist ein Akronym und steht für Supervisory Control And 
 Data Acquisition. Diese Systeme implementieren laut Automatisierungspyramide Ebene zwei und Teile von Ebene drei. 
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.58\textwidth]{aut_pyr}
-	\caption{Diese Abbildung stellt die verschiedenen Ebenen der industriellen Fertigung mithilfe der Automatisierungspyramide dar. \cite{automPyr}
+	\caption{Diese Abbildung stellt die verschiedenen Ebenen der industriellen Fertigung mit Hilfe der Automatisierungspyramide dar. \cite{automPyr}
   Cloudanwendungen befinden sich in der Ebene vier, die auch \textit{Unternehmensleitebene} genannt wird.}
 	\label{fig:aut_pyr}
 \end{figure}
@@ -23,11 +23,11 @@ Die in Abbildung \ref{fig:aut_pyr} gezeigten Ebenen können wie folgt zusammenge
   \item Ebene vier: Die \textit{Unternehmensleitebene} umfasst Produktionsplanung und Bestellabwicklung.
   \item Ebene drei: Stellt die \textit{Produktionsleitebene} dar, in der Produktionsdaten erfasst werden. Außerdem findet hier Qualitäts- und Materialmanagement statt.
   \item Ebene zwei: In der \textit{Prozessleitebene} wird bedient, beobachtet, es werden Daten gesammelt und archiviert.
-  \item Ebene eins: Steuert die Anlage mithilfe von SPSen (Speicherprogrammierbaren Steuerungen), die mit dieser über Bussysteme verbunden sind. Daher wird diese Ebene auch \textit{Steuerungsebene} oder \textit{Feldebene} genannt. Weitere Teilnehmer sind unter anderem Frequenzumrichter und Industrie-PCs.
+  \item Ebene eins: Steuert die Anlage über von SPSen (Speicherprogrammierbaren Steuerungen), die mit dieser über Bussysteme verbunden sind. Daher wird diese Ebene auch \textit{Steuerungsebene} oder \textit{Feldebene} genannt. Weitere Teilnehmer sind unter anderem Frequenzumrichter und Industrie-PCs.
   \item Ebene null: Als \textit{Anlage} wird die zu steuernde Maschine und die dazugehörige Sensorik bezeichnet. \\
 \end{itemize}
 
-Unter SCADA versteht man das Überwachen und Steuern technischer Prozesse mithilfe von Computersystemen \cite{whatIsScada}.
+Unter SCADA versteht man das Überwachen und Steuern technischer Prozesse durch Computersysteme \cite{whatIsScada}.
 Diese Systeme helfen bei der Überwachung von Anlagen und sind somit Wegbereiter, um Verfügbarkeit und Produktivität zu erhöhen. 
 Am Siemensstandort in der Krausstraße in Linz befindet sich die Abteilung \textit{DF FA SO SIS}. Der
 Abteilungsname beschreibt den Tätigkeitsbereich und steht als Abkürzung für Digital
@@ -40,7 +40,7 @@ gesehen werden. WinCC OA eignet sich hierbei als Basissystem, da die Multi-Agent
 C++-Programmierschnittstelle ermöglicht. Außerdem werden bereits viele Möglichkeiten zum akquirieren von Daten über proprietäre oder offene 
 Feldbus Protokolle zur Verfügung gestellt. Als Beispiele können hier Profinet, MODBUS, S7Plus, OPC UA und BACNET angeführt werden \cite{WinCCOA}.
 Um plattformunabhängig moderne Visualisierungen für die Überwachung von Anlagen umsetzten zu können, 
-wurde für \textit{SiPlant} HTML5 als Technologie gewählt. Dies wurde mithilfe von eigens entwickelten WinCC OA Agenten umgesetzt.
+wurde für \textit{SiPlant} HTML5 als Technologie gewählt. Dies wurde mit Hilfe von eigens entwickelten WinCC OA Agenten umgesetzt.
 
 \section{Probleme bei der Systemintegration von SCADA-Systemen}
 
@@ -55,7 +55,7 @@ Aufgrund der Unterschiede zwischen den einzelnen Anlagen der Automatisierungsind
 Projektanforderungen ist die Integration des \textit{SiPlant} Produktes oft mit vielen unvorhersehbaren und komplexen Problemen 
 verbunden. Ziel dieser Arbeit ist es daher, die Google V8 Javascriptengine und das dazugehörige Debuginspector-Protokoll 
 für das Produkt \textit{SiPlant} an das Basissystem WinCC Open Architecture anzubinden, um damit den Systemintegratorinnen und Systemintegratoren
-ein Werkzeug für die Fehlersuche und zum Umsetzen von Kundenanforderungen mithilfe einer einfachen Skriptsprache zur Verfügung zu 
+ein Werkzeug für die Fehlersuche und zum Umsetzen von Kundenanforderungen mit Hilfe einer einfachen Skriptsprache zur Verfügung zu 
 stellen.
 
 \section{Gliederung dieser Arbeit}
@@ -81,7 +81,7 @@ Der konzeptuelle Aufbau des Agenten, das Zusammenspiel der einzelnen Komponenten
 werden in \autoref{cha:Konzept} beschrieben.
 \newline
 \par
-Auf Implementierung mithilfe der festgelegten Konzepte aus \autoref{cha:Konzept} und die Lösung aller aufkommenden Probleme wird
+Auf Implementierung mit Hilfe der festgelegten Konzepte aus \autoref{cha:Konzept} und die Lösung aller aufkommenden Probleme wird
 in \autoref{cha:Projektumsetzung} eingegangen.
 \newline
 \par
