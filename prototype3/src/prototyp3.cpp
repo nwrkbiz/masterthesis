@@ -63,21 +63,17 @@ void ReportException(v8::Isolate* isolate, v8::TryCatch* try_catch)
 }
 
 // Diese Klasse erhält callbacks vom WinCC OA Framework
-class DpObserver : public HotLinkWaitForAnswer
-{
+class DpObserver : public HotLinkWaitForAnswer {
 public:
   DpObserver(v8::Isolate* iso,
     const v8::Persistent<v8::Function, v8::CopyablePersistentTraits<v8::Function>>& fun,
     v8::Global<v8::Context>& ctx) : 
-    m_Isolate(iso),
-    m_Function(fun),
+    m_Isolate(iso), m_Function(fun),
     m_Context(std::move(ctx)) {};
   // Diese Funktion wird bei jeder Wertänderung aufgerufen
-  void hotLinkCallBack(DpHLGroup &group) override
-  {
-    std::cout << "--- hotLinkCallBack(DpHLGroup), Execute JS Function ---" << std::endl;
-    v8::Locker lock(m_Isolate);
-    v8::Isolate::Scope isolate_scope(m_Isolate);
+  void hotLinkCallBack(DpHLGroup &group) override {
+    std::cout << "- hotLinkCallBack(DpHLGroup), Execute JS Function -" << std::endl;
+    v8::Locker lock(m_Isolate); v8::Isolate::Scope isolate_scope(m_Isolate);
     v8::HandleScope handle_scope(m_Isolate);
     v8::Local<v8::Context> context = m_Context.Get(m_Isolate);
     v8::Context::Scope context_scope(context);
@@ -87,10 +83,9 @@ public:
     v8::Local<v8::Array> dpeArr = v8::Array::New(m_Isolate);
     v8::Local<v8::Array> varArr = v8::Array::New(m_Isolate);
     uint32_t num = 0;
-    for (DpVCItem* item = group.getFirstItem(); item;
-         item = group.getNextItem()) {
+    for (DpVCItem* item = group.getFirstItem(); item; item = group.getNextItem()) {
       Variable* value = item->getValuePtr(); // Neuer Wert
-      CharString dpe = item->getDpIdentifier().toString(); // Name des Datenpunktelemens
+      CharString dpe = item->getDpIdentifier().toString(); // Name des DPElement
       dpeArr->Set(num, v8::String::NewFromUtf8(m_Isolate, dpe));
       if(value->isA(VariableType::BIT_VAR) == VariableType::BIT_VAR){
         varArr->Set(num, v8::Boolean::New(m_Isolate, static_cast<BitVar*>(value)->getValue()));
@@ -101,24 +96,18 @@ public:
       }
       num += 1;
     }
-    argv[0] = dpeArr;
-    argv[1] = varArr;
+    argv[0] = dpeArr; argv[1] = varArr;
     v8::TryCatch tryCatch(m_Isolate);
-    v8::Local<v8::Function> fun = v8::Local<v8::Function>::New(m_Isolate, m_Function);
+    v8::Local<v8::Function> f = v8::Local<v8::Function>::New(m_Isolate, m_Function);
     // Falls der Javascript Functionsscope (in js) über .bind gesetzt wurde verwende
     // diesen, ansonsten verwende das global Objekt des Ausführungskontext
-    v8::Local<v8::Object> funScope = fun->GetBoundFunction().As<v8::Object>();
-    if(funScope == v8::Undefined(m_Isolate)) {
-      funScope = context->Global();
-    }
+    v8::Local<v8::Object> fScope = f->GetBoundFunction().As<v8::Object>();
+    if(fScope == v8::Undefined(m_Isolate)) fScope = context->Global();
     // rufe JS Funktion auf, übergebe dpes als param1 und werte als param2
-    fun->Call(funScope, argc, argv);
-    if (tryCatch.HasCaught()) {
-      ReportException(m_Isolate, &tryCatch);
-    }
+    f->Call(Scope, argc, argv);
+    if (tryCatch.HasCaught()) ReportException(m_Isolate, &tryCatch);
   }
-  // Stub, wird in diesem Beispiel nicht verwendet
-  void hotLinkCallBack(DpMsgAnswer &answer) override {}
+  void hotLinkCallBack(DpMsgAnswer &answer) override {}  // Stub, nicht verwendet
 private:
   v8::Isolate* m_Isolate;
   v8::Persistent<v8::Function, v8::CopyablePersistentTraits<v8::Function>> m_Function;
@@ -165,7 +154,7 @@ void DpConnect(const v8::FunctionCallbackInfo<v8::Value>& args) {
     CharString str(*param1); // Marshalling V8 -> WinCC OA
     DpIdentifier dpe;
     Agent::getId(str, dpe);
-    // Javascript callback funktion als Persistente Variable (-> schutz vor garbage collection)
+    // JS Callback-Funktion als Persistente Variable (->Schutz vor Garbage Collector)
     v8::Persistent<v8::Function, v8::CopyablePersistentTraits<v8::Function>> callback;
     callback.Reset(isolate, args[1].As<v8::Function>());
     // Ausführungscontext als Globales V8 Objekt, wird benötigt 
@@ -179,7 +168,7 @@ void DpConnect(const v8::FunctionCallbackInfo<v8::Value>& args) {
     args.GetReturnValue().Set(v8::Boolean::New(isolate, ret)); // Javascript Rückgabewert
   }
   else { // Werfe exception
-    isolate->ThrowException(v8::Exception::TypeError(v8::String::NewFromUtf8(isolate, "Invalid parameters")));
+    isolate->ThrowException(v8::Exception::TypeError(v8::String::NewFromUtf8(isolate, "Invalid parameters, Expected: string dpe, function callback")));
   }
 }
 

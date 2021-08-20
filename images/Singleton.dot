@@ -1,0 +1,6 @@
+digraph doxygraph
+{
+graph [ rankdir="RL" , splines="ortho"]
+"singleton" [ label="Singleton\n|+GetInstance ( args : Args... ) : std::shared_ptr\< T \> \{static\}\l+~Singleton (  ) \{virtual\}\l#Singleton (  )\l-Singleton ( s : Singleton const & )\l-operator= ( s : Singleton const & ) : Singleton &\l|-m_Instance : std::shared_ptr\< T \>\l" shape="record" ]
+"singleton" -> "singleton" [ arrowtail="odiamond" dir="back" ]
+}

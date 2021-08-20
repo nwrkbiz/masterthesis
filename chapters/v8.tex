@@ -339,9 +339,9 @@ gegenseitig zu beeinflussen. Nach Aufrufen des Destruktors von dem scopeB Objekt
 
 \subsection{Speicherverwaltung}
 
-Der Speicher innerhalb eines Isolate wird von einem Garbage-Collector verwaltet. Damit dieser weiß, welche Speicherbereiche
+Der Speicher innerhalb eines \textit{Isolate} wird von einem Garbage-Collector verwaltet. Damit dieser weiß, welche Speicherbereiche
 noch in Verwendung, werden die Javascript-Objekte über sogenannte Handles überwacht. Diese halten eine Referenz auf 
-die Position eines Javascript-Objekts in dem von einem Isolate verwalteten Speicherbereich. Gibt es kein Handle mehr, dass 
+die Position eines Javascript-Objekts in dem von einem \textit{Isolate} verwalteten Speicherbereich. Gibt es kein Handle mehr, dass 
 ein bestimmtes Objekt referenziert, kann dieses durch den Garbage-Collector freigegeben werden. Hier
 wird zwischen zwei Typen unterschieden:
 
@@ -383,6 +383,7 @@ analysieren und zu manipulieren. Außerdem kann man einzelne Funktionsaufrufe un
 Konsole testen \cite{repl}.
 
 \subsection{Beispiel}
+\label{cha:v8_code}
 
 Nachfolgend wird anhand eines konkreten Beispiels gezeigt, wie man die vorher erläuterten Konzepte angewendet werden, um innerhalb eines
 C++-Programmes Javascript-Quellcode ausführen zu können. Des weiterem wird erklärt, wie die Skriptsprache über das Global-Objekt erweiterbar 

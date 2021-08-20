@@ -3,53 +3,12 @@
 
 In diesem Kapitel wird ein Umsetzungskonzept für die im letzten Kapitel beschriebenen Anforderungen erarbeitet.
 
-\section{Handbuch Integratoren}
-
-Javascript is nicht typsicher, es gibt typescript bietet sich an declerationen für die angebundenen funktionen zu erstellen
-funktionen im code dokumentieren und handbuch generieren, zwei bekannte generatoren
-
-\subsection{Doxygen}
-
-Weit verbreitet, wird auch im siplant sourcecode verwendet leider nur eingeschränkte javascriptunterstützung
-
-\subsection{TypeDoc}
-
-Syntax ähnlich wie doxygen, kein umgewöhnen nötig, 
-
-\begin{program}[h]
-\begin{GenericCode}
-/**
-* Returns the value stored within an datapoint element.
-* @param dpe Datapoint element to get the value from.
-* @returns The value stored within an datapoint element.
-* Returned variable type depends on the datapoint element type.
-*
-* ### Basic usage example: 
-* 
-* ```ts
-* var text = DpGet("System1:Example.text:_online_value");
-* console.log(text); // :_online_value of System1:Example.text
-* ```
-*/
-declare function DpGet(dpe: string): any;
-\end{GenericCode}
-\end{program}
-
-\begin{figure}[h]
-	\centering \includegraphics[width=1\textwidth]{typedoc}
-	\caption{}
-	\label{fig:typedoc}
-\end{figure}
-
-\subsection{Fazit}
-
-
 \section{Compiler}
 
-Wichtig ist hier zu erwähnen, dass von Seiten des WinCC OA SCADA Produktes für die jeweilige Plattform bestimmte Compiler
-vorgeschrieben sind, weil ansonsten aufgrund von etwaigen \textit{ABI (Application Binary Interface)} inkomatibilitäten mit 
-der Programmierschnittstelle keine korrekte funktionsweise garantiert wird. Für Linux ist in der WinCC OA Dokumentation ein C++-Compiler der 
-\textit{GNU Compiler Collection (GCC)} in der Version 4.8.5 vorgeschrieben. Zum erzeugen vom Windows Binärdateien wird der Compiler
+Wichtig ist hier zu erwähnen, dass vonseiten des WinCC OA SCADA Produktes für die jeweilige Plattform bestimmte Compiler
+vorgeschrieben sind, weil ansonsten aufgrund von etwaigen \textit{ABI (Application Binary Interface)} Inkompatibilitäten mit 
+der Programmierschnittstelle keine korrekte Funktionsweise garantiert wird. Für Linux ist in der WinCC OA Dokumentation ein C++-Compiler der 
+\textit{GNU Compiler Collection (GCC)} in der Version 4.8.5 vorgeschrieben. Zum erzeugen von Windows Binärdateien wird der Compiler
 des \textit{Visual Studio Toolset} in der Version v140 angegeben. Alle Programmkomponenten und Drittbibliotheken müssen mit diesen
 Compilern gebaut werden.
 
@@ -77,57 +36,172 @@ Da der Agent nur als einzelner Prozess laufen soll, ist durch die Verwendung von
 Es macht daher mehr Sinn die Bibliotheken der Google V8-Engine statisch in die ausführbare Datei zu linken, da man somit von externen Bibliotheken
 unabhängig bleibt.
 
-\section{Übersetzten des Google V8 C++ Quellcodes}
+\section{Umsetzungskonzept}
 
-\section{Umsetzung}
+Im letzten Abschnitt wurde erörtert, wie die V8-Bibliothek als externes Modul in die eigene Komponente
+eingebunden werden soll. Nun wird die Art der Umsetzung diskutiert. Es wird hier vor allem auf die Anforderung der Wiederverwendbarkeit
+acht genommen. 
 
-Dll / static lib oder exe
+\subsection{Dynamische Bibliothek}
+
+Die Umsetzung als dynamische Bibliothek wäre praktikabel, da dies ein einfaches Aktualisieren der Komponente ermöglichen kann.
+Wenn Teile der Implementierung aufgrund etwaiger Schwachstellen oder neuen Funktionen geändert werden, muss bei den Kundinnen und Kunden 
+nicht jedes Programm, das die V8-Engine verwendet, einzeln aktualisiert werden, sondern nur die dynamische Bibliothek. Voraussetzung dafür
+ist, dass die Schnittstellen nicht geändert werden.
+
+\subsection{Statische Bibliothek}
+
+Kapselt man die Funktionalität innerhalb einer statischen Bibliothek, so erhält jede ausführbare Datei eine eigene Instanz. Dies bietet keine
+besonderen Vor- oder Nachteile.
+
+\subsection{Ausführbare Datei}
+
+Wird die komplette Funktionalität direkt innerhalb einer ausführbaren Datei umgesetzt, ist das Realisieren der Wiederverwendbarkeit nur schwer möglich.
+Eine Option wäre, die Ausführung von Javascriptdateien über eine RPC-Schnittstelle (Remote Procedure Call) zu ermöglichen. Solch Schnittstelle
+zu implementieren würde jedoch einen unnötigen Mehraufwand verursachen. Außerdem besteht die Gefahr, dass der Prozess überlastet wird,
+wenn mehrere Teilnehmer gleichzeitig zugriff auf die Schnittstelle verlangen.
+
+\subsection{Fazit}
+
+Die Umsetzung als ausführbare Datei mit einer RPC-Schnittstelle kann aufgrund der erläuterten Probleme als unpraktikabel angesehen werden 
+und wird daher nicht in Betracht gezogen. Eine Implementierung als dynamische Bibliothek setzt voraus, dass sich die Schnittstellen nicht ändert,
+was die Flexibilität in der Entwicklung neuer Funktionalitäten einschränken kann. Deshalb wird für die zu entwickelnde Programmkomponente 
+das Erstellen einer statischen Bibliothek als Umsetzungskonzept gewählt. Diese soll dann innerhalb eines eigenen Agenten verwendet werden,
+um die Ausführung von Javascriptdateien zu ermöglichen.
+
+\section{Handbuch für Integratorinnen und Integratoren}
+
+Javascript besitzt als Programmiersprache keine Typsicherheit, aus diesem Grund ist sie in größeren Codebasen nicht
+immer einfach zu handhaben. TypeScript bietet hier Abhilfe, da es ein typsicheres Programmieren von Javascript-Code
+ermöglicht. TypeScript-Quellcode kann dann durch einen TypeScript-Compiler in Javascript-Quellcode übersetzt werden.
+Damit man die innerhalb des V8-Agenten implementierten Funktionen in Kombination mit TypeScript verwenden kann, müssen somit
+eigene Funktionsdeklarationen geschrieben werden. Um ein interaktives Handbuch für Systemintegratorinnen und Systemintegratoren
+zu erhalten, bietet sich hier die Literate Programming Methodik an \cite{LiterateProgramming}. Die Idee ist es, die Funktionsdeklarationen
+direkt im Quellcode mit Hilfe von speziellen Quellcodekommentaren zu erklären. Später kann dann aus dem Programmcode und diesen 
+Kommentaren ein Dokument erzeugt werden. Das de facto Standard Programm zum Generieren solcher Dokumentationen
+unterstützt TypeScript und Javascript nur eingeschränkt \textit{Doxygen}. Eine Alternative bietet daher \textit{TypeDoc}.
+
+\subsection{TypeDoc}
+
+\textit{TypeDoc} ist ein Programm zum Generieren von Dokumentationen aus einem TypeScript-Programmquellcode.
+Es ist möglich mithilfe von definierten Steuerbefehlen in den Kommentarblöcken Schnittstellen und Klassen zu beschreiben.
+Folgendes Beispiel soll zeigen, wie dieses Programm verwendet werden kann:
+
+\begin{program}[h]
+\caption{TypeDoc Beispiel.}
+\label{src:typedoc}
+\begin{GenericCode}
+/**
+* Returns the value stored within an datapoint element.
+* @param dpe Datapoint element to get the value from.
+* @returns The value stored within an datapoint element.
+* Returned variable type depends on the datapoint element type.
+*
+* ### Basic usage example: 
+* 
+* ```ts
+* var text = DpGet("System1:Example.text:_online_value");
+* console.log(text); // :_online_value of System1:Example.text
+* ```
+*/
+declare function DpGet(dpe: string): any;
+\end{GenericCode}
+\end{program}
+
+Wie in \ref{src:typedoc} ersichtlich, werden über die Anweisungen \textit{@param} und \textit{@return} die Funktionsparameter und der Rückgabewert dokumentiert. 
+Außerdem kann beschreibender Beispielcode direkt bei der Funktionsdeklaration eingefügt werden. 
+
+\begin{figure}[h]
+	\centering \includegraphics[width=1\textwidth]{typedoc}
+	\caption{Generierte Dokumentation für \textit{DpGet}.}
+	\label{fig:typedoc}
+\end{figure}
+
+In der Abbildung \ref{fig:typedoc} ist die von \textit{TypeDoc} erzeugte Dokumentation veranschaulicht. Parameter und Rückgabewert sind optisch hervorgehoben 
+dargestellt und der Beispielquellcode wird mit Syntaxhervorhebung angezeigt.
+
+\subsection{Fazit}
+
+\textit{TypeDoc} bietet eine gute Alternative zu \textit{Doxygen} und wird deshalb für die Umsetzung des interaktiven Nachschlagewerks 
+gewählt.
 
 \section{Konzeptioneller Beweis}
 
 Bevor mit der Implementierung eines eigenen Agenten gestartet wird, ist es zunächst sinnvoll, die Machbarkeit anhand einer einfachen konzeptionellen 
-Umsetzung festzustellen. Dazu werden die aus den Beispielen ... und .. gewonnenen erkenntnisse in einem eigenen Prototypen Kombiniert. Das Ziel ist es 
-die \textit{doConnect} Funktion der WinCC OA C++-Programmierschnittstelle der Google V8 Javascriptengine zur Verfügung zu stellen. Dazu muss zunächst
-eine eigene Observer Klasse implementiert werden, die beim Erhalt von Wetänderungen eine Javascript Funktion aufrufen kann.
+Umsetzung festzustellen. Dazu werden die aus den Beispielen \ref{cha:scada_code} und \ref{cha:v8_code} gewonnenen Erkenntnisse in einem eigenen Prototypen kombiniert. 
+Das Ziel ist es die \textit{dpConnect} Funktion der WinCC OA C++-Programmierschnittstelle an die Google V8 Javascriptengine anzubinden.
+Dazu muss zunächst eine eigene Observer-Klasse implementiert werden, die beim Erhalt von Datenpunkt-Wertänderungen eine Javascript 
+Funktion aufrufen kann. Aus den vorherigen Beispielen wiederverwendete Klassen und Funktionen sind hier nicht mehr aufgeführt.
+\newpage
 
 \lstinputlisting[
-	label={src:proto2_main},
+	label={src:proto3_obs},
 	caption={Observer-Klasse, erhält asynchrone Antworten und gibt diese an eine Javascript-Funktion weiter.},
 	numbers=left,
 	language=C++,
 	firstnumber=0,
 	firstline=66,
-	lastline=126]{prototype3/src/prototyp3.cpp}
+    lastline=115]{prototype3/src/prototyp3.cpp}
+    
+In dem Codeabschnitt \ref{src:proto3_obs} kann man erkennen, dass die Javascript-Funktion dem Konstruktor als Persistent-Handle übergeben wird, somit
+gibt der Garbage-Collector das dahinterliegende Objekt nicht frei. Der Destruktor der DpObserver Klasse müsste die \textit{SetWeak} Funktion des m\_Function Objektes aufrufen, dies wurde aber aus Platzgründen nicht ausimplementiert.
+Außerdem wird ein \textit{Isolate}- und ein \textit{Context}-Objekt übergeben um später die Context-Ausführungsumgebung angeben zu können, die für die Ausführung der Javascript-Funktion verwendet werden soll. 
+Dies geschieht nach Aufrufen von \textit{hotlinkCallBack(DpHLGroup)} am Anfang der Funktion. Danach muss ein Marshalling der WinCC OA Datentypen nach Javascript erfolgen. 
+Der Begriff Marshalling bedeutet umwandeln von Daten in ein Format, dass die Übermittlung an eine prozessfremde Schnittstelle ermöglicht \cite{marshalling}.
+Hierbei werden zwei Javascript-Arrays erstellt. Das Erste erhält die Namen der Datenpunktelemente und das Zweite die Werte. Diese werden für die Übergabe
+in dem \textit{argv} Objekt abgelegt (Zeile 33). Über ein \textit{TryCatch}-Objekt werden eventuelle Fehler in der aufzurufenden Funktion aufgefangen. 
+In Javascript ist es möglich über die \textit{.bind} Anweisung einer Funktion einen eigenen Scope zuzuweisen. Dies wird in Zeile 38 geprüft und in dem Fall, dass
+ein Funktionsscope gesetzt wurde, wird dieser für den Aufruf verwendet.
+Zuletzt wird die Javascript-Funktion aufgerufen und etwaige Fehler ausgegeben. Die Implementierung der \textit{ReportException} Funktion kann in Anhang \ref{app:ReportException}
+eingesehen werden. Im nächsten Schritt muss Javascript die \textit{dpConnect} Funktion zur Verfügung gestellt werden:
+
 
 \lstinputlisting[
-    label={src:proto2_main},
-    caption={Hauptfunktion, zeigt die Funktionsweise der V8-Programmierschnittstelle.},
+    label={src:proto3_dpcon},
+    caption={C++-Code, ermöglicht \textit{DpConnect} via Javascript.},
     numbers=left,
     language=C++,
     firstnumber=0,
-    firstline=159,
-    lastline=184]{prototype3/src/prototyp3.cpp}
+    firstline=148,
+    lastline=173]{prototype3/src/prototyp3.cpp}
+
+Die Funktion \ref{src:proto3_dpcon} überpfüft zuerst ob der aufrufende Javascript-Code die passenden Objekte übergeben hat, ansonsten
+wird eine Exception geworfen, die Auskunft über die erwarteten Parameter gibt. Danach wird über \textit{Agent::getId()} die textuelle Repräsentation 
+des Datenpunktelements in den benötigten \textit{DpIdentifier} Datentyp umgewandelt. Zuletzt wird die WinCC OA \textit{dpConnect}
+Funktion mit der vorher beschriebenen \textit{Observer}-Klasse als Parameter aufgerufen. Dem Observer werden das \textit{Isolate}-Objekt, die Javascript-Callbackfunktion und
+der Ausführungskontext im Konstruktor mitgegeben. Diese Funktion kann man genauso wie \textit{PrintParams} über das \textit{global} Objekt 
+beim Starten des Programmes an das Context-Objekt übergeben:
 
 \lstinputlisting[
-    label={src:proto2_main},
-    caption={Hauptfunktion, zeigt die Funktionsweise der V8-Programmierschnittstelle.},
+    label={src:proto3_instalfun},
+    caption={Hinzufügen der \textit{DpConnect} Funktion zum global \textit{ObjectTemplate}-Objekt},
     numbers=none,
     language=C++,
     firstnumber=0,
-    firstline=240,
-    lastline=240]{prototype3/src/prototyp3.cpp}
+    firstline=229,
+    lastline=229]{prototype3/src/prototyp3.cpp}
+
+Initialisiert man nun in der Hauptfunktion des Programms die WinCC OA \textit{Resources}-Klasse, erstellt ein \textit{Agent}-Objekt und 
+richtet die Google V8-Engine wie in den zuvor gezeigten Beispielen ein, kann man nach erreichen der Hauptschleife 
+mit dem \textit{dispatch()} Aufruf die \textit{DpConnect} Funktion in Javascript verwenden:
 
 \lstinputlisting[
-    label={src:proto2_main},
-    caption={Hauptfunktion, zeigt die Funktionsweise der V8-Programmierschnittstelle.},
+    label={src:proto3_example},
+    caption={Beispielaufruf der \textit{DpConnect} Funktion.},
     ]{prototype3/test.js}
 
+Das in \ref{src:proto3_example} gezeigte Beispiel registriert sich auf Wertänderungen und gibt diese zusammen mit einem Zähler aus.
+Bei schreiben der werte '47,11', '42', '47,11' und 42 auf das Datenpunktelement 'System1:ExampleDP\_DDE.f1' wird folgende Ausgabe
+generiert:
+
 \lstinputlisting[
-    label={src:proto2_main},
-    caption={Hauptfunktion, zeigt die Funktionsweise der V8-Programmierschnittstelle.},
+    label={src:proto3_vc},
+    caption={Ausgabe bei Wertänderungen.},
     numbers=none,
     ]{prototype3/ausgabe.txt}
 
+Wie in \ref{src:proto3_vc} ersichtlich, werden die Wertänderungen und die Zählervariable ausgegeben.
+\newpage
 Auch diese Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD und ist unter \textit{Thesis/prototype3} zu finden. Es kann mit folgenden Befehlen 
 übersetzt werden. Dazu wird das \textit{SMF\_3P} Verzeichnis benötigt und eine WinCC OA Installation benötigt. \\
 

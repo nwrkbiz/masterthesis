@@ -1,16 +1,16 @@
-prototyp342:--- hotLinkCallBack(DpHLGroup), Execute JS Function ---
+prototyp342:- hotLinkCallBack(DpHLGroup), Execute JS Function -
 prototyp342:System1:ExampleDP_DDE.f1:_online.._value
 prototyp342:47.11
 prototyp342:0
-prototyp342:--- hotLinkCallBack(DpHLGroup), Execute JS Function ---
+prototyp342:- hotLinkCallBack(DpHLGroup), Execute JS Function -
 prototyp342:System1:ExampleDP_DDE.f1:_online.._value
 prototyp342:42
 prototyp342:1
-prototyp342:--- hotLinkCallBack(DpHLGroup), Execute JS Function ---
+prototyp342:- hotLinkCallBack(DpHLGroup), Execute JS Function -
 prototyp342:System1:ExampleDP_DDE.f1:_online.._value
 prototyp342:47.11
 prototyp342:2
-prototyp342:--- hotLinkCallBack(DpHLGroup), Execute JS Function ---
+prototyp342:- hotLinkCallBack(DpHLGroup), Execute JS Function -
 prototyp342:System1:ExampleDP_DDE.f1:_online.._value
 prototyp342:42
 prototyp342:3

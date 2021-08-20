@@ -730,6 +730,49 @@
       \verb http://www.addison-wesley.de/3827314496.html
       \endverb
     \endentry
+    \entry{LiterateProgramming}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ec08e6f01da5f3814f28a70c89c64656}{%
+           family={Knuth},
+           familyi={K\bibinitperiod},
+           given={Donald\bibnamedelima E.},
+           giveni={D\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Oxford, UK}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{fullhash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{bibnamehash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{authorbibnamehash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{authornamehash}{ec08e6f01da5f3814f28a70c89c64656}
+      \strng{authorfullhash}{ec08e6f01da5f3814f28a70c89c64656}
+      \field{sortinit}{K}
+      \field{sortinithash}{9fd838a31ba64d981e8f44562bd33f89}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0010-4620}
+      \field{journaltitle}{Comput. J.}
+      \field{month}{5}
+      \field{number}{2}
+      \field{title}{Literate Programming}
+      \field{volume}{27}
+      \field{year}{1984}
+      \field{pages}{97\bibrangedash 111}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1093/comjnl/27.2.97
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1093/comjnl/27.2.97
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1093/comjnl/27.2.97
+      \endverb
+    \endentry
     \entry{v8ByteCode2}{online}{}
       \field{sortinit}{L}
       \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
