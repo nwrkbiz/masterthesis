@@ -576,6 +576,68 @@
       \verb https://v8.dev/
       \endverb
     \endentry
+    \entry{DoxyGen}{manual}{}
+      \name{author}{1}{}{%
+        {{hash=9f78d72e7ebcabbe9d57ae933f96b4e6}{%
+           family={Heesch},
+           familyi={H\bibinitperiod},
+           given={Dimitri},
+           giveni={D\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+      }
+      \strng{namehash}{9f78d72e7ebcabbe9d57ae933f96b4e6}
+      \strng{fullhash}{9f78d72e7ebcabbe9d57ae933f96b4e6}
+      \strng{bibnamehash}{9f78d72e7ebcabbe9d57ae933f96b4e6}
+      \strng{authorbibnamehash}{9f78d72e7ebcabbe9d57ae933f96b4e6}
+      \strng{authornamehash}{9f78d72e7ebcabbe9d57ae933f96b4e6}
+      \strng{authorfullhash}{9f78d72e7ebcabbe9d57ae933f96b4e6}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{doxygen, Manual for version 1.8.13}
+      \field{year}{2016}
+      \verb{urlraw}
+      \verb http://doxygen.nl/download.html#latestman
+      \endverb
+      \verb{url}
+      \verb http://doxygen.nl/download.html#latestman
+      \endverb
+    \endentry
+    \entry{typedoc}{online}{}
+      \name{author}{1}{}{%
+        {{hash=9bebb7bb5e86002f2ae78241c6c6a490}{%
+           family={Hinkelmann},
+           familyi={H\bibinitperiod},
+           given={Franziska},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \strng{fullhash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \strng{bibnamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \strng{authorbibnamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \strng{authornamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \strng{authorfullhash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \field{extraname}{1}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{TypeDoc Homepage}
+      \field{urlday}{21}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://typedoc.org/
+      \endverb
+      \verb{url}
+      \verb https://typedoc.org/
+      \endverb
+    \endentry
     \entry{v8ByteCode}{online}{}
       \name{author}{1}{}{%
         {{hash=9bebb7bb5e86002f2ae78241c6c6a490}{%
@@ -590,6 +652,7 @@
       \strng{authorbibnamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
       \strng{authornamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
       \strng{authorfullhash}{9bebb7bb5e86002f2ae78241c6c6a490}
+      \field{extraname}{2}
       \field{sortinit}{H}
       \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
       \field{labelnamesource}{author}

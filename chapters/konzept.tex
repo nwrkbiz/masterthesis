@@ -59,7 +59,7 @@ besonderen Vor- oder Nachteile.
 Wird die komplette Funktionalität direkt innerhalb einer ausführbaren Datei umgesetzt, ist das Realisieren der Wiederverwendbarkeit nur schwer möglich.
 Eine Option wäre, die Ausführung von Javascriptdateien über eine RPC-Schnittstelle (Remote Procedure Call) zu ermöglichen. Solch Schnittstelle
 zu implementieren würde jedoch einen unnötigen Mehraufwand verursachen. Außerdem besteht die Gefahr, dass der Prozess überlastet wird,
-wenn mehrere Teilnehmer gleichzeitig zugriff auf die Schnittstelle verlangen.
+wenn mehrere Teilnehmer gleichzeitig Zugriff auf die Schnittstelle verlangen.
 
 \subsection{Fazit}
 
@@ -74,18 +74,18 @@ um die Ausführung von Javascriptdateien zu ermöglichen.
 Javascript besitzt als Programmiersprache keine Typsicherheit, aus diesem Grund ist sie in größeren Codebasen nicht
 immer einfach zu handhaben. TypeScript bietet hier Abhilfe, da es ein typsicheres Programmieren von Javascript-Code
 ermöglicht. TypeScript-Quellcode kann dann durch einen TypeScript-Compiler in Javascript-Quellcode übersetzt werden.
-Damit man die innerhalb des V8-Agenten implementierten Funktionen in Kombination mit TypeScript verwenden kann, müssen somit
+Damit man die innerhalb des V8-Agenten implementierten Funktionen innerhalb dieser Programmiersprache verwenden kann, müssen somit
 eigene Funktionsdeklarationen geschrieben werden. Um ein interaktives Handbuch für Systemintegratorinnen und Systemintegratoren
 zu erhalten, bietet sich hier die Literate Programming Methodik an \cite{LiterateProgramming}. Die Idee ist es, die Funktionsdeklarationen
 direkt im Quellcode mit Hilfe von speziellen Quellcodekommentaren zu erklären. Später kann dann aus dem Programmcode und diesen 
-Kommentaren ein Dokument erzeugt werden. Das de facto Standard Programm zum Generieren solcher Dokumentationen
-unterstützt TypeScript und Javascript nur eingeschränkt \textit{Doxygen}. Eine Alternative bietet daher \textit{TypeDoc}.
+Kommentaren ein Dokument erzeugt werden. Das de facto Standard Programm zum Generieren solcher Dokumentationen, \textit{Doxygen},
+unterstützt TypeScript und Javascript nur eingeschränkt \cite{DoxyGen}. Eine Alternative bietet daher \textit{TypeDoc} \cite{typedoc}.
 
 \subsection{TypeDoc}
 
 \textit{TypeDoc} ist ein Programm zum Generieren von Dokumentationen aus einem TypeScript-Programmquellcode.
-Es ist möglich mithilfe von definierten Steuerbefehlen in den Kommentarblöcken Schnittstellen und Klassen zu beschreiben.
-Folgendes Beispiel soll zeigen, wie dieses Programm verwendet werden kann:
+Es ist möglich mit Hilfe von definierten Steuerbefehlen in den Kommentarblöcken Schnittstellen und Klassen zu beschreiben.
+Folgendes Beispiel soll zeigen, wie dies auszusehen hat:
 
 \begin{program}[h]
 \caption{TypeDoc Beispiel.}
@@ -131,7 +131,7 @@ Bevor mit der Implementierung eines eigenen Agenten gestartet wird, ist es zunä
 Umsetzung festzustellen. Dazu werden die aus den Beispielen \ref{cha:scada_code} und \ref{cha:v8_code} gewonnenen Erkenntnisse in einem eigenen Prototypen kombiniert. 
 Das Ziel ist es die \textit{dpConnect} Funktion der WinCC OA C++-Programmierschnittstelle an die Google V8 Javascriptengine anzubinden.
 Dazu muss zunächst eine eigene Observer-Klasse implementiert werden, die beim Erhalt von Datenpunkt-Wertänderungen eine Javascript 
-Funktion aufrufen kann. Aus den vorherigen Beispielen wiederverwendete Klassen und Funktionen sind hier nicht mehr aufgeführt.
+Funktion aufrufen kann. Die aus den vorherigen Beispielen wiederverwendete Klassen und Funktionen sind hier nicht mehr aufgeführt.
 \newpage
 
 \lstinputlisting[
@@ -144,16 +144,16 @@ Funktion aufrufen kann. Aus den vorherigen Beispielen wiederverwendete Klassen u
     lastline=115]{prototype3/src/prototyp3.cpp}
     
 In dem Codeabschnitt \ref{src:proto3_obs} kann man erkennen, dass die Javascript-Funktion dem Konstruktor als Persistent-Handle übergeben wird, somit
-gibt der Garbage-Collector das dahinterliegende Objekt nicht frei. Der Destruktor der DpObserver Klasse müsste die \textit{SetWeak} Funktion des m\_Function Objektes aufrufen, dies wurde aber aus Platzgründen nicht ausimplementiert.
+gibt der Garbage-Collector das dahinterliegende Objekt nicht frei. Der Destruktor der DpObserver Klasse müsste die \textit{SetWeak} Funktion des m\_Function Objektes aufrufen, was hier aber aus Platzgründen nicht ausimplementiert wurde.
 Außerdem wird ein \textit{Isolate}- und ein \textit{Context}-Objekt übergeben um später die Context-Ausführungsumgebung angeben zu können, die für die Ausführung der Javascript-Funktion verwendet werden soll. 
 Dies geschieht nach Aufrufen von \textit{hotlinkCallBack(DpHLGroup)} am Anfang der Funktion. Danach muss ein Marshalling der WinCC OA Datentypen nach Javascript erfolgen. 
 Der Begriff Marshalling bedeutet umwandeln von Daten in ein Format, dass die Übermittlung an eine prozessfremde Schnittstelle ermöglicht \cite{marshalling}.
 Hierbei werden zwei Javascript-Arrays erstellt. Das Erste erhält die Namen der Datenpunktelemente und das Zweite die Werte. Diese werden für die Übergabe
-in dem \textit{argv} Objekt abgelegt (Zeile 33). Über ein \textit{TryCatch}-Objekt werden eventuelle Fehler in der aufzurufenden Funktion aufgefangen. 
+in dem \textit{argv} Objekt abgelegt (Zeile 33). Über ein \textit{TryCatch}-Objekt ist ein Auffangen eventueller Fehler in der aufzurufenden Funktion realisiert. 
 In Javascript ist es möglich über die \textit{.bind} Anweisung einer Funktion einen eigenen Scope zuzuweisen. Dies wird in Zeile 38 geprüft und in dem Fall, dass
 ein Funktionsscope gesetzt wurde, wird dieser für den Aufruf verwendet.
 Zuletzt wird die Javascript-Funktion aufgerufen und etwaige Fehler ausgegeben. Die Implementierung der \textit{ReportException} Funktion kann in Anhang \ref{app:ReportException}
-eingesehen werden. Im nächsten Schritt muss Javascript die \textit{dpConnect} Funktion zur Verfügung gestellt werden:
+eingesehen werden. Im nächsten Schritt muss der Javascript-Sprachumfang um die \textit{dpConnect} Funktion erweitert werden:
 
 
 \lstinputlisting[
