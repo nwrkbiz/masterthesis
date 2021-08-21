@@ -606,38 +606,6 @@
       \verb http://doxygen.nl/download.html#latestman
       \endverb
     \endentry
-    \entry{typedoc}{online}{}
-      \name{author}{1}{}{%
-        {{hash=9bebb7bb5e86002f2ae78241c6c6a490}{%
-           family={Hinkelmann},
-           familyi={H\bibinitperiod},
-           given={Franziska},
-           giveni={F\bibinitperiod}}}%
-      }
-      \strng{namehash}{9bebb7bb5e86002f2ae78241c6c6a490}
-      \strng{fullhash}{9bebb7bb5e86002f2ae78241c6c6a490}
-      \strng{bibnamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
-      \strng{authorbibnamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
-      \strng{authornamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
-      \strng{authorfullhash}{9bebb7bb5e86002f2ae78241c6c6a490}
-      \field{extraname}{1}
-      \field{sortinit}{H}
-      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{TypeDoc Homepage}
-      \field{urlday}{21}
-      \field{urlmonth}{8}
-      \field{urlyear}{2021}
-      \field{year}{2020}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://typedoc.org/
-      \endverb
-      \verb{url}
-      \verb https://typedoc.org/
-      \endverb
-    \endentry
     \entry{v8ByteCode}{online}{}
       \name{author}{1}{}{%
         {{hash=9bebb7bb5e86002f2ae78241c6c6a490}{%
@@ -652,7 +620,6 @@
       \strng{authorbibnamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
       \strng{authornamehash}{9bebb7bb5e86002f2ae78241c6c6a490}
       \strng{authorfullhash}{9bebb7bb5e86002f2ae78241c6c6a490}
-      \field{extraname}{2}
       \field{sortinit}{H}
       \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
       \field{labelnamesource}{author}
@@ -1188,6 +1155,23 @@
       \endverb
       \verb{url}
       \verb http://www.dre.vanderbilt.edu/~schmidt/ACE.html
+      \endverb
+    \endentry
+    \entry{typedoc}{online}{}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{labeltitlesource}{title}
+      \field{title}{TypeDoc Homepage}
+      \field{urlday}{21}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://typedoc.org/
+      \endverb
+      \verb{url}
+      \verb https://typedoc.org/
       \endverb
     \endentry
     \entry{v8embed}{online}{}

@@ -368,7 +368,8 @@ wenn ein Javascript-Objekt in mehreren C++-Funktionen verwendet werden soll.
 
 Beim Erstellen eines neuen V8-Contexts kann ein Objekt des Datentyps \textit{ObjectTemplate} angegeben werden, dass die Ausführungsumgebung des Contexts beschreibt.
 Diesem Objekt kann man beliebig viele eigene Funktionen (\textit{FunctionTemplate} Objekte) oder Variablen zuweisen. Über \textit{FunctionTemplate} Objekte ist es wiederum möglich, C++ Funktionen aufzurufen. 
-Dadurch lässt sich die Javascriptsprache beliebig erweitern.
+Dadurch lässt sich die Javascriptsprache beliebig erweitern. Auf Basis dieses \textit{ObjectTemplate}-Objekts wird beim erstellen der Ausführungsumgebung ein konkretes Objekt erstellt, dass den globalen 
+Funktionsscope darstellt.
 
 \subsection{Das DebugInspector Protokoll}
 

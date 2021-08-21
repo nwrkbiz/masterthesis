@@ -20,7 +20,7 @@ BEGIN
             VALUE "FileVersion", "@prototyp4_VERSION_MAJOR@, @prototyp4_VERSION_MINOR@, @prototyp4_VERSION_PATCH@, @prototyp4_VERSION_TWEAK@"
             VALUE "InternalName", "FFI DLL"
             VALUE "LegalCopyright", "(c) Daniel Giritzer"
-            VALUE "OriginalFilename", "prototyp4.exe"
+            VALUE "OriginalFilename", "prototyp4.dll"
             VALUE "ProductName", "FFI DLL"
             VALUE "ProductVersion", "@prototyp4_VERSION_MAJOR@, @prototyp4_VERSION_MINOR@, @prototyp4_VERSION_PATCH@, @prototyp4_VERSION_TWEAK@"
         END

@@ -64,31 +64,29 @@ beschrieben. Das gesamte UML-Diagramm mit allen Relationen kann in Anhang \ref{a
 Diese in \ref{fig:singleton} gezeigte Template-Klasse implementiert eine wiederverwendbare Umsetzung des Singleton-Entwurfsmusters \cite{Singleton}. Ableitende Klassen erhalten indem sie
 sich selbst als Template-Parameter übergeben eine \textit{GetInstance()} Funktion, die die einzige Instanz als \textit{Shared-Pointer} zurückgibt. 
 Dadurch ist ein korrektes Freigeben des Speichers am Ende der Programmausführung gewährleistet. Ableitende Klassen müssen zusätzlich deren 
-Konstruktor als \textit{protected} deklarieren und die Singleton klasse als \textit{friend} hinzufügen. Die \textit{GetInstance()} Methode nimmt
+Konstruktor als \textit{protected} deklarieren und die Singleton-Klasse als \textit{friend} hinzufügen. Die \textit{GetInstance()} Methode nimmt
 jene Parameter entgegen, die eine ableitende Klasse zur Konstruktion benötigt.
 
 \subsection{Implementierung der libV8 Klasse}
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.63\textwidth]{libv8}
-	\caption{Klassendiagramm der imlementierten Programmkomponente.}
+	\caption{libV8 Singleton-Klasse.}
 	\label{fig:libv8}
 \end{figure}
 
 Abbildung \ref{fig:libv8} zeigt die Hauptkomponente der Bibliothek. Diese Klasse verwaltet das \textit{Isolate} Objekt der Google V8-Engine und alle
-Ausführungsumgebungen. Über die Funktionen \textit{ExecuteDefault()} und \textit{ExecuteNew} ist es möglich Javascript-Dateien auszuführen. Beide akzeptieren
-als ersten Parameter einen Pfad zu einer Skriptdatei und als zweiten einen booleschen wert der Angibt ob der Ausführungskontext am Ende des Skriptes zerstört 
-werden soll oder nicht. 
-
-\subsection{Implementierung der V8Context Klasse}
-
-
-\begin{figure}[h]
-	\centering \includegraphics[width=0.63\textwidth]{v8context}
-	\caption{Klassendiagramm der imlementierten Programmkomponente.}
-	\label{fig:classdiag}
-\end{figure}
-
+Ausführungsumgebungen. Über die Funktionen \textit{ExecuteDefault()} und \textit{ExecuteNew()} ist es möglich Javascript-Dateien auszuführen. Beide akzeptieren
+als ersten Parameter einen Pfad zu einer Skriptdatei und als zweiten einen booleschen Wert der angibt ob der Ausführungskontext am Ende des Skriptes aufgeräumt 
+werden soll oder nicht. Erstere verwendet immer dieselbe Ausführungsumgebung (m\_DefaultContext), dadurch ist es möglich eine Liste von Skripten auszuführen, 
+die auf die gleichen Ressourcen Zugriff besitzen. Zweitere erstellt für jeden Aufruf ein eigenes \textit{Context}-Objekt und gibt eine Nummer zurück, die diesen Kontext identifiziert. 
+Somit lassen sich mehrere Skripte unabhängig voneinander ausführen. Die Methoden \textit{RecreateDefaultContext()} und \textit{ForceDisposeContext()} erlauben ein späteres 
+Aufräumen des Standardkontexts und der neu erstellten. Zweiterer muss man als Parameter die über \textit{ExecuteNew()} Identifikationsnummer der zu löschenden Ausführungsumgebung mitgeben.
+Mit Hilfe der \textit{AddJSCommands()} Funktion kann man den Ausführungskontexten eigene Javascriptfunktionen zur Verfügung stellen. Über diesen Mechanismus ist ein dynamisches Erweitern möglich. Über diesen mechanismus ist ein dynamisches 
+erweitern möglich. \textit{GetDebuggerInstance()} gibt ein abstraktes Observer-Objekt retour, das einer Websocket-Server Implementierung des \textit{SiPlant} Produktes übergeben werden kann.
+Da innerhalb eines Programms nur eine einzige Google V8 Engine gestartet werden darf, leitet diese Klasse von der Singleton-Template-Klasse ab. Dadurch ist ein mehrfaches 
+Instanziieren ausgeschlossen.
+\newpage
 
 \subsection{Implementierung der SIS\_InspectorClient Klasse}
 
@@ -109,32 +107,61 @@ Somit können
 	\label{fig:classdiag}
 \end{figure}
 
+\subsection{Implementierung der V8Context Klasse}
+
+\begin{figure}[h]
+	\centering \includegraphics[width=0.63\textwidth]{v8context}
+	\caption{V8Context-Klasse, repäsentiert einen Ausführungskontext.}
+	\label{fig:v8ctx}
+\end{figure}
+
+Die in Abbildung \ref{fig:v8ctx} gezeigte Klasse verwaltet einzelne Ausführungskontexte und ist somit für das Ausführen der Javascript-Dateien zuständig.
+Um eine falsche Verwendung zu vermeiden, ist der Konstruktor nur von der \textit{libV8}-Klasse aufrufbar (Friend-Beziehung). Beim Erstellen einer \textit{V8Context}-Instanz wird
+die Identifikationsnummer mitübergeben. Des Weiteren wird im Konstruktor die \textit{m\_AdditionalJSCommands} Variable mit Standartbefehlen für den Datenbankzugriff und die Alarmbehandlung befüllt.
+Das \textit{libV8}-Singleton gibt die über \textit{ExecuteDefault()} oder \textit{ExecuteNew()} erhaltenen Dateipfade and die \textit{Execute()} Methode eines jeweiligen \textit{V8Context}-Objekts weiter. Bevor das Skript gestartet wird, 
+übergibt die Klasse das \textit{Context}-Objekt an das \textit{SIS\_V8InspectorClient}-Singleton. Dadurch wird eine Fehleranalyse der Ausführungsumgebung durch Browser-Entwicklungswerkzeuge ermöglicht.
+Als nächstes werden die \textit{RegisterCommands()} und \textit{RegisterToGlobal()} Funktionen aller ICustomJSCommands Objekte der m\_AdditionalJSCommands Membervariable aufgerufen. Wird der Ausführungskontext zerstört,
+so werden im Destruktor alle \textit{FreeResources()} Methoden dieser Objekte aufgerufen.
+
 \subsection{Implementierung des ICustomJSCommands Interface}
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.63\textwidth]{icustomjscommands}
-	\caption{Klassendiagramm der imlementierten Programmkomponente.}
-	\label{fig:classdiag}
+	\caption{ICustomJSCommands-Interface zum erweitern des Javascript-Sprachumfangs.}
+	\label{fig:customjs}
 \end{figure}
+
+Das Interface in der Grafik \ref{fig:customjs} erlaubt ein Erweitern des Javascript-Sprachumfangs. Konkretisierungen müssen drei Funktionen
+implementieren, die von der \textit{V8Context}-Klasse aufgerufen werden. 
+
+\begin{itemize}
+	\item \textit{RegisterCommands()} ermöglicht das Hinzufügen von C++-Methoden zu dem \textit{ObjektTemplate}-Objekt bevor das \textit{Context}-Objekt erstellt wird.
+	\item Nach Konstruieren des Ausführungskontexts, wird \textit{RegisterToGlobal()} aufgerufen. Dieser Funktion wird die auf Basis des \textit{ObjektTemplate}-Objekts erzeugte Instanz mitgegeben. Dadurch ist es über C++ möglich Javascript Methoden auszuführen und Variablen zu verändern.
+	\item \textit{FreeResources()} wird beim Freigeben der Ausführungsumgebung aufgerufen um allokierte Ressourcen freigeben zu können.
+\end{itemize}
 
 \subsubsection{Konkretisierung DPJSCommands}
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.63\textwidth]{dpjscommands}
-	\caption{Klassendiagramm der imlementierten Programmkomponente.}
-	\label{fig:classdiag}
+	\caption{Funktionen für den Datenbankzugriff.}
+	\label{fig:dpjscommands}
 \end{figure}
+
+Diese Konkretisierung stellt den Ausführungsumgebungen wie in der Grafik \ref{fig:dpjscommands} ersichtlich Methoden für Zugriffsmethoden auf den Datenhausehalt des SCADA-Systems zur Verfügung.
+Die rekursiven Funktionen \textit{ConvertToJSValue()} und \textit{ConvertToSVariable()} beinhalten If-Else-Kaskaden für das Marshalling von WinCC OA 
+Datentypen nach Javascript und vice versa. Die Rekursion wird benötigt um mit Arrays umgehen zu können.
 
 \subsubsection{Konkretisierung AlertJSCommands}
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.63\textwidth]{alertjscommands}
-	\caption{Klassendiagramm der imlementierten Programmkomponente.}
-	\label{fig:classdiag}
+	\caption{Funktionen für den Alarmzugriff.}
+	\label{fig:alarmjscommands}
 \end{figure}
 
-
-Dadurch ist es Umsetzungen diese Interfaces können 
+Analog zu \textit{DPJSCommands} wird über die in Abbildung \ref{fig:alarmjscommands} erkennbare Klasse der Zugriff auf die Alarmfunktionen ermöglicht.
+Marshalling zwischen WinCC OA- und Javascript Datentypen wird über die im letzten Abschnitt beschriebenen Methoden \textit{ConvertToJSValue()} und \textit{ConvertToSVariable()} bewerkstelligt
 
 
 \section{Implementierung des Agenten}
