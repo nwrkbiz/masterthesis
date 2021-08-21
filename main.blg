@@ -1,19 +1,19 @@
 [0] Config.pm:304> INFO - This is Biber 2.12
 [0] Config.pm:307> INFO - Logfile is 'main.blg'
-[32] biber:315> INFO - === Sa Aug 21, 2021, 15:58:35
-[57] Biber.pm:371> INFO - Reading 'main.bcf'
-[130] Biber.pm:889> INFO - Found 48 citekeys in bib section 0
-[154] Biber.pm:4093> INFO - Processing section 0
-[170] Biber.pm:4254> INFO - Looking for bibtex format file 'references.bib' for section 0
-[176] bibtex.pm:1512> INFO - LaTeX decoding ...
-[297] bibtex.pm:1329> INFO - Found BibTeX data source 'references.bib'
-[310] Utils.pm:193> WARN - Duplicate entry key: 'gtest' in file 'references.bib', skipping ...
-[383] Utils.pm:193> WARN - month field 'August' in entry 'dragonBook' is not an integer - this will probably not sort properly.
-[401] Utils.pm:193> WARN - month field 'August' in entry 'compilerFrontEnd' is not an integer - this will probably not sort properly.
-[528] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[528] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[529] Biber.pm:3921> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
-[529] Biber.pm:3927> INFO - No sort tailoring available for locale 'de-DE'
-[579] bbl.pm:636> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[606] bbl.pm:739> INFO - Output to main.bbl
-[606] Biber.pm:110> INFO - WARNINGS: 3
+[35] biber:315> INFO - === Sa Aug 21, 2021, 16:29:32
+[67] Biber.pm:371> INFO - Reading 'main.bcf'
+[147] Biber.pm:889> INFO - Found 48 citekeys in bib section 0
+[172] Biber.pm:4093> INFO - Processing section 0
+[189] Biber.pm:4254> INFO - Looking for bibtex format file 'references.bib' for section 0
+[196] bibtex.pm:1512> INFO - LaTeX decoding ...
+[335] bibtex.pm:1329> INFO - Found BibTeX data source 'references.bib'
+[347] Utils.pm:193> WARN - Duplicate entry key: 'gtest' in file 'references.bib', skipping ...
+[432] Utils.pm:193> WARN - month field 'August' in entry 'dragonBook' is not an integer - this will probably not sort properly.
+[450] Utils.pm:193> WARN - month field 'August' in entry 'compilerFrontEnd' is not an integer - this will probably not sort properly.
+[591] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[591] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[592] Biber.pm:3921> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
+[592] Biber.pm:3927> INFO - No sort tailoring available for locale 'de-DE'
+[655] bbl.pm:636> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[686] bbl.pm:739> INFO - Output to main.bbl
+[686] Biber.pm:110> INFO - WARNINGS: 3
