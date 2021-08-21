@@ -165,7 +165,7 @@ eingesehen werden. Im nächsten Schritt muss der Javascript-Sprachumfang um die 
     firstline=148,
     lastline=173]{prototype3/src/prototyp3.cpp}
 
-Die Funktion \ref{src:proto3_dpcon} überpfüft zuerst ob der aufrufende Javascript-Code die passenden Objekte übergeben hat, ansonsten
+Die Funktion \ref{src:proto3_dpcon} überprüft zuerst ob der aufrufende Javascript-Code die passenden Objekte übergeben hat, ansonsten
 wird eine Exception geworfen, die Auskunft über die erwarteten Parameter gibt. Danach wird über \textit{Agent::getId()} die textuelle Repräsentation 
 des Datenpunktelements in den benötigten \textit{DpIdentifier} Datentyp umgewandelt. Zuletzt wird die WinCC OA \textit{dpConnect}
 Funktion mit der vorher beschriebenen \textit{Observer}-Klasse als Parameter aufgerufen. Dem Observer werden das \textit{Isolate}-Objekt, die Javascript-Callbackfunktion und

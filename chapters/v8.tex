@@ -59,7 +59,7 @@ einen Attributwert, so verweist dieser auf ein Element in der sogenannten Symbol
 
 Die Syntaktik beschreibt Regeln, auch Grammatik genannt, nach denen Texte strukturiert werden. Aus diesem Grund wird
 in dieser Phase aus den Token des \textit{Scanners}, wie in Abbildung \ref{fig:compiler_frontend} gezeigt, 
-eine Baumstruktur erstellt, die den gammatikalischen Aufbau der Eingabe wiederspiegelt. 
+eine Baumstruktur erstellt, die den grammatikalischen Aufbau der Eingabe wiederspiegelt. 
 Dies wird durch Parsen der Ausdrücke und Statements erreicht. Weicht das Quellprogramm von der Grammatik ab, so wird dies 
 als Syntaxfehler erkannt. Diese Komponente wird auch \textit{Parser} genannt.
 
@@ -70,7 +70,7 @@ Symboltabelle die semantische Konsistenz des Programmes überprüft. Es werden G
 Einhaltung von Kontextbedingungen verifiziert. Ist dies nicht der Fall, so wird ein semantischer Fehler erzeugt.
 Falls die Sprachdefinition bestimmte Typkonvertierungen erlaubt, werden diese umgesetzt. Zum Beispiel kann ein binärer arithmetischer Operator 
 entweder auf Ganzzahlen oder auf Gleitkommazahlen angewendet werden. Werden die Zahlentypen vermischt, kann der Compiler eine Umwandlung vornehmen.
-In Abbildung \ref{fig:compiler_frontend} ist dies unter der Annahme, dass \textit{initial} und \textit{rate} Gleitkommazahlen repräsentierem
+In Abbildung \ref{fig:compiler_frontend} ist dies unter der Annahme, dass \textit{initial} und \textit{rate} Gleitkommazahlen repräsentieren
 durch die eingefügte \textit{inttofloat} Operation erkennbar. 
 
 \subsection{Umsetzung in Javascriptengines}
@@ -202,7 +202,7 @@ In Abbildung \ref{fig:js_ast} ist die in Ausgabe \ref{prog:d8_ast} für ein bess
 \end{figure}
 
 In der Visualisierung \ref{fig:js_ast} kann man im linken Zweig die Funktionsparameter erkennen. Der Rechte beschreibt den Rückgabewert der
-Funktion. Hier fällt auf, dass die Kinderknoten der arithmetischen Addition auf die Eingabeparameter referenzieren. 
+Funktion. Hier fällt auf, dass die Kindknoten der arithmetischen Addition auf die Eingabeparameter referenzieren. 
 
 \subsection{Interpreter}
 
@@ -318,7 +318,7 @@ Es werden die wichtigsten Konzepte erklärt und anhand eines Beispielprogrammes 
 Als \textit{Isolate} bezeichnet man eine unabhängige Kopie der V8 Laufzeitumgebung, die einen eigenen Speicherbereich verwaltet.
 Ein Prozess kann mehrere dieser Objekte Instanziieren, aber jedes darf nur von jeweils einem Thread verwendet werden. 
 Zu diesem Zweck muss über Objekte des Datentyps \textit{Locker} aus der V8-Programmierschnittstelle ein mehrfacher Zugriff verhindert 
-werden. Diese funktionieren wie eine Mutal-Exclusion und blockieren einen zweiten Thread, bis der erste den geschützten Bereich
+werden. Diese funktionieren wie eine Mutal Exclusion und blockieren einen zweiten Thread, bis der erste den geschützten Bereich
 verlassen hat.
 
 \subsection{Contexts}
