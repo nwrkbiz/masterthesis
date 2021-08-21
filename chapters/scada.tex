@@ -351,3 +351,31 @@ $ cd ./build
 $ cmake .. -T v140 -A x64 -DWINCCOA_INSTALL=C:/Siemens/Automation/WinCC_OA/3.16
 $ cmake --build .
 \end{GenericCode}
+
+\section{SiPlant als Erweiterung}
+
+Um webbasierende Visualisierungen zu ermöglichen, wurden unter Zuhilfenahme der WinCC OA C++-Programmierschnittstelle drei Agenten entwickelt.
+
+\begin{figure}[h]
+	\centering \includegraphics[width=0.65\textwidth]{siplant}
+	\caption{SIS\_HTTP, SIS\_Event und SIS\_NGUI als Erweiterung für WinCC OA.}
+	\label{fig:siplant}
+\end{figure}
+
+Die Grafik \ref{fig:siplant} zeigt die WinCC OA Erweiterung \textit{SiPlant}. Die ausführbaren Dateien und der HTML5-Quellcode ist
+innerhalb eines eigenen Subprojekts organisiert. Die drei Agenten erfüllen folgenden Zweck:
+
+\begin{itemize}
+	\item SIS\_HTTP: Stellt den Webbrowsern die in HTML5 implementierte Visualisierung zur Verfügung.
+	\item SIS\_Event: Ist für die \textit{SiPlant}-Webseite der Eintrittspunkt zu einer erweiterbaren Websocket-Schnittstelle. Andere Agenten können sich bei diesem Prozess Anmelden um Befehle entgegenzunehmen.
+	\item SIS\_NGUI: Übernimmt Websocket-Befehle die sich um Benutzeranpassungen kümmert (verwalten der Benutzerprofile etc.).
+\end{itemize}
+
+\textit{SiPlant} kann über den Subprojekt-Mechanismus sukzessive erweitert werden. SIS\_HTTP erlaubt den Webbrowsern zugriff auf die HTML5-Dateien 
+aller Subprojekte. Spezifische Agenten können der Webseite über SIS\_Event eigene Websocket-Befehle zur Verfügung stellen. Der CD-ROM/DVD liegen zwei
+\textit{SiPlant}-Erweiterungen bei, die sich diesem Konzept Bedienen:
+
+\begin{itemize}
+	\item SMF\_PlantVisu: Ermöglicht Performance und Fehleranalysen in einer Produktion.
+	\item SMF\_SmartScheduler: Implementiert einen Kalender, der das Planen von Schichten und Ereignissen erlaubt. 
+\end{itemize}
