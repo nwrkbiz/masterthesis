@@ -92,20 +92,37 @@ Instanziieren ausgeschlossen.
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.63\textwidth]{inspectorclient}
-	\caption{Klassendiagramm der imlementierten Programmkomponente.}
-	\label{fig:classdiag}
+	\caption{SIS\_InspectorClient Klasse.}
+	\label{fig:inspcl}
 \end{figure}
 
-Die DebugInspector implementiert zusätzlich ein Interface für den in dem \textit{SiPlant} Produkt verwendten Websocket-Server.
-Somit können
+Diese Klasse implementiert wie in Abbildung \ref{fig:inspcl} erkennbar drei Interfaces. Das \textit{AbstractJDataProvider}-Interface ist eine Observer-Klasse 
+für den in dem \textit{SiPlant} Produkt verwendeten Websocket-Server. Werde Nachrichten erhalten, gibt der Server diese an die \textit{ExecuteCommand()} Methode weiter.
+Der erste Parameter ist hierbei die Nachricht im JSON-Format und die zweite der Websocket-Endpunkt. Die Implementierung dieser Funktion gibt eine leere Struktur zurück,
+dadurch sendet der Websocket-Server keine unmittelbare Antwort an den Client. Über das \textit{SIS\_IEndpoint} Objekt ist es später jederzeit möglich Nachrichten zu senden
+darum wird es als Member-Variable gespeichert. Die \textit{GetWSClient()} Funktion ermöglicht späteren Zugriff auf diese.
+Da man in der Regel nur ein \textit{Isolate} benötigt leutet diese Klasse ebenfalls von der Singleton-Template-Klasse ab. Dank der Geerbten \textit{GetInstance()} Funktion kann so 
+das zu verwendende \textit{Isolate} Objekt an den geschützten Konstruktor übergeben werden. Dies geschieht beim Aufrufen der \textit{GetDebuggerInstance()} Methode des \textit{libV8}-Singletons automatisch.
+Des Weiteren wird im Konstruktor ein \textit{V8Inspector}-Objekt mit einer Eigenen \textit{V8InspectorSession} erstellt. Dieser Session wiederum wird mit einer Instanz der \textit{SIS\_InspectorFrontend}
+Klasse zum Senden von Antworten der V8-Engine ausgestattet. Über die \textit{AddContext()} und \textit{RemoveContext()} Funktionen kann man zu überwachende Ausführungsumgebungen hinzufügen und entfernen.
+Schließt ein Websocket-Endpunkt die Verbindung, führt dies durch den Websocket-Server zu einer Ausführung der \textit{OnConnectionClosed()} Methode. In dieser wird die \textit{} Member-Variable auf nullptr gesetzt,
+damit das \textit{SIS\_InspectorFrontend}-Objekt keine Antworten mehr sendet. Das \textit{v8InspectorClient} Interface schreibt die Umsetzung der \textit{runMessageLoopOnPause()} und \textit{quitMessageLoopOnPause()}
+Methoden vor. Wird ein Javascript zum Beispiel wegen eines Breakpoints gestoppt, arbeitet die Erstere so lange alle Websocket-Nachrichten ab, bis die zweitere Funktion ausgeführt
+wird um die Ausführung fortzusetzen.
 
 \subsection{Implementierung der SIS\_InspectorFrontend Klasse}
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.63\textwidth]{inspectorfrontend}
-	\caption{Klassendiagramm der imlementierten Programmkomponente.}
-	\label{fig:classdiag}
+	\caption{Implementierung des \textit{v8Inspector::Channel} Interfaces.}
+	\label{fig:inspchan}
 \end{figure}
+
+Die Google V8-Engine antwortet auf Debugging-Befehle über das \textit{v8Inspector::Channel} Interface. Um an die Browser-Entwicklungswerkzeuge Antworten 
+antworten auf Analysebefehle Senden zu können wurde daher die in \ref{fig:inspchan} gezeigte Klasse umgesetzt. Der Konstruktor kann über eine Friend-Beziehung nur
+von dem \textit{SIS\_InspectorClient}-Singleton aufgerufen werden. Dieses übergibt sich beim erzeugen dieser Klasse selbst. Innerhalb der \textit{sendNotification()} und \textit{sendResponse()}
+Methoden werden die von der V8-Engine erhaltenen Nachrichten an den in der \textit{SIS\_InspectorClient}-Klasse gespeicherten Websocketendpunkt gesendet.
+\textit{ProcessAnswer()} ist eine Hilfsfunktion, die die Antworten der V8-Engine in normale Strings umwandelt.
 
 \subsection{Implementierung der V8Context Klasse}
 
@@ -119,9 +136,9 @@ Die in Abbildung \ref{fig:v8ctx} gezeigte Klasse verwaltet einzelne Ausführungs
 Um eine falsche Verwendung zu vermeiden, ist der Konstruktor nur von der \textit{libV8}-Klasse aufrufbar (Friend-Beziehung). Beim Erstellen einer \textit{V8Context}-Instanz wird
 die Identifikationsnummer mitübergeben. Des Weiteren wird im Konstruktor die \textit{m\_AdditionalJSCommands} Variable mit Standartbefehlen für den Datenbankzugriff und die Alarmbehandlung befüllt.
 Das \textit{libV8}-Singleton gibt die über \textit{ExecuteDefault()} oder \textit{ExecuteNew()} erhaltenen Dateipfade and die \textit{Execute()} Methode eines jeweiligen \textit{V8Context}-Objekts weiter. Bevor das Skript gestartet wird, 
-übergibt die Klasse das \textit{Context}-Objekt an das \textit{SIS\_V8InspectorClient}-Singleton. Dadurch wird eine Fehleranalyse der Ausführungsumgebung durch Browser-Entwicklungswerkzeuge ermöglicht.
-Als nächstes werden die \textit{RegisterCommands()} und \textit{RegisterToGlobal()} Funktionen aller ICustomJSCommands Objekte der m\_AdditionalJSCommands Membervariable aufgerufen. Wird der Ausführungskontext zerstört,
-so werden im Destruktor alle \textit{FreeResources()} Methoden dieser Objekte aufgerufen.
+übergibt die Klasse das \textit{Context}-Objekt an das \textit{SIS\_V8InspectorClient}-Singleton. Dadurch wird eine Überwachung der Ausführungsumgebung zur Fehleranalyse durch Browser-Entwicklungswerkzeuge ermöglicht.
+Als nächstes werden die \textit{RegisterCommands()} und \textit{RegisterToGlobal()} Funktionen aller ICustomJSCommands Objekte der m\_AdditionalJSCommands Member-Variable aufgerufen. Wird der Ausführungskontext zerstört,
+so werden im Destruktor alle \textit{FreeResources()} Methoden dieser Objekte aufgerufen und die Überwachung über die \textit{RemoveContext()} Funktion des \textit{SIS\_InspectorClient}-Singletons beendet.
 
 \subsection{Implementierung des ICustomJSCommands Interface}
 

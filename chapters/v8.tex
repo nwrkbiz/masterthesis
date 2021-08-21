@@ -86,7 +86,7 @@ Datentyp übergeben wird, der von dieser nicht verwendet werden kann. Tritt dies
 \begin{program}[h]
 	\caption{Deoptimierung in Javascript.}
 	\label{prog:js_deopt}
-	\begin{GenericCode}
+	\begin{JsCode}
 // Testfunktion
 function getX(obj) {
 	return obj.x;
@@ -100,7 +100,7 @@ getX({ x: 1, y: 3 });
 getX({ x: 1, y: 4 });
 
 // hier muss deoptimiert werden
-getX({ x: 1, z: 4 });\end{GenericCode}
+getX({ x: 1, z: 4 });\end{JsCode}
 \end{program}
 
 Das Beispiel \ref{prog:js_deopt} zeigt, dass in Zeile 11 deoptimiert werden muss, da der übergebene Typ nicht dieselbe Struktur besitzt, wie in den
