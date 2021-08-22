@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
   source << inFile.rdbuf();
   std::string srcStr = source.str();
 
-  // Initialisiere V8-Engine
+  // Initialisiere V8 Engine
   v8::V8::InitializePlatform(v8::platform::CreateDefaultPlatform());
   v8::V8::Initialize();
 

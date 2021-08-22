@@ -3,14 +3,14 @@
 
 Während im letzten Kapitel auf die Konzepte und Funktionsweise von SCADA-Systemen eingegangen wurde, widmet sich dieses nun der Skriptsprache Javascript. 
 Es wird gezeigt, wie diese Sprache technisch funktioniert. Als Javascriptengine bezeichnet man Programmkomponenten, die ECMA standardkonformen Quellcode ausführen können \cite{ecma}. 
-Danach werden die drei bekanntesten Engines verglichen, um zu erläutern, warum die Google-V8-Engine für die Umsetzung gewählt wurde. 
+Danach werden die drei bekanntesten Engines verglichen, um zu erläutern, warum die Google V8 Engine für die Umsetzung gewählt wurde. 
 Im letzten Abschnitt werden die Konzepte, Funktionsweise und Programmierschnittstelle dieser beschrieben.
 
 \section{Grundlagen}
 \label{cha:Grundlagen}
 
 Um zu verstehen, wie eine Javascriptengine funktioniert, müssen die Grundlagen der Compilertheorie umrissen werden. Dazu wird
-hier nun Bezug auf \cite{dragonBook} und \cite{Terry1997CompilersAC} genommen.
+hier Bezug auf \cite{dragonBook} und \cite{Terry1997CompilersAC} genommen.
 
 \subsection{Sprachprozessoren}
 
@@ -118,7 +118,7 @@ anhand der Verwendung in verschiedenen Webbrowsern verglichen.
 	\setlength{\tabcolsep}{3mm} % separator between columns 
 	\def\arraystretch{1.25} % vertical stretch factor 
 	\begin{tabular}{|l|l|c|c|} \hline 
-		\emph{Browser} & \emph{Javascript-Engine} & \emph{netmarketshare.com} & \emph{statcounter.com} \\ 
+		\emph{Browser} & \emph{Javascriptengine} & \emph{netmarketshare.com} & \emph{statcounter.com} \\ 
 		\hline 
 		\hline Google Chrome & V8 & 65,17\% & 65,73\% \\ 
 		\hline Apple Safari & JavaScriptCore & 13,75\% & 18,04\% \\
@@ -138,7 +138,7 @@ meisten verwendete Programmkomponente die sich um das Ausführen von Javascript-
 
 \subsection{Fazit}
 
-Aufgrund der hohen Verbreitung in quelloffenen und kommerziellen Projekten kann davon ausgegangen werden, dass, obwohl die Google V8-Engine 
+Aufgrund der hohen Verbreitung in quelloffenen und kommerziellen Projekten kann davon ausgegangen werden, dass, obwohl die Google V8 Engine 
 eine freie Lizenz besitzt, eine gute Wartung der Codebasis und ein langer Support garantiert ist. Aus diesem Grund wurde diese Softwarekomponente 
 den anderen vorgezogen.
 
@@ -154,7 +154,7 @@ Das fertige Kompilat wird unter \textit{v8/out/v8} abgelegt.
 \subsection{Abstrakter Syntaxbaum}
 
 Im ersten Ausführungsschritt muss zunächst, wie in dem Abschnitt \ref{cha:Grundlagen} erklärt, mit Hilfe eines \textit{Frontends} der Quellcode geparst und
-ein abstrakter Syntaxbaum erstellt werden. Jene Komponente die dies durchführt wird in der Google V8-Engine als \textit{Parser} bezeichnet.
+ein abstrakter Syntaxbaum erstellt werden. Jene Komponente die dies durchführt wird in der Google V8 Engine als \textit{Parser} bezeichnet.
 Anhand der folgenden Funktion 'addiere' wird nun gezeigt, wie dieser Baum dargestellt wird:
 
 \begin{program}[h]
@@ -193,7 +193,7 @@ FUNC at 16
 \end{GenericCode}
 \end{program}
 
-In Abbildung \ref{fig:js_ast} ist die in Ausgabe \ref{prog:d8_ast} für ein besseres Verständnis grafisch visualisiert.
+In Abbildung \ref{fig:js_ast} ist die Ausgabe \ref{prog:d8_ast} für ein besseres Verständnis grafisch visualisiert.
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.80\textwidth]{ast}
@@ -207,7 +207,7 @@ Funktion. Hier fällt auf, dass die Kindknoten der arithmetischen Addition auf d
 \subsection{Interpreter}
 
 Aus diesem Baum wird im nächsten Schritt ein Bytecode generiert, der dann von dem Interpreter ausgeführt werden kann. Der Interpreter wird 
-in der Google V8-Engine als \textit{Ingnition} bezeichnet und ist als Registermaschine umgesetzt. Die meisten Bytecodes verwenden ein spezielles
+in der Google V8 Engine als \textit{Ingnition} bezeichnet und ist als Registermaschine umgesetzt. Die meisten Bytecodes verwenden ein spezielles
 Register mit dem Namen \textit{accumulator} um den zuletzt berechneten Wert zu speichern.
 
 \begin{program}[h]
@@ -241,7 +241,7 @@ In der Ausgabe \ref{prog:d8_bytec} ist erkennbar, dass zwei weitere Register, a1
 
 \subsection{Just-In-Time Compiler}
 
-Diese Komponente wird in der Google V8-Engine als \textit{Turbofan} bezeichnet, da sie eine performantere Ausführung
+Diese Komponente wird in der Google V8 Engine als \textit{Turbofan} bezeichnet, da sie eine performantere Ausführung
 von Codeabschnitten ermöglicht. Wird vom Interpreter erkannt, dass eine Funktion oft aufgerufen wird,
 übergibt er den Bytecode an den Just-In-Time Compiler, damit dieser nativen Maschinencode erzeugt. Anschließend
 wird dieses Kompilat für eine spätere Ausführung im Speicher abgelegt.
@@ -326,7 +326,7 @@ verlassen hat.
 Ein \textit{Context} ist eine Ausführungsumgebung, die es ermöglicht, separaten, unabhängigen Javascript-Code in einer 
 V8 Laufzeitumgebung (\textit{Isolate}) auszuführen. Da ein \textit{Isolate}-Objekt mehrere Context-Ausführungsumgebungen besitzen kann, 
 muss jene, die zur Ausführung verwendet werden soll, explizit angegeben werden. Dies wird mit dem RAII-Konzept
-(Ressourcenbelegung ist Initialisierung) durch Erstellen eigener Objekte des Types \textit{Context::Scope} erreicht.
+(Ressourcenbelegung ist Initialisierung) durch Erstellen eigener Objekte des Typs \textit{Context::Scope} erreicht.
 
 \begin{figure}[h]
 	\centering \includegraphics[width=0.7\textwidth]{contexts}
@@ -340,7 +340,7 @@ gegenseitig zu beeinflussen. Nach Aufrufen des Destruktors von dem scopeB Objekt
 \subsection{Speicherverwaltung}
 
 Der Speicher innerhalb eines \textit{Isolate} wird von einem Garbage-Collector verwaltet. Damit dieser weiß, welche Speicherbereiche
-noch in Verwendung, werden die Javascript-Objekte über sogenannte Handles überwacht. Diese halten eine Referenz auf 
+noch in Verwendung sind, werden die Javascript-Objekte über sogenannte Handles überwacht. Diese halten eine Referenz auf 
 die Position eines Javascript-Objekts in dem von einem \textit{Isolate} verwalteten Speicherbereich. Gibt es kein Handle mehr, dass 
 ein bestimmtes Objekt referenziert, kann dieses durch den Garbage-Collector freigegeben werden. Hier
 wird zwischen zwei Typen unterschieden:
@@ -356,11 +356,11 @@ wird zwischen zwei Typen unterschieden:
 Ob ein Objekt noch valide ist, wird hier über das RAII-Konzept (Ressourcenbelegung ist Initialisierung) ermittelt.
 Dazu muss, bevor das erzeugen von Javascript-Objekten möglich ist, wie in Abbildung \ref{fig:handles} gezeigt, ein \textit{HandleScope}-Objekt auf dem C++-Stack allokiert werden. 
 Dieses Objekt stellt einen eigenen Stack für Local-Handles zur Verfügung.
-Wird es zerstört, zum Beispiel beim Verlassen des Scopes, werden alle Handles dieses \textit{HandleScope}-Stacks gelöscht.
+Wird es zerstört, zum Beispiel beim Verlassen des Gültigkeitsbereichs, werden alle Handles dieses \textit{HandleScope}-Stacks gelöscht.
 
 \subsubsection{Persitent}
 
-Die Lebenszeit eines Persitent-Handles ist nicht an den aktuellen Scope gebunden. Daher muss man dem V8-Garbage-Collector manuell signalisieren,
+Die Lebenszeit eines Persitent-Handles ist nicht an den aktuellen Gültigkeitsbereich gebunden. Daher muss man dem V8-Garbage-Collector manuell signalisieren,
 wenn es nicht mehr gebraucht wird. Dazu kann die \textit{SetWeak()}-Funktion des Handle-Objekts aufgerufen werden. Dieser Mechanismus ist hilfreich,
 wenn ein Javascript-Objekt in mehreren C++-Funktionen verwendet werden soll.
 
@@ -369,16 +369,16 @@ wenn ein Javascript-Objekt in mehreren C++-Funktionen verwendet werden soll.
 Beim Erstellen eines neuen V8-Contexts kann ein Objekt des Datentyps \textit{ObjectTemplate} angegeben werden, dass die Ausführungsumgebung des Contexts beschreibt.
 Diesem Objekt kann man beliebig viele eigene Funktionen (\textit{FunctionTemplate}-Objekte) oder Variablen zuweisen. Über \textit{FunctionTemplate}-Objekte ist es wiederum möglich, C++-Funktionen aufzurufen. 
 Dadurch lässt sich die Javascriptsprache beliebig erweitern. Auf Basis dieses \textit{ObjectTemplate}-Objekts wird beim erstellen der Ausführungsumgebung ein konkretes Objekt erstellt, dass den globalen 
-Funktionsscope darstellt.
+Javascript-Funktionsscope darstellt.
 
 \subsection{Das DebugInspector Protokoll}
 
-Die Google-V8-Engine besitzt erweiterte Funktionen zur Fehlersuche über ein JSON basierendes Protokoll \cite{v8Debug}. Die in den Webbrowsern Google Chrome und Microsoft
+Die Google V8 Engine besitzt erweiterte Funktionen zur Fehlersuche über ein JSON basierendes Protokoll \cite{v8Debug}. Die in den Webbrowsern Google Chrome und Microsoft
 Edge enthaltenen Entwicklerwerkzeuge unterstützen dieses und erlauben entfernten Zugriff auf V8-Instanzen via Websockets. 
 Implementiert man die entsprechenden Interface-Klassen \textit{V8InspectorClient} und \textit{V8Inspector::Channel}
 der V8-Programmierschnittstelle, damit sie Befehle über einen Websocket-Server erhalten können, ist es möglich, den von der Engine ausgeführten Javascript-Code mit 
 einen der zwei zuvor genannten Browser zu analysieren. Die \textit{V8InspectorClient} Implementierung muss die Verbindung zu einem \textit{Context} herstellen.
-Danach können über den Websocket-Server erhaltene JSON-Befehle an die V8-Engine weitergegeben werden. Die \textit{V8Inspector::Channel} 
+Danach können über den Websocket-Server erhaltene JSON-Befehle an die V8 Engine weitergegeben werden. Die \textit{V8Inspector::Channel} 
 Umsetzung erhält die Antworten auf die Befehle und muss sie an den Befehlsgeber zurücksenden. Somit ist es möglich die Laufzeit eines laufenden Javascript-Codes zu 
 analysieren und zu manipulieren. Außerdem kann man einzelne Funktionsaufrufe und Codesequenzen über die von den Browser-Entwicklerwerkzeugen zur Verfügung gestellte REPL (Read-eval-print loop) 
 Konsole testen \cite{repl}.
@@ -387,7 +387,7 @@ Konsole testen \cite{repl}.
 \label{cha:v8_code}
 
 Nachfolgend wird anhand eines konkreten Beispiels gezeigt, wie man die vorher erläuterten Konzepte angewendet werden, um innerhalb eines
-C++-Programmes Javascript-Quellcode ausführen zu können. Des weiterem wird erklärt, wie die Skriptsprache über das \textit{Global}-Objekt erweiterbar 
+C++-Programmes Javascript-Quellcode ausführen zu können. Außerdem wird erklärt, wie die Skriptsprache über das \textit{Global}-Objekt erweiterbar 
 ist.
 
 \lstinputlisting[
@@ -405,7 +405,7 @@ Javascript-Code der boolesche Wert 'true' retourgegeben.
 Am Anfang des Beispiels ist erkennbar, dass ein HandleScope angelegt wird um alle Local Handles verwalten zu können. Hier wird keine Context::Scope
 Instanz benötigt, da das ausführende Skript bereits in einem aktiven Scope laufen muss. Wird kein Parameter übergeben, so wird eine Javascript-Exception
 geworfen. Diese kann im Skriptquellcode durch \textit{try}-\textit{catch}-Blöcken gefangen werden. Diese Funktion kann nun innerhalb eines Programmes
-an die V8-Engine übergeben werden:
+an die V8 Engine übergeben werden:
 
 \lstinputlisting[
 	label={src:proto2_main},
@@ -455,11 +455,11 @@ In \ref{src:proto2_test2} ist ein syntaktischen Fehler erkennbar. Das Starten di
 			caption={Ausgabe des zweiten Tests.},
 			numbers=none]{prototype2/ausgabe2.txt}
 
-Man kann erkennen, dass die Google-V8-Enginen dieses Problem bereits zur Kompilierzeit identifizieren konnte und Hinweise zum Beheben ausgibt.
+Man kann erkennen, dass die Google V8 Enginen dieses Problem bereits zur Kompilierzeit identifizieren konnte und Hinweise zum Beheben ausgibt.
 Abgefangen wurde der Fehler über das \textit{tryCatchCompile}-Objekt in der Hauptfunktion. \\
 
 Das komplette Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD unter \textit{Thesis/prototype2} und kann mit folgenden Befehlen 
-übersetzt werden. Zum übersetzten wird der \textit{SMF\_3P} Ordner benötigt, da dieser die Bibliotheken der Google-V8-Engine in Binärform beinhaltet. Alternativ können
+übersetzt werden. Zum übersetzten wird der \textit{SMF\_3P} Ordner benötigt, da dieser die Bibliotheken der Google V8 Engine in Binärform beinhaltet. Alternativ können
 diese auch mit den Skripten in Anhang \ref{app:v8build} erzeugt werden. Dieser Ordner befindet sich auch auf der CD-ROM/DVD. \\
 
 SUSE Linux Enterprise 12.5:

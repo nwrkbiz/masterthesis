@@ -2,7 +2,7 @@
 \label{cha:Konzept}
 
 In folgendem Kapitel wird ein Umsetzungskonzept für die im letzten beschriebenen Anforderungen erarbeitet. Es werden verschiedenen
-Strategien verglichen und ein Fazit gezogen. Im letzten Abschnitt wird die machbarkeit anhand eines fonktionalen Prototypen 
+Strategien verglichen und ein Fazit gezogen. Im letzten Abschnitt wird die Machbarkeit anhand eines funktionalen Prototypen 
 evaluiert.
 
 \section{Compiler}
@@ -10,14 +10,14 @@ evaluiert.
 Wichtig ist hier zu erwähnen, dass vonseiten des WinCC OA SCADA Produktes für die jeweilige Plattform bestimmte Compiler
 vorgeschrieben sind, weil ansonsten aufgrund von etwaigen \textit{ABI (Application Binary Interface)} Inkompatibilitäten mit 
 der Programmierschnittstelle keine korrekte Funktionsweise garantiert wird. Für Linux ist in der WinCC OA Dokumentation ein C++-Compiler der 
-\textit{GNU Compiler Collection (GCC)} in der Version 4.8.5 vorgeschrieben. Zum erzeugen von Windows Binärdateien wird der Compiler
+\textit{GNU Compiler Collection (GCC)} in der Version 4.8.5 vorgeschrieben. Zum Erzeugen von Windows Binärdateien wird der Compiler
 des \textit{Visual Studio Toolset} in der Version v140 angegeben. Alle Programmkomponenten und Drittbibliotheken müssen mit diesen
 Compilern gebaut werden.
 
-\section{Linken der Google V8-Engine}
+\section{Linken der Google V8 Engine}
 
 Im folgenden Abschnitt wird erklärt, wie ein Programm mit externen Bibliotheken umgehen kann. Die verschiedenen Möglichkeiten
-werden abgewogen und in einem Fazit wird entschieden, welche Methode zum linken der Google V8-Engine verwendet wird.
+werden abgewogen und in einem Fazit wird entschieden, welche Methode zum linken der Google V8 Engine verwendet wird.
 
 \subsection{Statisches Linken}
 
@@ -35,20 +35,20 @@ ist, dass der ausführbare Code für alle Prozesse, die diese Bibliothek benutze
 \subsection{Fazit}
 
 Da der Agent nur als einzelner Prozess laufen soll, ist durch die Verwendung von dynamischen Bibliotheken kein wirklicher Vorteil gegeben.
-Es macht daher mehr Sinn die Bibliotheken der Google V8-Engine statisch in die ausführbare Datei zu linken, da man somit von externen Bibliotheken
+Es macht daher mehr Sinn die Bibliotheken der Google V8 Engine statisch in die ausführbare Datei zu linken, da man somit von externen Bibliotheken
 unabhängig bleibt.
 
 \section{Umsetzungskonzept}
 
-Im letzten Abschnitt wurde erörtert, wie die V8-Bibliothek als externes Modul in die eigene Komponente
-eingebunden werden soll. Nun wird die Art der Umsetzung diskutiert. Es wird hier vor allem auf die Anforderung der Wiederverwendbarkeit
+Im letzten Abschnitt wurde erörtert, wie die V8-Bibliotheken als externes Modul in die eigene Komponente
+eingebunden werden sollen. Nun wird die Art der Umsetzung diskutiert. Es wird hier vor allem auf die Anforderung der Wiederverwendbarkeit
 acht genommen. 
 
 \subsection{Dynamische Bibliothek}
 
 Die Umsetzung als dynamische Bibliothek wäre praktikabel, da dies ein einfaches Aktualisieren der Komponente ermöglichen kann.
 Wenn Teile der Implementierung aufgrund etwaiger Schwachstellen oder neuen Funktionen geändert werden, muss bei den Kundinnen und Kunden 
-nicht jedes Programm, das die V8-Engine verwendet, einzeln aktualisiert werden, sondern nur die dynamische Bibliothek. Voraussetzung dafür
+nicht jedes Programm, das die V8 Engine verwendet, einzeln aktualisiert werden, sondern nur die dynamische Bibliothek. Voraussetzung dafür
 ist, dass die Schnittstellen nicht geändert werden.
 
 \subsection{Statische Bibliothek}
@@ -74,7 +74,7 @@ um die Ausführung von Javascriptdateien zu ermöglichen.
 \section{Handbuch für Integratorinnen und Integratoren}
 
 Javascript besitzt als Programmiersprache keine Typsicherheit, aus diesem Grund ist sie in größeren Codebasen nicht
-immer einfach zu handhaben. TypeScript bietet hier Abhilfe, da es ein typsicheres Programmieren von Javascript-Code
+immer einfach handzuhaben. TypeScript bietet hier Abhilfe, da es ein typsicheres Programmieren von Javascript-Code
 ermöglicht. TypeScript-Quellcode kann dann durch einen TypeScript-Compiler in Javascript-Quellcode übersetzt werden.
 Damit man die innerhalb des V8-Agenten implementierten Funktionen in dieser Programmiersprache verwenden kann, müssen somit
 eigene Funktionsdeklarationen geschrieben werden. Um ein interaktives Handbuch für Systemintegratorinnen und Systemintegratoren
@@ -184,7 +184,7 @@ beim Starten des Programmes an das Context-Objekt übergeben:
     lastline=229]{prototype3/src/prototyp3.cpp}
 
 Initialisiert man nun in der Hauptfunktion des Programms die WinCC OA \textit{Resources}-Klasse, erstellt ein \textit{Agent}-Objekt und 
-richtet die Google V8-Engine, wie in den zuvor gezeigten Beispielen ein, kann nach erreichen der Hauptschleife 
+richtet die Google V8 Engine, wie in den zuvor gezeigten Beispielen ein, kann nach erreichen der Hauptschleife 
 mit dem \textit{dispatch()} Aufruf die \textit{DpConnect}-Funktion in Javascript aufgerufen werden:
 
 \lstinputlisting[

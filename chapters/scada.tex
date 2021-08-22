@@ -19,7 +19,7 @@ von Zeitvorgaben \cite{realTimeDB}. Weitere Eigenschaften eines SCADA-Systems si
 	\item Skalierbarkeit: Hierbei versteht man die Möglichkeit, das System um weitere Instanzen mit jeweils eigenen Echtzeitdatenbanken zu erweitern.
 	\item Redundanz: Um die Ausfallsicherheit zu erhöhen, muss ein Redundanzbetrieb möglich sein.
 	\item Benutzerverwaltung: Verschiedene Benutzergruppen brauchen Zugriff auf den Datenhaushalt. Daher wird eine Benutzerverwaltung benötigt um die Sichtbarkeit bestimmter Daten einschränken zu können.
-	\item Alarmbehandlung: Für bestimmte Werte in der Datenbank können Hysteresen und Schwellwerte definiert werden. Sind diese über- oder unterschritten, werden Alarme ausgelöst und über verschiedene Kommunikationswege an Benutzer weiterpropagiert. Tritt ein solcher Zustand ein, kann dies eine Benutzerinteraktion erfordern und mit einer Quittierungspflicht einhergehen.  
+	\item Alarmbehandlung: Für ausgewählte Werte in der Datenbank können Hysteresen und Schwellwerte definiert werden. Sind diese über- oder unterschritten, werden Alarme ausgelöst und über verschiedene Kommunikationswege an Benutzer weiterpropagiert. Tritt ein solcher Zustand ein, kann dies eine Benutzerinteraktion erfordern und mit einer Quittierungspflicht einhergehen.  
 	\item Archivieren: Damit ist die Mittel- und Langzeitspeicherung von Daten gemeint.
 	\item Entwicklung: SCADA-Systeme zeichnen sich dadurch aus, dass sie Programmierschnittstellen zur Verfügung stellen, die Zugriff auf den Datenhaushalt (lesen und schreiben) ermöglichen. Außerdem bieten sie grafische Werkzeuge zum Modellieren der Echtzeitdatenbank.
 	\item Automatisierung: Die ereignisorientierte Kommunikation in Verbindung mit der Programmierschnittstelle erlaubt das automatische Auslösen von Ereignissen.
@@ -72,7 +72,7 @@ Im Fehlerfall versucht er den fehlerhaften Prozess neu zu starten, um somit ein 
 \subsubsection{UI Manager}
 \label{cha:param}
 
-WinCC OA besitzt mehrere Agenten dieses Types. Sie ermöglichen die Konfiguration des Systems über grafische Eingabemasken. 
+WinCC OA besitzt mehrere Agenten dieses Typs. Sie ermöglichen die Konfiguration des Systems über grafische Eingabemasken. 
 Einer der wichtigsten UI Manager wird \textit{Para} bezeichnet und dient der Datenbankparametrierung.
 
 \begin{figure}[h]
@@ -88,7 +88,7 @@ Die Daten werden in WinCC OA in sogenannte Datenpunkte gruppiert. Die Struktur e
 beschrieben. Diese können wie in Abbildung \ref{fig:dp_type_dp_inst} gezeigt grafisch modelliert werden. Die Datenpunktelemente,
 die ein Datenpunkttyp gruppiert, besitzen statische Datentypen oder dynamische Listen dieser. 
 Im Beispiel \ref{fig:dp_type_dp_inst} sind alle von WinCC OA unterstützen Datentypen aufgezählt.
-In der Grafik \ref{fig:dp_type_dp_inst} rechts sind mehrere Instanzen des links gezeigten Types ersichtlich.
+In der Grafik \ref{fig:dp_type_dp_inst} rechts sind mehrere Instanzen des links gezeigten Typs ersichtlich.
 Die einzelnen Unterknoten eines Datenpunktes werden als Datenpunktelemente bezeichnet. Diese sind statische
 Datentypen und repräsentieren Werte innerhalb der Datenbank. Schreiben und Lesen erfolgt über folgende spezielle
 Attribute:
@@ -362,7 +362,7 @@ Um webbasierende Visualisierungen zu ermöglichen, wurden unter Zuhilfenahme der
 	\label{fig:siplant}
 \end{figure}
 
-Die Grafik \ref{fig:siplant} zeigt die WinCC OA Erweiterung \textit{SiPlant}. Die ausführbaren Dateien und der HTML5-Quellcode ist
+Die Grafik \ref{fig:siplant} zeigt die WinCC OA Erweiterung \textit{SiPlant}. Die ausführbaren Dateien und der HTML5-Quellcode sind
 innerhalb eines eigenen Subprojekts organisiert. Die drei Agenten erfüllen folgenden Zweck:
 
 \begin{itemize}
