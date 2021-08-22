@@ -79,7 +79,7 @@ Einer der wichtigsten UI Manager wird \textit{Para} bezeichnet und dient der Dat
     \centering
     \subfloat[Datenpunkttyp-Editor]{{\includegraphics[width=0.45\textwidth]{dp_type} }}%
     \qquad
-    \subfloat[Datenpunkt Instanzen und deren Datenpunktelemente]{{\includegraphics[width=0.4\textwidth]{dp_instances} }}%
+    \subfloat[Datenpunktinstanzen und deren Datenpunktelemente]{{\includegraphics[width=0.4\textwidth]{dp_instances} }}%
     \caption{Diese Abbildung zeigt die grafischen Bedienelemente zum Modellieren von Datenpunkttypen und Anlegen von Datenpunktinstanzen.}%
     \label{fig:dp_type_dp_inst}%
 \end{figure}
@@ -275,9 +275,9 @@ Eine Auswahl ist in der folgenden Tabelle aufgelistet:
 	\end{tabular} 
 \end{table}
 
-Die in Tabelle \ref{tab:man_fun} gezeigten Funktionen erhalten, bis auf \textit{dispatch}, die angefragten Daten asynchron. Die Antworten 
+Die in Tabelle \ref{tab:man_fun} gezeigten Funktionen erhalten, bis auf \textit{dispatch()}, die angefragten Daten asynchron. Die Antworten 
 werden mit Hilfe des Observer-Entwurfsmuster übermittelt \cite{observer}. Jeder Funktionsaufruf benötigt ein Observer-Objekt, das die 
-Daten erhält. Dazu muss das von der WinCC OA Programmierschnittstelle zur Verfügung gestellte \textit{HotLinkWaitForAnswer} Interface implementiert werden. Dies
+Daten erhält. Dazu muss das von der WinCC OA Programmierschnittstelle zur Verfügung gestellte \textit{HotLinkWaitForAnswer}-Interface implementiert werden. Dies
 wird im nachfolgenden Codebeispiel veranschaulicht: \\
 
 \lstinputlisting[
@@ -289,14 +289,14 @@ wird im nachfolgenden Codebeispiel veranschaulicht: \\
 	firstline=20,
 	lastline=68]{prototype1/src/prototyp.cpp}
 
-In dem Beispiel \ref{src:proto1_agent} ist gezeigt wie die Observer-Klasse zu implementieren ist. Wenn durch einen \textit{dispatch}
-Aufruf Daten erhalten wurden, wird abhängig von der Abfrage die entsprechende \textit{hotLinkCallback} Funktion verwendet. 
+In dem Beispiel \ref{src:proto1_agent} ist gezeigt wie die Observer-Klasse zu implementieren ist. Wenn durch einen \textit{dispatch()}
+Aufruf Daten erhalten wurden, wird abhängig von der Abfrage die entsprechende \textit{hotLinkCallback()}-Funktion verwendet. 
 Wurde sich auf Wertänderungen registriert, wird bei jedem neuen Wert \textit{hotLinkCallback(DpHLGroup)} aufgerufen. Für
 einmalige Antworten werden die Informationen via \textit{hotLinkCallback(DpMsgAnswer)} übergeben.
 Die abgefragten Daten werden als Objekte der Klasse \textit{Variable} übermittelt. Dies ist eine Basisklasse, von der für jeden verfügbaren statischen 
 Datentyp der Datenbank eine Konkretisierung vorhanden ist. Um den tatsächlichen Wert zu erhalten, ist daher 
-ein \textit{Cast} auf den entsprechenden konkreten Typ nötig. Wie im Beispiel \ref{src:proto1_agent} ersichtlich, besitzt die \textit{Variable} Klasse 
-für diesen Zweck die \textit{isA()} Funktion, mit dieser der richtige Datentyp ermittelt werden kann. Analog zum gezeigten Programmcode
+ein \textit{Cast} auf den entsprechenden konkreten Typ nötig. Wie im Beispiel \ref{src:proto1_agent} ersichtlich, besitzt die \textit{Variable}-Klasse 
+für diesen Zweck die \textit{isA()}-Funktion, mit dieser der richtige Datentyp ermittelt werden kann. Analog zum gezeigten Programmcode
 muss für die Alarmfunktionen das Interface \textit{AlertHotlinkWaitForAnswer} implementiert werden.
 
 \subsubsection{Beispiel}
@@ -314,7 +314,7 @@ Die zuvor gezeigten Klassen werden hier nun in einem Beispielprogramm verwendet,
 	lastline=129]{prototype1/src/prototyp.cpp}
 
 In dem Quellcode \ref{src:proto1_main} ist ersichtlich, dass zunächst die Kommandozeilenparameter an die \textit{Resources-Klasse} über die
-\textit{Resources::init()} Funktion übergeben wurde. Über \textit{Agent::getId()} ist es nun möglich die textuelle Repräsentation der
+\textit{Resources::init()}-Funktion übergeben wurde. Über \textit{Agent::getId()} ist es nun möglich die textuelle Repräsentation der
 Datenpunktelemente in den \textit{DpIdentifier} Datentyp umzuwandeln, der für die spätere Verwendung benötigt wird. Hier fällt auf, dass
 für abfragende Befehle das Attribut \textit{\_online..\_value} angehängt wurde und für Schreibende \textit{\_original..\_value}. 
 Der letzte boolesche Parameter in den Aufrufen \textit{Agent::dpGet()}, \textit{Agent::dpSet()} und \textit{Agent::dpConnect()} weißt
@@ -326,7 +326,7 @@ Ausgabe:
 		caption={Ausgabe des Beispiels.},
 		numbers=none]{prototype1/ausgabe.txt}
 
-Wie in \ref{src:proto1_output} erkennbar wird viermal eine \textit{hotLinkCallback} Funktion aufgerufen. Die ersten beiden 
+Wie in \ref{src:proto1_output} erkennbar wird viermal eine \textit{hotLinkCallback()}-Funktion aufgerufen. Die ersten beiden 
 Ausgaben sind die Antworten auf \textit{Agent::dpGet()} und \textit{Agent::dpConnect()}.
 Beim dritten Aufruf ist erkennbar, dass keine Werte übermittelt wurden. Dies ist die Antwort auf den \textit{Agent::dpSet()} Befehl.
 Der Letzte ist die Benachrichtigung über eine Wertänderung des Datenpunktelements.\\

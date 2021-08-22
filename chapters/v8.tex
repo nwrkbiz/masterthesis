@@ -324,7 +324,7 @@ verlassen hat.
 \subsection{Contexts}
 
 Ein \textit{Context} ist eine Ausführungsumgebung, die es ermöglicht, separaten, unabhängigen Javascript-Code in einer 
-V8 Laufzeitumgebung (\textit{Isolate}) auszuführen. Da ein \textit{Isolate} Objekt mehrere Context-Ausführungsumgebungen besitzen kann, 
+V8 Laufzeitumgebung (\textit{Isolate}) auszuführen. Da ein \textit{Isolate}-Objekt mehrere Context-Ausführungsumgebungen besitzen kann, 
 muss jene, die zur Ausführung verwendet werden soll, explizit angegeben werden. Dies wird mit dem RAII-Konzept
 (Ressourcenbelegung ist Initialisierung) durch Erstellen eigener Objekte des Types \textit{Context::Scope} erreicht.
 
@@ -354,20 +354,20 @@ wird zwischen zwei Typen unterschieden:
 \subsubsection{Local}
 
 Ob ein Objekt noch valide ist, wird hier über das RAII-Konzept (Ressourcenbelegung ist Initialisierung) ermittelt.
-Dazu muss, bevor das erzeugen von Javascript-Objekten möglich ist, wie in Abbildung \ref{fig:handles} gezeigt, ein HandleScope Objekt auf dem C++-Stack allokiert werden. 
+Dazu muss, bevor das erzeugen von Javascript-Objekten möglich ist, wie in Abbildung \ref{fig:handles} gezeigt, ein \textit{HandleScope}-Objekt auf dem C++-Stack allokiert werden. 
 Dieses Objekt stellt einen eigenen Stack für Local-Handles zur Verfügung.
-Wird es zerstört, zum Beispiel beim Verlassen des Scopes, werden alle Handles dieses HandleScope-Stacks gelöscht.
+Wird es zerstört, zum Beispiel beim Verlassen des Scopes, werden alle Handles dieses \textit{HandleScope}-Stacks gelöscht.
 
 \subsubsection{Persitent}
 
 Die Lebenszeit eines Persitent-Handles ist nicht an den aktuellen Scope gebunden. Daher muss man dem V8-Garbage-Collector manuell signalisieren,
-wenn es nicht mehr gebraucht wird. Dazu kann die \textit{SetWeak()} Funktion des Handle Objekts aufgerufen werden. Dieser Mechanismus ist hilfreich,
+wenn es nicht mehr gebraucht wird. Dazu kann die \textit{SetWeak()}-Funktion des Handle-Objekts aufgerufen werden. Dieser Mechanismus ist hilfreich,
 wenn ein Javascript-Objekt in mehreren C++-Funktionen verwendet werden soll.
 
 \subsection{Anpassen von Javascript-Ausführungsumgebungen über das Global-Objekt}
 
 Beim Erstellen eines neuen V8-Contexts kann ein Objekt des Datentyps \textit{ObjectTemplate} angegeben werden, dass die Ausführungsumgebung des Contexts beschreibt.
-Diesem Objekt kann man beliebig viele eigene Funktionen (\textit{FunctionTemplate} Objekte) oder Variablen zuweisen. Über \textit{FunctionTemplate} Objekte ist es wiederum möglich, C++ Funktionen aufzurufen. 
+Diesem Objekt kann man beliebig viele eigene Funktionen (\textit{FunctionTemplate}-Objekte) oder Variablen zuweisen. Über \textit{FunctionTemplate}-Objekte ist es wiederum möglich, C++-Funktionen aufzurufen. 
 Dadurch lässt sich die Javascriptsprache beliebig erweitern. Auf Basis dieses \textit{ObjectTemplate}-Objekts wird beim erstellen der Ausführungsumgebung ein konkretes Objekt erstellt, dass den globalen 
 Funktionsscope darstellt.
 
@@ -387,7 +387,7 @@ Konsole testen \cite{repl}.
 \label{cha:v8_code}
 
 Nachfolgend wird anhand eines konkreten Beispiels gezeigt, wie man die vorher erläuterten Konzepte angewendet werden, um innerhalb eines
-C++-Programmes Javascript-Quellcode ausführen zu können. Des weiterem wird erklärt, wie die Skriptsprache über das Global-Objekt erweiterbar 
+C++-Programmes Javascript-Quellcode ausführen zu können. Des weiterem wird erklärt, wie die Skriptsprache über das \textit{Global}-Objekt erweiterbar 
 ist.
 
 \lstinputlisting[
@@ -428,10 +428,10 @@ Zur Veranschaulichung der Funktionalität dieses Beispiels wurden zwei kurze Pro
 
 \lstinputlisting[
 		label={src:proto2_test1},
-		caption={Skript test.js zum Testen der Funktion \textit{PrintParams}}
+		caption={Skript test.js zum Testen der Funktion \textit{PrintParams()}}
 		]{prototype2/test.js}
 
-Dieses Programm gibt mehrmals verschiedene Werte und Variablen über die entwickelte \textit{PrintParams}-Funktion \ref{src:proto2_printparams} aus.
+Dieses Programm gibt mehrmals verschiedene Werte und Variablen über die entwickelte \textit{PrintParams()}-Funktion \ref{src:proto2_printparams} aus.
 Zum Schluss wird diese Funktion ohne Parameter aufgerufen. Dadurch wird eine Javascript-Exception erzeugt, die von dem \textit{tryCatchRun}-Objekt in der Hauptfunktion
 des C++-Quellcodes \ref{src:proto2_main} gefangen wird.
 

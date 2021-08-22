@@ -1,7 +1,9 @@
 \chapter{Konzept}
 \label{cha:Konzept}
 
-In diesem Kapitel wird ein Umsetzungskonzept für die im letzten Kapitel beschriebenen Anforderungen erarbeitet.
+In folgendem Kapitel wird ein Umsetzungskonzept für die im letzten beschriebenen Anforderungen erarbeitet. Es werden verschiedenen
+Strategien verglichen und ein Fazit gezogen. Im letzten Abschnitt wird die machbarkeit anhand eines fonktionalen Prototypen 
+evaluiert.
 
 \section{Compiler}
 
@@ -15,7 +17,7 @@ Compilern gebaut werden.
 \section{Linken der Google V8-Engine}
 
 Im folgenden Abschnitt wird erklärt, wie ein Programm mit externen Bibliotheken umgehen kann. Die verschiedenen Möglichkeiten
-werden dann abgewogen und in einem Fazit wird entschieden, welche Methode zum linken der Google V8-Engine verwendet wird.
+werden abgewogen und in einem Fazit wird entschieden, welche Methode zum linken der Google V8-Engine verwendet wird.
 
 \subsection{Statisches Linken}
 
@@ -74,7 +76,7 @@ um die Ausführung von Javascriptdateien zu ermöglichen.
 Javascript besitzt als Programmiersprache keine Typsicherheit, aus diesem Grund ist sie in größeren Codebasen nicht
 immer einfach zu handhaben. TypeScript bietet hier Abhilfe, da es ein typsicheres Programmieren von Javascript-Code
 ermöglicht. TypeScript-Quellcode kann dann durch einen TypeScript-Compiler in Javascript-Quellcode übersetzt werden.
-Damit man die innerhalb des V8-Agenten implementierten Funktionen innerhalb dieser Programmiersprache verwenden kann, müssen somit
+Damit man die innerhalb des V8-Agenten implementierten Funktionen in dieser Programmiersprache verwenden kann, müssen somit
 eigene Funktionsdeklarationen geschrieben werden. Um ein interaktives Handbuch für Systemintegratorinnen und Systemintegratoren
 zu erhalten, bietet sich hier die Literate Programming Methodik an \cite{LiterateProgramming}. Die Idee ist es, die Funktionsdeklarationen
 direkt im Quellcode mit Hilfe von speziellen Quellcodekommentaren zu erklären. Später kann dann aus dem Programmcode und diesen 
@@ -129,9 +131,9 @@ gewählt.
 
 Bevor mit der Implementierung eines eigenen Agenten gestartet wird, ist es zunächst sinnvoll, die Machbarkeit anhand einer einfachen konzeptionellen 
 Umsetzung festzustellen. Dazu werden die aus den Beispielen \ref{cha:scada_code} und \ref{cha:v8_code} gewonnenen Erkenntnisse in einem eigenen Prototypen kombiniert. 
-Das Ziel ist es die \textit{dpConnect} Funktion der WinCC OA C++-Programmierschnittstelle an die Google V8 Javascriptengine anzubinden.
-Dazu muss zunächst eine eigene Observer-Klasse implementiert werden, die beim Erhalt von Datenpunkt-Wertänderungen eine Javascript 
-Funktion aufrufen kann. Die aus den vorherigen Beispielen wiederverwendete Klassen und Funktionen sind hier nicht mehr aufgeführt.
+Das Ziel ist es die \textit{dpConnect()}-Funktion der WinCC OA C++-Programmierschnittstelle an die Google V8 Javascriptengine anzubinden.
+Dazu muss zunächst eine eigene Observer-Klasse implementiert werden, die beim Erhalt von Datenpunkt-Wertänderungen eine Javascript-Methode 
+aufrufen kann. Die aus den vorherigen Beispielen wiederverwendete Klassen und Funktionen sind hier nicht mehr aufgeführt.
 \newpage
 
 \lstinputlisting[
@@ -143,17 +145,17 @@ Funktion aufrufen kann. Die aus den vorherigen Beispielen wiederverwendete Klass
 	firstline=66,
     lastline=115]{prototype3/src/prototyp3.cpp}
     
-In dem Codeabschnitt \ref{src:proto3_obs} kann man erkennen, dass die Javascript-Funktion dem Konstruktor als Persistent-Handle übergeben wird, somit
-gibt der Garbage-Collector das dahinterliegende Objekt nicht frei. Der Destruktor der DpObserver Klasse müsste die \textit{SetWeak} Funktion des m\_Function Objektes aufrufen, was hier aber aus Platzgründen nicht ausimplementiert wurde.
+In dem Codeabschnitt \ref{src:proto3_obs} kann man erkennen, dass die Javascript-Funktion dem Konstruktor als Persistent-Handle übergeben wird. Somit
+gibt der Garbage-Collector das dahinterliegende Objekt nicht frei. Der Destruktor der DpObserver-Klasse müsste die \textit{SetWeak()}-Funktion des \textit{m\_Function}-Objekts aufrufen, was hier aber aus Platzgründen nicht ausimplementiert wurde.
 Außerdem wird ein \textit{Isolate}- und ein \textit{Context}-Objekt übergeben um später die Context-Ausführungsumgebung angeben zu können, die für die Ausführung der Javascript-Funktion verwendet werden soll. 
 Dies geschieht nach Aufrufen von \textit{hotlinkCallBack(DpHLGroup)} am Anfang der Funktion. Danach muss ein Marshalling der WinCC OA Datentypen nach Javascript erfolgen. 
 Der Begriff Marshalling bedeutet umwandeln von Daten in ein Format, dass die Übermittlung an eine prozessfremde Schnittstelle ermöglicht \cite{marshalling}.
 Hierbei werden zwei Javascript-Arrays erstellt. Das Erste erhält die Namen der Datenpunktelemente und das Zweite die Werte. Diese werden für die Übergabe
-in dem \textit{argv} Objekt abgelegt (Zeile 33). Über ein \textit{TryCatch}-Objekt ist ein Auffangen eventueller Fehler in der aufzurufenden Funktion realisiert. 
+in dem \textit{argv}-Objekt abgelegt (Zeile 33). Über ein \textit{TryCatch}-Objekt ist ein Auffangen eventueller Fehler in der aufzurufenden Funktion realisiert. 
 In Javascript ist es möglich über die \textit{.bind} Anweisung einer Funktion einen eigenen Scope zuzuweisen. Dies wird in Zeile 38 geprüft und in dem Fall, dass
 ein Funktionsscope gesetzt wurde, wird dieser für den Aufruf verwendet.
-Zuletzt wird die Javascript-Funktion aufgerufen und etwaige Fehler ausgegeben. Die Implementierung der \textit{ReportException} Funktion kann in Anhang \ref{app:ReportException}
-eingesehen werden. Im nächsten Schritt muss der Javascript-Sprachumfang um die \textit{dpConnect} Funktion erweitert werden:
+Zuletzt wird die Javascript-Funktion aufgerufen und etwaige Fehler ausgegeben. Die Implementierung der \textit{ReportException()}-Funktion kann in Anhang \ref{app:ReportException}
+eingesehen werden. Im nächsten Schritt muss der Javascript-Sprachumfang um die \textit{dpConnect()}-Funktion erweitert werden:
 
 
 \lstinputlisting[
@@ -165,16 +167,16 @@ eingesehen werden. Im nächsten Schritt muss der Javascript-Sprachumfang um die 
     firstline=148,
     lastline=173]{prototype3/src/prototyp3.cpp}
 
-Die Funktion \ref{src:proto3_dpcon} überprüft zuerst ob der aufrufende Javascript-Code die passenden Objekte übergeben hat, ansonsten
-wird eine Exception geworfen, die Auskunft über die erwarteten Parameter gibt. Danach wird über \textit{Agent::getId()} die textuelle Repräsentation 
+Die Funktion \ref{src:proto3_dpcon} überprüft zuerst, ob der aufrufende Javascript-Code die passenden Objekte übergeben hat, ansonsten
+wird eine Exception geworfen die Auskunft über die erwarteten Parameter gibt. Danach wird über \textit{Agent::getId()} die textuelle Repräsentation 
 des Datenpunktelements in den benötigten \textit{DpIdentifier} Datentyp umgewandelt. Zuletzt wird die WinCC OA \textit{dpConnect}
 Funktion mit der vorher beschriebenen \textit{Observer}-Klasse als Parameter aufgerufen. Dem Observer werden das \textit{Isolate}-Objekt, die Javascript-Callbackfunktion und
-der Ausführungskontext im Konstruktor mitgegeben. Diese Funktion kann man genauso wie \textit{PrintParams} über das \textit{global} Objekt 
+der Ausführungskontext im Konstruktor mitgegeben. Diese Funktion kann man genauso wie \textit{PrintParams} über das \textit{global}-Objekt 
 beim Starten des Programmes an das Context-Objekt übergeben:
 
 \lstinputlisting[
     label={src:proto3_instalfun},
-    caption={Hinzufügen der \textit{DpConnect} Funktion zum global \textit{ObjectTemplate}-Objekt},
+    caption={Hinzufügen der \textit{DpConnect()}-Funktion zum \textit{ObjectTemplate}-Objekt},
     numbers=none,
     language=C++,
     firstnumber=0,
@@ -182,12 +184,12 @@ beim Starten des Programmes an das Context-Objekt übergeben:
     lastline=229]{prototype3/src/prototyp3.cpp}
 
 Initialisiert man nun in der Hauptfunktion des Programms die WinCC OA \textit{Resources}-Klasse, erstellt ein \textit{Agent}-Objekt und 
-richtet die Google V8-Engine wie in den zuvor gezeigten Beispielen ein, kann man nach erreichen der Hauptschleife 
-mit dem \textit{dispatch()} Aufruf die \textit{DpConnect} Funktion in Javascript verwenden:
+richtet die Google V8-Engine, wie in den zuvor gezeigten Beispielen ein, kann nach erreichen der Hauptschleife 
+mit dem \textit{dispatch()} Aufruf die \textit{DpConnect}-Funktion in Javascript aufgerufen werden:
 
 \lstinputlisting[
     label={src:proto3_example},
-    caption={Beispielaufruf der \textit{DpConnect} Funktion.},
+    caption={Beispielaufruf der \textit{DpConnect()}-Funktion.},
     ]{prototype3/test.js}
 
 Das in \ref{src:proto3_example} gezeigte Beispiel registriert sich auf Wertänderungen und gibt diese zusammen mit einem Zähler aus.
@@ -202,7 +204,8 @@ generiert:
 
 Wie in \ref{src:proto3_vc} ersichtlich, werden die Wertänderungen und die Zählervariable ausgegeben.
 \newpage
-Auch diese Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD und ist unter \textit{Thesis/prototype3} zu finden. Es kann mit folgenden Befehlen 
+Auch dieses
+ Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD und ist unter \textit{Thesis/prototype3} zu finden. Es kann mit folgenden Befehlen 
 übersetzt werden. Dazu wird das \textit{SMF\_3P} Verzeichnis und eine WinCC OA Installation benötigt. \\
 
 SUSE Linux Enterprise 12.5:
