@@ -41,7 +41,7 @@ public:
       }
     }
   }
-  // Diese Funktion wird einmalig als antwort einer
+  // Diese Funktion wird einmalig als Antwort einer
   // einfachen Abfrage (DpConnect, DpGet, DpSet etc.) aufgerufen. 
   void hotLinkCallBack(DpMsgAnswer &answer) override {
     std::cout << "--- hotLinkCallBack(DpMsgAnswer) ---" << std::endl;
@@ -78,7 +78,7 @@ public:
           Resources::getManNum())) {// verwendet geparsten '-num' Kommandozeilenparameter   
     // stelle Verbindung zum System her
     if(!connectToData(// Frage Datenbankkonfiguration an, 
-                      // benötigt zum übersetzten von 
+                      // benötigt zum Übersetzten von 
                       // Datenpunktelementen -> DpIdentifier
       StartDpInitSysMsg::TYPE_CONTAINER |
       StartDpInitSysMsg::DP_IDENTIFICATION)) {

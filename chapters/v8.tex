@@ -24,7 +24,7 @@ hier Bezug auf \cite{dragonBook} und \cite{Terry1997CompilersAC} genommen.
 \end{figure}
 
 Als Compiler bezeichnet man einen Sprachprozessor, der Quellcode von einer Sprache in eine andere übersetzt. In der Regel ist die Zielsprache
-eine Sammlung von Instruktionen gebündelt in einer ausführbaren Datei. Diese kann wie in Abbildung \ref{fig:compiler_interpreter} links gezeigt 
+eine Sammlung von Instruktionen gebündelt in einer ausführbaren Datei. Diese kann wie in Abbildung \ref{fig:compiler_interpreter} links gezeigt, 
 gestartet werden, um Eingaben zu verarbeiten und Ausgaben zu generieren. Ein Interpreter ist ein anderer Typ von Sprachprozessor, der im Gegensatz 
 zum Compiler keine Übersetzungen erzeugt, sondern den Quellcode direkt ausführt. Ein Beispiel dafür ist in der Grafik \ref{fig:compiler_interpreter} rechts illustriert. 
 Für bestimmte Programmiersprachen wie Javascript sind auch Mischformen möglich. Beide Typen eint
@@ -47,9 +47,9 @@ Syntaxbaum zu erhalten, der für die spätere Codeerzeugung oder eine direkte Au
 
 \subsubsection{Lexikalische Analyse}
 
-Damit bezeichnet man das Einlesen eines Programmcodes, um die Zeichenketten in sinnvolle Sequenzen, sogenannte Lexeme, zu Gruppieren
+Damit bezeichnet man das Einlesen eines Programmcodes, um die Zeichenketten in sinnvolle Sequenzen, sogenannte Lexeme, zu gruppieren
 und entsprechende Token zu erzeugen. Als Lexem wird eine einzelne sprachliche Bedeutungseinheit verstanden. 
-Um Schlüsselworte, Operatoren und Symbole erkennen zu können, müssen dazu deterministische Automaten implementiert werden, die
+Um Schlüsselworte, Operatoren und Symbole erkennen zu können, müssen deterministische Automaten implementiert werden, die
 Sprachmuster feststellen können. Auf Basis dieser Muster werden Token mit optionalen Attributen generiert, die an die syntaktische Analyse weitergegeben
 werden. Lexikalische Analysatoren werden auch \textit{Lexer} oder \textit{Scanner} genannt. Die Symbole einer Sprache werden in 
 diesem Prozess in einer eigenen Tabelle abgelegt, die später in der semantischen Analyse Verwendung findet. Besitzt ein Token
@@ -92,7 +92,7 @@ function getX(obj) {
 	return obj.x;
 }
 
-// führe funktion öfter aus,
+// führe Funktion öfter aus,
 // erzeugt Maschienencode
 getX({ x: 4, y: 1 });
 getX({ x: 7, y: 2 });
@@ -130,10 +130,10 @@ anhand der Verwendung in verschiedenen Webbrowsern verglichen.
 	\end{tabular} 
 \end{table}
 
-In der Tabelle \ref{tab:js_marketshare} sind die prozentuellen Marktanteile der fünf meistgenutzten Webbrowser auf Mobilen und Desktopgeräten aufgelistet. 
+In der Tabelle \ref{tab:js_marketshare} sind die prozentuellen Marktanteile der fünf meistgenutzten Webbrowser auf Mobil- und Desktopgeräten aufgelistet. 
 Chrome, Edge, Samsung Internet und Opera verwenden alle die Google V8 Javascriptengine zum Ausführen von Javascriptdateien. Somit wird sie 
 mit 74,06\% laut netmarketshare.com und 75,17\% laut statcounter.com in mehr als der Hälfte aller Webbrowser im Internet eingesetzt.
-Außerdem wird sie auch als Standardengine für das NodeJS Projekt verwendet \cite{nodejs}. Damit ist sie die weltweit am 
+Außerdem wird sie als Standardengine für das NodeJS Projekt verwendet \cite{nodejs}. Damit ist sie die weltweit am 
 meisten verwendete Programmkomponente die sich um das Ausführen von Javascript-Code kümmert.
 
 \subsection{Fazit}
@@ -232,7 +232,7 @@ In der Ausgabe \ref{prog:d8_bytec} ist erkennbar, dass zwei weitere Register, a1
 
 
 \begin{itemize}
-	\item StackCheck: Überpüft den Stapelzeiger auf validität.
+	\item StackCheck: Überpüft den Stapelzeiger auf Validität.
 	\item Ldar a1: Lädt den Wert von Register a1 in das \textit{accumulator} Register.
 	\item Add a0, [0]: Lädt a0 und Addiert es auf den Wert im \textit{accumulator} Register.
 	\item Return: Gibt die Kontrolle zurück an den Aufrufer. Der Rückgabewert ist jener des \textit{accumulator} Registers.
@@ -353,8 +353,8 @@ wird zwischen zwei Typen unterschieden:
 
 \subsubsection{Local}
 
-Ob ein Objekt noch valide ist, wird hier über das RAII-Konzept (Ressourcenbelegung ist Initialisierung) ermittelt.
-Dazu muss, bevor das erzeugen von Javascript-Objekten möglich ist, wie in Abbildung \ref{fig:handles} gezeigt, ein \textit{HandleScope}-Objekt auf dem C++-Stack allokiert werden. 
+Ob ein Objekt noch valide ist, wird über das RAII-Konzept (Ressourcenbelegung ist Initialisierung) ermittelt.
+Dazu muss, bevor das Erzeugen von Javascript-Objekten möglich ist, wie in Abbildung \ref{fig:handles} gezeigt, ein \textit{HandleScope}-Objekt auf dem C++-Stack allokiert werden. 
 Dieses Objekt stellt einen eigenen Stack für Local-Handles zur Verfügung.
 Wird es zerstört, zum Beispiel beim Verlassen des Gültigkeitsbereichs, werden alle Handles dieses \textit{HandleScope}-Stacks gelöscht.
 
@@ -368,7 +368,7 @@ wenn ein Javascript-Objekt in mehreren C++-Funktionen verwendet werden soll.
 
 Beim Erstellen eines neuen V8-Contexts kann ein Objekt des Datentyps \textit{ObjectTemplate} angegeben werden, dass die Ausführungsumgebung des Contexts beschreibt.
 Diesem Objekt kann man beliebig viele eigene Funktionen (\textit{FunctionTemplate}-Objekte) oder Variablen zuweisen. Über \textit{FunctionTemplate}-Objekte ist es wiederum möglich, C++-Funktionen aufzurufen. 
-Dadurch lässt sich die Javascriptsprache beliebig erweitern. Auf Basis dieses \textit{ObjectTemplate}-Objekts wird beim erstellen der Ausführungsumgebung ein konkretes Objekt erstellt, dass den globalen 
+Dadurch lässt sich die Javascriptsprache beliebig erweitern. Auf Basis dieses \textit{ObjectTemplate}-Objekts wird beim Erstellen der Ausführungsumgebung ein konkretes Objekt erstellt, das den globalen 
 Javascript-Funktionsscope darstellt.
 
 \subsection{Das DebugInspector Protokoll}
@@ -377,16 +377,16 @@ Die Google V8 Engine besitzt erweiterte Funktionen zur Fehlersuche über ein JSO
 Edge enthaltenen Entwicklerwerkzeuge unterstützen dieses und erlauben entfernten Zugriff auf V8-Instanzen via Websockets. 
 Implementiert man die entsprechenden Interface-Klassen \textit{V8InspectorClient} und \textit{V8Inspector::Channel}
 der V8-Programmierschnittstelle, damit sie Befehle über einen Websocket-Server erhalten können, ist es möglich, den von der Engine ausgeführten Javascript-Code mit 
-einen der zwei zuvor genannten Browser zu analysieren. Die \textit{V8InspectorClient} Implementierung muss die Verbindung zu einem \textit{Context} herstellen.
-Danach können über den Websocket-Server erhaltene JSON-Befehle an die V8 Engine weitergegeben werden. Die \textit{V8Inspector::Channel} 
-Umsetzung erhält die Antworten auf die Befehle und muss sie an den Befehlsgeber zurücksenden. Somit ist es möglich die Laufzeit eines laufenden Javascript-Codes zu 
+einen der zwei zuvor genannten Browser zu analysieren. Die \textit{V8InspectorClient}-Implementierung muss die Verbindung zu einem \textit{Context} herstellen.
+Danach können über den Websocket-Server erhaltene JSON-Befehle an die V8 Engine weitergegeben werden. Die \textit{V8Inspector::Channel}-Umsetzung 
+erhält die Antworten auf die Befehle und muss sie an den Befehlsgeber zurücksenden. Somit ist es möglich die Laufzeit eines laufenden Javascript-Codes zu 
 analysieren und zu manipulieren. Außerdem kann man einzelne Funktionsaufrufe und Codesequenzen über die von den Browser-Entwicklerwerkzeugen zur Verfügung gestellte REPL (Read-eval-print loop) 
 Konsole testen \cite{repl}.
 
 \subsection{Beispiel}
 \label{cha:v8_code}
 
-Nachfolgend wird anhand eines konkreten Beispiels gezeigt, wie man die vorher erläuterten Konzepte angewendet werden, um innerhalb eines
+Nachfolgend wird anhand eines konkreten Beispiels gezeigt, wie die vorher erläuterten Konzepte angewendet werden, um innerhalb eines
 C++-Programmes Javascript-Quellcode ausführen zu können. Außerdem wird erklärt, wie die Skriptsprache über das \textit{Global}-Objekt erweiterbar 
 ist.
 
@@ -404,7 +404,7 @@ Der C++-Quellcode nimmt alle von Javascript übergebenen Argumente entgegen und 
 Javascript-Code der boolesche Wert 'true' retourgegeben. 
 Am Anfang des Beispiels ist erkennbar, dass ein HandleScope angelegt wird um alle Local Handles verwalten zu können. Hier wird keine Context::Scope
 Instanz benötigt, da das ausführende Skript bereits in einem aktiven Scope laufen muss. Wird kein Parameter übergeben, so wird eine Javascript-Exception
-geworfen. Diese kann im Skriptquellcode durch \textit{try}-\textit{catch}-Blöcken gefangen werden. Diese Funktion kann nun innerhalb eines Programmes
+geworfen. Diese kann im Skriptquellcode durch \textit{try}-\textit{catch}-Blöcke gefangen werden. Diese Funktion kann nun innerhalb eines Programmes
 an die V8 Engine übergeben werden:
 
 \lstinputlisting[
@@ -424,7 +424,7 @@ Die \textit{ReportException}-Funktion gibt diese Fehler aus. Sie ist hier aus Pl
 
 \subsubsection{Tests}
 
-Zur Veranschaulichung der Funktionalität dieses Beispiels wurden zwei kurze Programme in Javascript umgesetzt:
+Zur Veranschaulichung der Funktionalität dieses Beispiels wurden zwei kurze Programme in Javascript realisiert:
 
 \lstinputlisting[
 		label={src:proto2_test1},
@@ -448,7 +448,7 @@ Folgendes Skript soll das Verhalten bei einem Kompilierfehler zeigen:
 			caption={Skript test2.js provoziert Kompilierfehler.}
 			]{prototype2/test2.js}
 
-In \ref{src:proto2_test2} ist ein syntaktischen Fehler erkennbar. Das Starten dieses Programmes produziert folgende Ausgabe:
+In \ref{src:proto2_test2} ist ein syntaktischer Fehler erkennbar. Das Starten dieses Programmes produziert folgende Ausgabe:
 
 \lstinputlisting[
 			label={src:proto2_output2},
@@ -459,7 +459,7 @@ Man kann erkennen, dass die Google V8 Enginen dieses Problem bereits zur Kompili
 Abgefangen wurde der Fehler über das \textit{tryCatchCompile}-Objekt in der Hauptfunktion. \\
 
 Das komplette Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD unter \textit{Thesis/prototype2} und kann mit folgenden Befehlen 
-übersetzt werden. Zum übersetzten wird der \textit{SMF\_3P} Ordner benötigt, da dieser die Bibliotheken der Google V8 Engine in Binärform beinhaltet. Alternativ können
+übersetzt werden. Zum Übersetzten wird der \textit{SMF\_3P} Ordner benötigt, da dieser die Bibliotheken der Google V8 Engine in Binärform beinhaltet. Alternativ können
 diese auch mit den Skripten in Anhang \ref{app:v8build} erzeugt werden. Dieser Ordner befindet sich auch auf der CD-ROM/DVD. \\
 
 SUSE Linux Enterprise 12.5:

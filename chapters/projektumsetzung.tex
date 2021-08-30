@@ -1,4 +1,4 @@
-\chapter{Projektumsetzung}
+\chapter{Entwicklung des Prototypen}
 \label{cha:Projektumsetzung}
 
 In diesem Kapitel wird die Implementierung des SCADA-Agenten anhand des im letzten Kapitel aufgezeigten Konzeptes erläutert.
@@ -11,7 +11,7 @@ Dieser Abschnitt beschreibt wie der Google V8 Quellcode in eine statische Biblio
 
 Aufgrund der Compilervorgaben von WinCC OA gestaltet sich die Übersetzung des Quellcodes auf Linux schwierig. 
 Das Google V8 Buildsystem ist auf Debian-basierende Distributionen ausgelegt. Das bedeutet die Engine kann auf dem Zielsystem
-SUSE Linux Enterprise 12.5 nicht übersetzt werden. Ein alternativsystem mit der passenden Compilerversion stellt Ubuntu 18.04
+SUSE Linux Enterprise 12.5 nicht übersetzt werden. Ein Alternativsystem mit der passenden Compilerversion stellt Ubuntu 18.04
 zur Verfügung. Die Bibliothek kann auf diesem System kompiliert und danach auf SUSE Linux Enterprise 12.5 verwendet werden.
 
 \begin{program}[h]
@@ -37,7 +37,7 @@ System verwendet werden.
 
 \subsection{Windows}
 
-Auf Windows gestaltet sich dieser Prozess deutlich einfacher. Hier ist es zunächst nötig, Visual Studio 2015 zu installiert. Dadurch wird das \textit{Visual Studio Toolset} v140
+Auf Windows gestaltet sich dieser Prozess deutlich einfacher. Hier ist es zunächst nötig, Visual Studio 2015 zu installieren. Dadurch wird das \textit{Visual Studio Toolset} v140
 zur Verfügung gestellt. Im nächsten Schritt muss man das in Anhang \ref{app:v8build} gezeigte Powershell-Skript für Windows mit folgendem Kommandozeilenparameter ausführen: 
 
 \begin{GenericCode}[numbers=none]
@@ -77,11 +77,11 @@ jene Parameter entgegen, die eine ableitende Klasse zur Konstruktion benötigt.
 
 Abbildung \ref{fig:libv8} zeigt die Hauptkomponente der Bibliothek. Diese Klasse verwaltet das \textit{Isolate}-Objekt der Google V8 Engine und alle
 Ausführungsumgebungen. Über die Funktionen \textit{ExecuteDefault()} und \textit{ExecuteNew()} ist es möglich Javascriptdateien auszuführen. Beide akzeptieren
-als ersten Parameter einen Pfad zu einer Skriptdatei und als zweiten einen booleschen Wert der angibt ob der Ausführungskontext am Ende des Skriptes aufgeräumt 
+als ersten Parameter einen Pfad zu einer Skriptdatei und als zweiten einen booleschen Wert der angibt, ob der Ausführungskontext am Ende des Skriptes aufgeräumt 
 werden soll oder nicht. Erstere verwendet immer dieselbe Ausführungsumgebung (\textit{m\_DefaultContext}). Dadurch ist es möglich eine Liste von Skripten auszuführen, 
 die auf die gleichen Ressourcen Zugriff besitzen. Zweitere erstellt für jeden Aufruf ein eigenes \textit{Context}-Objekt und gibt eine Nummer zurück, die diesen Kontext identifiziert. 
 Somit lassen sich mehrere Skripte unabhängig voneinander ausführen. Die Methoden \textit{RecreateDefaultContext()} und \textit{ForceDisposeContext()} erlauben ein späteres 
-Aufräumen des Standardkontexts und der neu Erstellten. Zweiterer muss man die über \textit{ExecuteNew()} erhaltene Identifikationsnummer der zu löschenden Ausführungsumgebung als Parameter mitgeben.
+Aufräumen des Standardkontexts und der neu erstellten. Zweiteren muss man die über \textit{ExecuteNew()} erhaltene Identifikationsnummer der zu löschenden Ausführungsumgebung als Parameter mitgeben.
 Mit Hilfe der \textit{AddJSCommands()}-Funktion kann man den Ausführungskontexten eigene Javascriptfunktionen zur Verfügung stellen. Über diesen Mechanismus ist ein dynamisches Erweitern möglich. 
 \textit{GetDebuggerInstance()} gibt ein abstraktes Observer-Objekt retour, das einer Websocket-Server Implementierung des \textit{SiPlant} Produktes übergeben werden kann.
 Da innerhalb eines Programms nur eine einzige Google V8 Engine gestartet werden darf, leitet diese Klasse von der Singleton-Template-Klasse ab. Dadurch ist ein mehrfaches 
@@ -98,10 +98,10 @@ Instanziieren ausgeschlossen.
 
 Diese Klasse implementiert, wie in Abbildung \ref{fig:inspcl} erkennbar, drei Interfaces. Das \textit{AbstractJDataProvider}-Interface ist eine Observer-Klasse 
 für den in dem \textit{SiPlant} Produkt verwendeten Websocket-Server. Werden Nachrichten erhalten, gibt der Server diese an die \textit{ExecuteCommand()}-Methode weiter.
-Der erste Parameter ist hierbei die Nachricht im JSON-Format und die zweite der Websocket-Endpunkt. Die Implementierung dieser Funktion gibt eine leere Struktur zurück,
+Der erste Parameter ist die Nachricht im JSON-Format und die zweite der Websocket-Endpunkt. Die Implementierung dieser Funktion gibt eine leere Struktur zurück,
 wodurch der Websocket-Server keine unmittelbare Antwort an den Client sendet. Über das \textit{SIS\_IEndpoint}-Objekt ist es später jederzeit möglich Nachrichten an diesen zu übermitteln.
-Darum wird es als \textit{m\_Client}-Member-Variable gespeichert. Die \textit{GetWSClient()}-Funktion ermöglicht danach Zugriff auf diese Variable.
-Da man in der Regel nur ein \textit{Isolate} benötigt leitet diese Klasse ebenfalls von der Singleton-Template-Klasse ab. Dank der geerbten \textit{GetInstance()}-Funktion kann so 
+Darum wird es als \textit{m\_Client}-Member-Variable gespeichert. Die \textit{GetWSClient()}-Funktion ermöglicht Zugriff auf diese Variable.
+Da man in der Regel nur ein \textit{Isolate} benötigt, leitet diese Klasse ebenfalls von der Singleton-Template-Klasse ab. Dank der geerbten \textit{GetInstance()}-Funktion kann so 
 das zu verwendende \textit{Isolate}-Objekt an den geschützten Konstruktor übergeben werden. Dies geschieht beim Aufrufen der \textit{GetDebuggerInstance()}-Methode des \textit{libV8}-Singletons automatisch.
 Des Weiteren wird im Konstruktor ein \textit{V8Inspector}-Objekt mit einer eigenen \textit{V8InspectorSession} erstellt. Dieser Session wiederum wird mit einer Instanz der \textit{SIS\_InspectorFrontend}
 Klasse zum Senden von Antworten der V8 Engine ausgestattet. Über die \textit{AddContext()}- und \textit{RemoveContext()}-Funktionen kann man zu überwachende Ausführungsumgebungen hinzufügen und entfernen.
@@ -119,7 +119,7 @@ wird um die Ausführung fortzusetzen.
 \end{figure}
 
 Die Google V8 Engine antwortet auf Debugging-Befehle über das \textit{v8Inspector::Channel}-Interface. Um an die Browser-Entwicklungswerkzeuge Antworten 
-auf Analysebefehle senden zu können wurde daher die in \ref{fig:inspchan} gezeigte Klasse umgesetzt. Der Konstruktor kann über eine Friend-Beziehung nur
+auf Analysebefehle senden zu können wurde daher die in \ref{fig:inspchan} gezeigte Klasse realisiert. Der Konstruktor kann über eine Friend-Beziehung nur
 von dem \textit{SIS\_InspectorClient}-Singleton aufgerufen werden. Dieses übergibt sich beim Erzeugen dieser Klasse selbst. Innerhalb der \textit{sendNotification()} und \textit{sendResponse()}
 Methoden werden die von der V8 Engine erhaltenen Nachrichten an den in der \textit{SIS\_InspectorClient}-Klasse gespeicherten Websocketendpunkt gesendet.
 \textit{ProcessAnswer()} ist eine Hilfsfunktion, die die Antworten der V8 Engine in normale Strings umwandelt.
@@ -165,7 +165,7 @@ implementieren, die von der \textit{V8Context}-Klasse aufgerufen werden.
 	\label{fig:dpjscommands}
 \end{figure}
 
-Diese Konkretisierung stellt den Ausführungsumgebungen, wie in der Grafik \ref{fig:dpjscommands} ersichtlich, Zugriffsmethoden auf den Datenhausehalt des SCADA-Systems zur Verfügung.
+Diese Konkretisierung stellt den Ausführungsumgebungen, wie in der Grafik \ref{fig:dpjscommands} ersichtlich, Zugriffsmethoden auf den Datenhaushalt des SCADA-Systems zur Verfügung.
 Die rekursiven Funktionen \textit{ConvertToJSValue()} und \textit{ConvertToSVariable()} beinhalten If-Else-Kaskaden für das Marshalling von WinCC OA 
 Datentypen nach Javascript und vice versa. Die Rekursion wird benötigt um mit Arrays umgehen zu können.
 

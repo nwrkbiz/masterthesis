@@ -15,11 +15,11 @@ von Zeitvorgaben \cite{realTimeDB}. Weitere Eigenschaften eines SCADA-Systems si
 \cite{whatIsScada}:
 
 \begin{itemize}
-	\item Kommunikation: Teilnehmer tauschen sich untereinander ereignisorientiert via TCP/IP aus (Publish/Subscribe \cite{Jacobsen2009}). Die Daten von Hardwaremodule (Eingabe- und Ausgabekanäle) werden über Polling bezogen und in der Echtzeitdatenbank abgelegt.
+	\item Kommunikation: Teilnehmer tauschen sich untereinander ereignisorientiert via TCP/IP aus (Publish/Subscribe \cite{Jacobsen2009}). Die Daten von Hardwaremodulen (Eingabe- und Ausgabekanäle) werden über Polling bezogen und in der Echtzeitdatenbank abgelegt.
 	\item Skalierbarkeit: Hierbei versteht man die Möglichkeit, das System um weitere Instanzen mit jeweils eigenen Echtzeitdatenbanken zu erweitern.
 	\item Redundanz: Um die Ausfallsicherheit zu erhöhen, muss ein Redundanzbetrieb möglich sein.
 	\item Benutzerverwaltung: Verschiedene Benutzergruppen brauchen Zugriff auf den Datenhaushalt. Daher wird eine Benutzerverwaltung benötigt um die Sichtbarkeit bestimmter Daten einschränken zu können.
-	\item Alarmbehandlung: Für ausgewählte Werte in der Datenbank können Hysteresen und Schwellwerte definiert werden. Sind diese über- oder unterschritten, werden Alarme ausgelöst und über verschiedene Kommunikationswege an Benutzer weiterpropagiert. Tritt ein solcher Zustand ein, kann dies eine Benutzerinteraktion erfordern und mit einer Quittierungspflicht einhergehen.  
+	\item Alarmbehandlung: Für ausgewählte Werte in der Datenbank können Hysteresen und Schwellwerte definiert werden. Sind diese über- oder unterschritten, werden Alarme ausgelöst und über verschiedene Kommunikationswege an Benutzerinnen oder Benutzer weiter gereicht. Tritt ein solcher Zustand ein, kann dies eine Benutzerinteraktion erfordern und mit einer Quittierungspflicht einhergehen.  
 	\item Archivieren: Damit ist die Mittel- und Langzeitspeicherung von Daten gemeint.
 	\item Entwicklung: SCADA-Systeme zeichnen sich dadurch aus, dass sie Programmierschnittstellen zur Verfügung stellen, die Zugriff auf den Datenhaushalt (lesen und schreiben) ermöglichen. Außerdem bieten sie grafische Werkzeuge zum Modellieren der Echtzeitdatenbank.
 	\item Automatisierung: Die ereignisorientierte Kommunikation in Verbindung mit der Programmierschnittstelle erlaubt das automatische Auslösen von Ereignissen.
@@ -35,7 +35,7 @@ In dieser Arbeit wird unter diesen Terminus ein Softwareprozess mit folgenden Ei
 \begin{itemize}
     \item Autonomie: Agenten agieren ohne direktes Eingreifen von Menschen oder anderen Komponenten und haben eine gewisse Kontrolle über ihre Handlungen und ihren internen Zustand.
     \item Soziale Fähigkeit: Sie interagieren mit anderen Agenten (und möglicherweise Menschen) über eine Art von Kommunikationsprotokoll.
-    \item Reaktivität: Agenten nehmen ihre Umgebung wahr (das kann die physische Welt, ein Benutzer über eine grafische Benutzeroberfläche, eine Sammlung anderer Agenten, das Internet oder alles zusammen sein) und reagieren zeitnah auf Veränderungen.
+    \item Reaktivität: Agenten nehmen ihre Umgebung wahr (das kann die physische Welt, eine Benutzerin oder ein Benutzer über eine grafische Benutzeroberfläche, eine Sammlung anderer Agenten, das Internet oder alles zusammen sein) und reagieren zeitnah auf Veränderungen.
     \item Proaktivität: Sie handeln nicht nur in Reaktion auf ihre Umwelt, sondern sind in der Lage, zielgerichtetes Verhalten an den Tag zu legen, indem sie die Initiative ergreifen. \\
 \end{itemize}
 
@@ -172,7 +172,7 @@ aber auch unidirektional konfigurieren. Über diesen Mechanismus können bis zu 
 \subsubsection{Driver}
 
 Driver formen das unterste Level eines WinCC OA Systems. Sie sind für die Verbindung mit der \textit{Feldebene} zuständig. Die verwendeten Peripheriegeräte
-oder die dazugehörigen Kommunikationsbusse bestimmen, welche Treiber einem Projekt hinzugefügt werden müssen. Insgesamt werden 19 verschiedene Protokolle 
+oder die dazugehörigen Kommunikationsbusse bestimmen, welche Driver-Prozesse einem Projekt hinzugefügt werden müssen. Insgesamt werden 19 verschiedene Protokolle 
 unterstützt, darunter MODBUS, S7Plus und OPC UA.
 
 \subsubsection{API-Agent}
@@ -228,7 +228,7 @@ er innerhalb eines Programmes nur einmal instanziiert werden kann \cite{Singleto
 
 Diese Klasse dient als Parser für die Programmparameter und die Projektkonfigurationsdatei. Die eingelesenen Parameter kann man
 über Zugriffsfunktionen (Getter) abfragen. Durch Ableiten von dieser Klasse ist ein Definieren von eigenen Konfigurationseinträgen
-für den zu entwickelnden Agenten möglich. Der Kommandozeilenparameter \textit{-proj Projektname} weißt diese Klasse an, über die globale 
+für den zu entwickelnden Agenten möglich. Der Kommandozeilenparameter \textit{-proj Projektname} weist diese Klasse an, über die globale 
 \textit{pvssInst.conf} Datei den Pfad zur Projektkonfigurationsdatei herauszufinden und diese zu laden. Mit \textit{-num} wird
 dem Agenten eine eindeutige Nummer zugewiesen.
 
@@ -248,11 +248,11 @@ Folgendes Beispiel soll zeigen, wie dies zu bewerkstelligen ist:
 	lastline=95]{prototype1/src/prototyp.cpp}
 
 Der Programmcode \ref{src:proto1_agent} zeigt, dass jeder Teilnehmer des SCADA-Systems eine eindeutige Kennung besitzt. Diese nennt sich \textit{ManagerIdentifier}
-und wird der Basisklasse über den Konstruktor mitgegeben. Wichtig ist hier die Nummer des Agenten, die innerhalb eines
+und wird der Basisklasse über den Konstruktor mitgegeben. Wichtig ist die Nummer des Agenten, die innerhalb eines
 Systems eindeutig sein muss. In dem Beispiel \ref{src:proto1_agent} kann man erkennen, dass die \textit{Resources-Klasse} Zugriff auf diese
 Nummer über die Funktion \textit{Resources::getManNum()} ermöglicht. Im Konstruktor der Implementierung wird sich zunächst mit dem Data Manager verbunden, um die Datenbankkonfigurationen zu erhalten.
-Die Konfigurationen werden benötigt um später die textuelle Repräsentation der Datenpunktelemente in interne Datentypen umwandeln zu können. Im letzten Schritt
-wird die Verbindung zum Event Manager hergestellt. Diese abgeleitete Klasse erbt alle Funktionen um mit dem System interagieren zu können.
+Die Konfigurationen werden benötigt, um später die textuelle Repräsentation der Datenpunktelemente in interne Datentypen umwandeln zu können. Im letzten Schritt
+wird die Verbindung zum Event Manager hergestellt. Diese abgeleitete Klasse erbt alle Funktionen, um mit dem System interagieren zu können.
 Eine Auswahl ist in der folgenden Tabelle aufgelistet:
 
 \begin{table}[h] \caption{Wichtige Funktionen der Manager-Klasse} 
@@ -289,8 +289,8 @@ wird im nachfolgenden Codebeispiel veranschaulicht: \\
 	firstline=20,
 	lastline=68]{prototype1/src/prototyp.cpp}
 
-In dem Beispiel \ref{src:proto1_agent} ist gezeigt wie die Observer-Klasse zu implementieren ist. Wenn durch einen \textit{dispatch()}
-Aufruf Daten erhalten wurden, wird abhängig von der Abfrage die entsprechende \textit{hotLinkCallback()}-Funktion verwendet. 
+In dem Beispiel \ref{src:proto1_agent} ist gezeigt wie die Observer-Klasse zu implementieren ist. Wenn durch einen \textit{dispatch()}-Aufruf 
+Daten erhalten wurden, wird abhängig von der Abfrage die entsprechende \textit{hotLinkCallback()}-Funktion verwendet. 
 Wurde sich auf Wertänderungen registriert, wird bei jedem neuen Wert \textit{hotLinkCallback(DpHLGroup)} aufgerufen. Für
 einmalige Antworten werden die Informationen via \textit{hotLinkCallback(DpMsgAnswer)} übergeben.
 Die abgefragten Daten werden als Objekte der Klasse \textit{Variable} übermittelt. Dies ist eine Basisklasse, von der für jeden verfügbaren statischen 
@@ -314,10 +314,10 @@ Die zuvor gezeigten Klassen werden hier nun in einem Beispielprogramm verwendet,
 	lastline=129]{prototype1/src/prototyp.cpp}
 
 In dem Quellcode \ref{src:proto1_main} ist ersichtlich, dass zunächst die Kommandozeilenparameter an die \textit{Resources-Klasse} über die
-\textit{Resources::init()}-Funktion übergeben wurde. Über \textit{Agent::getId()} ist es nun möglich die textuelle Repräsentation der
+\textit{Resources::init()}-Funktion übergeben wurde. Über \textit{Agent::getId()} ist es möglich die textuelle Repräsentation der
 Datenpunktelemente in den \textit{DpIdentifier} Datentyp umzuwandeln, der für die spätere Verwendung benötigt wird. Hier fällt auf, dass
 für abfragende Befehle das Attribut \textit{\_online..\_value} angehängt wurde und für Schreibende \textit{\_original..\_value}. 
-Der letzte boolesche Parameter in den Aufrufen \textit{Agent::dpGet()}, \textit{Agent::dpSet()} und \textit{Agent::dpConnect()} weißt
+Der letzte boolesche Parameter in den Aufrufen \textit{Agent::dpGet()}, \textit{Agent::dpSet()} und \textit{Agent::dpConnect()} weist
 die Funktionen an, die Observer-Objekte zu löschen sobald diese nicht mehr gebraucht werden. Das Beispiel produziert folgende 
 Ausgabe:
 
@@ -367,8 +367,8 @@ innerhalb eines eigenen Subprojekts organisiert. Die drei Agenten erfüllen folg
 
 \begin{itemize}
 	\item SIS\_HTTP: Stellt den Webbrowsern die in HTML5 implementierte Visualisierung zur Verfügung.
-	\item SIS\_Event: Ist für die \textit{SiPlant}-Webseite der Eintrittspunkt zu einer erweiterbaren Websocket-Schnittstelle. Andere Agenten können sich bei diesem Prozess Anmelden um Befehle entgegenzunehmen.
-	\item SIS\_NGUI: Übernimmt Websocket-Befehle die sich um Benutzeranpassungen kümmert (verwalten der Benutzerprofile etc.).
+	\item SIS\_Event: Ist für die \textit{SiPlant}-Webseite der Eintrittspunkt zu einer erweiterbaren Websocket-Schnittstelle. Andere Agenten können sich bei diesem Prozess anmelden um Befehle entgegenzunehmen.
+	\item SIS\_NGUI: Übernimmt Websocket-Befehle die sich um Benutzeranpassungen kümmern (verwalten der Benutzerprofile etc.).
 \end{itemize}
 
 \textit{SiPlant} kann über den Subprojekt-Mechanismus sukzessive erweitert werden.\\ SIS\_HTTP erlaubt den Webbrowsern zugriff auf die HTML5-Dateien 
@@ -376,6 +376,6 @@ aller Subprojekte. Spezifische Agenten können der Webseite über SIS\_Event eig
 \textit{SiPlant}-Erweiterungen bei, die sich diesem Konzept Bedienen:
 
 \begin{itemize}
-	\item SMF\_PlantVisu: Ermöglicht Performance und Fehleranalysen in einer Produktion.
+	\item SMF\_PlantVisu: Ermöglicht Leistungs- und Fehleranalysen in einer Produktion.
 	\item SMF\_SmartScheduler: Implementiert einen Kalender, der das Planen von Schichten und Ereignissen erlaubt. 
 \end{itemize}

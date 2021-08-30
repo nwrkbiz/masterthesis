@@ -7,7 +7,7 @@ Im Folgenden sind die Anforderungen an das Programm definiert.
 
 \section{Zu unterstützende Plattformen}
 
-Einen limitierenden Faktor stellt hier die WinCC OA 3.16 Programmierschnittstelle dar, weil sie nur als Kompilat in binärform zur Verfügung steht. Die
+Einen limitierenden Faktor stellt hier die WinCC OA 3.16 Programmierschnittstelle dar, weil sie nur als Kompilat in Binärform zur Verfügung steht. Die
 unterstützten Plattformen sind:
 
 \begin{itemize}
@@ -27,14 +27,14 @@ Daher wird die Auswahl auf SUSE Linux Enterprise 12.5 und die von WinCC OA unter
 
 \section{Anwendungsfälle}
 
-Das Programm soll die Umsetzung von Kundenwünschen und die Anlagenintegration unterstützen.
+Das Programm soll die Realisierung von Kundenwünschen und die Anlagenintegration unterstützen.
 Dazu werden im Folgenden die genauen Anforderungen an den Agenten beschrieben.
 
 \subsection{Entwicklung kundenspezifischer Anforderungen}
 
 Oft stellen Kundinnen und Kunden während der Projektphase Anforderungen, die nicht im Standardfunktionsumfang von \textit{SiPlant} enthalten sind.
 Um auf diese Wünsche agil eingehen zu können, ohne die Produktentwicklung zu stören, ist eine Möglichkeit der Umsetzung vor Ort nötig.
-Hier soll der V8-Agent eine Hilfe bieten, um Algorithmen, skriptgestützt implementieren zu können. 
+Hier soll der V8-Agent eine Hilfe bieten, um Algorithmen innerhalb von Javascriptdateien implementieren zu können. 
 
 \begin{figure}[h]
 	\centering \includegraphics[width=1\textwidth]{UseCase_Implementation}
@@ -42,16 +42,16 @@ Hier soll der V8-Agent eine Hilfe bieten, um Algorithmen, skriptgestützt implem
 	\label{fig:UseCase_Implementation}
 \end{figure}
 
-Dazu müssen wie in Abbildung \ref{fig:UseCase_Implementation} gezeigt Kundinnen und Kunden zunächst eine Anforderung spezifizieren. Im nächsten Schritt ist es die 
+Dazu müssen wie in Abbildung \ref{fig:UseCase_Implementation} gezeigt, Kundinnen und Kunden zunächst eine Anforderung spezifizieren. Im nächsten Schritt ist es die 
 Aufgabe der Systemintegratorinnen und Systemintegratoren diese Spezifikation zu analysieren. Danach können die entsprechenden Algorithmen unter Zuhilfenahme 
-der REPL-Konsole implementiert werden. Diese müssen dann dem Projekt hinzugefügt werden. An dieser Stelle bietet sich der in \ref{cha:subproj} beschriebene 
+der REPL-Konsole implementiert werden. Diese müssen dem Projekt hinzugefügt werden. An dieser Stelle bietet sich der in \ref{cha:subproj} beschriebene 
 WinCC OA Subprojekt-Mechanismus an, um eine gute Organisation und Wiederverwendbarkeit des erstellten Codes zu erreichen.
 
 \subsection{Skriptgestützte Massenparametrierung}
 
 Einen erheblichen Aufwand bei der Systemintegration nimmt das Anbinden der Teilnehmer in der \textit{Feldebene} in Anspruch, weil hier
-wie in \ref{cha:param} beschrieben für jeden Eingabe- und Ausgabekanal eine eigene Konfiguration vorgenommen werden muss. Der Agent soll
-hier durch eine skriptgestützte Parametrierung Erleichterung schaffen. Dazu wird ein Export von sogenannten Variablen- oder Taglisten der 
+wie in \ref{cha:param} beschrieben, für jeden Eingabe- und Ausgabekanal eine eigene Konfiguration vorgenommen werden muss. Der Agent soll 
+durch eine skriptgestützte Parametrierung Erleichterung schaffen. Dazu wird ein Export von sogenannten Variablen- oder Taglisten der 
 SPS-Programme benötigt.
 
 \begin{figure}[h]
@@ -92,7 +92,7 @@ Funktionen ohne großen Zeitaufwand ergänzt werden können.
 \subsection{Zuverlässigkeit}
 
 Die Benutzenden sollen sich darauf verlassen können, dass das Programm zuverlässig läuft und eventuell auftretende Bedienungsfehler seitens der
-Verwendenden zu keinem Absturz führen. Dazu müssen alle Eingaben, bevor eine Ausführung getätigt wird, auf deren Richtigkeit geprüft werden. Die Anwendung informiert den Benutzer bei einem technischen oder einem Anwenderfehler. 
+Verwendenden zu keinem Absturz führen. Dazu müssen alle Eingaben, bevor eine Ausführung getätigt wird, auf deren Richtigkeit geprüft werden. Die Anwendung informiert die Benutzerin oder den Benutzer bei einem technischen oder einem Anwenderfehler. 
 Die Fehlermeldungen müssen leicht verständlich sein und den Systemintegratorinnen und Systemintegratoren hinweise für die Richtigstellung geben. Als Beispiel kann hier ein Aufrufen von Funktionen mit 
 falschen Parametern aufgeführt werden. Tritt eine solche Situation ein, muss durch eine Meldung Auskunft über die erwarteten Funktionsparameter gegeben werden.
 Ein weiterer wichtiger Punkt in der Benutzbarkeit ist die API-Stabilität. Unter diesem Begriff wird eine Garantie, dass sich bestehende Funktionssignaturen zwischen
@@ -103,4 +103,4 @@ verschiedenen \textit{SiPlant}-Versionen nicht verändern, verstanden.
 Die Programmkomponente muss so konzipiert sein, dass sie auch in anderen SCADA-Agenten eingebunden und verwendet werden kann. 
 Somit soll die Möglichkeit geschaffen werden, bestimmte Algorithmen in Skripte auslagern zu können, damit eine höhere 
 Anpassbarkeit vor Ort in Projekten zustande gebracht wird. Als Beispiel können hier Priorisierungsalgorithmen für eingehende 
-Aufträge aus der \textit{Produktionsleitebene} genannt werden, da diese stark Kundenabhängig sind.
+Aufträge aus der \textit{Produktionsleitebene} genannt werden, da diese stark kundenabhängig sind.
