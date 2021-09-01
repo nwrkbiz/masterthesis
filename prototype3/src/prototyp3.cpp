@@ -77,7 +77,7 @@ public:
     v8::HandleScope handle_scope(m_Isolate);
     v8::Local<v8::Context> context = m_Context.Get(m_Isolate);
     v8::Context::Scope context_scope(context);
-    // Marshalling von WinCC OA DatenTypen nach V8 Javascript Datentypen
+    // Marshalling von WinCC OA Datentypen nach V8 Javascript Datentypen
     const int argc = 2;
     v8::Local<v8::Value> argv[argc];
     v8::Local<v8::Array> dpeArr = v8::Array::New(m_Isolate);

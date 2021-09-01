@@ -104,11 +104,11 @@ Dadurch ist eine erweitete Konfiguration möglich. Die wichtigsten sind:
 
 \begin{itemize}
     \item \_alert\_hdl: Erlaubt die Konfiguration von Hysteresen und Grenzwerten. Über- oder unterschreitet der Wert des Datenpunktelements diese Grenzen, löst der Event Manager einen Alarm aus.
-    \item \_address: Weist dieses Element einem Eingabe- oder Ausgabekanal in der \textit{Feldebene} zu. Der entsprechende Driver Prozess legt die Daten dann auf diesem ab.  
-    \item \_archive: Erlaubt das Archivieren von Wertänderungen mit Hilfe eines Value Archive Prozesses. Hier wird hinterlegt, welcher Prozess für die Mittel- und Langzeitspeicherung zuständig ist.\\
+    \item \_address: Weist dieses Element einem Eingabe- oder Ausgabekanal in der \textit{Feldebene} zu. Der entsprechende Driver-Prozess legt die Daten dann auf diesem ab.  
+    \item \_archive: Erlaubt das Archivieren von Wertänderungen mit Hilfe eines Value-Archive-Prozesses. Hier wird hinterlegt, welcher Prozess für die Mittel- und Langzeitspeicherung zuständig ist.\\
 \end{itemize}
 
-Diese Konfigurationen werden an den Data Manager Prozess zum Ablegen in der Datenbank übertragen. Dieser gibt sie danach an alle Teilnehmer weiter, die sie benötigen. Über eine textuelle Repräsentation
+Diese Konfigurationen werden an den Data-Manager-Prozess zum Ablegen in der Datenbank übertragen. Dieser gibt sie danach an alle Teilnehmer weiter, die sie benötigen. Über eine textuelle Repräsentation
 ist es dadurch möglich auf die Datenpunktelemente und deren Attribute zuzugreifen. Hier dazu ein Beispiel: \\
 
 System1:Instanz1.int:\_online..\_value
@@ -128,8 +128,8 @@ sich für den Erhalt dieser Meldungen zu registrieren.
 
 Der Data Manager unterstützt den Event Manager und kümmert sich um das persistieren des Prozessabbildes und der Alarmhistorie auf die 
 Festplatte (Letztwertdatenbank). Außerdem speichert er die Informationen über Datenpunkttypen, Datenpunkte und die Konfigurationen der Datenpunktelemente. Diese gibt er an alle 
-Teilnehmer weiter, die diese benötigen. Anfragen über historische Daten übergibt der Event Manager an den Data Manager. Dieser fragt  
-dann die entsprechenden Value Archive Prozesse ab und gibt die resultierenden Informationen an den Event Manager zurück. 
+Teilnehmer weiter, die diese benötigen. Anfragen über historische Daten übergibt der Event Manager an den Data Manager. 
+Dieser reicht sie an die entsprechenden Value-Archive-Prozesse weiter und gibt die resultierenden Informationen an den Event Manager zurück. 
 
 \subsubsection{Redundancy Manager}
 
@@ -249,8 +249,8 @@ Folgendes Beispiel soll zeigen, wie dies zu bewerkstelligen ist:
 
 Der Programmcode \ref{src:proto1_agent} zeigt, dass jeder Teilnehmer des SCADA-Systems eine eindeutige Kennung besitzt. Diese nennt sich \textit{ManagerIdentifier}
 und wird der Basisklasse über den Konstruktor mitgegeben. Wichtig ist die Nummer des Agenten, die innerhalb eines
-Systems eindeutig sein muss. In dem Beispiel \ref{src:proto1_agent} kann man erkennen, dass die \textit{Resources-Klasse} Zugriff auf diese
-Nummer über die Funktion \textit{Resources::getManNum()} ermöglicht. Im Konstruktor der Implementierung wird sich zunächst mit dem Data Manager verbunden, um die Datenbankkonfigurationen zu erhalten.
+Systems eindeutig sein muss. In dem Beispiel \ref{src:proto1_agent} kann man erkennen, dass die \textit{Resources}-Klasse Zugriff auf diese
+Nummer über die Funktion \textit{Resources::getManNum()} ermöglicht. Im Konstruktor der \textit{Agent}-Implementierung wird eine Verbindung mit dem Data Manager hergestellt, um die Datenbankkonfigurationen zu erhalten.
 Die Konfigurationen werden benötigt, um später die textuelle Repräsentation der Datenpunktelemente in interne Datentypen umwandeln zu können. Im letzten Schritt
 wird die Verbindung zum Event Manager hergestellt. Diese abgeleitete Klasse erbt alle Funktionen, um mit dem System interagieren zu können.
 Eine Auswahl ist in der folgenden Tabelle aufgelistet:

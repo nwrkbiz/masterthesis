@@ -1,7 +1,7 @@
 \chapter{Konzept}
 \label{cha:Konzept}
 
-In folgendem Kapitel wird ein Realisierungskonzept für die im letzten beschriebenen Anforderungen erarbeitet. Es werden verschiedenen
+Im Folgenden wird ein Realisierungskonzept für die im letzten Kapitel beschriebenen Anforderungen erarbeitet. Es werden verschiedenen
 Strategien verglichen und ein Fazit gezogen. Im letzten Abschnitt wird die Machbarkeit anhand eines funktionalen Prototypen 
 evaluiert.
 
@@ -38,11 +38,11 @@ Da der Agent nur als einzelner Prozess laufen soll, ist durch die Verwendung von
 Es macht daher mehr Sinn die Bibliotheken der Google V8 Engine statisch in die ausführbare Datei zu linken, da man somit von externen Bibliotheken
 unabhängig bleibt.
 
-\section{Umsetzungskonzept}
+\section{Realisierungsart}
 
 Im letzten Abschnitt wurde erörtert, wie die V8-Bibliotheken als externes Modul in die eigene Komponente
-eingebunden werden sollen. Nun wird die Art der Umsetzung diskutiert. Es wird hier vor allem auf die Anforderung der Wiederverwendbarkeit
-acht genommen. 
+eingebunden werden sollen. Nun wird die Art der Umsetzung diskutiert. Es wird hier vor allem die Anforderung der Wiederverwendbarkeit
+betrachtet. 
 
 \subsection{Dynamische Bibliothek}
 
@@ -59,7 +59,7 @@ besonderen Vor- oder Nachteile.
 \subsection{Ausführbare Datei}
 
 Wird die komplette Funktionalität direkt innerhalb einer ausführbaren Datei umgesetzt, ist das Realisieren der Wiederverwendbarkeit nur schwer möglich.
-Eine Option wäre, die Ausführung von Javascriptdateien über eine RPC-Schnittstelle (Remote Procedure Call) zu ermöglichen. Solch Schnittstelle
+Eine Option wäre, die Ausführung von Javascriptdateien über eine RPC-Schnittstelle (Remote Procedure Call) zu ermöglichen. Dies
 zu implementieren würde jedoch einen unnötigen Mehraufwand verursachen. Außerdem besteht die Gefahr, dass der Prozess überlastet wird,
 wenn mehrere Teilnehmer gleichzeitig Zugriff auf die Schnittstelle verlangen.
 

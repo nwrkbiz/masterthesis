@@ -63,8 +63,8 @@ beschrieben. Das gesamte UML-Diagramm mit allen Relationen kann in Anhang \ref{a
 
 Diese in \ref{fig:singleton} gezeigte Template-Klasse implementiert eine wiederverwendbare Umsetzung des Singleton-Entwurfsmusters \cite{Singleton}. Ableitende Klassen erhalten, indem sie
 sich selbst als Template-Parameter übergeben, eine \textit{GetInstance()}-Funktion, die die einzige Instanz als \textit{Shared-Pointer} zurückgibt. 
-Dadurch ist ein korrektes Freigeben des Speichers am Ende der Programmausführung gewährleistet. Ableitende Klassen müssen zusätzlich deren 
-Konstruktor als \textit{protected} deklarieren und die Singleton-Klasse als \textit{friend} hinzufügen. Die \textit{GetInstance()}-Methode nimmt
+Dadurch ist ein korrektes Freigeben des Speichers am Ende der Programmausführung gewährleistet. \textit{Shared-Pointer} wurde \textit{Unique-Pointer} vorgezogen, da bei Bedarf der Zeitpunkt der Speicherfreigabe beeinflusst werden kann. 
+Ableitende Klassen müssen zusätzlich deren Konstruktor als \textit{protected} deklarieren und die Singleton-Klasse als \textit{friend} hinzufügen. Die \textit{GetInstance()}-Methode nimmt
 jene Parameter entgegen, die eine ableitende Klasse zur Konstruktion benötigt.
 
 \subsection{Implementierung der libV8-Klasse}
