@@ -68,8 +68,18 @@ wenn mehrere Teilnehmer gleichzeitig Zugriff auf die Schnittstelle verlangen.
 Die Umsetzung als ausführbare Datei mit einer RPC-Schnittstelle kann aufgrund der erläuterten Probleme als unpraktikabel angesehen werden 
 und wird daher nicht in Betracht gezogen. Eine Implementierung als dynamische Bibliothek setzt voraus, dass sich die Schnittstellen nicht ändert,
 was die Flexibilität in der Entwicklung neuer Funktionalitäten einschränken kann. Deshalb wird für die zu entwickelnde Programmkomponente 
-das Erstellen einer statischen Bibliothek als Umsetzungskonzept gewählt. Diese soll dann innerhalb eines eigenen Agenten verwendet werden,
-um die Ausführung von Javascriptdateien zu ermöglichen.
+das Erstellen einer statischen Bibliothek als Umsetzungskonzept gewählt. Folgende Grafik soll das Zusammenspiel der einzelnen Komponenten 
+veranschaulichen:
+
+\begin{figure}[h]
+	\centering \includegraphics[width=0.75\textwidth]{big_picture}
+	\caption{Dieses Übersichtsbild zeigt die statische Bibliothek \textit{libV8} und wie sie verwendet wird.}
+	\label{fig:big_picture}
+\end{figure}
+
+Wie in Abbildung \ref{fig:big_picture} gezeigt sind die WinCC OA und Google V8 Funktionen innerhalb der statischen Bibliothek \textit{libV8} gekapselt.
+Die V8-Engine kümmert sich um das Ausführen von Javascriptdateien und die dazu benötigte Speicherverwaltung. Der Javascript-Sprachumfang wird über die WinCC OA Programmierschnittstelle
+um eigene Methoden erweitert. Diese Bibliothek kann dann innerhalb der Hauptfunktion eines Agenten verwendet werden, um die Ausführung von Javascriptdateien zu ermöglichen.
 
 \section{Handbuch für Integratorinnen und Integratoren}
 
@@ -114,7 +124,7 @@ Wie in \ref{src:typedoc} ersichtlich, werden über die Anweisungen \textit{@para
 Außerdem kann beschreibender Beispielcode direkt bei der Funktionsdeklaration eingefügt werden. 
 
 \begin{figure}[h]
-	\centering \includegraphics[width=1\textwidth]{typedoc}
+	\centering \includegraphics[width=0.83\textwidth]{typedoc}
 	\caption{Generierte Dokumentation für \textit{DpGet}.}
 	\label{fig:typedoc}
 \end{figure}
@@ -134,7 +144,6 @@ Umsetzung festzustellen. Dazu werden die aus den Beispielen \ref{cha:scada_code}
 Das Ziel ist es die \textit{dpConnect()}-Funktion der WinCC OA C++-Programmierschnittstelle an die Google V8 Javascriptengine anzubinden.
 Dazu muss zunächst eine eigene Observer-Klasse implementiert werden, die beim Erhalt von Datenpunkt-Wertänderungen eine Javascript-Methode 
 aufrufen kann. Die aus den vorherigen Beispielen wiederverwendeten Klassen und Funktionen sind hier nicht mehr aufgeführt.
-\newpage
 
 \lstinputlisting[
 	label={src:proto3_obs},
@@ -195,7 +204,7 @@ mit dem \textit{dispatch()} Aufruf die \textit{DpConnect}-Funktion in Javascript
 Das in \ref{src:proto3_example} gezeigte Beispiel registriert sich auf Wertänderungen und gibt diese zusammen mit einem Zähler aus.
 Bei schreiben der Werte '47.11', '42', '47,11' und '42' auf das Datenpunktelement 'System1:ExampleDP\_DDE.f1' wird folgende Ausgabe
 generiert:
-
+\newpage
 \lstinputlisting[
     label={src:proto3_vc},
     caption={Ausgabe bei Wertänderungen.},
@@ -203,9 +212,8 @@ generiert:
     ]{prototype3/ausgabe.txt}
 
 Wie in \ref{src:proto3_vc} ersichtlich, werden die Wertänderungen und die Zählervariable ausgegeben.
-\newpage
-Auch dieses
- Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD und ist unter \textit{Thesis/prototype3} zu finden. Es kann mit folgenden Befehlen 
+
+Auch dieses Beispiel befindet sich als CMake \cite{cmake} Projekt auf der CD-ROM/DVD und ist unter \textit{Thesis/prototype3} zu finden. Es kann mit folgenden Befehlen 
 übersetzt werden. Dazu wird das \textit{SMF\_3P} Verzeichnis und eine WinCC OA Installation benötigt. \\
 
 SUSE Linux Enterprise 12.5:
