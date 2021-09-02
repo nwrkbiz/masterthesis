@@ -34,11 +34,11 @@ Dazu werden im Folgenden die genauen Anforderungen an den Agenten beschrieben.
 
 Oft stellen Kundinnen und Kunden während der Projektphase Anforderungen, die nicht im Standardfunktionsumfang von \textit{SiPlant} enthalten sind.
 Um auf diese Wünsche agil eingehen zu können, ohne die Produktentwicklung zu stören, ist eine Möglichkeit der Umsetzung vor Ort nötig.
-Hier soll der V8-Agent eine Hilfe bieten, um Algorithmen innerhalb von Javascriptdateien implementieren zu können. 
+Hier soll der V8-Agent eine Hilfe bieten, um Algorithmen implementieren zu können. 
 
 \begin{figure}[h]
-	\centering \includegraphics[width=1\textwidth]{UseCase_Implementation}
-	\caption{Anwendungsfalldiagramm stellt die Entwicklung kundenspezifischer Anforderungen grafisch dar.}
+	\centering \includegraphics[width=0.70\textwidth]{Flow_Implementation}
+	\caption{Dieses Ablaufdiagramm stellt die Entwicklung kundenspezifischer Anforderungen grafisch dar.}
 	\label{fig:UseCase_Implementation}
 \end{figure}
 
@@ -55,14 +55,14 @@ durch eine skriptgestützte Parametrierung Erleichterung schaffen. Dazu wird ein
 SPS-Programme benötigt.
 
 \begin{figure}[h]
-	\centering \includegraphics[width=1\textwidth]{UseCase_Import}
+	\centering \includegraphics[width=0.60\textwidth]{Flow_Import}
 	\caption{In diesem Diagramm wird die Massenparametrierung dargestellt.}
 	\label{fig:UseCase_Import}
 \end{figure}
 
 Diese müssen wie in Abbildung \ref{fig:UseCase_Import} visualisiert von den SPS-Entwicklerinnen oder SPS-Entwicklern zur Verfügung gestellt werden. 
 Häufig liegen diese Listen im CSV oder XML Format ohne standardisierte Struktur vor. Daher ist es die Aufgabe der Systemintegratorinnen und Systemintegratoren die Syntax dieser Dateien zu analysieren.
-Danach muss im Internet eine passend Javascript Parserbibliothek gefunden werden. Der nächste Schritt im Anwendungsfalldiagramm sieht dann die Implementierung eines Import-Skripts vor. Unterstützend kann dazu die REPL-Konsole der Browser-Entwicklerwerkzeuge herangezogen werden. Zuletzt wird der Import durch das Ausführen des Skriptes gestartet
+Danach muss im Internet eine passend Javascript Parserbibliothek gefunden werden. Der nächste Schritt im Ablaufdiagramm sieht dann die Implementierung eines Import-Skripts vor. Unterstützend kann dazu die REPL-Konsole der Browser-Entwicklerwerkzeuge herangezogen werden. Zuletzt wird der Import durch das Ausführen des Skriptes gestartet
 und die entsprechenden Datenpunkte und Datenpunktkonfigurationen erzeugt.
 
 \section{Qualitätsanforderungen}

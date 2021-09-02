@@ -277,8 +277,16 @@ Eine Auswahl ist in der folgenden Tabelle aufgelistet:
 
 Die in Tabelle \ref{tab:man_fun} gezeigten Funktionen erhalten, bis auf \textit{dispatch()}, die angefragten Daten asynchron. Die Antworten 
 werden mit Hilfe des Observer-Entwurfsmuster übermittelt \cite{observer}. Jeder Funktionsaufruf benötigt ein Observer-Objekt, das die 
-Daten erhält. Dazu muss das von der WinCC OA Programmierschnittstelle zur Verfügung gestellte \textit{HotLinkWaitForAnswer}-Interface implementiert werden. Dies
-wird im nachfolgenden Codebeispiel veranschaulicht: \\
+Daten erhält. Dazu muss das von der WinCC OA Programmierschnittstelle zur Verfügung gestellte \textit{HotLinkWaitForAnswer}-Interface implementiert werden. 
+\newpage
+\begin{figure}[h]
+	\centering \includegraphics[width=1\textwidth]{oa_observer}
+	\caption{Zusammenspiel zwischen Manager-Klasse und \textit{HotLinkWaitForAnswer}-Interface.}
+	\label{fig:obs}
+\end{figure}
+
+Die Abbildung \ref{fig:obs} gibt einen Überblick, wie über das \textit{Manager}-Singleton angefragte Informationen durch Ableiten der Interface-Klasse (DpObserver) asynchron erhalten werden können.
+Eine konkrete Implementierung ist im nachfolgenden Codebeispiel veranschaulicht:
 
 \lstinputlisting[
 	label={src:proto1_observer},
