@@ -542,6 +542,23 @@
       \verb https://www.boost.org/
       \endverb
     \endentry
+    \entry{GTEngine}{online}{}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{labeltitlesource}{title}
+      \field{title}{Geometric Tools Engine (GTEngine)}
+      \field{urlday}{2}
+      \field{urlmonth}{8}
+      \field{urlyear}{2021}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://swmath.org/software/24041
+      \endverb
+      \verb{url}
+      \verb https://swmath.org/software/24041
+      \endverb
+    \endentry
     \entry{git}{online}{}
       \field{sortinit}{G}
       \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
